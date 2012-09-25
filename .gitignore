@@ -1,1 +1,4 @@
-npm_modules/*.*
+npm_modules/
+Procfile
+.npmignore
+node_modules/
