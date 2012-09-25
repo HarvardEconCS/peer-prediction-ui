@@ -1,0 +1,10 @@
+<div>
+  <form>
+    <span>Choose your action: </span>
+    <select>
+      <option value="Red">Red</option>
+      <option value="Green">Green</option>
+    </select>
+    <button>Confirm Action</button>
+  </form>
+</div>

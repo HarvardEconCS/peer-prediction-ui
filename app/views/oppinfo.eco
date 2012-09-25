@@ -1,0 +1,3 @@
+<div>
+  <p><%= @numNotActed %> of <%= @numOpps %> of your opponents have not chosen their actions yet.</p>
+</div>
