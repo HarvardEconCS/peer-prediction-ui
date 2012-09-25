@@ -5,10 +5,8 @@ Player    = require('models/player')
 Game      = require('models/game')
 
 #controllers
-GameInfoShow   = require('controllers/gameinfo_show')
 GameResultShow = require('controllers/gameresult_show')
-OppActionShow  = require('controllers/oppaction_show')
-ChooseAction   = require('controllers/chooseaction')
+GameInfoShow   = require('controllers/gameinfo_show')
 
 class Main extends Spine.Controller
   
@@ -25,23 +23,18 @@ class Main extends Spine.Controller
     Game.newGame()
     @currGame = Game.first()
 
+    # if there are games left to play
     if @currGame.numRemaining > 0
 
       @gameinfoshow = new GameInfoShow
         game: @currGame
         turkId: @currPlayerTurkId
 
-      @chooseaction = new ChooseAction
-        turkId: @currPayerTurkId
-      
-      @oppactionshow = new OppActionShow
-        numOpps: @currGame.numPlayers - 1
-
-      @append @gameinfoshow, @chooseaction, @oppactionshow
-
+      @append @gameinfoshow
 
     # TODO: should try to save results when there are games left
-    @gameresultshow = new GameResultShow(results: @currGame.results)
+    @gameresultshow = new GameResultShow
+      results: @currGame.results
 
     divide = Spine.$('<div />').addClass('vdivide')
     

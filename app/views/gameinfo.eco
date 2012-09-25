@@ -1,4 +1,22 @@
 <div>
   <p>Public Information: You will be playing a total of <%= @numTotal %> games with <%= @numPlayers - 1 %> other players.  There are <%= @numRemaining %> games left. </p>
   <p>Your Private Information: For the current game, the color of the candy selected for you from the chosen jar is <span class="signal"><%= @signal %></span></p>
+
+  <form>
+    <p>
+      <% if @action: %>
+        <span>You have chosen to report <%= @action %></span>
+      <% else: %>
+        <span>Please choose a color to report:</span>
+        <select>
+          <option value="Red">Red</option>
+          <option value="Green">Green</option>
+        </select>
+        <button>Confirm Color</button>
+      <% end %>
+    </p>
+  </form>
+
+  <p><%= @numNotActed %> of <%= @numOpps %> of your opponents have not chosen their actions yet.</p>   
+
 </div>
