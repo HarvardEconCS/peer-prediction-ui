@@ -6,12 +6,7 @@ class CurrplayerShow extends Spine.Controller
     @active @render()
 
   render: ->
-    unless @currPlayerAction.signal
-      signalList = ["Red", "Green"]
-      signalIndex = Math.floor(Math.random() * 2);
-      @currPlayerAction.signal = signalList[signalIndex]
-      @currPlayerAction.save()
-    @html require('views/currplayerinfo')({signal: @currPlayerAction.signal})
-    console.log("curr player action #{JSON.stringify(@currPlayerAction)}")
+    @html require('views/currplayerinfo')({signal: @signal})
+    console.log("curr player signal is #{@signal}")
                                     
 module.exports = CurrplayerShow

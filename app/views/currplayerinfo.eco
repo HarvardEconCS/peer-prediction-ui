@@ -1,3 +1,3 @@
 <div>
-  <p>The color of the candy selected for you from the chosen jar is <span><%= @signal %></span></p>
+  <p>For the current game, the color of the candy selected for you from the chosen jar is <span class="signal"><%= @signal %></span></p>
 </div>

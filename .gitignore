@@ -2,3 +2,5 @@ npm_modules/
 Procfile
 .npmignore
 node_modules/
+public/application.css
+public/application.js
