@@ -1,3 +1,45 @@
 <div>
 <p>Game results!</p>
+
+<% if @results and @results.length > 0: %>
+
+  <table class="results">
+    <tr>
+      <% for playRecord in @results[0].data: %>
+        <% if playRecord.turkId isnt @turkId: %>
+          <th colspan="3">Player (<%= playRecord.turkId %>)</th>
+        <% else:  %>
+          <th colspan="4">Player (<%= @turkId %>)</th>
+        <% end %>
+      <% end %>
+    </tr>
+
+    <tr>
+      <% for playRecord in @results[0].data: %>
+        <% if playRecord.turkId isnt @turkId: %>
+          <th>Report</th><th>Ref Player</th><th>Reward</th>
+        <% else:  %>
+          <th>Color of selected candy</th><th>Your report</th><th>Ref Player</th><th>Reward</th>
+        <% end %>
+      <% end %>
+    </tr>
+                                                                                                       
+
+    <% for i in [0..(@results.length - 1)]: %>
+      <tr>
+      <% for record in @results[i].data: %>
+	      <% if record.turkId is @turkId: %>
+          <td><%= record.signal %></td>  
+        <% end %>
+          <td><%= record.action %></td>
+          <td><%= record.refPlayer %></td>
+          <td><%= record.reward %></td>
+      <% end %>
+      </tr>
+    <% end %>
+
+  </table>
+
+<% end %>
+
 </div>

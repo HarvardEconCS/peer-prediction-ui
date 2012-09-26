@@ -6,6 +6,7 @@
       <% else: %>
         <span>Please choose a color to report:</span>
         <select>
+				  <option value="Please Select a color" select="selected"></option>
           <option value="Red">Red</option>
           <option value="Green">Green</option>
         </select>

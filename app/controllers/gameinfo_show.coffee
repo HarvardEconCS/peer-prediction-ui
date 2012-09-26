@@ -1,9 +1,11 @@
 Spine = require('spine')
 
+Game = require('models/game')
+
 class GameinfoShow extends Spine.Controller
 
   events:
-    'submit form': 'chooseAction'
+    'click button': 'chooseAction'
 
   elements:
     'select' : 'select'
@@ -11,10 +13,8 @@ class GameinfoShow extends Spine.Controller
   constructor: ->
     super
 
-    # get signal
-    for record in @game.privateInfo
-      @currPlayerSignal = record.signal if record.playerTurkId is @turkId
-
+    @game = Game.first()
+    
     # get number of other players not chosen an action
     @numNotActed = @game.numPlayers - 1
     
@@ -25,7 +25,7 @@ class GameinfoShow extends Spine.Controller
       numTotal: @game.numTotal
       numPlayers: @game.numPlayers
       numRemaining: @game.numRemaining
-      signal: @currPlayerSignal
+      signal: @game.signal
       action: @action
       numNotActed: @numNotActed
       numOpps: @game.numPlayers - 1
@@ -33,6 +33,9 @@ class GameinfoShow extends Spine.Controller
   chooseAction: (e) ->
     e.preventDefault()
     @action = @select.val()
+    if @action is "Please select a color"
+      alert("Please choose a color to report!")
+      @action = null
     console.log("Chosen action is", @action)
     @render()
   
