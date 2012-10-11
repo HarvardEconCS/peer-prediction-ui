@@ -1,4 +1,3 @@
-<div>
 <p>Game results!</p>
 
 <% if @results and @results.length > 0: %>
@@ -41,5 +40,3 @@
   </table>
 
 <% end %>
-
-</div>

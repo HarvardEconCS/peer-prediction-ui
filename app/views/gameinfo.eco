@@ -1,10 +1,44 @@
-<div>
-  <p>Public Information: You will be playing a total of <%= @numTotal %> games with <%= @numPlayers - 1 %> other players.  There are <%= @numRemaining %> games left. </p>
-  
+  <p>
+    I have bought a mystery candy jar from a candy store.
+    There are two types of mystery candy jars (A and B) sold in this store, but they are indistinguishable from the outside.
+    Each type A mystery candy jar has 30 <span class="red">red</span> candies and 70 <span class="green">green</span> candies.
+    Each type B mystery candy jar has 40 <span class="red">red</span> candies and 60 <span class="green">green</span> candies.
+    To figure out which type of candy jar I bought, I would like you to help me by playing a multi-player game.  The rules of the game are as follows:
+	</p>
+	
+  <p>Before the game begins, each player, in turn, randomly selects 1 candy from my mystery candy jar, observes the color of the candy, and then puts it back into the jar.  
+     This ensures that the color of the candy selected by you is only known to you, and not to the other players in the game. 
+     Next, I will ask each player to report the color of the candy he/she observed to me.  
+     The game ends once every player confirms a color to report. 
+     Your bonus will be determined using your report and your reference player's report, as described in the payment rule table below.  
+     Your reference player will be randomly chosen among all players in this game excluding you.
+		
+    <table>
+      <caption>Payment rule</caption>
+      <tr>
+        <th>Your report</th><th>Your reference player's report</th><th>Your bonus</th>
+      </tr>
+      <tr>
+        <td>Red</td><td>Red</td><td><p id="orgpp0">$0.35</p></td>
+      </tr>
+      <tr>
+        <td>Red</td><td>Green</td><td><p id="orgpp1">$0.60</p></td>
+      </tr>
+      <tr>
+        <td>Green</td><td>Red</td><td><p id="orgpp2">$0.28</p></td>
+      </tr>
+      <tr>
+        <td>Green</td><td>Green</td><td><p id="orgpp3">$0.70</p></td>
+      </tr>
+    </table> 
+  </p>
+
+  <p>Public Information: You will be playing a total of <%= @game.numTotal %> games with <%= @game.numPlayers - 1 %> other players.  There are <%= @game.numRemaining %> games left. </p>
+
     <p class="centering" id="block_signal">
 
       <span class="block_with_border">
-        The color of your candy is: <span id="signal" class="<% if @signal is "Red":%><%= "red" %><% else: %><%= "green" %><% end %>"><%= @signal %></span>
+        The color of your candy is: <span id="signal" class="<% if @game.signal is "Red":%><%= "red" %><% else: %><%= "green" %><% end %>"><%= @game.signal %></span>
       </span> 
       <span>&nbsp;&nbsp; ==>&nbsp;&nbsp;</span>
       <span class="block_with_border">
@@ -13,17 +47,20 @@
         <% else: %>
           <span>Please choose a color to report:</span>
           <select>
-				    <option value="Please select a color">Please select a color</option>
+			<option value="Please select a color">Please select a color</option>
             <option value="Red">Red</option>
             <option value="Green">Green</option>
           </select>
           <button>Confirm Color</button>
         <% end %>
       </span>
-
     <p>
 
+  <p>
+    <% if @numNotActed is 0: %>
+      All of your opponents have chosen their actions. 
+	  <% else: %>
+	    <%= @numNotActed %> of <%= @game.numPlayers - 1 %> of your opponents have not chosen their actions yet.
+	  <% end %>
+  </p>   
 
-  <p><%= @numNotActed %> of <%= @numOpps %> of your opponents have not chosen their actions yet.</p>   
-
-</div>
