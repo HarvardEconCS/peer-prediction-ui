@@ -7,9 +7,13 @@ Network = require 'network'
 class App extends Spine.Controller
   constructor: ->
     super
+    
     Network.initFake()
+    
     @main = new Main
     @append @main
+    
+    Spine.Route.setup()
     
 module.exports = App
     
