@@ -2,8 +2,8 @@ Spine = require('spine')
 Network = require 'network'
 
 Intro = require 'controllers/intro'
-Task = require 'controllers/task'
-Exit = require 'controllers/exitsurvey'
+Task  = require 'controllers/task'
+Exit  = require 'controllers/exitsurvey'
 
 class Main extends Spine.Stack
   className: "main stack"

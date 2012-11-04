@@ -1,7 +1,7 @@
 require = window.require
 
 describe 'GameinfoShow', ->
-  GameinfoShow = require('controllers/gameinfo_show')
+  GameinfoShow = require('controllers/task-info')
   
   it 'can noop', ->
     

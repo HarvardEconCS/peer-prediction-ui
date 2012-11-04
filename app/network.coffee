@@ -1,150 +1,202 @@
 
 Game    = require 'models/game'
-Result  = require 'models/result'
 
 class Network
   
   # static variables
+  @signalH: "MM"
+  @signalL: "CH"
+  @signalList: [@signalH, @signalL]
+  @jarInfo: [10, 3, 4]
+  @defaultOption: "default"
+  
   @fakeServer: true
-  @currPlayerTurkId: null
   @gameinfo: null
-  @gameresult: null
-  @signalList: ['Red', 'Green']
+  
   @intervalId: null
-  @action: null
-
+  @currPlayer: null
+  
+  @finished: false
+  
   # Initialize fake server
   @initFake: ->	
-    Network.currPlayerTurkId = 'turkId3'
+    Network.currPlayer = 'turkId3'
+
 
   # Initialize real server
   @init: ->
     Network.fakeServer = false
 
+
   # Configure controllers for callback
-  @setControllers: (info, result) ->
+  @setControllers: (info) ->
     Network.gameinfo = info
-    Network.gameresult = result
 
   @ready: ->
     if Network.fakeServer
       console.log "Network.ready:"
+      Game.init()
       setTimeout Network.startGame, 2000
-      
     else
 
+
   @updateActions: ->
-    console.log "updating actions"
+    console.log "updating actions is called"
+
+    # get the current game
+    @game = Game.last()
     
-    return unless Game.count() > 0    
-    @game = Game.first()
+    # check if other players have acted
+    allOtherActed = true
+    for i in [0..(Network.numPlayers - 2)]
+      if @game.otherStatus[i] is false
+        allOtherActed = false
     
-    if @game.otherStatus[0] is true and @game.otherStatus[1] is true and Network.action isnt null
-      console.log "we are ready for the next game."
+    # if all other players have acted, stop getting updates
+    if allOtherActed is true
+      console.log "all other players have acted, stop getting action updates."
       clearInterval(Network.intervalId)
-      Network.nextGame()
-      return
-    else if @game.otherStatus[0] is true and @game.otherStatus[1] is true
-      console.log "all other players have acted."
+      
+      if @game.result?   # if the result array exists, then the player must have confirmed report already
+        console.log "load the next game."
+        Network.nextGame()
       return
     
-    # get new status from server
+    ################################################
+    # get new status from server   TODO: separate detecting change from server message
     newStatus = []
     changed = false
     for status in @game.otherStatus
       if status is false
         random = Math.floor(Math.random() * 2)
-        changed = true if random is 0
-        newStatus.push if random is 0 then true else false
+        if random is 0
+          changed = true
+          newStatus.push true
+        else 
+          newStatus.push false
       else
         newStatus.push true
-    console.log "new status received from server is: #{newStatus}"
+    ##############################################
     
-    # update local status if necessary
-    Network.gameinfo.gotStatus(newStatus) if changed is true
+    if changed is true
+      console.log "changing status to: #{newStatus}"
+      @game.otherStatus = newStatus
+      @game.otherActed = 0
+      @game.otherActed += 1 for status in @game.otherStatus when status is true
+      @game.save()
+    Network.gameinfo.render()
+    
+    # # update local status if necessary
+    # Network.gameinfo.gotStatus(newStatus) if changed is true
         
+    
+    
+    
     
   # start the first game    
   @startGame: ->
-    # Pretend to have received message
-    # {numPlayers, numTotal, numPlayed, payAmounts}        
-    ReceivedMsg = 
+
+    ####################################################
+    # Message received from server
+    receivedMsg = 
       numPlayers: 3
       numTotal: 3
-      numPlayed: 0
       payAmounts: [0.58, 0.36, 0.43, 0.54]
+      signal: Network.chooseRandomly(Network.signalList)
+    ####################################################
+    console.log "received msg: #{JSON.stringify(receivedMsg)}"
+      
+    # save metadata
+    Network.payAmounts  = receivedMsg.payAmounts
+    Network.numPlayers  = receivedMsg.numPlayers
+    Network.numTotal    = receivedMsg.numTotal 
     
-    Network.numPlayers  = ReceivedMsg.numPlayers
-    Network.numTotal    = ReceivedMsg.numTotal 
-    Network.numPlayed   = ReceivedMsg.numPlayed
-    Network.payAmounts  = ReceivedMsg.payAmounts
-              
-    # Pretend to have received message
-    # {numPlayers, numTotal, numPlayed, signal, otherPlayerIds, otherActed}
+    # we know this because this is the first game
+    Network.numPlayed   = 0
+     
+    otherStatusList = []
+    for i in [1..(Network.numPlayers - 1)]
+      otherStatusList.push false
+     
     gameState =
-      numPlayers: Network.numPlayers
-      numTotal:   Network.numTotal
-      numPlayed:  Network.numPlayed
-      signal:     Network.chooseRandomly(Network.signalList)
-      otherPlayerIds: ['turkId1', 'turkId2']
-      otherActed: 0
-      otherStatus: [false, false]
-              
-    gameState.otherActed += 1 for status in gameState.otherStatus when status is true
-              
-    finished = if Network.numPlayed is Network.numTotal then true else false    
-    Network.gameinfo.gotGameState 'gameState': gameState, 'finished': finished
-
-    # Initialize results
-    Result.init()
-    Network.gameresult.gotResult(null)
+      numPlayed:      Network.numPlayed
+      signal:         receivedMsg.signal
+      otherActed:     0
+      otherStatus:    otherStatusList
+    
+    # update interface
+    Network.gameinfo.gotGameState(gameState)
+    Network.gameinfo.gotResult()
     
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
     
     
   # get next game
-  @nextGame: ->
+  @nextGame: ->    
     
-    return unless Game.count() > 0 # impossible 
-    @game = Game.first()
-        
-    # send action to server
-    # server ends the game
-    Network.numPlayed += 1
-    
-    # Pretend to have received message
-    game = Game.first()
-    resultInfo = [
-      {turkId: 'turkId3', signal: game.signal, action: Network.action, refPlayer: 'turkId1', reward: Network.chooseRandomly(Network.payAmounts)}
-      {turkId: 'turkId1', action: Network.chooseRandomly(Network.signalList), refPlayer: 'turkId2', reward: Network.chooseRandomly(Network.payAmounts)}
-      {turkId: 'turkId2', action: Network.chooseRandomly(Network.signalList), refPlayer: 'turkId1', reward: Network.chooseRandomly(Network.payAmounts)}
-    ]
-    Network.gameresult.gotResult(resultInfo)
+    ##########################################
+    # Message received from server
+    receivedActionList = []
+    for i in [1..(Network.numPlayers - 1)]
+      receivedActionList.push Network.chooseRandomly(Network.signalList)
+      
+    refPlayerList = []
+    for i in [0..(Network.numPlayers - 1)]
+      random = Math.floor(Math.random() * (Network.numPlayers - 1))
+      if i <= random
+        random = random + 1
+      refPlayerList.push random
+      
+    nextSignal = Network.chooseRandomly(Network.signalList)
+    ##########################################
+    console.log "msg from server:  receivedActionList = #{receivedActionList}, refPlayerList = #{refPlayerList}, nextSignal = #{nextSignal}"
 
-    # Pretend to have received message
-    # {numPlayers, numTotal, numPlayed, signal, otherPlayerIds, otherActed}
-    Network.action = null
+
+    @game = Game.last()
+    actionList = [@game.result[0].action].concat receivedActionList
+
+    for i in [0..(Network.numPlayers - 1)]
+      if i > 0
+        @game.result.push {}
+        @game.result[i].action = receivedActionList[i-1]
+                
+      @game.result[i].refPlayer = refPlayerList[i]
+      @game.result[i].refReport = actionList[refPlayerList[i]]
+      @game.result[i].reward = Network.getPayment(actionList[i], actionList[refPlayerList[i]])
+    @game.save()
+    Network.gameinfo.gotResult()
+
+    Network.numPlayed += 1
+    if Network.numPlayed is Network.numTotal
+      Network.gameinfo.finish()
+      return
+    
+    
+    otherStatusList = []
+    for i in [1..(Network.numPlayers - 1)]
+      otherStatusList.push false
+      
     gameState =
-      numPlayers: Network.numPlayers
-      numTotal:   Network.numTotal
       numPlayed:  Network.numPlayed
-      signal:     Network.chooseRandomly(Network.signalList)
-      otherPlayerIds: ['turkId1', 'turkId2']
+      signal:     nextSignal
       otherActed: 0
-      otherStatus: [false, false]      
- 
-    gameState.otherActed += 1 for status in gameState.otherStatus when status is true
+      otherStatus: otherStatusList      
     
-    # get info of next game
-    finished = if Network.numPlayed is Network.numTotal then true else false    
-    Network.gameinfo.gotGameState 'gameState': gameState, 'finished': finished
-    
+    # update interface
+    Network.gameinfo.gotGameState(gameState)
+        
     # get updates from the server
-    Network.intervalId = setInterval Network.updateActions, 5000 unless finished
+    Network.intervalId = setInterval Network.updateActions, 5000
 
   @chooseRandomly: (list) ->
     i = Math.floor(Math.random() * list.length)
     list[i]
+
+  @getPayment: (report, refReport) ->
+    left = Network.signalList.indexOf(report)
+    right = Network.signalList.indexOf(refReport)
+    index = left * 2 + right
+    return Network.payAmounts[index]
 
 module.exports = Network

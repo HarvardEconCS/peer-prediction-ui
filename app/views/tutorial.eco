@@ -1,0 +1,707 @@
+<div class="images">
+
+  <!-- Image of the jar -->
+  <div class="image jar"> 
+    <img src="jar.png" alt="mystery candy jar" height="130px">    
+  </div>
+
+  <!-- Image of jar A -->
+  <div class="image jarA"> 
+    <img src="jarA.png" alt="mystery candy jar" height="130px">
+  </div>
+
+  <!-- Image of jar B -->
+  <div class="image jarB"> 
+    <img src="jarB.png" alt="mystery candy jar" height="130px">
+  </div>
+
+  <div class="image box-gameinfo">
+    <img src="box-gameinfo.png">
+  </div>
+
+  <div class="image box-signal">
+    <img src="box-signal.png">
+  </div>
+
+  <div class="image box-report">
+    <img src="box-report.png">
+  </div>
+
+  <div class="image tutorial-info">
+    <p>
+      <span class="titleFont">Game <a class="help" href="#">#2</a> of 10:</span> 
+      You are playing with 2 other players.  
+    </p>
+
+    <div class="imageJar">
+      <img src="jar.png" alt="mystery candy jar" width="80px">
+    </div>
+
+    <!-- Image of candy jar and button and message about signal -->
+    <p class="block_with_border">
+      <br/>
+      The candy clown has selected a candy for you<br/>
+      from the mystery candy jar.
+      <br/>
+      
+      <br/><br/>
+      - Take a look at your candy:
+      <span class="revealSignalButton">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button tutorial-getsignal" href="#">Show me my candy!</a>
+      </span>
+      <span class="signal">
+          &nbsp; &nbsp; PB <img class="candy_image" src="PB.jpeg">
+      </span>
+    </p>
+
+    <!-- Select and confirm a report  -->
+    <p>
+      - Choose your report:
+      <% if @tutorialAction: %>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <span id="action">
+          <span class="candyName">
+            <%= @tutorialAction %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @tutorialAction %>.jpeg">
+          </span>
+        </span>
+      <% else: %>
+        <select class="tutorial-select">
+  			  <option value="<%= @defaultReport %>" <% if @tutorialSelected is @defaultReport: %>selected<% end %>></option>
+          <option value="<%= @signalList[0] %>" <% if @tutorialSelected is @signalList[0]: %>selected<% end %>><%= @signalList[0] %></option>
+          <option value="<%= @signalList[1] %>" <% if @tutorialSelected is @signalList[1]: %>selected<% else: %><% end %>><%= @signalList[1] %></option>
+        </select>
+        <a class="button tutorial-confirm" href="#">Confirm Your Report</a>
+      <% end %>
+    </p>
+    
+    <!-- Message about how many of the other players have confirmed their reports -->
+    <div class="gameStatus">
+      <p>    
+        <span class="titleFont">Game Status:</span><br/><br/>      
+        <!-- <span>
+          - Loading the next game...
+        </span>
+        <span >
+          - Waiting for reports from
+          <ul>
+            <li>you</li>
+          </ul>        
+        </span> -->
+        <span>
+          - Waiting for reports from
+            <ul>
+              <li>you, and</li>
+              <li>1 other player(s)</li>
+            </ul>
+        </span>
+      </p>
+    </div>
+    
+    <!-- Table to display whether a player has confirmed his report -->
+    <br/>
+    <div class="playerStatus">
+    <p>
+      <table class="status">
+        <!-- <caption class="status titleFont">Players' Status</caption> -->
+
+        <!-- Table header -->
+        <tr>
+          <th>Player</th>
+          <th>Report<br/>confirmed?</th>
+        </tr>
+
+        <!-- Your status -->
+        <tr>
+          <td>You</td>
+          <td>No</td>
+        </tr>
+
+        <tr>
+          <td>Player 1</td>
+          <td>No</td>
+        </tr>
+
+        <tr>
+          <td>Player 2</td>
+          <td>Yes</td>
+        </tr>
+
+      </table>    
+    </p>
+    </div>
+        
+  </div>
+
+  <div class="image tutorial-result">
+
+    <table class="results">
+      <caption class="results titleFont">History of Gameplay</caption>
+
+        <colgroup>
+          <col class="colRound">
+          <col class="colYourCandy">
+          <col class="colYourReport">
+          <col class="colYourReward">
+          <% for i in [1..2]: %>      
+            <col class="colPlayer<%= i %>Report">
+            <col class="colPlayer<%= i %>Reward">
+          <% end %>
+        </colgroup>
+
+        <tr>
+          <th></th>
+          <th colspan="3" class="results leftb">You</th>
+          <% for i in [1..2]: %>
+            <th colspan="2" class="results leftb">Player <%= i %></th>
+          <% end %>
+        </tr>
+
+        <tr>
+          <th class="results">      Game       </th>
+          <th class="results leftb">Your<br/>candy  </th>
+          <th class="results">      Your<br/>report </th>
+          <th class="results">      Reward      </th>
+          <% for i in [1..2]: %>      
+            <th class="results leftb">Report  </th>
+            <th class="results">      Reward  </th>
+          <% end %>
+        </tr>
+
+        <tr>
+          <td>1</td>
+
+          <!-- You -->
+          <td class="leftb">
+            <img src="MM.jpeg" class="candy_image">
+          </td>  
+          <td>
+            <img src="PB.jpeg" class="candy_image">
+          </td>
+          <td>
+            <span class="refReport"><img src="MM.jpeg" class="candy_image"></span>
+            <span class="refPlayer">(2)</span>
+            <span class="reward">$0.43</span>
+          </td>
+
+          <!-- Player 1 -->
+          <td class="leftb">
+            <img src="PB.jpeg" class="candy_image">
+          </td>
+          <td>
+            <span class="refReport"><img src="PB.jpeg" class="candy_image"></span>
+            <span class="refPlayer">(you)</span>
+            <span class="reward">$0.54</span>
+          </td>
+
+          <!-- Player 2 -->
+          <td class="leftb">
+            <img src="MM.jpeg" class="candy_image">
+          </td>
+          <td>
+            <span class="refReport"><img src="PB.jpeg" class="candy_image"></span>
+            <span class="refPlayer">(1)</span>
+            <span class="reward">$0.36</span>
+          </td>
+
+        </tr>
+
+    </table>
+    
+    <table class="rule">
+      <caption class="titleFont">Payment Rule</caption>
+      
+      <colgroup>
+        <col class="colRuleYourReport">
+        <col class="colRuleOtherReport">
+        <col class="colRuleYourReward">
+      </colgroup>
+      
+      <tr>
+        <th class="rule">Your report</th>
+        <th class="rule">Other report</th>
+        <th class="rule leftb">Your<br/>reward</th>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>          
+        </td>
+        
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>        
+        </td>
+        
+        <td class="rule leftb">$<%= @payAmounts[0] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>        
+        </td>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule leftb">
+          $<%= @payAmounts[1] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule leftb">
+          $<%= @payAmounts[2] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule leftb">
+          $<%= @payAmounts[3] %>
+        </td>
+      </tr>
+      
+    </table>
+    
+  </div>
+  
+</div>
+
+
+<!-- Elements of the interface -->
+<div class="elements">
+  
+  <div class="element you">
+    <img src="player.png" height="50px">
+  </div>
+
+  <div class="element arrowYou">
+    <img src="arrow.png" height="50px">
+  </div>
+
+  <div class="element yourReport">
+    <img src="PB.jpeg" height="30px">    
+  </div>
+
+  <div class="element otherPlayerOne">
+    <img src="player1.png" height="50px">
+  </div>
+  
+  <div class="element otherPlayerTwo">
+    <img src="player2.png" height="50px">
+  </div>
+
+  <div class="element arrowOther">
+    <img src="arrow.png" height="50px">
+  </div>
+
+  <div class="element refPlayerReport">
+    <img src="MM.jpeg" height="30px">
+  </div>
+  
+  <div class="element paymentRule">
+    
+    <table class="rule">
+      <caption class="titleFont">Payment Rule</caption>
+      
+      <colgroup>
+        <col class="colRuleYourReport">
+        <col class="colRuleOtherReport">
+        <col class="colRuleYourReward">
+      </colgroup>
+      
+      <tr>
+        <th class="rule">Your report</th>
+        <th class="rule">Other report</th>
+        <th class="rule leftb">Your<br/>reward</th>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>          
+        </td>
+        
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>        
+        </td>
+        
+        <td class="rule leftb">$<%= @payAmounts[0] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>        
+        </td>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule leftb">
+          $<%= @payAmounts[1] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[0] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule leftb">
+          $<%= @payAmounts[2] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule">
+          <span class="candyName">
+            <%= @signalList[1] %>
+          </span>
+          <span class="candyImage">
+            <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          </span>
+        </td>
+        <td class="rule leftb">
+          $<%= @payAmounts[3] %>
+        </td>
+      </tr>
+      
+    </table>
+    
+  </div>
+  
+</div>
+
+
+
+<div class="tutorial">
+
+  <div class="step buttonPrev">
+    <a class="button prev" href="#">Prev</a>
+  </div>
+
+  <div class="step buttonNext">
+    <a class="button next" href="#">Next</a>
+  </div>
+
+  <!-- (1) Welcome message   -->
+  <div class="step welcome">
+    <p>
+      Welcome the game about a mystery candy jar!<br/><br/>
+      
+      This is a tutorial to walk you through the rules and the interface of this game.<br/><br/>
+      
+      Let's get started!        
+    </p>
+  </div>
+
+  <!-- (2) Introduce the mystery candy jar. -->
+  <div class="step jar">
+    <p>
+      First, there is a mystery candy jar, with 2 types of candies in it.
+    </p>
+  </div>
+
+  <!-- (3) Show 2 types of jars -->
+  <div class="step twojars">
+    <p>
+      This jar was randomly chosen among 2 jars.<br/><br/>
+      One jar has <%= @jarInfo[1] %> <span><%= @signalList[0] %></span> and <%= @jarInfo[0] - @jarInfo[1] %> <span><%= @signalList[1] %></span> candies.<br/><br/>
+      The other one has <%= @jarInfo[2] %> <span><%= @signalList[0] %></span> and <%= @jarInfo[0] - @jarInfo[2] %> <span><%= @signalList[1] %></span> candies.
+    </p>
+  </div>
+
+  <!-- (4) Introduce 4 steps of the game -->
+  <div class="step gameSummary">
+    <p>
+      We are ready to start our game.  The game has 4 steps:<br/><br/>
+      
+      (1) Meet the candy clown<br/>
+      (2) What shall thou report?<br/>
+      (3) Waiting and waiting... <br/>
+      (4) Reward is sweeter than candy!<br/>
+      </ul>
+    </p>
+  </div>
+
+  <!-- Step 1 summary -->
+  <div class="step stepOneSummary">
+    <p>
+      Step 1 - Meet the candy clown:<br/><br/>
+      
+      Each player secretly meets the candy clown exactly once.  The candy clown shows each player 1 candy randomly drawn from the jar, then puts the candy back into the jar before the next meeting.
+    </p>
+  </div>
+  
+  <div class="step stepOneNoteOne">
+    <p>
+      NOTE:  The candy shown to you is only known to you.  It is never revealed to any other player or game facilitator.
+    </p>
+  </div>
+  
+  <!-- Step 2 summary -->
+  <div class="step stepTwoSummary">
+    <p>
+      Step 2 - What shall thou report?<br/><br/>
+      
+      Each player is asked to report the type of his/her candy to the payment master.  
+    </p>
+  </div>
+  
+  <div class="step stepTwoNoteOne">
+    <p>
+      NOTE: Each player's report will be revealed to other players.  The report will also be used to determine the player's reward.
+    </p>
+  </div>
+  
+  <div class="step stepTwoNoteTwo">
+    <p>
+      NOTE: Both candy types are valid options for your report.  So there are many possible ways for a report to choose his/her report, for example<br/><br/>
+      (1) randomly choose a candy type to report <br/>
+      (2) always report one of the candy types <br/>
+      (3) always report the type of candy you observed <br/>
+      (4) always report the type of candy you did not observe <br/>
+    </p>
+  </div>
+  
+  <!-- Step 3 summary -->
+  <div class="step stepThreeSummary">
+    <p>
+      Step 3: Waiting and waiting...<br/><br/>
+      
+      During the game, each player observes whether or not other players have confirmed their reports.
+      Once all reports are confirmed, the game ends, the players' rewards are determined, and the reports and the rewards are revealed.
+    </p>
+  </div>
+  
+  <!-- Step 4 summary -->
+  <div class="step stepFourSummary">
+    <p>
+      Step 4: Reward is sweeter than candy!<br/><br/>
+      
+      For each player P, P's reward depends on P's report and the report of another player, who is randomly chosen among P's opponents.  Given these 2 reports, P's reward is given in the "Payment Rule" table.  
+      
+    </p>
+  </div>
+  
+  <div class="step walkthroughSummary">
+    <p>
+      Now that I've explained the rules of the game, let me walk you through a game over the actual game interface.      
+    </p>
+  </div>
+  
+  
+  
+  
+  <!--  -->
+  <div class="step game-interface-gameinfo">
+    <p>
+      Each time you accept this task, you will be playing the same game with a fixed group of players for a fixed number of times.<br/><br/>
+      
+      Right now, you are playing game #2 with 2 opponents out of a total of 10 games.
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+  
+  <!-- Step: reveal signal-->
+  <div class="step game-revealsignal">
+    <p>
+      Step 1: The players take turns meeting the candy clown.  For each player, the candy clown randomly draws 1 candy from the jar, shows the candy to the player, then puts the candy back into the jar before the next player's turn.
+      
+      Step 1: The candy clown secretly shows each player 1 candy, which is randomly drawn from the mystery candy jar. 
+    </p>
+    <a class="button" href="#">Next</a>    
+  </div>
+
+  <!-- Step: reveal signal-->
+  <div class="step game-clickForSignal">
+    <p>
+      Try clicking the "Show me my candy" button to reveal the candy chosen for you by the candy clown from the mystery candy jar. 
+    </p>
+    <a class="button" href="#">Next</a>    
+  </div>
+
+  <!-- Step: message about signal -->
+  <div class="step game-signalImportantMessage">
+    <p>
+      REMEMBER!<br/><br/> 
+      The candy selected for you is <span class="underline">only known to you</span> (and the candy clown).<br/><br/>
+      It is <span class="underline">never revealed to any other player or the payment master</span>.
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+
+  <!-- Step: choose report -->
+  <div class="step game-choosereport">
+    <p>
+      Step 2: Each player is asked to report the type of his/her candy to the payment master.<br/><br/>
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+
+  <div class="step ">
+    <p>
+      Both candy types are valid options for your report.
+      
+      Nobody can verify whether you report is truthful.
+      
+      Reporting truthfully is neither rewarded nor punished.
+      
+      Notice that both candy types are provided as valid options for your report. This means that, you can choose a report that does not match the type of your candy. Besides, the payment master does not know the actual type of your candy and cannot verify whether your report is truthful anyways.
+      
+      In short, the game is not a lie detector.  You have no obligation to report the type of your candy truthfully (you can do so by choice though).
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+
+  <!-- Step: message about report -->
+  <div class="step game-reportImportantMessage">
+    <p>
+      Now, try choosing a report from the dropdown menu and confirm your report by clicking on the "Confirm Your Report" button.
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+
+  <div class="step">
+    <p>
+      Once you confirm your report, you may have to wait for other players to confirm their reports.  
+      
+      This section shows the current status of the game including which player has confirmed its report.  
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+
+  <div class="step step3">
+    <p>
+      Step 3: For each player X, the payment master chooses a reference player for X randomly among X's opponents.  Player X's reward is determined using X's report and X's reference player's report according to the "Payment Rule" table.
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+
+  <div class="step">
+    <p>
+      For this game, if your reference player is player 2, then your reward will be ...
+    </p>
+  </div>
+
+  <div class="step">
+    <p>
+      The "History of Gameplay" table displays the results of all finished games.  
+      
+    </p>
+    <a class="button" href="#">Next</a>
+  </div>
+
+  <div class="step">
+    <p>
+      I've provided several options if you would like to hide certain information from the game interface.
+    </p>
+  </div>
+
+  <div class="step">
+    <p>
+
+    </p>
+  </div>
+
+  <div class="step last">
+    <p>
+      Congratulations!  You have completed the tutorial!  Click on the button below to start playing the game!
+    </p>
+    <a class="button" href="#">Go to the game</a>
+  </div>
+
+</div>
+

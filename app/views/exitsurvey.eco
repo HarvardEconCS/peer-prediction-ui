@@ -7,5 +7,5 @@ Exit Survey
 <textarea rows="2" cols="100" id="bugs"></textarea>
 
 <p>
-  <button>Submit</button>
+  <a class="button" href="#">Submit</a>
 </p>

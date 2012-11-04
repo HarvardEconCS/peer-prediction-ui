@@ -1,14 +1,20 @@
 Spine = require('spine')
 
 class Game extends Spine.Model
-  @configure 'Game', 'numTotal', 'numPlayed', 'numPlayers', 'signal', 'otherPlayerIds', 'otherActed', 'otherStatus'
+  @configure 'Game', 'numPlayed', 'signal', 'otherActed', 'otherStatus', 'result'
 
-  @extend @Local
+  # @extend @Local
+  
+  @init: ->
+    Game.destroyAll()
     
   @saveGame: (gameState) ->
-    Game.destroyAll()
     g = Game.create(gameState)
     g.save()
-    Game.fetch()
-                                                                       
+                        
+  @saveResult: (resultInfo) ->
+    g = Game.last()
+    g.result = resultInfo
+    g.save()
+                                                 
 module.exports = Game
