@@ -46,22 +46,6 @@ class Network
     # get the current game
     @game = Game.last()
     
-    # check if other players have acted
-    allOtherActed = true
-    for i in [0..(Network.numPlayers - 2)]
-      if @game.otherStatus[i] is false
-        allOtherActed = false
-    
-    # if all other players have acted, stop getting updates
-    if allOtherActed is true
-      console.log "all other players have acted, stop getting action updates."
-      clearInterval(Network.intervalId)
-      
-      if @game.result?   # if the result array exists, then the player must have confirmed report already
-        console.log "load the next game."
-        Network.nextGame()
-      return
-    
     ################################################
     # get new status from server   TODO: separate detecting change from server message
     newStatus = []
@@ -77,20 +61,31 @@ class Network
       else
         newStatus.push true
     ##############################################
+
     
+    # update interface
     if changed is true
       console.log "changing status to: #{newStatus}"
       @game.otherStatus = newStatus
       @game.otherActed = 0
       @game.otherActed += 1 for status in @game.otherStatus when status is true
       @game.save()
-    Network.gameinfo.render()
-    
-    # # update local status if necessary
-    # Network.gameinfo.gotStatus(newStatus) if changed is true
+      Network.gameinfo.render()
+
+    # check if other players have acted
+    allOtherActed = true
+    for i in [0..(Network.numPlayers - 2)]
+      if newStatus[i] is false
+        allOtherActed = false
         
-    
-    
+    if allOtherActed is true
+      console.log "all other players have acted, stop getting action updates."
+      console.log "clearing interval #{Network.intervalId}"
+      clearInterval(Network.intervalId)
+      
+      if @game.result?   # if the result array exists, then the player must have confirmed report already
+        console.log "load the next game."
+        Network.nextGame()
     
     
   # start the first game    
@@ -126,11 +121,11 @@ class Network
     
     # update interface
     Network.gameinfo.gotGameState(gameState)
-    Network.gameinfo.gotResult()
+    Network.gameinfo.render()
     
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
-    
+    console.log "interval id is #{Network.intervalId}"
     
   # get next game
   @nextGame: ->    
@@ -165,7 +160,7 @@ class Network
       @game.result[i].refReport = actionList[refPlayerList[i]]
       @game.result[i].reward = Network.getPayment(actionList[i], actionList[refPlayerList[i]])
     @game.save()
-    Network.gameinfo.gotResult()
+    Network.gameinfo.render()
 
     Network.numPlayed += 1
     if Network.numPlayed is Network.numTotal
@@ -188,6 +183,8 @@ class Network
         
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
+    console.log "interval id is #{Network.intervalId}"
+
 
   @chooseRandomly: (list) ->
     i = Math.floor(Math.random() * list.length)

@@ -26,6 +26,10 @@ class TaskInfo extends Spine.Controller
     @payAmounts = Network.payAmounts    
     @numTotal = Network.numTotal
     @numPlayers = Network.numPlayers
+    
+    @game = Game.last()
+    @games = Game.all()
+    
     @html require('views/task-info')(@)
 
 
@@ -38,26 +42,21 @@ class TaskInfo extends Spine.Controller
     @selected = @defaultReport
     @confirmed = false
 
-    @game = Game.last()
-    @games = Game.all()
-    @render()
-
-
-  # called after getting the results of previous games
-  gotResult: ->
-    @games = Game.all()
     @render()
 
   # called when games are finished
   finish: ->
-    @games = Game.all()
     @finished = true
     @render()
-
+    $('tr').removeClass("borderAroundDashed")
+    $('td').removeClass("borderLeftDashed")
+    $('td').removeClass("borderRightDashed")
+    
   # if player clicks button to reveal the selected candy
   revealSignalFunc: (e) ->
     e.preventDefault()
     @revealSignal = true
+
     @render()
 
 	# called when selected report is changed
@@ -90,7 +89,6 @@ class TaskInfo extends Spine.Controller
     @game.save()
     
     @confirmed = true
-    @games = Game.all()
     @render()
     
     # check if other players have acted
@@ -101,6 +99,7 @@ class TaskInfo extends Spine.Controller
         
     # start next game if all players have acted 
     if allOthersFinished is true
+      clearInterval(Network.intervalId)
       Network.nextGame()
     
   helper: (msg) ->
