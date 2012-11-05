@@ -1,6 +1,6 @@
 Spine = require('spine')
-Network = require 'network'
 
+Network = require 'network'
 Intro = require 'controllers/intro'
 Task  = require 'controllers/task'
 Exit  = require 'controllers/exitsurvey'

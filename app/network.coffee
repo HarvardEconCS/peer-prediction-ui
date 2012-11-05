@@ -11,7 +11,7 @@ class Network
   @defaultOption: "default"
   
   @fakeServer: true
-  @gameinfo: null
+  @task: null
   
   @intervalId: null
   @currPlayer: null
@@ -29,8 +29,8 @@ class Network
 
 
   # Configure controllers for callback
-  @setControllers: (info) ->
-    Network.gameinfo = info
+  @setControllers: (taskController) ->
+    Network.task = taskController
 
   @ready: ->
     if Network.fakeServer
@@ -70,7 +70,7 @@ class Network
       @game.otherActed = 0
       @game.otherActed += 1 for status in @game.otherStatus when status is true
       @game.save()
-      Network.gameinfo.render()
+      Network.task.render()
 
     # check if other players have acted
     allOtherActed = true
@@ -120,8 +120,8 @@ class Network
       otherStatus:    otherStatusList
     
     # update interface
-    Network.gameinfo.gotGameState(gameState)
-    Network.gameinfo.render()
+    Network.task.gotGameState(gameState)
+    Network.task.render()
     
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
@@ -160,11 +160,11 @@ class Network
       @game.result[i].refReport = actionList[refPlayerList[i]]
       @game.result[i].reward = Network.getPayment(actionList[i], actionList[refPlayerList[i]])
     @game.save()
-    Network.gameinfo.render()
+    Network.task.render()
 
     Network.numPlayed += 1
     if Network.numPlayed is Network.numTotal
-      Network.gameinfo.finish()
+      Network.task.finish()
       return
     
     
@@ -179,7 +179,7 @@ class Network
       otherStatus: otherStatusList      
     
     # update interface
-    Network.gameinfo.gotGameState(gameState)
+    Network.task.gotGameState(gameState)
         
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
