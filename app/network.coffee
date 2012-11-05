@@ -95,7 +95,7 @@ class Network
     # Message received from server
     receivedMsg = 
       numPlayers: 3
-      numTotal: 3
+      numTotal: 10
       payAmounts: [0.58, 0.36, 0.43, 0.54]
       signal: Network.chooseRandomly(Network.signalList)
     ####################################################

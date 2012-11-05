@@ -31,7 +31,7 @@ class TaskInfo extends Spine.Controller
     @games = Game.all()
     
     @html require('views/task-info')(@)
-
+    $('div.resultTable').scrollTop($('div.resultTable').prop("scrollHeight"))
 
   # called after getting the game state
   gotGameState: (gameState) ->

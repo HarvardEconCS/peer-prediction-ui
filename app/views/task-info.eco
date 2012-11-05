@@ -12,7 +12,7 @@
 <% else: %>
   <!-- Information about the game has been loaded.  Display it. -->
   <div class="generalInfo">
-    <span class="titleFont">Game #<%= @game.numPlayed + 1 %> of <%= @numTotal %>:</span> 
+    <span class="titleFont">Game #<%= @game.numPlayed + 1 %> of <%= @numTotal %>:</span><br/> 
     You are playing with <%= @numPlayers - 1 %> other players.  
   </div>
 
