@@ -22,6 +22,9 @@ class Task extends Spine.Controller
     @revealSignal = false
     @selected = @defaultReport
     
+    @randomRadio = Math.floor(Math.random() * 2)
+    console.log "radio order may change, #{@randomRadio}"
+    
     Network.setControllers @
         
   active: (params)->
@@ -40,7 +43,20 @@ class Task extends Spine.Controller
     @games = Game.all()
     
     @html require('views/task')(@)
-    $('div.resultTable').scrollTop($('div.resultTable').prop("scrollHeight"))
+
+    if @randomRadio is 0
+      $('input:radio#firstRadio').val("#{Network.signalList[0]}")
+      $('img#imgFirstRadio').attr('src', "#{Network.signalList[0]}.jpeg")
+      $('input:radio#secondRadio').val("#{Network.signalList[1]}")
+      $('img#imgSecondRadio').attr('src', "#{Network.signalList[1]}.jpeg")      
+    else
+      $('input:radio#firstRadio').val("#{Network.signalList[1]}")
+      $('img#imgFirstRadio').attr('src', "#{Network.signalList[1]}.jpeg")
+      $('input:radio#secondRadio').val("#{Network.signalList[0]}")
+      $('img#imgSecondRadio').attr('src', "#{Network.signalList[0]}.jpeg")
+
+    $('div .resultTable').scrollTop($('div .resultTable').prop("scrollHeight"))
+
 
   # called after getting the game state
   gotGameState: (gameState) ->
@@ -51,7 +67,11 @@ class Task extends Spine.Controller
     @selected = @defaultReport
     @confirmed = false
 
+    @randomRadio = Math.floor(Math.random() * 2)
+    console.log "radio order may change, #{@randomRadio}"
+
     @render()
+    
 
   # called when games are finished
   finish: ->
