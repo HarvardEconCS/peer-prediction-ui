@@ -120,11 +120,14 @@
 
 <% if @numPlayers: %>
 
+
+
 <div class="resultTable">
   
   <table class="results">
     <caption class="results titleFont">History of Gameplay</caption>
 
+    <thead>
     <tr>
       <th></th>
       <th colspan="3" class="results leftb">You</th>
@@ -143,7 +146,9 @@
       <th class="results">      Reward  </th>
       <% end %>
     </tr>
+    </thread>
 
+    <tbody>
     <% if @games: %> 
    
       <% for game, i in @games: %>
@@ -174,9 +179,9 @@
             <!-- Your reward -->
             <td class="colReward">
               <% if game.result?[0]?.refReport?: %>
-                <img class="candy_image" src="<%= game.result[0].refReport %>.jpeg">
-                <span >(<%= game.result[0].refPlayer %>)</span>
-                <span >$<%= game.result[0].reward %></span>
+                <img class="candy_image refReport" src="<%= game.result[0].refReport %>.jpeg">
+                <span class="refPlayer">(<%= game.result[0].refPlayer %>)</span>
+                <span>$<%= game.result[0].reward %></span>
               <% end %>
             </td>
           
@@ -190,14 +195,14 @@
                   <!-- Player reward -->
                   <% if j is game.result.length - 1: %>
                     <td class="borderRightDashed colReward">
-                      <img class="candy_image" src="<%= playerRecord.refReport %>.jpeg">
-                      <span >(<%= playerRecord.refPlayer %>)</span>
+                      <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
+                      <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
                       <span >$<%= playerRecord.reward %></span>
                     </td>
                   <% else: %>
                     <td class="colReward">
-                      <img class="candy_image" src="<%= playerRecord.refReport %>.jpeg">
-                      <span >(<%= playerRecord.refPlayer %>)</span>
+                      <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
+                      <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
                       <span >$<%= playerRecord.reward %></span>
                     </td>
                   <% end %>
@@ -243,8 +248,8 @@
                 
                 <!-- Your reward -->
                 <td class="colReward">
-                  <img class="candy_image" src="<%= playerRecord.refReport %>.jpeg">
-                  <span >(<%= playerRecord.refPlayer %>)</span>
+                  <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
+                  <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
                   <span >$<%= playerRecord.reward %></span>
                 </td>
               <% else: %>  
@@ -253,8 +258,8 @@
                 
                 <!-- Player reward -->
                 <td class="colReward">
-                  <img class="candy_image" src="<%= playerRecord.refReport %>.jpeg">
-                  <span >(<%= playerRecord.refPlayer %>)</span>
+                  <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
+                  <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
                   <span >$<%= playerRecord.reward %></span>
                 </td>
               <% end %>
@@ -267,6 +272,7 @@
       <% end %>
 
     <% end %>
+    </tbody>
 
   </table>
 
