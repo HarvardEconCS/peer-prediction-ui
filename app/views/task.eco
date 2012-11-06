@@ -33,9 +33,9 @@
       Your Report: <img class="candy_image" src="<%= @selected %>.jpeg">
     <% else: %>
       <p>
-        <input type="radio" name="reportChoices" id="firstRadio"  value="<%= @signalList[0] %>">
+        <input type="radio" name="reportChoices" id="firstRadio"  value="<%= @signalList[0] %>" <% if @selected is @signalList[0]: %>checked<% end %>>
         <img class="candy_image" id="imgFirstRadio"  src="<%= @signalList[0] %>.jpeg">
-        <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>">
+        <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>" <% if @selected is @signalList[1]: %>checked<% end %>>
         <img class="candy_image" id="imgSecondRadio" src="<%= @signalList[1] %>.jpeg">    
         <br/><br/>
         <a class="button confirm" href="#">Confirm my report!</a>
