@@ -1,7 +1,8 @@
 <% if @finished: %>
 
   <!-- Game is finished, display the message and button to get to exit survey -->
-  <p>Thank you for playing!  You have finished all of the games!</p>
+  <p>Thank you for playing!  <br/>
+     You have finished all of the games!</p>
   <a class="button exit">Go to exit survey!</a>
   
 <% else unless @game: %>
@@ -59,7 +60,7 @@
       
       <tr>
         <th class="rule">Your report</th>
-        <th class="rule">Other report</th>
+        <th class="rule">Ref report</th>
         <th class="rule leftb">Your<br/>reward</th>
       </tr>
       
@@ -120,33 +121,44 @@
 
 <% if @numPlayers: %>
 
+<div class="resultTableHeader">
+  <table class="resultsHeader">
+    <caption class="titleFont">History of Gameplay</caption>  
+    <thead>
+    <tr>
+      <th class="borderLeftDashed"></th>
+      <th colspan="3" class="leftb"><img class="player_image" src="player.png"></th>
+      <% for i in [1..(@numPlayers - 1)]: %>
+        <% if i is (@numPlayers - 1): %>
+          <th colspan="2" class="leftb borderRightDashed">Player <%= i %></th>  
+        <% else: %>
+          <th colspan="2" class="leftb">Player <%= i %></th>
+        <% end %>
+      <% end %>
+    </tr>
 
+    <tr>
+      <th class="borderLeftDashed">Game</th>
+      <th class="leftb">Candy  </th>
+      <th>      Report </th>
+      <th class="colRewardHeader">      Reward      </th>
+      <% for i in [1..(@numPlayers - 1)]: %>      
+        <% if i is (@numPlayers - 1): %>
+          <th class="leftb">Report  </th>
+          <th class="colRewardHeader borderRightDashed">      Reward  </th>
+        <% else: %>
+          <th class="leftb">Report  </th>
+          <th class="colRewardHeader">      Reward  </th>
+        <% end %>
+      <% end %>
+    </tr>
+    </thead>
+  </table>
+</div>
 
 <div class="resultTable">
   
   <table class="results">
-    <caption class="results titleFont">History of Gameplay</caption>
-
-    <thead>
-    <tr>
-      <th></th>
-      <th colspan="3" class="results leftb">You</th>
-      <% for i in [1..(@numPlayers - 1)]: %>
-      <th colspan="2" class="results leftb">Player <%= i %></th>
-      <% end %>
-    </tr>
-
-    <tr>
-      <th class="results">      Game       </th>
-      <th class="results leftb">Your<br/>candy  </th>
-      <th class="results">      Your<br/>report </th>
-      <th class="results">      Reward      </th>
-      <% for i in [1..(@numPlayers - 1)]: %>      
-      <th class="results leftb">Report  </th>
-      <th class="results">      Reward  </th>
-      <% end %>
-    </tr>
-    </thread>
 
     <tbody>
     <% if @games: %> 

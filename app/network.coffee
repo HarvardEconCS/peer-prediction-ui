@@ -22,11 +22,9 @@ class Network
   @initFake: ->	
     Network.currPlayer = 'turkId3'
 
-
   # Initialize real server
   @init: ->
     Network.fakeServer = false
-
 
   # Configure controllers for callback
   @setControllers: (taskController) ->
@@ -42,19 +40,15 @@ class Network
 
   @updateActions: ->
     console.log "updating actions is called"
-
-    # get the current game
-    @game = Game.last()
     
     ################################################
-    # get new status from server   TODO: separate detecting change from server message
+    # get new status from server
+    @game = Game.last()
     newStatus = []
-    changed = false
     for status in @game.otherStatus
       if status is false
         random = Math.floor(Math.random() * 2)
         if random is 0
-          changed = true
           newStatus.push true
         else 
           newStatus.push false
@@ -62,10 +56,16 @@ class Network
         newStatus.push true
     ##############################################
 
+    # detect if status has changed
+    changed = false
+    for status, i in newStatus
+      if @game.otherStatus[i] is false and status is true
+        changed = true   
     
     # update interface
     if changed is true
       console.log "changing status to: #{newStatus}"
+      @game = Game.last()
       @game.otherStatus = newStatus
       @game.otherActed = 0
       @game.otherActed += 1 for status in @game.otherStatus when status is true
@@ -80,7 +80,6 @@ class Network
         
     if allOtherActed is true
       console.log "all other players have acted, stop getting action updates."
-      console.log "clearing interval #{Network.intervalId}"
       clearInterval(Network.intervalId)
       
       if @game.result?   # if the result array exists, then the player must have confirmed report already
@@ -125,7 +124,6 @@ class Network
     
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
-    console.log "interval id is #{Network.intervalId}"
     
   # get next game
   @nextGame: ->    
@@ -145,8 +143,6 @@ class Network
       
     nextSignal = Network.chooseRandomly(Network.signalList)
     ##########################################
-    console.log "msg from server:  receivedActionList = #{receivedActionList}, refPlayerList = #{refPlayerList}, nextSignal = #{nextSignal}"
-
 
     @game = Game.last()
     actionList = [@game.result[0].action].concat receivedActionList
@@ -183,7 +179,6 @@ class Network
         
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
-    console.log "interval id is #{Network.intervalId}"
 
 
   @chooseRandomly: (list) ->
