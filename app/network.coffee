@@ -4,11 +4,13 @@ Game    = require 'models/game'
 class Network
   
   # static variables
-  @signalH: "MM"
-  @signalL: "CH"
-  @signalList: [@signalH, @signalL]
-  @jarInfo: [10, 3, 4]
+  @signalH:     "MM"
+  @signalL:     "GM"
+  @signalList:  [@signalH, @signalL]
+  @jarInfo:     [10, 3, 4]
   @defaultOption: "default"
+  @confirmMsg:    "checkmarkgreen"
+  @unconfirmMsg:  "questionmarkred"
   
   @fakeServer: true
   @task: null
@@ -37,7 +39,7 @@ class Network
       setTimeout Network.startGame, 2000
     else
 
-
+  # repeated called to get action updates from server
   @updateActions: ->
     console.log "updating actions is called"
     
@@ -93,10 +95,9 @@ class Network
     ####################################################
     # Message received from server
     receivedMsg = 
-      numPlayers: 3
+      numPlayers: 4
       numTotal: 10
       payAmounts: [0.58, 0.36, 0.43, 0.54]
-      signal: Network.chooseRandomly(Network.signalList)
     ####################################################
     console.log "received msg: #{JSON.stringify(receivedMsg)}"
       
@@ -105,16 +106,50 @@ class Network
     Network.numPlayers  = receivedMsg.numPlayers
     Network.numTotal    = receivedMsg.numTotal 
     
-    # we know this because this is the first game
+    # if there are only 2 players, no point to aggregate the information
+    if Network.numPlayers is 2
+      Network.task.agg = false
+
     Network.numPlayed   = 0
-     
+    Network.getNextGameInfo()
+    
+    # ####################################################
+    # # Message received from server
+    # nextSignal = Network.chooseRandomly(Network.signalList)
+    # ####################################################
+    # 
+    # # we know this because this is the first game
+    # otherStatusList = []
+    # for i in [1..(Network.numPlayers - 1)]
+    #   otherStatusList.push false
+    # gameState =
+    #   numPlayed:      Network.numPlayed
+    #   signal:         nextSignal 
+    #   otherActed:     0
+    #   otherStatus:    otherStatusList
+    # 
+    # # update interface
+    # Network.task.gotGameState(gameState)
+    # Network.task.render()
+    # 
+    # # get updates from the server
+    # Network.intervalId = setInterval Network.updateActions, 5000
+    
+  @getNextGameInfo: ->
+    
+    ####################################################
+    # Message received from server
+    nextSignal = Network.chooseRandomly(Network.signalList)
+    ####################################################
+    
+    # we know this because this is the first game
     otherStatusList = []
     for i in [1..(Network.numPlayers - 1)]
       otherStatusList.push false
-     
+    
     gameState =
       numPlayed:      Network.numPlayed
-      signal:         receivedMsg.signal
+      signal:         nextSignal 
       otherActed:     0
       otherStatus:    otherStatusList
     
@@ -124,6 +159,8 @@ class Network
     
     # get updates from the server
     Network.intervalId = setInterval Network.updateActions, 5000
+    
+    
     
   # get next game
   @nextGame: ->    
@@ -140,8 +177,6 @@ class Network
       if i <= random
         random = random + 1
       refPlayerList.push random
-      
-    nextSignal = Network.chooseRandomly(Network.signalList)
     ##########################################
 
     @game = Game.last()
@@ -156,29 +191,47 @@ class Network
       @game.result[i].refReport = actionList[refPlayerList[i]]
       @game.result[i].reward = Network.getPayment(actionList[i], actionList[refPlayerList[i]])
     @game.save()
+    
+    count = 0
+    if @game.result?
+      for playerResult, i in @game.result
+        if i > 0
+          if playerResult.action is Network.signalList[0]
+            count = count + 1
+    @game.numSignal0 = count
+    @game.save()
+    
     Network.task.render()
 
     Network.numPlayed += 1
+    
     if Network.numPlayed is Network.numTotal
       Network.task.finish()
       return
     
+    Network.getNextGameInfo()
     
-    otherStatusList = []
-    for i in [1..(Network.numPlayers - 1)]
-      otherStatusList.push false
-      
-    gameState =
-      numPlayed:  Network.numPlayed
-      signal:     nextSignal
-      otherActed: 0
-      otherStatus: otherStatusList      
-    
-    # update interface
-    Network.task.gotGameState(gameState)
-        
-    # get updates from the server
-    Network.intervalId = setInterval Network.updateActions, 5000
+    # ##########################################
+    # # Message received from server
+    # nextSignal = Network.chooseRandomly(Network.signalList)
+    # ##########################################
+    # 
+    # otherStatusList = []
+    # for i in [1..(Network.numPlayers - 1)]
+    #   otherStatusList.push false
+    #   
+    # gameState =
+    #   numPlayed:  Network.numPlayed
+    #   signal:     nextSignal
+    #   otherActed: 0
+    #   otherStatus: otherStatusList      
+    # 
+    # # update interface
+    # Network.task.gotGameState(gameState)
+    # Network.task.render()
+    #     
+    # # get updates from the server
+    # Network.intervalId = setInterval Network.updateActions, 5000
 
 
   @chooseRandomly: (list) ->

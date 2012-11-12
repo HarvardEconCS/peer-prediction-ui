@@ -8,25 +8,28 @@ class Task extends Spine.Controller
 
   events:
     'click .getsignal': 'revealSignalFunc'  # button to reveal signal
-    'click .confirm'  : 'confirmReport' # button to confirm report
-    'click .exit'     : 'goToExitSurvey'# button to go to exit survey 
+    'click .confirm'  : 'confirmReport'     # button to confirm report
+    'click .exit'     : 'goToExitSurvey'    # button to go to exit survey 
     'change input:radio:checked' : 'radioChanged'
 
   constructor: ->
     super
-    @confirmMsg = "Yes"
-    @unconfirmMsg = "No"
-    @defaultReport = Network.defaultOption        
-    @signalList = Network.signalList
+    @confirmMsg     = Network.confirmMsg
+    @unconfirmMsg   = Network.unconfirmMsg
+    @defaultReport  = Network.defaultOption        
+    @signalList     = Network.signalList
     
     @revealSignal = false
     @selected = @defaultReport
     
+    @agg = true
+    
+    # order of radio buttons may change
     @randomRadio = Math.floor(Math.random() * 2)
-    console.log "radio order may change, #{@randomRadio}"
     
     Network.setControllers @
         
+  # called when this controller is activated in the stack
   active: (params)->
     super
     Network.ready()    
@@ -36,14 +39,19 @@ class Task extends Spine.Controller
     return unless @isActive()
     
     @payAmounts = Network.payAmounts    
-    @numTotal = Network.numTotal
+    @numTotal   = Network.numTotal
     @numPlayers = Network.numPlayers
     
-    @game = Game.last()
-    @games = Game.all()
+    @game   = Game.last()
+    @games  = Game.all()
     
     @html require('views/task')(@)
 
+    # add left and right dashed border style for the last row
+    $('tr.borderAroundDashed td:first-child').addClass('borderLeftDashed')
+    $('tr.borderAroundDashed td:last-child').addClass('borderRightDashed')
+
+    # random order of the radio buttons
     if @randomRadio is 0
       $('input:radio#firstRadio').val("#{Network.signalList[0]}")
       $('img#imgFirstRadio').attr('src', "#{Network.signalList[0]}.jpeg")
@@ -55,6 +63,7 @@ class Task extends Spine.Controller
       $('input:radio#secondRadio').val("#{Network.signalList[0]}")
       $('img#imgSecondRadio').attr('src', "#{Network.signalList[0]}.jpeg")
 
+    # make the table always scroll to the bottom
     $('div .resultTable').scrollTop($('div .resultTable').prop("scrollHeight"))
 
 
@@ -67,8 +76,8 @@ class Task extends Spine.Controller
     @selected = @defaultReport
     @confirmed = false
 
+    # order of radio buttons may change
     @randomRadio = Math.floor(Math.random() * 2)
-    console.log "radio order may change, #{@randomRadio}"
 
     @render()
     
@@ -77,6 +86,8 @@ class Task extends Spine.Controller
   finish: ->
     @finished = true
     @render()
+    
+    # game is finished, remove the dashed border around the current game
     $('tr').removeClass("borderAroundDashed")
     $('td').removeClass("borderLeftDashed")
     $('td').removeClass("borderRightDashed")
@@ -96,18 +107,19 @@ class Task extends Spine.Controller
   confirmReport: (e) ->
     e.preventDefault()
     
-    # if the player hasn't selected the candy yet, 
+    # if the player hasn't revealed the candy yet, 
     if @revealSignal is false
       alert("Please look at your candy first before choosing your report!")
       @selected = @defaultReport # reset selected report
       @render()
       return
     
+    # the player hasn't selected a report yet
     if @selected is @defaultReport
       alert("Please choose a color to report!")
       return
 
-    # player has confirmed a valid report
+    # the player has confirmed a valid report
     @game = Game.last()
     if @game.result?
       @game.result[0].action = @selected
@@ -117,7 +129,9 @@ class Task extends Spine.Controller
       ]
     @game.save()
     
+    # set flag for rendering
     @confirmed = true
+    
     @render()
     
     # check if other players have acted

@@ -1,9 +1,7 @@
 Spine = require('spine')
 
 class Game extends Spine.Model
-  @configure 'Game', 'numPlayed', 'signal', 'otherActed', 'otherStatus', 'result'
-
-  # @extend @Local
+  @configure 'Game', 'numPlayed', 'signal', 'otherActed', 'otherStatus', 'result', 'numSignal0'
   
   @init: ->
     Game.destroyAll()

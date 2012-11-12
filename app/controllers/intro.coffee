@@ -10,6 +10,9 @@ class Intro extends Spine.Controller
     ".tutorial .welcome" :    "divWelcome" # step 1 welcome message
     ".tutorial .jar"     :    "divJar"     # step 2 introduce mystery candy jar
     ".tutorial .twojars" :    "divTwoJars"
+    ".tutorial .candy" : "divCandy"
+    ".tutorial .report" : "divReport"
+    ".tutorial .reward" : "divReward"
     ".tutorial .gameSummary"      : "divGameSummary"
     ".tutorial .stepOneSummary"   : "divStepOneSummary"
     ".tutorial .stepOneNoteOne"   : "divStepOneNoteOne"
@@ -64,8 +67,11 @@ class Intro extends Spine.Controller
     @stepIndex = 0
     @stepFunctions = [
       @stepWelcome
-      @stepJar
       @stepTwoJars
+      @stepJar
+      @stepCandy
+      @stepReport
+      @stepReward
       @stepGameSummary
       @stepOneSummary
       @stepOneNoteOne
@@ -154,17 +160,6 @@ class Intro extends Spine.Controller
   stepWelcome: (show) =>
     div = @divWelcome
     return @stepSimple(show, div)
-    
-  # Step 2: show mystery candy jar
-  stepJar: (show) =>
-    if show is true
-      @divJar.fadeIn()
-      @imgJar.fadeIn()
-    else
-      @divJar.hide()
-      @imgJar.hide()
-
-    return @divJar
 
   # Step 3: 
   stepTwoJars: (show) =>
@@ -180,6 +175,30 @@ class Intro extends Spine.Controller
       @imgJarB.hide()
       
     return @divTwoJars
+
+
+  # Step 2: show mystery candy jar
+  stepJar: (show) =>
+    if show is true
+      @divJar.fadeIn()
+      @imgJar.fadeIn()
+    else
+      @divJar.hide()
+      @imgJar.hide()
+
+    return @divJar
+
+  stepCandy: (show) =>
+    div = @divCandy
+    return @stepSimple(show, div)
+
+  stepReport: (show) =>
+    div = @divReport
+    return @stepSimple(show, div)
+
+  stepReward: (show) =>
+    div = @divReward
+    return @stepSimple(show, div)
 
 
   stepGameSummary: (show) =>

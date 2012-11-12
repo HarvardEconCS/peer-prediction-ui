@@ -479,27 +479,58 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
-      Welcome the game about a mystery candy jar!<br/><br/>
+      Welcome the trick-or-treat game!<br/><br/>
       
-      This is a tutorial to walk you through the rules and the interface of this game.<br/><br/>
+      This tutorial will walk you through the rules of this game.<br/><br/>
       
       Let's get started!        
     </p>
   </div>
 
-  <!-- (2) Introduce the mystery candy jar. -->
-  <div class="step jar">
+  <!-- (2) Show 2 types of jars -->
+  <div class="step twojars">
     <p>
-      First, there is a mystery candy jar, with 2 types of candies in it.
+      It is Halloween night!  You and a bunch of your friends are out for trick or treating.  
+      
+      There are 2 houses on the block, they both give out only two kinds of candies, X and Y.  According to your friends' records, one house has 70% MM and 30% GM whereas the other house has 40% MM and 60% GM, but your friends cannot remember which is which. 
+      
+      <!-- This jar was randomly chosen among 2 jars.<br/><br/>
+      One jar has <%= @jarInfo[1] %> <span><%= @signalList[0] %></span> and <%= @jarInfo[0] - @jarInfo[1] %> <span><%= @signalList[1] %></span> candies.<br/><br/>
+      The other one has <%= @jarInfo[2] %> <span><%= @signalList[0] %></span> and <%= @jarInfo[0] - @jarInfo[2] %> <span><%= @signalList[1] %></span> candies. -->
     </p>
   </div>
 
-  <!-- (3) Show 2 types of jars -->
-  <div class="step twojars">
+  <div class="step twojars-animate">
+    <img src="house_blue.png">
+    <img src="house_green.png">
+    <img class="candy_image" src="MM.jpeg">
+    <img class="candy_image" src="GM.jpeg">
+  </div>
+
+  <!-- (3) Introduce the mystery candy jar. -->
+  <div class="step jar">
     <p>
-      This jar was randomly chosen among 2 jars.<br/><br/>
-      One jar has <%= @jarInfo[1] %> <span><%= @signalList[0] %></span> and <%= @jarInfo[0] - @jarInfo[1] %> <span><%= @signalList[1] %></span> candies.<br/><br/>
-      The other one has <%= @jarInfo[2] %> <span><%= @signalList[0] %></span> and <%= @jarInfo[0] - @jarInfo[2] %> <span><%= @signalList[1] %></span> candies.
+      Your group decided to randomly choose 1 of the 2 houses to go trick or treating.
+    </p>
+  </div>
+
+  <div class="step candy">
+    <p>
+      In the house, there is a secret room filled with bags of the two candies. 
+      The owner asked the kids to enter the secret room one by one, and each kid was secretly given one bag of candy randomly chosen from the candy piles.
+    </p>
+  </div>
+
+  <div class="step report">
+    <p>
+      When you are just about to move on to another house, the new kid "Tom" (who is sadly not your friend yet) came by and asks each kid in your group to tell him what candy you got from this house.  Apparently, Tom likes one candy and hates the other one, and he is trying to decide whether it's worth it to go to this house.  In return, Tom will give each of you a small reward determined as follows.  
+    </p>
+  </div>
+
+  <div class="step reward">
+    <p>
+      The new kid says:  For each of you, I will randomly select one of your friends.  Your reward will depend on what you tell me and what your random friend tells me, based on this table.
+      Now the queston is: what would you tell the new kid to maximize your reward?
     </p>
   </div>
 
