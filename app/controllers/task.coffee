@@ -22,6 +22,7 @@ class Task extends Spine.Controller
     @revealSignal = false
     @selected = @defaultReport
     
+    # default to displaying aggregate information for now
     @agg = true
     
     # order of radio buttons may change
@@ -133,15 +134,9 @@ class Task extends Spine.Controller
     @confirmed = true
     
     @render()
-    
-    # check if other players have acted
-    allOthersFinished = true
-    for i in [0..(Network.numPlayers - 2)]
-      if @game.otherStatus[i] is false
-        allOthersFinished = false
         
     # start next game if all players have acted 
-    if allOthersFinished is true
+    if @game.otherActed is (Network.numPlayers - 1)
       clearInterval(Network.intervalId)
       Network.nextGame()
     
