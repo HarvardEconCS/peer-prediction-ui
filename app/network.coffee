@@ -36,7 +36,7 @@ class Network
     if Network.fakeServer
       console.log "Network.ready:"
       Game.init()
-      setTimeout Network.startGame, 2000
+      setTimeout Network.getGeneralInfo, 2000
     else
 
   # repeated called to get action updates from server
@@ -68,11 +68,11 @@ class Network
       
       if @game.result?   # if the result array exists, then the player must have confirmed report already
         console.log "load the next game."
-        Network.nextGame()
+        Network.getGameResult()
     
     
   # start the first game    
-  @startGame: ->
+  @getGeneralInfo: ->
 
     ####################################################
     # Message received from server
@@ -91,8 +91,9 @@ class Network
     # if there are only 2 players, no point to aggregate the information
     if Network.numPlayers is 2
       Network.task.agg = false
-
     Network.numPlayed   = 0
+
+    # get information for the next game
     Network.getNextGameInfo()
 
     
@@ -124,7 +125,7 @@ class Network
     
     
   # get next game
-  @nextGame: ->    
+  @getGameResult: ->    
     
     ##########################################
     # Message received from server
@@ -164,12 +165,13 @@ class Network
     
     Network.task.render()
 
+    # Check if we are finished with all games
     Network.numPlayed += 1
-    
     if Network.numPlayed is Network.numTotal
       Network.task.finish()
       return
     
+    # get information for the next game
     Network.getNextGameInfo()
     
 

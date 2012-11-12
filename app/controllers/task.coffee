@@ -138,7 +138,7 @@ class Task extends Spine.Controller
     # start next game if all players have acted 
     if @game.otherActed is (Network.numPlayers - 1)
       clearInterval(Network.intervalId)
-      Network.nextGame()
+      Network.getGameResult()
     
   helper: (msg) ->
     console.log msg
