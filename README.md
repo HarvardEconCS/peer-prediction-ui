@@ -1,4 +1,4 @@
-Experiment
+exp-app
 ==========
 
 Peer Prediction client
