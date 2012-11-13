@@ -7,7 +7,9 @@
     "spine/lib/local",
     "spine/lib/ajax",
     "spine/lib/route",
-    "spine/lib/manager"
+    "spine/lib/manager",
+    "jquery.effects.core",
+    "jquery.effects.pulsate"
   ],
   "libs": []
 }
