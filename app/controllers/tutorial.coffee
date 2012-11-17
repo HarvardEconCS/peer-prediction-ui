@@ -8,6 +8,7 @@ class Tutorial extends Spine.Controller
   elements:
     ".tutorial .buttonPrev" : "pButtonPrev"
     ".tutorial .buttonNext" : "pButtonNext"
+    ".tutorial .buttonAnimate" : "pButtonAnimate"
     ".tutorial .welcome" :    "divWelcome" # step 1 welcome message
     ".tutorial .jar"     :    "divJar"     # step 2 introduce mystery candy jar
     ".tutorial .twojars" :    "divTwoJars"
@@ -53,6 +54,7 @@ class Tutorial extends Spine.Controller
   events:
     "click .tutorial .button.next" : "nextClicked"
     "click .tutorial .button.prev" : "previousClicked"
+    "click .tutorial .button.animate" : "animateClicked"
     
     # "click .tutorial-info .confirm" : "confirmReport"
     # "click .tutorial-getsignal" : "showSignal"
@@ -74,8 +76,15 @@ class Tutorial extends Spine.Controller
       @stepReport
       @stepSummary
     ]
-
-
+    
+    @divs = [
+      'welcome'
+      'twojars'
+      'jar'
+      'candy'
+      'report'
+      'summary'
+    ]
 
   active: ->
     super
@@ -87,15 +96,13 @@ class Tutorial extends Spine.Controller
     @jarInfo = Network.jarInfo unless @jarInfo
     @html require('views/tutorial')(@)
 
-
-
   # show the current step
   stepShow: ->
-    @ele = @stepFunctions[@stepIndex](true)
-    
-    return unless @ele?
+    @ele = $(".tutorial .#{@divs[@stepIndex]}")
+    @ele.fadeIn()
 
-    if @stepIndex < @stepFunctions.length - 1
+    # possibly add the next button
+    if @stepIndex < @divs.length - 1
       # add next button
       if @ele.find(".button.next").length 
         # next button exists, do nothing
@@ -104,15 +111,22 @@ class Tutorial extends Spine.Controller
     else
       # TODO: add the go to task button
     
+    # possibly add the prev button
     if @stepIndex > 0
       # add prev button
       if @ele.find(".button.prev").length 
         # prev button exists, do nothing
       else 
         @ele.prepend(@pButtonPrev.contents().clone())
+
+    @stepFunctions[@stepIndex](true)
+    
     
   # tear down the current step
   stepTeardown: ->
+    @ele = $(".tutorial .#{@divs[@stepIndex]}")
+    @ele.hide()
+    
     @stepFunctions[@stepIndex](false)
 
   # previous button clicked
@@ -150,33 +164,109 @@ class Tutorial extends Spine.Controller
     else 
       for div in divs
         div.hide()
-    return divs[0]
 
   # Step 1: show welcome message
   stepWelcome: (show) =>
-    divs = [@divWelcome]
-    $('div.welcome').effect("pulsate", {times:3}, 2000)
-    return @stepSimple(show, divs)
 
   stepTwoJars: (show) =>
-    divs = [@divTwoJars, $('div.tutorial1')]
-    return @stepSimple(show, divs)
+    if show is true
+      $('img.tutorial1').css(
+        'position': 'absolute'
+        'top':      '0px'
+        'left':     '400px'
+      )
+      $('img.tutorial1').show()
+    else 
+      $('img.tutorial1').css(
+        'position': 'absolute'
+        'top':      '0px'
+        'left':     '400px'
+      )
+      $('img.tutorial1').hide()
+
 
   stepJar: (show) =>
-    divs = [@divJar, $('div.tutorial2')]
-    return @stepSimple(show, divs)
+    if show is true
+      $('img.tutorial2').css(
+        'position': 'absolute'
+        'top':      '0px'
+        'left':     '400px'
+      )
+      $('img.tutorial2').show()
+    else 
+      $('img.tutorial2').css(
+        'position': 'absolute'
+        'top':      '0px'
+        'left':     '400px'
+      )
+      $('img.tutorial2').hide()
+
 
   stepCandy: (show) =>
-    divs = [@divCandy, $('div.tutorial3')]
-    return @stepSimple(show, divs)
+    if show is true
+      if @ele.find(".button.animate").length 
+        # animate button already exists
+      else
+       @ele.append(@pButtonAnimate.contents().clone())
+       
+      $('img#backdrop').css(
+        'position': 'absolute'
+        'top':      '0px'
+        'left':     '400px'
+      )
+      $('img#robot').css(
+        'position': 'absolute'
+        'top':      '140px'
+        'left':     '730px'
+      )
+      $('img#backdrop').show()
+      $('img#robot').show()
+      
+
+    else
+      $('img#backdrop').hide()
+      $('img#robot').hide()
+      $('img#p').hide()
+      $('img#mmbag').hide()
+
+  animateClicked: (ev) ->
+    ev.preventDefault?()
+    if @stepIndex is 3
+      @candyAnimation()
+
+  candyAnimation: ->
+    $('img#p').css(
+      'position': 'absolute'
+      'top':      '400px'
+      'left':     '950px'
+    )
+    $('img#mmbag').css(
+      'position': 'absolute'
+      'top':      '320px'
+      'left':     '750px'
+    )
+      
+    $('img#p').fadeIn('slow').animate({left: '-=200'}, 1000, -> # player appears
+      $('img#robot').animate({left: '-=200'}, 500)              # robot goes crazy
+      .animate({left: '+=400'}, 500)
+      .animate({left: '-=400'}, 500)
+      .animate({left: '+=400'}, 500)
+      .animate({left: '-=400'}, 500)
+      .animate({left: '+=200'}, 500, ->
+        $('img#mmbag').delay(200).fadeIn('slow', ->   # candy bag chosen  TODO:  randomize this
+          $('img#p').delay(1000).animate({left: '-=200'}, 1000)    # player and candy move left
+          $('img#mmbag').delay(1000).animate({left: '-=200'}, 1000, ->
+            $('img#p').fadeOut()        # player and candy disappear
+            $('img#mmbag').fadeOut()
+          )
+        )
+      )
+    )
+    
 
   stepReport: (show) =>
-    divs = [@divReport]
-    return @stepSimple(show, divs)
 
   stepSummary: (show) =>
-    divs = [@divSummary]
-    return @stepSimple(show, divs)
  
   nextGameRule: (ev) ->
     @nextStep ev, @gameRule, @last
