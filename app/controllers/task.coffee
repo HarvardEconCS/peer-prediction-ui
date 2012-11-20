@@ -28,7 +28,7 @@ class Task extends Spine.Controller
     # order of radio buttons may change
     @randomRadio = Math.floor(Math.random() * 2)
     
-    Network.setControllers @
+    Network.setTaskController @
         
   # called when this controller is activated in the stack
   active: (params)->

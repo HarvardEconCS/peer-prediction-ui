@@ -13,15 +13,15 @@
 <% else: %>
   <!-- Information about the game has been loaded.  Display it. -->
   <div class="generalInfo">
-    <span class="titleFont">Game #<%= @game.numPlayed + 1 %> of <%= @numTotal %>:</span> (you and <%= @numPlayers - 1 %> other players)  
+    <span class="titleFont">Game #<%= @game.numPlayed + 1 %> of <%= @numTotal %>:</span> (you and <%= @numPlayers - 1 %> friends)  
   </div>
 
   <div class="task-yourSignal">
       <% if @revealSignal is true: %>
-        Your Candy: <img class="candy_image" src="<%= @game.signal %>.jpeg">
+        What you got: <img class="candy_image" src="<%= @game.signal %>.jpeg">
       <% else: %>
-        <p>
-          &nbsp;<a class="button getsignal" href="#">Show my candy!</a>
+        <p style="text-align:center;">
+          <a class="button getsignal" href="#">Show my candy!</a>
         </p>
       <% end %>
     </p>
@@ -29,15 +29,15 @@
 
   <div class="task-yourReport">
     <% if @confirmed is true: %>
-      Your Report: <img class="candy_image" src="<%= @selected %>.jpeg">
+      What you say: <img class="candy_image" src="<%= @selected %>.jpeg">
     <% else: %>
-      <p>
+      <p style="text-align:center;">
         <input type="radio" name="reportChoices" id="firstRadio"  value="<%= @signalList[0] %>" <% if @selected is $('#firstRadio').val() : %>checked<% end %>>
         <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="<%= @signalList[0] %>.jpeg"></label>
         <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
         <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="<%= @signalList[1] %>.jpeg"></label>    
         <br/><br/>
-        <a class="button confirm" href="#">Confirm my report!</a>
+        <a class="button confirm" href="#">Confirm!</a>
       </p>
     <% end %>
   </div>
@@ -58,8 +58,8 @@
       </colgroup>
       
       <tr>
-        <th class="rule">Your report</th>
-        <th class="rule">Ref report</th>
+        <th class="rule">You say:</th>
+        <th class="rule">Your friend says:</th>
         <th class="rule leftb">Your<br/>reward</th>
       </tr>
       
@@ -154,12 +154,12 @@
 
         <tr>
           <th class="">Game</th>
-          <th class="leftb">Candy</th>
-          <th>Report</th>
-          <th class="colRewardHeader">Reward</th>
+          <th class="leftb">You got:</th>
+          <th>You say:</th>
+          <th class="colRewardHeader">Your reward</th>
           
           <% if @agg is true: %>
-            <th class="leftb aggInfo">Reports</th>
+            <th class="leftb aggInfo">Your friends say:</th>
           <% else: %>
           
             <% for i in [1..(@numPlayers - 1)]: %>      

@@ -64,8 +64,10 @@ class Tutorial extends Spine.Controller
     @tutorialAction = null
     @defaultReport = Network.defaultOption
     @tutorialSelected = @defaultReport
-    @payAmounts = [0.70, 0.48, 0.55, 0.66]
+    @payAmounts = [0.58, 0.36, 0.43, 0.54]
     @signalList = Network.signalList
+    
+    Network.setTutorialController @
     
     @stepIndex = 0
     @stepFunctions = [
@@ -92,6 +94,7 @@ class Tutorial extends Spine.Controller
     @stepShow()
         
   render: ->
+
     @signalList = Network.signalList unless @signalList
     @jarInfo = Network.jarInfo unless @jarInfo
     @html require('views/tutorial')(@)
@@ -204,36 +207,60 @@ class Tutorial extends Spine.Controller
 
   stepCandy: (show) =>
     if show is true
-      if @ele.find(".button.animate").length 
-        # animate button already exists
-      else
-       @ele.append(@pButtonAnimate.contents().clone())
-       
-      $('img#backdrop').css(
+      $('img#select_candy').css(
         'position': 'absolute'
-        'top':      '0px'
-        'left':     '400px'
+        'top': '80px'
+        'left': '400px'
       )
-      $('img#robot').css(
-        'position': 'absolute'
-        'top':      '140px'
-        'left':     '730px'
-      )
-      $('img#backdrop').show()
-      $('img#robot').show()
+      $('img#select_candy').show()
       
+      # if @ele.find(".button.animate").length 
+      #   # animate button already exists
+      # else
+      #  @ele.append(@pButtonAnimate.contents().clone())
+      #  
+      # $('img#backdrop').css(
+      #   'position': 'absolute'
+      #   'top':      '0px'
+      #   'left':     '400px'
+      # )
+      # $('img#robot').css(
+      #   'position': 'absolute'
+      #   'top':      '140px'
+      #   'left':     '730px'
+      # )
+      # $('img#backdrop').show()
+      # $('img#robot').show()
 
     else
-      $('img#backdrop').hide()
-      $('img#robot').hide()
-      $('img#p').hide()
-      $('img#mmbag').hide()
+      $('img#select_candy').hide()
+      # $('img#backdrop').hide()
+      # $('img#robot').hide()
+      # $('img#p').hide()
+      # $('img#mmbag').hide()
+
+  stepReport: (show) =>
+    if show is true
+      $('img#compute_payment').css(
+        'position': 'absolute'
+        'top': '80px'
+        'left': '400px'
+      )
+      $('img#compute_payment').show()
+    else
+      $('img#compute_payment').hide()
+
+  stepSummary: (show) =>
+ 
+  nextGameRule: (ev) ->
+    @nextStep ev, @gameRule, @last
 
   animateClicked: (ev) ->
     ev.preventDefault?()
-    if @stepIndex is 3
-      @candyAnimation()
+    # if @stepIndex is 3
+    #   @candyAnimation()
 
+    
   candyAnimation: ->
     $('img#p').css(
       'position': 'absolute'
@@ -262,14 +289,6 @@ class Tutorial extends Spine.Controller
         )
       )
     )
-    
-
-  stepReport: (show) =>
-
-  stepSummary: (show) =>
- 
-  nextGameRule: (ev) ->
-    @nextStep ev, @gameRule, @last
     
 
     

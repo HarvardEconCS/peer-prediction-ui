@@ -9,6 +9,9 @@
   <img class="image" id="p" src="player.png" width="50px">
 
 
+  <img class="image" id="select_candy" src="SELECT_CANDY.png">
+  <img class="image" id="compute_payment" src="COMPUTE_PAYMENT.png">
+
 <div class="tutorial">
 
   <div class="step buttonPrev">
@@ -39,9 +42,15 @@
     <p>
       It is Halloween night!  You and your friends are out for trick or treating.<br/><br/>
       
-      The houses in this neighbourhood give out <span class="bold">M&amp;M and Gummy bears</span> only. <br/><br/>
+      Houses in this neighbourhood give out 2 types of candies: <span class="bold">M&amp;M and Gummy bears</span>. <br/><br/>
       
-      Half of the houses give out <span class="bold">70% MM and 30% GM</span> whereas the other half give out <span class="bold">40% MM and 60% GM</span>, but you cannot remember which house is which. 
+      One half of the houses give out <br/>
+       <span class="bold">70% MM and 30% GM</span>. <br/>
+      
+      The other half give out <br/>
+       <span class="bold">40% MM and 60% GM</span>.<br/>
+       
+      However, you don't know which house is which.
       
     </p>
   </div>
@@ -54,21 +63,95 @@
 
   <div class="step candy">
     <p>
-      At the house, the owner brought out a large black bag of M&amp;M and Gummy bears. You can't tell how many candies are in there.<br/><br/>
+      The owner of the house brought out a large bag of candies. <br/><br/>
 
-      For each kid, the owner randomly chooses 1 candy from the bag, secretly gives this candy to this kid.  <br/><br/>
+      For each kid, the owner randomly picks 1 candy from the bag, secretly gives this candy to the kid.  <br/><br/>
       
-      To be fair for all kids, each candy taken is replaced with one of the same kind immediately.
+      Each candy taken is immediately replaced with one of the same kind.
       
     </p>
   </div>
 
   <div class="step report">
     <p>
-      You and your friends were leaving the house and you ran into your parents.  They want to know what types of candies you got from this house.  To give you an incentive to tell them the truth, your parents decided to play a game with you: <br/><br/>
+      As you were leaving, you ran into your parents.  Oddly, they want to play a game with you<br/><br/>
       
-      Tell me what kind of candy and you will get a reward.  Your reward will depend on what you said and what one of your friends (randomly chosen) said, based on this table.
+      They say: "Each of you tells us what candy you got, then gets a reward."<br/><br/>
+      
+      "You reward depends on <br/>
+      (1) what you tells us, and <br/>
+      (2) what one of your friends (randomly chosen by us) tells us,<br/>
+      based on this table below."
     </p>
+    
+    <% if @payAmounts: %>
+    <table class="rule">
+      <caption class="titleFont">Payment Rule</caption>
+      
+      <colgroup>
+        <col class="colRuleYourReport">
+        <col class="colRuleOtherReport">
+        <col class="colRuleYourReward">
+      </colgroup>
+      
+      <tr>
+        <th class="rule">What you say</th>
+        <th class="rule">What your friend says</th>
+        <th class="rule leftb">Your<br/>reward</th>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+        </td>
+        
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+        </td>
+        
+        <td class="rule leftb money">
+          $<%= @payAmounts[0] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+        </td>
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+        </td>
+        <td class="rule leftb money">
+          $<%= @payAmounts[1] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+        </td>
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+        </td>
+        <td class="rule leftb money">
+          $<%= @payAmounts[2] %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+        </td>
+        <td class="rule">
+          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+        </td>
+        <td class="rule leftb money">
+          $<%= @payAmounts[3] %>
+        </td>
+      </tr>
+      
+    </table> 
+    <% end %>
   </div>
 
   <div class="step summary">

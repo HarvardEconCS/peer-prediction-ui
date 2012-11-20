@@ -14,6 +14,7 @@ class Network
   
   @fakeServer: true
   @task: null
+  @tutorial: null
   
   @intervalId: null
   @currPlayer: null
@@ -28,9 +29,13 @@ class Network
   @init: ->
     Network.fakeServer = false
 
-  # Configure controllers for callback
-  @setControllers: (taskController) ->
+  # Configure task controller
+  @setTaskController: (taskController) ->
     Network.task = taskController
+
+  # Configure tutorial controller
+  @setTutorialController: (tutorialController) ->
+    Network.tutorial = tutorialController
 
   @ready: ->
     if Network.fakeServer
@@ -87,7 +92,7 @@ class Network
     Network.payAmounts  = receivedMsg.payAmounts
     Network.numPlayers  = receivedMsg.numPlayers
     Network.numTotal    = receivedMsg.numTotal 
-    
+        
     # if there are only 2 players, no point to aggregate the information
     if Network.numPlayers is 2
       Network.task.agg = false
@@ -96,7 +101,6 @@ class Network
     # get information for the next game
     Network.getNextGameInfo()
 
-    
   @getNextGameInfo: ->
     
     ####################################################
