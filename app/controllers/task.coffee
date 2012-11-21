@@ -39,9 +39,10 @@ class Task extends Spine.Controller
   render: ->
     return unless @isActive()
     
-    @payAmounts = Network.payAmounts    
-    @numTotal   = Network.numTotal
-    @numPlayers = Network.numPlayers
+    @payAmounts   = Network.payAmounts    
+    @numRounds    = Network.numRounds
+    @numPlayers   = Network.numPlayers
+    @currPlayerName = Network.currPlayerName
     
     @game   = Game.last()
     @games  = Game.all()
@@ -75,7 +76,7 @@ class Task extends Spine.Controller
     # reset these for rendering
     @revealSignal = false 
     @selected = @defaultReport
-    @confirmed = false
+    @reportChosen = false
 
     # order of radio buttons may change
     @randomRadio = Math.floor(Math.random() * 2)
@@ -120,25 +121,28 @@ class Task extends Spine.Controller
       alert("Please choose a color to report!")
       return
 
-    # the player has confirmed a valid report
-    @game = Game.last()
-    if @game.result?
-      @game.result[0].action = @selected
-    else 
-      @game.result = [ 
-        {'action': @selected}
-      ]
-    @game.save()
-    
     # set flag for rendering
-    @confirmed = true
+    @reportChosen = true
+
+    # TODO: only render after server has confirmed the report
+    # the player has confirmed a valid report
+    Network.sendReport(@selected)
+    
+    # @game = Game.last()
+    # if @game.result?
+    #   @game.result[0].action = @selected
+    # else 
+    #   @game.result = [ 
+    #     {'action': @selected}
+    #   ]
+    # @game.save()
     
     @render()
         
-    # start next game if all players have acted 
-    if @game.otherActed is (Network.numPlayers - 1)
-      clearInterval(Network.intervalId)
-      Network.getGameResult()
+    # # start next game if all players have acted 
+    # if @game.numOtherActed is (Network.numPlayers - 1)
+    #   clearInterval(Network.intervalId)
+    #   Network.getGameResult()
     
   helper: (msg) ->
     console.log msg

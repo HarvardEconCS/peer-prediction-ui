@@ -17,13 +17,17 @@ class Network
   @tutorial: null
   
   @intervalId: null
-  @currPlayer: null
+  # @currPlayer: null
+  @currPlayerName: null
+  
+  @currPlayerReport: null
+  @currPlayerReportConfirmed: false
   
   @finished: false
   
   # Initialize fake server
   @initFake: ->	
-    Network.currPlayer = 'turkId3'
+    # Network.currPlayer = 'turkId3'
 
   # Initialize real server
   @init: ->
@@ -32,10 +36,6 @@ class Network
   # Configure task controller
   @setTaskController: (taskController) ->
     Network.task = taskController
-
-  # Configure tutorial controller
-  @setTutorialController: (tutorialController) ->
-    Network.tutorial = tutorialController
 
   @ready: ->
     if Network.fakeServer
@@ -46,29 +46,52 @@ class Network
 
   # repeated called to get action updates from server
   @updateActions: ->
-    console.log "updating actions is called"
-    
-    ################################################
-    # get new status from server
-    @game = Game.last()
-    notActedArray = []
-    for status, i in @game.otherStatus
-      notActedArray.push i if status is false
-    rnd = Math.floor(Math.random() * notActedArray.length)
-    acted = notActedArray[rnd]
-    ##############################################
 
-    # update interface
-    console.log "changing status for player #{acted} to be true"
+    ###############################################
     @game = Game.last()
-    @game.otherStatus[acted] = true
-    @game.otherActed += 1
+    playerNotConfirmed = []
+    for name in Object.keys(@game.reportConfirmed)
+      if name is Network.currPlayerName and Network.currPlayerReport is null
+      else 
+        if @game.reportConfirmed[name] is false
+          playerNotConfirmed.push name
+    if playerNotConfirmed.length is 0
+      return
+    ###############################################
+
+    ################################################
+    randomIndex = Math.floor(Math.random() * playerNotConfirmed.length)
+    playerActed = playerNotConfirmed[randomIndex]
+
+    # get new status from server
+    receivedMsg = 
+      "status"      : "confirmReport"
+      "playerName"  : playerActed 
+    ##############################################
+    console.log "server confirmed report by #{receivedMsg.playerName}"
+
+    @game = Game.last()
+    
+    @game.reportConfirmed[receivedMsg.playerName] = true
+    if receivedMsg.playerName is Network.currPlayerName
+      if @game.result?
+        if @game.result[Network.currPlayerName]?
+          @game.result[Network.currPlayerName].report = Network.currPlayerReport
+        else
+          @game.result[Network.currPlayerName] = {"report": Network.currPlayerReport}
+      else
+        @game.result = {}
+        @game.result[Network.currPlayerName] = {"report": Network.currPlayerReport}
+      Network.currPlayerReportConfirmed = true
+    else
+      @game.numOtherActed += 1
     @game.save()
+
     Network.task.render()
 
     # check if other players have acted
-    if @game.otherActed is (Network.numPlayers - 1)
-      console.log "all other players have acted, stop getting action updates."
+    if @game.numOtherActed is (Network.numPlayers - 1) and Network.currPlayerReportConfirmed is true
+      console.log "all players have acted, stop getting action updates."
       clearInterval(Network.intervalId)
       
       if @game.result?   # if the result array exists, then the player must have confirmed report already
@@ -81,43 +104,65 @@ class Network
 
     ####################################################
     # Message received from server
+    nPlayers = 5
+    
+    names = []
+    for i in [0..(nPlayers - 1)]
+      names.push "Player #{i}"
+    
+    rndIndex = Math.floor(Math.random() * names .length)
+    currName = names[rndIndex]
+    
     receivedMsg = 
-      numPlayers: 4
-      numTotal: 10
-      payAmounts: [0.58, 0.36, 0.43, 0.54]
+      "status"      : "startGame"
+      "numPlayers"  : nPlayers
+      "playerNames" : names
+      "yourName"    : currName 
+      "numRounds"   : 10
+      "payAmounts"  : [0.58, 0.36, 0.43, 0.54]
     ####################################################
     console.log "received msg: #{JSON.stringify(receivedMsg)}"
       
     # save metadata
-    Network.payAmounts  = receivedMsg.payAmounts
-    Network.numPlayers  = receivedMsg.numPlayers
-    Network.numTotal    = receivedMsg.numTotal 
+    Network.payAmounts      = receivedMsg.payAmounts
+    Network.numPlayers      = receivedMsg.numPlayers
+    Network.numRounds       = receivedMsg.numRounds 
+    Network.playerNames     = receivedMsg.playerNames
+    Network.currPlayerName  = receivedMsg.yourName
+    console.log "curr player name is #{Network.currPlayerName}"  
         
     # if there are only 2 players, no point to aggregate the information
     if Network.numPlayers is 2
       Network.task.agg = false
+      
     Network.numPlayed   = 0
 
     # get information for the next game
     Network.getNextGameInfo()
 
   @getNextGameInfo: ->
-    
+
     ####################################################
     # Message received from server
     nextSignal = Network.chooseRandomly(Network.signalList)
+    
+    receivedMsg = 
+      "status:" : "signal"
+      "signal"  : nextSignal 
     ####################################################
     
-    # we know this because this is the first game
-    otherStatusList = []
-    for i in [1..(Network.numPlayers - 1)]
-      otherStatusList.push false
+    Network.currPlayerReportConfirmed = false
+    Network.currPlayerReport = null
+    
+    reportConfirmed = {}
+    for name, i in Network.playerNames
+      reportConfirmed[name] = false
     
     gameState =
-      numPlayed:      Network.numPlayed
-      signal:         nextSignal 
-      otherActed:     0
-      otherStatus:    otherStatusList
+      "numPlayed":        Network.numPlayed
+      "signal":           receivedMsg.signal 
+      "numOtherActed":    0
+      "reportConfirmed":  reportConfirmed
     
     # update interface
     Network.task.gotGameState(gameState)
@@ -133,51 +178,66 @@ class Network
     
     ##########################################
     # Message received from server
-    receivedActionList = []
-    for i in [1..(Network.numPlayers - 1)]
-      receivedActionList.push Network.chooseRandomly(Network.signalList)
-      
-    refPlayerList = []
-    for i in [0..(Network.numPlayers - 1)]
-      random = Math.floor(Math.random() * (Network.numPlayers - 1))
-      if i <= random
-        random = random + 1
-      refPlayerList.push random
+    receivedMsg = 
+      "status": "result"
+    for name in Network.playerNames
+      receivedMsg[name] = {}
+      if name is Network.currPlayerName
+        receivedMsg[name].report = Network.currPlayerReport
+      else
+        receivedMsg[name].report = Network.chooseRandomly(Network.signalList)
+    for name, i in Network.playerNames
+      refIndex = Math.floor(Math.random() * (Network.numPlayers - 1))
+      if i <= refIndex
+        refIndex = refIndex  + 1
+      receivedMsg[name].refPlayer = Network.playerNames[refIndex]
     ##########################################
+    console.log "result object: #{JSON.stringify(receivedMsg)}"
 
     @game = Game.last()
-    actionList = [@game.result[0].action].concat receivedActionList
-
-    for i in [0..(Network.numPlayers - 1)]
-      if i > 0
-        @game.result.push {}
-        @game.result[i].action = receivedActionList[i-1]
-                
-      @game.result[i].refPlayer = refPlayerList[i]
-      @game.result[i].refReport = actionList[refPlayerList[i]]
-      @game.result[i].reward = Network.getPayment(actionList[i], actionList[refPlayerList[i]])
+    if @game.result?
+    else
+      @game.result = {}
+    
+    for name in Network.playerNames
+      @game.result[name] = {}
+      
+      theReport     = receivedMsg[name].report
+      theRefPlayer  = receivedMsg[name].refPlayer
+      theRefReport  = receivedMsg[theRefPlayer].report
+      
+      @game.result[name].report     = theReport
+      @game.result[name].refPlayer  = theRefPlayer
+      @game.result[name].refReport  = theRefReport
+      @game.result[name].reward     = Network.getPayment(theReport, theRefReport)
     @game.save()
     
+    # count number of people who reported signalList[0]
     count = 0
     if @game.result?
-      for playerResult, i in @game.result
-        if i > 0
-          if playerResult.action is Network.signalList[0]
+      for name in Network.playerNames
+        if name is Network.currPlayerName
+          continue
+        else
+          if receivedMsg[name].report is Network.signalList[0]
             count = count + 1
     @game.numSignal0 = count
     @game.save()
-    
+
     Network.task.render()
 
     # Check if we are finished with all games
     Network.numPlayed += 1
-    if Network.numPlayed is Network.numTotal
+    if Network.numPlayed is Network.numRounds
       Network.task.finish()
       return
     
     # get information for the next game
     Network.getNextGameInfo()
     
+
+  @sendReport: (report) ->
+    Network.currPlayerReport = report
 
 
   @chooseRandomly: (list) ->

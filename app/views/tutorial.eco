@@ -2,13 +2,6 @@
   <img class="image tutorial1" src="tutorial1.png">
   <img class="image tutorial2" src="tutorial2.png">
 
-  <img class="image" id="backdrop" src="tutorial3.png">
-  <img class="image" id="robot" src="robot.jpg" width="100px">
-  <img class="image" id="mmbag" src="bag_m&m.jpg" width="75px">
-  <img class="image" id="gbbag" src="bag_gummybear.jpg" width="75px">
-  <img class="image" id="p" src="player.png" width="50px">
-
-
   <img class="image" id="select_candy" src="SELECT_CANDY.png">
   <img class="image" id="compute_payment" src="COMPUTE_PAYMENT.png">
 
@@ -29,11 +22,14 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
-      Welcome!<br/><br/> 
+      Welcome!  
       
-      This tutorial will walk you through the trick-or-treat game!<br/><br/>
+      This tutorial will walk you through the game you are going to play!<br/><br/>
       
-      Let's get started!        
+      This tutorial has 2 parts: Part 1 explains the rules of this game.
+      Part 2 walks you through the interface of the game.<br/><br/>
+      
+      Let's get started with part 1!        
     </p>
   </div>
 
@@ -81,12 +77,12 @@
       "You reward depends on <br/>
       (1) what you tells us, and <br/>
       (2) what one of your friends (randomly chosen by us) tells us,<br/>
-      based on this table below."
+      based on the table below."
     </p>
     
     <% if @payAmounts: %>
     <table class="rule">
-      <caption class="titleFont">Payment Rule</caption>
+      <caption>Payment Rule</caption>
       
       <colgroup>
         <col class="colRuleYourReport">
@@ -95,8 +91,8 @@
       </colgroup>
       
       <tr>
-        <th class="rule">What you say</th>
-        <th class="rule">What your friend says</th>
+        <th class="rule">You say:</th>
+        <th class="rule">Your friend says</th>
         <th class="rule leftb">Your<br/>reward</th>
       </tr>
       

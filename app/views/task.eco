@@ -13,14 +13,14 @@
 <% else: %>
   <!-- Information about the game has been loaded.  Display it. -->
   <div class="generalInfo">
-    <span class="titleFont">Game #<%= @game.numPlayed + 1 %> of <%= @numTotal %>:</span> (you and <%= @numPlayers - 1 %> friends)  
+    Game #<%= @game.numPlayed + 1 %> of <%= @numRounds %>: (You and <%= @numPlayers - 1 %> friends)  
   </div>
 
   <div class="task-yourSignal">
       <% if @revealSignal is true: %>
-        What you got: <img class="candy_image" src="<%= @game.signal %>.jpeg">
+        &nbsp;&nbsp;You got: <img class="candy_image" src="<%= @game.signal %>.jpeg">
       <% else: %>
-        <p style="text-align:center;">
+        <p>
           <a class="button getsignal" href="#">Show my candy!</a>
         </p>
       <% end %>
@@ -28,10 +28,10 @@
   </div>
 
   <div class="task-yourReport">
-    <% if @confirmed is true: %>
-      What you say: <img class="candy_image" src="<%= @selected %>.jpeg">
+    <% if @reportChosen is true: %>
+      &nbsp;&nbsp;You say: <img class="candy_image" src="<%= @selected %>.jpeg">
     <% else: %>
-      <p style="text-align:center;">
+      <p>
         <input type="radio" name="reportChoices" id="firstRadio"  value="<%= @signalList[0] %>" <% if @selected is $('#firstRadio').val() : %>checked<% end %>>
         <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="<%= @signalList[0] %>.jpeg"></label>
         <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
@@ -49,7 +49,7 @@
 
   <div class="ruleTable">
     <table class="rule">
-      <caption class="titleFont">Payment Rule</caption>
+      <caption>Payment Rule</caption>
       
       <colgroup>
         <col class="colRuleYourReport">
@@ -126,16 +126,15 @@
 
   <div class="resultTableHeader">
     <table class="resultsHeader">
-      <!-- <caption class="titleFont">History of Gameplay</caption>   -->
       <thead>
         <tr>
           <th class=""></th>
-          <th colspan="3" class=""><img class="player_image" src="player.png"></th>
+          <th colspan="3" class=""><img class="player_image" src="player.png">&nbsp;(You)</th>
         
           <% if @agg is true: %>
           
             <!-- Display the aggregation info -->
-            <th><%= @numPlayers - 1 %><img class="player_image" src="player2.png">'s</th>
+            <th><img class="player_image" src="player2.png">&nbsp;(Your <%= @numPlayers - 1 %> friends)</th>
           
           <% else: %>
           
@@ -188,7 +187,7 @@
    
       <% for game, i in @games: %>
       
-        <% if i is (@games.length - 1): %>
+        <% if i is (@games.length - 1): %><!-- display last record-->
 
           <tr class="borderAroundDashed">
             
@@ -206,8 +205,8 @@
             
             <!-- Your report -->
             <td>
-              <% if game.result?[0]?.action?: %>
-                <img class="candy_image" src="<%= game.result[0].action %>.jpeg">
+              <% if game.result?[@currPlayerName]?.report?: %>
+              <img class="candy_image" src="<%= game.result[@currPlayerName].report %>.jpeg">
               <% else: %>
                 <img class="candy_image" src="<%= @unconfirmMsg %>.jpeg">
               <% end %>
@@ -215,68 +214,62 @@
             
             <!-- Your reward -->
             <td class="colReward">
-              <% if game.result?[0]?.refReport?: %>
-                <img class="candy_image refReport" src="<%= game.result[0].refReport %>.jpeg">
-                <span class="refPlayer">(<%= game.result[0].refPlayer %>)</span>
-                <span>$<%= game.result[0].reward %></span>
+              <% if game.result?[@currPlayerName]?.refReport?: %>
+              <img class="candy_image refReport" src="<%= game.result[@currPlayerName].refReport %>.jpeg">
+                <span class="refPlayer">(<%= game.result[@currPlayerName].refPlayer %>)</span>
+                <span>$<%= game.result[@currPlayerName].reward %></span>
               <% end %>
             </td>
           
           
             <% if @agg is true: %>
           
+              <!-- aggregate view -->
               <td class="leftb aggInfo">
-                <% if game.otherActed is (@numPlayers - 1): %>
+                <% if game.numOtherActed is (@numPlayers - 1): %>
                   All confirmed!
                 <% else: %>
-                  Waiting for... <%= (@numPlayers - 1 - game.otherActed) %>
+                  Waiting for... <%= (@numPlayers - 1 - game.numOtherActed) %>
                 <% end %>
-                <!-- <img class="candy_image" src="<%= @confirmMsg %>.jpeg"><%= game.otherActed %>
-                <img class="candy_image" src="<%= @unconfirmMsg %>.jpeg"><%= (@numPlayers - 1 - game.otherActed) %> -->
               </td>    
               
             <% else: %>
                   
-              <% if game.result? and game.result.length > 1: %>
-                <% for playerRecord, j in game.result: %>
+              <!-- not aggregate view -->
+              <% if game.result? and Object.keys(game.result).length > 1: %>
+                <% for name, j in Object.keys(game.result): %>
                   <% if j is 0: %>
                   <% else: %>
                     <!-- Player report -->
-                    <td class="leftb"><img class="candy_image" src="<%= playerRecord.action %>.jpeg"></td>
+                    <td class="leftb"><img class="candy_image" src="<%= game.result[name].report %>.jpeg"></td>
                   
                     <!-- Player reward -->
-                    <% if j is game.result.length - 1: %>
-                      <td class=" colReward">
-                        <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
-                        <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
-                        <span >$<%= playerRecord.reward %></span>
-                      </td>
-                    <% else: %>
-                      <td class="colReward">
-                        <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
-                        <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
-                        <span >$<%= playerRecord.reward %></span>
-                      </td>
-                    <% end %>
+                    <td class=" colReward">
+                      <img class="candy_image refReport" src="<%= game.result[name].refReport %>.jpeg">
+                      <span class="refPlayer">(<%= game.result[name].refPlayer %>)</span>
+                      <span >$<%= game.result[name].reward %></span>
+                    </td>
+                    
                   <% end %>
                 <% end %>
               <% else: %>
-                <% for j in [0..(@numPlayers - 2)]: %>
-
-                  <!-- Player report -->
-                  <td class="leftb">
-                    <% if @game.otherStatus[j] is true: %>
-                      <img class="candy_image" src="<%= @confirmMsg %>.jpeg">
-                    <% else: %>
-                      <img class="candy_image" src="<%= @unconfirmMsg %>.jpeg">
-                    <% end %>
-                  </td>
-                
-                  <!-- Player reward -->
-                  <% if j is (@numPlayers - 2): %>
-                    <td class=" colReward"></td>
+                <% for name in Object.keys(game.reportConfirmed): %>
+                  <% if name is @currPlayerName: %>
                   <% else: %>
-                    <td class="colReward"></td>
+                  
+                    <!-- Player report -->
+                    <td class="leftb">
+                      <% if @game.reportConfirmed[name] is true: %>
+                        C!
+                      <% else: %>
+                      W...
+                      <% end %>
+                    </td>
+                    
+                    <!-- Player reward -->
+                    <td>
+                    </td>
+                    
                   <% end %>
                 
                 <% end %>
@@ -288,36 +281,39 @@
 
         <% else: %>
         
+          <!-- display previous records -->
           <tr>
-            <td><%= (i+1) %></td>
+            <td><%= (i + 1) %></td>
             
-            <% for playerRecord, j in game.result: %>
+            <% for name, j in Object.keys(game.result): %>
             
-              <% if j is 0: %>
+              <% if name is @currPlayerName: %>
+              
                 <!-- Your candy -->
                 <td class="leftb"><img class="candy_image" src="<%= game.signal %>.jpeg"></td>  
                 
                 <!-- Your report -->
-                <td><img class="candy_image" src="<%= playerRecord.action %>.jpeg"></td>
+                <td><img class="candy_image" src="<%= game.result[name].report %>.jpeg"></td>
                 
                 <!-- Your reward -->
                 <td class="colReward">
-                  <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
-                  <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
-                  <span >$<%= playerRecord.reward %></span>
+                  <img class="candy_image refReport" src="<%= game.result[name].refReport %>.jpeg">
+                  <span class="refPlayer">(<%= game.result[name].refPlayer %>)</span>
+                  <span >$<%= game.result[name].reward %></span>
                 </td>
+                
               <% else: %>  
                      
                 <% if @agg is false: %>
                                 
                   <!-- Player Report -->
-                  <td class="leftb"><img class="candy_image" src="<%= playerRecord.action %>.jpeg"></td>
+                  <td class="leftb"><img class="candy_image" src="<%= game.result[name].report %>.jpeg"></td>
                 
                   <!-- Player reward -->
                   <td class="colReward">
-                    <img class="candy_image refReport" src="<%= playerRecord.refReport %>.jpeg">
-                    <span class="refPlayer">(<%= playerRecord.refPlayer %>)</span>
-                    <span >$<%= playerRecord.reward %></span>
+                    <img class="candy_image refReport" src="<%= game.result[name].refReport %>.jpeg">
+                    <span class="refPlayer">(<%= game.result[name].refPlayer %>)</span>
+                    <span >$<%= game.result[name].reward %></span>
                   </td>
                 
                 <% end %>
@@ -327,8 +323,7 @@
             
             <% if @agg is true: %>
               <td class="leftb aggInfo">
-                <img class="candy_image" src="<%= @signalList[0] %>.jpeg"><%= game.numSignal0 %>
-                <img class="candy_image" src="<%= @signalList[1] %>.jpeg"><%= @numPlayers - 1 - game.numSignal0 %>
+                <img class="candy_image" src="<%= @signalList[0] %>.jpeg">&nbsp;<%= game.numSignal0 %><img class="candy_image" src="<%= @signalList[1] %>.jpeg"><%= @numPlayers - 1 - game.numSignal0 %>
               </td>
             <% end %>
           </tr>

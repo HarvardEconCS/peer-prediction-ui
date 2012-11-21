@@ -6,58 +6,14 @@ class Tutorial extends Spine.Controller
   className: 'tutorialController'
   
   elements:
-    ".tutorial .buttonPrev" : "pButtonPrev"
-    ".tutorial .buttonNext" : "pButtonNext"
-    ".tutorial .buttonAnimate" : "pButtonAnimate"
-    ".tutorial .welcome" :    "divWelcome" # step 1 welcome message
-    ".tutorial .jar"     :    "divJar"     # step 2 introduce mystery candy jar
-    ".tutorial .twojars" :    "divTwoJars"
-    ".tutorial .candy" : "divCandy"
-    ".tutorial .report" : "divReport"
-    ".tutorial .summary" : "divSummary"
-    ".tutorial .gameSummary"      : "divGameSummary"
-    ".tutorial .stepOneSummary"   : "divStepOneSummary"
-    ".tutorial .stepOneNoteOne"   : "divStepOneNoteOne"
-    ".tutorial .stepTwoSummary"   : "divStepTwoSummary"
-    ".tutorial .stepTwoNoteOne"   : "divStepTwoNoteOne"
-    ".tutorial .stepTwoNoteTwo"   : "divStepTwoNoteTwo"
-    ".tutorial .stepThreeSummary" : "divStepThreeSummary"
-    ".tutorial .stepFourSummary"  : "divStepFourSummary"
-
-    ".images .jar" :  "imgJar"
-    ".images .jarA" : "imgJarA"
-    ".images .jarB" : "imgJarB"
-
-    ".elements .paymentRule" :  "elePaymentRule"
-    ".elements .you"        : "eleCurrPlayer"
-    ".elements .arrowYou"   : "eleArrowYou"
-    ".elements .yourReport" : "eleCurrPlayerReport"
-    
-    ".elements .otherPlayerOne"  : "elePlayerOne"
-    ".elements .otherPlayerTwo"  : "elePlayerTwo"
-    ".elements .arrowOther"      : "eleArrowOther"
-    ".elements .refPlayerReport" : "eleRefPlayerReport"
-    
-
-    # ".images .box-gameinfo" : "boxGameInfo"
-    # ".images .box-signal"   : "boxSignal"
-    # ".images .box-report"   : "boxReport"
-    # 
-    # ".images .tutorial-result" : "tutorialDivResult"
-    # 
-    # ".images .tutorial-info" : "tutorialDivInfo"
-    # ".images .tutorial-info .signal" : "tutorialSpanSignal"
-    # ".images .tutorial-info .tutorial-getsignal" : "tutorialSignalButton"
-    # 
-    # ".images .tutorial-info .tutorial-confirm" : "tutorialReportButton"
+    ".tutorial .buttonPrev"     : "pButtonPrev"
+    ".tutorial .buttonNext"     : "pButtonNext"
+    ".tutorial .buttonAnimate"  : "pButtonAnimate"
     
   events:
-    "click .tutorial .button.next" : "nextClicked"
-    "click .tutorial .button.prev" : "previousClicked"
+    "click .tutorial .button.next"    : "nextClicked"
+    "click .tutorial .button.prev"    : "previousClicked"
     "click .tutorial .button.animate" : "animateClicked"
-    
-    # "click .tutorial-info .confirm" : "confirmReport"
-    # "click .tutorial-getsignal" : "showSignal"
     
   constructor: ->
     super
@@ -66,8 +22,6 @@ class Tutorial extends Spine.Controller
     @tutorialSelected = @defaultReport
     @payAmounts = [0.58, 0.36, 0.43, 0.54]
     @signalList = Network.signalList
-    
-    Network.setTutorialController @
     
     @stepIndex = 0
     @stepFunctions = [

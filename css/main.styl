@@ -7,41 +7,42 @@
   width   1000px
   height  750px
 
-generalInfoTop = 20px
-generalInfoHeight = 40px
-yourSignalHeight = 60px
-yourReportHeight = 110px
+infoTop    = 20px
+infoHeight = 40px
+signalHeight  = 60px
+reportHeight  = 110px
 gap = 50px
 
 .generalInfo
   position absolute
-  top       generalInfoTop
+  top       infoTop
   left      0px
-  width     270px
+  width     350px
+  z-index  3
   
 .task-yourSignal
-  position  absolute
-  top       generalInfoTop + generalInfoHeight
-  left      30px
-  width     180px
-  height    60px
-  border-left 2px dashed gray
-  border-right 2px dashed gray
-  border-top 2px dashed gray
+  position      absolute
+  top           infoTop + infoHeight
+  left          30px
+  width         180px
+  height        60px
+  border-left   2px dashed gray
+  border-right  2px dashed gray
+  border-top    2px dashed gray
 
 .task-yourReport
-  position  absolute
-  top       generalInfoTop + generalInfoHeight + yourSignalHeight
-  left      30px
-  width     180px
-  border-left 2px dashed gray
-  border-right 2px dashed gray
+  position      absolute
+  top           infoTop + infoHeight + signalHeight
+  left          30px
+  width         180px
+  border-left   2px dashed gray
+  border-right  2px dashed gray
   border-bottom 2px dashed gray
 
 .ruleTable
   z-index   0
   position  absolute
-  top       generalInfoTop + generalInfoHeight + yourSignalHeight + yourReportHeight + gap
+  top       infoTop + infoHeight + signalHeight + reportHeight + gap
   left      0px
   width     250px
 
