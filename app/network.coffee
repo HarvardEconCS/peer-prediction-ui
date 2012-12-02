@@ -1,20 +1,16 @@
-
 Game    = require 'models/game'
 
 class Network
   
-  # static variables
   @signalH:     "MM"
   @signalL:     "GM"
   @signalList:  [@signalH, @signalL]
   @jarInfo:     [10, 3, 4]
-  @defaultOption: "default"
-  @confirmMsg:    "checkmarkgreen"
+  # @defaultOption: "default"
   @unconfirmMsg:  "questionmarkred"
   
   @fakeServer: true
   @task: null
-  @tutorial: null
   
   @intervalId: null
   # @currPlayer: null

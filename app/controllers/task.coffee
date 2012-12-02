@@ -14,9 +14,8 @@ class Task extends Spine.Controller
 
   constructor: ->
     super
-    @confirmMsg     = Network.confirmMsg
     @unconfirmMsg   = Network.unconfirmMsg
-    @defaultReport  = Network.defaultOption        
+    # @defaultReport  = Network.defaultOption        
     @signalList     = Network.signalList
     
     @revealSignal = false
@@ -56,14 +55,14 @@ class Task extends Spine.Controller
     # random order of the radio buttons
     if @randomRadio is 0
       $('input:radio#firstRadio').val("#{Network.signalList[0]}")
-      $('img#imgFirstRadio').attr('src', "#{Network.signalList[0]}.jpeg")
+      $('img#imgFirstRadio').attr('src', "#{Network.signalList[0]}.png")
       $('input:radio#secondRadio').val("#{Network.signalList[1]}")
-      $('img#imgSecondRadio').attr('src', "#{Network.signalList[1]}.jpeg")      
+      $('img#imgSecondRadio').attr('src', "#{Network.signalList[1]}.png")      
     else
       $('input:radio#firstRadio').val("#{Network.signalList[1]}")
-      $('img#imgFirstRadio').attr('src', "#{Network.signalList[1]}.jpeg")
+      $('img#imgFirstRadio').attr('src', "#{Network.signalList[1]}.png")
       $('input:radio#secondRadio').val("#{Network.signalList[0]}")
-      $('img#imgSecondRadio').attr('src', "#{Network.signalList[0]}.jpeg")
+      $('img#imgSecondRadio').attr('src', "#{Network.signalList[0]}.png")
 
     # make the table always scroll to the bottom
     $('div .resultTable').scrollTop($('div .resultTable').prop("scrollHeight"))

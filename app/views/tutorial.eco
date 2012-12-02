@@ -1,9 +1,9 @@
 
   <img class="image tutorial1" src="tutorial1.png">
   <img class="image tutorial2" src="tutorial2.png">
-
-  <img class="image" id="select_candy" src="SELECT_CANDY.png">
-  <img class="image" id="compute_payment" src="COMPUTE_PAYMENT.png">
+  <img class="image" id="select_candy" src="tutorial3.png">
+  
+  <!-- <img class="image" id="compute_payment" src="COMPUTE_PAYMENT.png"> -->
 
 <div class="tutorial">
 
@@ -26,10 +26,9 @@
       
       This tutorial will walk you through the game you are going to play!<br/><br/>
       
-      This tutorial has 2 parts: Part 1 explains the rules of this game.
-      Part 2 walks you through the interface of the game.<br/><br/>
+      This tutorial first explains the rules of this game, and then walks you through the interface of the game.<br/><br/>
       
-      Let's get started with part 1!        
+      Let's get started!        
     </p>
   </div>
 
@@ -38,15 +37,11 @@
     <p>
       It is Halloween night!  You and your friends are out for trick or treating.<br/><br/>
       
-      Houses in this neighbourhood give out 2 types of candies: <span class="bold">M&amp;M and Gummy bears</span>. <br/><br/>
+      In this neighbourhood, the houses give out 2 types of candies. (Picture 1)<br/><br/>  
       
-      One half of the houses give out <br/>
-       <span class="bold">70% MM and 30% GM</span>. <br/>
-      
-      The other half give out <br/>
-       <span class="bold">40% MM and 60% GM</span>.<br/>
+      Also, half of the houses give out more M&amp;M's, whereas the other half give out more Gummy Bears. (Picture 2)<br/><br/>
        
-      However, you don't know which house is which.
+      But you don't know which house is which kind.
       
     </p>
   </div>
@@ -65,6 +60,7 @@
       
       Each candy taken is immediately replaced with one of the same kind.
       
+      NOTE:  
     </p>
   </div>
 
@@ -98,11 +94,11 @@
       
       <tr>
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[0] %>.png">
         </td>
         
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[0] %>.png">
         </td>
         
         <td class="rule leftb money">
@@ -112,10 +108,10 @@
       
       <tr>
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[0] %>.png">
         </td>
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[1] %>.png">
         </td>
         <td class="rule leftb money">
           $<%= @payAmounts[1] %>
@@ -124,10 +120,10 @@
       
       <tr>
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[1] %>.png">
         </td>
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[0] %>.png">
         </td>
         <td class="rule leftb money">
           $<%= @payAmounts[2] %>
@@ -136,10 +132,10 @@
       
       <tr>
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[1] %>.png">
         </td>
         <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.jpeg">
+          <img class="candy_image" src="<%= @signalList[1] %>.png">
         </td>
         <td class="rule leftb money">
           $<%= @payAmounts[3] %>

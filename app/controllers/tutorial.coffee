@@ -8,18 +8,17 @@ class Tutorial extends Spine.Controller
   elements:
     ".tutorial .buttonPrev"     : "pButtonPrev"
     ".tutorial .buttonNext"     : "pButtonNext"
-    ".tutorial .buttonAnimate"  : "pButtonAnimate"
     
   events:
     "click .tutorial .button.next"    : "nextClicked"
     "click .tutorial .button.prev"    : "previousClicked"
-    "click .tutorial .button.animate" : "animateClicked"
     
   constructor: ->
     super
-    @tutorialAction = null
-    @defaultReport = Network.defaultOption
-    @tutorialSelected = @defaultReport
+    # @tutorialAction = null
+    # @defaultReport = Network.defaultOption
+    # @tutorialSelected = @defaultReport
+
     @payAmounts = [0.58, 0.36, 0.43, 0.54]
     @signalList = Network.signalList
     
@@ -48,12 +47,10 @@ class Tutorial extends Spine.Controller
     @stepShow()
         
   render: ->
-
     @signalList = Network.signalList unless @signalList
     @jarInfo = Network.jarInfo unless @jarInfo
     @html require('views/tutorial')(@)
 
-  # show the current step
   stepShow: ->
     @ele = $(".tutorial .#{@divs[@stepIndex]}")
     @ele.fadeIn()
@@ -163,8 +160,8 @@ class Tutorial extends Spine.Controller
     if show is true
       $('img#select_candy').css(
         'position': 'absolute'
-        'top': '80px'
-        'left': '400px'
+        'top':      '50px'
+        'left':     '400px'
       )
       $('img#select_candy').show()
       
@@ -197,8 +194,8 @@ class Tutorial extends Spine.Controller
     if show is true
       $('img#compute_payment').css(
         'position': 'absolute'
-        'top': '80px'
-        'left': '400px'
+        'top':      '50px'
+        'left':     '400px'
       )
       $('img#compute_payment').show()
     else
@@ -206,43 +203,7 @@ class Tutorial extends Spine.Controller
 
   stepSummary: (show) =>
  
-  nextGameRule: (ev) ->
-    @nextStep ev, @gameRule, @last
 
-  animateClicked: (ev) ->
-    ev.preventDefault?()
-    # if @stepIndex is 3
-    #   @candyAnimation()
-
-    
-  candyAnimation: ->
-    $('img#p').css(
-      'position': 'absolute'
-      'top':      '400px'
-      'left':     '950px'
-    )
-    $('img#mmbag').css(
-      'position': 'absolute'
-      'top':      '320px'
-      'left':     '750px'
-    )
-      
-    $('img#p').fadeIn('slow').animate({left: '-=200'}, 1000, -> # player appears
-      $('img#robot').animate({left: '-=200'}, 500)              # robot goes crazy
-      .animate({left: '+=400'}, 500)
-      .animate({left: '-=400'}, 500)
-      .animate({left: '+=400'}, 500)
-      .animate({left: '-=400'}, 500)
-      .animate({left: '+=200'}, 500, ->
-        $('img#mmbag').delay(200).fadeIn('slow', ->   # candy bag chosen  TODO:  randomize this
-          $('img#p').delay(1000).animate({left: '-=200'}, 1000)    # player and candy move left
-          $('img#mmbag').delay(1000).animate({left: '-=200'}, 1000, ->
-            $('img#p').fadeOut()        # player and candy disappear
-            $('img#mmbag').fadeOut()
-          )
-        )
-      )
-    )
     
 
     
