@@ -21,18 +21,6 @@ class Tutorial extends Spine.Controller
     @signalList = Network.signalList
     
     @stepIndex = 0
-    @stepFunctions = [
-      @stepWelcome
-      @stepTwoJars
-      @stepJar
-      @stepCandy
-      @stepReport
-      @stepFive
-      @stepSix
-      @stepSeven
-      @stepSummary
-    ]
-    
     @divs = [
       'welcome'
       'twojars'
@@ -43,6 +31,18 @@ class Tutorial extends Spine.Controller
       'six'
       'seven'
       'popquiz'
+    ]
+    
+    @stepFunctions = [
+      @stepWelcome
+      @stepPrior
+      @stepChooseWorld
+      @stepTakeCandy
+      @stepMeetDad
+      @stepStrategic
+      @stepTable
+      @stepExample
+      null
     ]
 
   active: ->
@@ -77,15 +77,14 @@ class Tutorial extends Spine.Controller
       else 
         @ele.prepend(@pButtonPrev.contents().clone())
 
-    @stepFunctions[@stepIndex](true)
-    
+    @stepFunctions[@stepIndex]?(true)
     
   # tear down the current step
   stepTeardown: ->
     @ele = $(".tutorial .#{@divs[@stepIndex]}")
     @ele.hide()
     
-    @stepFunctions[@stepIndex](false)
+    @stepFunctions[@stepIndex]?(false)
 
   # previous button clicked
   previousClicked: (ev) ->
@@ -126,7 +125,7 @@ class Tutorial extends Spine.Controller
   # Step 1: show welcome message
   stepWelcome: (show) =>
 
-  stepTwoJars: (show) =>
+  stepPrior: (show) =>
     if show is true
       $('img#tutorial1').css(
         'position': 'absolute'
@@ -138,7 +137,7 @@ class Tutorial extends Spine.Controller
       $('img#tutorial1').hide()
 
 
-  stepJar: (show) =>
+  stepChooseWorld: (show) =>
     if show is true
       $('img#tutorial2').css(
         'position': 'absolute'
@@ -150,7 +149,7 @@ class Tutorial extends Spine.Controller
       $('img#tutorial2').hide()
 
 
-  stepCandy: (show) =>
+  stepTakeCandy: (show) =>
     if show is true
       $('img#select_candy').css(
         'position': 'absolute'
@@ -173,7 +172,7 @@ class Tutorial extends Spine.Controller
     else
       @img.hide()
 
-  stepReport: (show) =>
+  stepMeetDad: (show) =>
     @img = $("img#tutorial4")
     if show is true
       @img.css(
@@ -184,9 +183,8 @@ class Tutorial extends Spine.Controller
       @img.fadeIn()
     else
       @img.hide()
-    
 
-  stepFive: (show) =>
+  stepStrategic: (show) =>
     @img = $("img#tutorial5")
     if show is true
       @img.css(
@@ -198,7 +196,7 @@ class Tutorial extends Spine.Controller
     else
       @img.hide()
     
-  stepSix: (show) =>
+  stepTable: (show) =>
     @img = $("img#tutorial6")
     if show is true
       @img.css(
@@ -210,7 +208,7 @@ class Tutorial extends Spine.Controller
     else
       @img.hide()
 
-  stepSeven: (show) =>
+  stepExample: (show) =>
     @img = $("img#tutorial7")
     if show is true
       @img.css(
@@ -223,6 +221,7 @@ class Tutorial extends Spine.Controller
       @img.hide()
 
   stepSummary: (show) =>
+    console.log "step summary is called"
  
     
 module.exports = Tutorial

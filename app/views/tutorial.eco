@@ -122,11 +122,12 @@
   <div class="step interface1">
     Now, let me walk you through the interface of the game.
 
-    Index of game
-    
-    Total number of games
-    
-    The number of your friends participating in the game
+    In the upper left corner, we can see
+    <ul>
+      <li>index of current game</li>
+      <li>total number of games</li>
+      <li> number of your friends in the game</li>
+    </ul>
   </div>
 
   <div class="step interface2">
