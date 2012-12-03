@@ -15,9 +15,7 @@ class Tutorial extends Spine.Controller
     
   constructor: ->
     super
-    # @tutorialAction = null
-    # @defaultReport = Network.defaultOption
-    # @tutorialSelected = @defaultReport
+    @left = '390px'
 
     @payAmounts = [0.58, 0.36, 0.43, 0.54]
     @signalList = Network.signalList
@@ -29,6 +27,9 @@ class Tutorial extends Spine.Controller
       @stepJar
       @stepCandy
       @stepReport
+      @stepFive
+      @stepSix
+      @stepSeven
       @stepSummary
     ]
     
@@ -38,7 +39,10 @@ class Tutorial extends Spine.Controller
       'jar'
       'candy'
       'report'
-      'summary'
+      'five'
+      'six'
+      'seven'
+      'popquiz'
     ]
 
   active: ->
@@ -124,36 +128,26 @@ class Tutorial extends Spine.Controller
 
   stepTwoJars: (show) =>
     if show is true
-      $('img.tutorial1').css(
+      $('img#tutorial1').css(
         'position': 'absolute'
-        'top':      '0px'
-        'left':     '400px'
+        'top':      '50px'
+        'left':     @left
       )
-      $('img.tutorial1').show()
+      $('img#tutorial1').fadeIn()
     else 
-      $('img.tutorial1').css(
-        'position': 'absolute'
-        'top':      '0px'
-        'left':     '400px'
-      )
-      $('img.tutorial1').hide()
+      $('img#tutorial1').hide()
 
 
   stepJar: (show) =>
     if show is true
-      $('img.tutorial2').css(
+      $('img#tutorial2').css(
         'position': 'absolute'
-        'top':      '0px'
-        'left':     '400px'
+        'top':      '50px'
+        'left':     @left
       )
-      $('img.tutorial2').show()
+      $('img#tutorial2').fadeIn()
     else 
-      $('img.tutorial2').css(
-        'position': 'absolute'
-        'top':      '0px'
-        'left':     '400px'
-      )
-      $('img.tutorial2').hide()
+      $('img#tutorial2').hide()
 
 
   stepCandy: (show) =>
@@ -161,50 +155,74 @@ class Tutorial extends Spine.Controller
       $('img#select_candy').css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     '400px'
+        'left':     @left
       )
-      $('img#select_candy').show()
-      
-      # if @ele.find(".button.animate").length 
-      #   # animate button already exists
-      # else
-      #  @ele.append(@pButtonAnimate.contents().clone())
-      #  
-      # $('img#backdrop').css(
-      #   'position': 'absolute'
-      #   'top':      '0px'
-      #   'left':     '400px'
-      # )
-      # $('img#robot').css(
-      #   'position': 'absolute'
-      #   'top':      '140px'
-      #   'left':     '730px'
-      # )
-      # $('img#backdrop').show()
-      # $('img#robot').show()
-
+      $('img#select_candy').fadeIn()
     else
       $('img#select_candy').hide()
-      # $('img#backdrop').hide()
-      # $('img#robot').hide()
-      # $('img#p').hide()
-      # $('img#mmbag').hide()
 
-  stepReport: (show) =>
+  stepGeneral: (show, selector) =>
+    @img = $("img##{selector}")
     if show is true
-      $('img#compute_payment').css(
+      @img.css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     '400px'
+        'left':     @left
       )
-      $('img#compute_payment').show()
+      @img.fadeIn()
     else
-      $('img#compute_payment').hide()
+      @img.hide()
+
+  stepReport: (show) =>
+    @img = $("img#tutorial4")
+    if show is true
+      @img.css(
+        'position': 'absolute'
+        'top':      '50px'
+        'left':     @left
+      )
+      @img.fadeIn()
+    else
+      @img.hide()
+    
+
+  stepFive: (show) =>
+    @img = $("img#tutorial5")
+    if show is true
+      @img.css(
+        'position': 'absolute'
+        'top':      '50px'
+        'left':     @left
+      )
+      @img.fadeIn()
+    else
+      @img.hide()
+    
+  stepSix: (show) =>
+    @img = $("img#tutorial6")
+    if show is true
+      @img.css(
+        'position': 'absolute'
+        'top':      '50px'
+        'left':     @left
+      )
+      @img.fadeIn()
+    else
+      @img.hide()
+
+  stepSeven: (show) =>
+    @img = $("img#tutorial7")
+    if show is true
+      @img.css(
+        'position': 'absolute'
+        'top':      '50px'
+        'left':     @left
+      )
+      @img.fadeIn()
+    else
+      @img.hide()
 
   stepSummary: (show) =>
  
-
-    
-
     
 module.exports = Tutorial

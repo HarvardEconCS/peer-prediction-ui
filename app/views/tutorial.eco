@@ -1,10 +1,12 @@
 
-  <img class="image tutorial1" src="tutorial1.png">
-  <img class="image tutorial2" src="tutorial2.png">
+  <img class="image" id="tutorial1" src="tutorial1.png">
+  <img class="image" id="tutorial2" src="tutorial2.png">
   <img class="image" id="select_candy" src="tutorial3.png">
+  <img class="image" id="tutorial4" src="tutorial4.png">
+  <img class="image" id="tutorial5" src="tutorial5.png">
+  <img class="image" id="tutorial6" src="tutorial6.png">
+  <img class="image" id="tutorial7" src="tutorial7.png">
   
-  <!-- <img class="image" id="compute_payment" src="COMPUTE_PAYMENT.png"> -->
-
 <div class="tutorial">
 
   <div class="step buttonPrev">
@@ -22,11 +24,9 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
-      Welcome!  
+      Welcome!  <br/><br/>
       
-      This tutorial will walk you through the game you are going to play!<br/><br/>
-      
-      This tutorial first explains the rules of this game, and then walks you through the interface of the game.<br/><br/>
+      In this tutorial, you will learn the rules of the game and the interface through which you will play the game.  <br/><br/>
       
       Let's get started!        
     </p>
@@ -41,124 +41,105 @@
       
       Also, half of the houses give out more M&amp;M's, whereas the other half give out more Gummy Bears. (Picture 2)<br/><br/>
        
-      But you don't know which house is which kind.
+      Unfortunately, you don't know which house is which kind.
       
     </p>
   </div>
 
   <div class="step jar">
     <p>
-      You and your friends randomly chose a house to go trick or treating. 
+      You and your friends decides to randomly choose a house to go trick or treating. 
     </p>
   </div>
 
   <div class="step candy">
     <p>
-      The owner of the house brought out a large bag of candies. <br/><br/>
+      The owner of the house comes out, with a huge bag of candies. (Picture 1)<br/><br/>
 
-      For each kid, the owner randomly picks 1 candy from the bag, secretly gives this candy to the kid.  <br/><br/>
+      For each kid, the owner <span class="italic">randomly</span> takes 1 candy from the bag, and <span class="italic">secretly</span> gives this candy to the kid. (Pictures 2-4)<br/><br/>
       
-      Each candy taken is immediately replaced with one of the same kind.
+      Each candy taken from the bag is immediately replaced with one of the same kind, before the next candy is taken. (Picture 5)<br/><br/>
       
-      NOTE:  
+      You notice 2 interesting things:<br/></br>
+      
+      (1) Each candy is only seen by the kid intended, not by any other kid.<br/></br>
+      
+      (2) Since each candy taken is replaced, each kid has the same chance of getting either candy.
     </p>
   </div>
 
   <div class="step report">
     <p>
-      As you were leaving, you ran into your parents.  Oddly, they want to play a game with you<br/><br/>
+      As you are leaving, you run into your dad. (Picture 1)<br/><br/>  
       
-      They say: "Each of you tells us what candy you got, then gets a reward."<br/><br/>
+      He asks you and your friends to show him your candies, but of course the kids refuse to do so. (Picture 2)<br/></br>
       
-      "You reward depends on <br/>
-      (1) what you tells us, and <br/>
-      (2) what one of your friends (randomly chosen by us) tells us,<br/>
-      based on the table below."
+      So your dad decides to make you a deal:  He wants to play a game with you and your friends.  In return, he promises that he will never force any kid to show him his/her candy. (Picture 3)<br/><br/>  
+      
+      You agree and think that this is a rather interesting idea.
     </p>
-    
-    <% if @payAmounts: %>
-    <table class="rule">
-      <caption>Payment Rule</caption>
-      
-      <colgroup>
-        <col class="colRuleYourReport">
-        <col class="colRuleOtherReport">
-        <col class="colRuleYourReward">
-      </colgroup>
-      
-      <tr>
-        <th class="rule">You say:</th>
-        <th class="rule">Your friend says</th>
-        <th class="rule leftb">Your<br/>reward</th>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.png">
-        </td>
-        
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.png">
-        </td>
-        
-        <td class="rule leftb money">
-          $<%= @payAmounts[0] %>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.png">
-        </td>
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.png">
-        </td>
-        <td class="rule leftb money">
-          $<%= @payAmounts[1] %>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.png">
-        </td>
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[0] %>.png">
-        </td>
-        <td class="rule leftb money">
-          $<%= @payAmounts[2] %>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.png">
-        </td>
-        <td class="rule">
-          <img class="candy_image" src="<%= @signalList[1] %>.png">
-        </td>
-        <td class="rule leftb money">
-          $<%= @payAmounts[3] %>
-        </td>
-      </tr>
-      
-    </table> 
-    <% end %>
   </div>
 
-  <div class="step summary">
+  <div class="step five">
     <p>
-      You find this game extremely interesting!  So you abandoned trick-or-treating and went back home to think about it.  
-
-      Here is a summary of this game: <br/>
+      Your dad explains the rules of the game to you. (See picture)<br/><br/>
       
-      (1) randomly choose 1 of the 2 houses<br/>
-      (2) each player secretly observes a candy, which is randomly drawn with replacement from the chosen house.<br/>
-      (3) each player reports a candy type to the parents.<br/>
-      (4) each player's reward is determined by his own report, and the report of a player randomly chosen among the other players.<br/>
+      You notice 2 interesting things:<br/></br>
+
+      (1) You are allowed to lie to your dad, since he will not and cannot verify whether you are telling the truth.<br/><br/>
+      
+      (2) It seems that you need to figure out which candy to tell your dad based on how he is going to pay you.<br/><br/>
+
+    </p>
+  </div>
+
+  <div class="step six">
+    <p>
+      Your dad explains the payment rule to you. <br/><br/> 
+      
+      Your reward depends on what you tell your dad, and what a random friend of yours tells your dad.  Given these 2 reports, your reward can be read off the table.<br/></br>  
+      
+      You stare at the table to try to understand it better...
+    </p>
+  </div>
+
+  <div class="step seven">
+    <p>
+      To make sure the rule is clear, your dad shows you an example.<br/><br/>
+      
+      In this example, if you tell your dad "M&amp;M" and your randomly chosen friend Josh tells your dad "Gummy Bear", then your reward will be &#36;0.36. 
+    </p>
+  </div>
+
+
+  <div class="step popquiz">
+    <p>
+      Pop Quiz!!!
       
     </p>
   </div>
+
+  <div class="step interface1">
+    Now, let me walk you through the interface of the game.
+
+    Index of game
+    
+    Total number of games
+    
+    The number of your friends participating in the game
+  </div>
+
+  <div class="step interface2">
+    Click this button to reveal the candy selected for you
+    
+    Choose what you tell your dad, and confirm your choice.
+  </div>
+
+  <div class="step interface3">
+    
+  </div>
+
+
 
   <div class="step last">
     <p>
