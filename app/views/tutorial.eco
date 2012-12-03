@@ -7,6 +7,15 @@
   <img class="image" id="tutorial6" src="tutorial6.png">
   <img class="image" id="tutorial7" src="tutorial7.png">
   
+  <img class="image" id="taskpic1" src="task_initial.png">
+  <img class="image" id="taskpic2" src="task_signal_shown.png">
+  <img class="image" id="taskpic3" src="task_report_confirmed.png">
+  
+  <img class="image" id="box-geninfo" src="box-geninfo.png">
+  <img class="image" id="box-rule" src="box-rule.png">
+  <img class="image" id="box-signal" src="box-signal.png">
+  
+  
 <div class="tutorial">
 
   <div class="step buttonPrev">
@@ -26,7 +35,7 @@
     <p>
       Welcome!  <br/><br/>
       
-      In this tutorial, you will learn the rules of the game and the interface through which you will play the game.  <br/><br/>
+      In this tutorial, you will learn about the rules of the game and the interface through which you will play the game.  <br/><br/>
       
       Let's get started!        
     </p>
@@ -119,28 +128,81 @@
     </p>
   </div>
 
-  <div class="step interface1">
-    Now, let me walk you through the interface of the game.
-
-    In the upper left corner, we can see
-    <ul>
-      <li>index of current game</li>
-      <li>total number of games</li>
-      <li> number of your friends in the game</li>
-    </ul>
+  <div class="step task-intro">
+    <p>
+      Here is the interface of the game.<br/><br/>  
+      
+      I'll highlight different parts of the interface using the green box and explain what they are.<br/><br/>
+    </p>
   </div>
 
-  <div class="step interface2">
-    Click this button to reveal the candy selected for you
-    
-    Choose what you tell your dad, and confirm your choice.
+  <div class="step task-generalInfo">
+    <p>
+      The upper left corner shows you some general information, such as how many games you will be playing and how many players are in the games.
+    </p>
   </div>
 
-  <div class="step interface3">
-    
+  <div class="step task-paymentRule">
+    <p>
+      This table summarizes the payment rule of each game.  It will be displayed for every game.
+    </p>
+  </div>
+
+  <div class="step task-resultsIntro">
+    <p>
+      This table shows you all the information about past and ongoing games.
+      
+      In particular, the bottom row, highlighted by the dashed box, shows you information about the current game.
+    </p>
+  </div>
+
+  <div class="step task-resultsPastGame">
+    <p>
+      For each past game, the table displays, the index of the game, your candy, what you told your Dad, your reward, and a summary of what your friends told your Dad.
+    </p>
+  </div>
+
+  <div class="step task-currentGameSummary">
+    <p>
+      For the current game, the relevant information are presented in the dashed box on the left, and the bottom row in the table on the right.  
+      
+    </p>
+  </div>
+
+  <div class="step task-clickForSignal">
+    <p>
+      You can click on the button "Show my candy!" to reveal the candy given to you.
+    </p>
+  </div>
+
+  <div class="step task-signalShown">
+    <p>
+      Once the button is clicked, the candy you got is shown.
+    </p>
+  </div>
+
+  <div class="step task-confirmReport">
+    <p>
+      Once your candy is revealed, you can select which candy you would like to tell your dad, and click the button "Confirm!" to confirm your choice.
+    </p>
+  </div>
+
+  <div class="step task-reportConfirmed">
+    <p>
+      
+    </p>
   </div>
 
 
+  <div class="step task-resultsCurrentGame">
+    <p>
+      The current game, is shown in the last row of the table.  This row is always highlighted in the dashed box, and the table will always scroll to the bottom to ensure that this row is visible.
+      
+      When a game is ongoing, the candy you got will be displayed as a question mark until you click the button to reveal it.  What you tell your dad is displayed as a question mark until you confirm your choice and the choice is sent to all your friends.  While your friends are deciding what they want to tell your dad, the last column shows the number of friends who have not confirmed their choices yet.  Once they all confirmed their choices, the last column will display "All confirmed!". 
+      
+      Once you and all your friends confirm your choices, the end games, your reward will be displayed, and the next game automatically starts (unless this is the last game).   
+    </p>
+  </div>
 
   <div class="step last">
     <p>

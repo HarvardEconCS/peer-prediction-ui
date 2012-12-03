@@ -30,7 +30,14 @@ class Tutorial extends Spine.Controller
       'five'
       'six'
       'seven'
-      'popquiz'
+      'task-intro'
+      'task-generalInfo'
+      'task-paymentRule'
+      'task-resultsIntro'
+      'task-clickForSignal'
+      'task-signalShown'
+      'task-confirmReport'
+      'task-resultsCurrentGame'
     ]
     
     @stepFunctions = [
@@ -42,6 +49,13 @@ class Tutorial extends Spine.Controller
       @stepStrategic
       @stepTable
       @stepExample
+      @stepTaskIntro
+      @stepTaskGenInfo
+      @stepTaskPaymentRule
+      null
+      @stepTaskClickForSignal
+      @stepTaskSignalShown
+      @stepTaskConfirmChoice
       null
     ]
 
@@ -219,6 +233,103 @@ class Tutorial extends Spine.Controller
       @img.fadeIn()
     else
       @img.hide()
+
+  changeTaskPic: (show, picId) =>
+    @img = $("img##{picId}")
+    @img.css(
+      'position': 'absolute'
+      'top':      '50px'
+      'left':     '50px'
+    )
+    if show is true
+      @img.show()
+    else
+      @img.hide();
+
+  changeTutorialPos: (show) =>
+    if show is true
+      $('div.tutorial').css(
+        'position': 'absolute'
+        'top':      '300px'
+        'left':     '400px'
+      )
+    else
+      $('div.tutorial').css(
+        'position': 'absolute'
+        'top':      '50px'
+        'left':     '60px'
+      )
+
+  stepTaskIntro: (show) =>
+    @changeTaskPic(show, 'taskpic1')
+    @changeTutorialPos(show)
+
+  stepTaskGenInfo: (show) =>
+    @changeTaskPic(show, 'taskpic1')
+    @changeTutorialPos(show)
+    
+    @box = $('img#box-geninfo')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '50px'
+        'left':     '55px'
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+
+  stepTaskPaymentRule: (show) =>
+    @changeTaskPic(show, 'taskpic1')
+    @changeTutorialPos(show)
+
+    @box = $('img#box-rule')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '320px'
+        'left':     '55px'
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+
+  stepTaskClickForSignal: (show) =>
+    @changeTaskPic(show, 'taskpic1')
+    @changeTutorialPos(show)
+    
+    @box = $('img#box-signal')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '110px'
+        'left':     '90px'      
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+
+  stepTaskSignalShown: (show) =>
+    @changeTaskPic(show, 'taskpic2')
+    @changeTutorialPos(show)
+    
+    @box = $('img#box-signal')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '110px'
+        'left':     '90px'      
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+
+  stepTaskConfirmChoice: (show) =>
+    @changeTaskPic(show, 'taskpic1')
+    @changeTutorialPos(show)
+
+      
+  
 
   stepSummary: (show) =>
     console.log "step summary is called"
