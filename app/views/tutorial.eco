@@ -10,11 +10,15 @@
   <img class="image" id="taskpic1" src="task_initial.png">
   <img class="image" id="taskpic2" src="task_signal_shown.png">
   <img class="image" id="taskpic3" src="task_report_confirmed.png">
+  <img class="image" id="taskpic4" src="task_pastgame.png">
   
   <img class="image" id="box-geninfo" src="box-geninfo.png">
-  <img class="image" id="box-rule" src="box-rule.png">
-  <img class="image" id="box-signal" src="box-signal.png">
-  
+  <img class="image" id="box-rule"    src="box-rule.png">
+  <img class="image" id="box-table"   src="box-table.png">
+  <img class="image" id="box-onegame" src="box-onegame.png">
+  <img class="image" id="box-signalReport" src="box-signalReport.png">
+
+  <img class="image" id="box-signal"  src="box-signal.png">
   
 <div class="tutorial">
 
@@ -42,7 +46,7 @@
   </div>
 
   <!-- (2) Show 2 types of jars -->
-  <div class="step twojars">
+  <div class="step prior">
     <p>
       It is Halloween night!  You and your friends are out for trick or treating.<br/><br/>
       
@@ -55,13 +59,13 @@
     </p>
   </div>
 
-  <div class="step jar">
+  <div class="step chooseWorld">
     <p>
       You and your friends decides to randomly choose a house to go trick or treating. 
     </p>
   </div>
 
-  <div class="step candy">
+  <div class="step takeCandy">
     <p>
       The owner of the house comes out, with a huge bag of candies. (Picture 1)<br/><br/>
 
@@ -77,7 +81,7 @@
     </p>
   </div>
 
-  <div class="step report">
+  <div class="step meetDad">
     <p>
       As you are leaving, you run into your dad. (Picture 1)<br/><br/>  
       
@@ -89,7 +93,7 @@
     </p>
   </div>
 
-  <div class="step five">
+  <div class="step strategic">
     <p>
       Your dad explains the rules of the game to you. (See picture)<br/><br/>
       
@@ -102,7 +106,7 @@
     </p>
   </div>
 
-  <div class="step six">
+  <div class="step payRule">
     <p>
       Your dad explains the payment rule to you. <br/><br/> 
       
@@ -112,7 +116,7 @@
     </p>
   </div>
 
-  <div class="step seven">
+  <div class="step example">
     <p>
       To make sure the rule is clear, your dad shows you an example.<br/><br/>
       
@@ -120,15 +124,19 @@
     </p>
   </div>
 
-
-  <div class="step popquiz">
+  <div class="step recap">
     <p>
-      Pop Quiz!!!
-      
+      Recaps the rules of the game
     </p>
   </div>
 
-  <div class="step task-intro">
+  <div class="step transition">
+    <p>
+      Transitions to the next part of the tutorial
+    </p>
+  </div>
+
+  <div class="step uiStart">
     <p>
       Here is the interface of the game.<br/><br/>  
       
@@ -136,73 +144,82 @@
     </p>
   </div>
 
-  <div class="step task-generalInfo">
+  <div class="step uiGenInfo">
     <p>
       The upper left corner shows you some general information, such as how many games you will be playing and how many players are in the games.
     </p>
   </div>
 
-  <div class="step task-paymentRule">
+  <div class="step uiPayRule">
     <p>
-      This table summarizes the payment rule of each game.  It will be displayed for every game.
+      The "Payment Rule" able is always displayed to remind you of how you are being paid in each game.
     </p>
   </div>
 
-  <div class="step task-resultsIntro">
+  <div class="step uiInfoTable">
     <p>
-      This table shows you all the information about past and ongoing games.
+      This table shows you all the relevant information about past and ongoing games.<br/><br/>
       
-      In particular, the bottom row, highlighted by the dashed box, shows you information about the current game.
+      The bottom row, highlighted by the dashed box, describes the current game.
     </p>
   </div>
 
-  <div class="step task-resultsPastGame">
+  <div class="step uiPastInfo">
     <p>
       For each past game, the table displays, the index of the game, your candy, what you told your Dad, your reward, and a summary of what your friends told your Dad.
     </p>
   </div>
 
-  <div class="step task-currentGameSummary">
+  <div class="step uiCurrInfo">
     <p>
-      For the current game, the relevant information are presented in the dashed box on the left, and the bottom row in the table on the right.  
+      For the current game, the relevant information are presented in the dashed box on the left, and the bottom row of the table on the right.  <br/><br/>
       
+      Now, let's go through a game together!
     </p>
   </div>
 
-  <div class="step task-clickForSignal">
+  <div class="step uiCurrStart">
+    <p>
+      At the start of the game, in the bottom row, the two question marks show that (1) you have not revealed the candy given to you, (2) you have not confirmed what you decide to tell your Dad.  Moreover, the third column shows that the number of your friends who have not confirmed what to tell your Dad.  
+    </p>
+  </div>
+
+  <div class="step uiSignalButton">
     <p>
       You can click on the button "Show my candy!" to reveal the candy given to you.
     </p>
   </div>
 
-  <div class="step task-signalShown">
+  <div class="step uiSignalShown">
     <p>
-      Once the button is clicked, the candy you got is shown.
+      Once the button is clicked, the candy you got is shown, both in the box on the left, and in the table on the right.
     </p>
   </div>
 
-  <div class="step task-confirmReport">
+  <div class="step uiReportChoice">
     <p>
       Once your candy is revealed, you can select which candy you would like to tell your dad, and click the button "Confirm!" to confirm your choice.
     </p>
   </div>
 
-  <div class="step task-reportConfirmed">
+  <div class="step uiReportConfirmed">
     <p>
+      Once the button is clicked, the report you confirmed is shown in the box on the right.
       
+      Once the report is sent to all your friends and they have received it, your report is also shown in the table on the right.
     </p>
   </div>
 
-
-  <div class="step task-resultsCurrentGame">
+  <div class="step uiFriendStatus">
     <p>
-      The current game, is shown in the last row of the table.  This row is always highlighted in the dashed box, and the table will always scroll to the bottom to ensure that this row is visible.
+      As the game is ongoing, the last column of the current game row is continuously updated to display the number of your friends who have not confirmed their reports.  
       
-      When a game is ongoing, the candy you got will be displayed as a question mark until you click the button to reveal it.  What you tell your dad is displayed as a question mark until you confirm your choice and the choice is sent to all your friends.  While your friends are deciding what they want to tell your dad, the last column shows the number of friends who have not confirmed their choices yet.  Once they all confirmed their choices, the last column will display "All confirmed!". 
+      Once all your friends have confirmed their reports, the last cell will display "All confirmed!".
       
-      Once you and all your friends confirm your choices, the end games, your reward will be displayed, and the next game automatically starts (unless this is the last game).   
+      Once you and all your friends have confirmed your reports, the next game automatically starts (unless this is the last game).
     </p>
   </div>
+  
 
   <div class="step last">
     <p>
