@@ -46,6 +46,7 @@ class Tutorial extends Spine.Controller
       ['uiReportChoice',    @stepUiReportChoice]
       ['uiReportConfirmed', @stepUiReportConfirmed]
       ['uiFriendStatus',    @stepUiFriendStatus]
+      ['uiFriendAllConfirmed', @stepUiFriendAllConfirmed]
     ]
 
   active: ->
@@ -61,10 +62,11 @@ class Tutorial extends Spine.Controller
   # navigate the tutorial using arrows
   keyPressed: (ev) =>
     ev.preventDefault()
+    # console.log "key pressed is #{ev.which}"
     
-    if ev.which is 54
+    if ev.which is 102
       $(".tutorial .button.next:visible").click()
-    else if ev.which is 52
+    else if ev.which is 100
       $(".tutorial .button.prev:visible").click()
 
   stepShow: ->
@@ -248,12 +250,12 @@ class Tutorial extends Spine.Controller
       )
 
   stepUiStart: (show) =>
-    @changeTaskPic(show, 'taskpic1')
+    @changeTaskPic(show, 'taskstart')
     @changeTutorialPos(show, '300px', '400px')
 
   stepUiGenInfo: (show) =>
-    @changeTaskPic(show, 'taskpic1')
-    @changeTutorialPos(show, '55px', '455px')
+    @changeTaskPic(show, 'taskstart')
+    @changeTutorialPos(show, '55px', '453px')
     
     @box = $('img#box-geninfo')
     if show is true
@@ -267,8 +269,8 @@ class Tutorial extends Spine.Controller
       @box.hide()
 
   stepUiPayRule: (show) =>
-    @changeTaskPic(show, 'taskpic1')
-    @changeTutorialPos(show, '325px', '345px')
+    @changeTaskPic(show, 'taskstart')
+    @changeTutorialPos(show, '325px', '340px')
 
     @box = $('img#box-rule')
     if show is true
@@ -282,8 +284,8 @@ class Tutorial extends Spine.Controller
       @box.hide()
 
   stepUiInfoTable: (show) =>
-    @changeTaskPic(show, 'taskpic4')
-    @changeTutorialPos(show, '80px', '50px')
+    @changeTaskPic(show, 'taskstart')
+    @changeTutorialPos(show, '50px', '55px')
     
     @box = $('img#box-table')
     if show is true
@@ -298,23 +300,23 @@ class Tutorial extends Spine.Controller
     
   
   stepUiPastInfo: (show) =>
-    @changeTaskPic(show, 'taskpic4')
+    @changeTaskPic(show, 'taskstart')
     @changeTutorialPos(show, '80px', '50px')
     
-    @box = $('img#box-onegame')
+    @box = $('img#box-onepastgame')
     if show is true
       @box.css(
         'position': 'absolute'
-        'top':      '190px'
-        'left':     '350px'
+        'top':      '180px'
+        'left':     '340px'
       )
       @box.fadeIn()
     else
       @box.hide()
     
   stepUiCurrInfo: (show) =>  
-    @changeTaskPic(show, 'taskpic4')
-    @changeTutorialPos(show, '350px', '200px')
+    @changeTaskPic(show, 'taskstart')
+    @changeTutorialPos(show, '340px', '200px')
         
     @boxLeft = $('img#box-signalReport')
     @box = $('img#box-onegame')
@@ -336,13 +338,13 @@ class Tutorial extends Spine.Controller
       @box.hide()    
 
   stepUiCurrStart: (show) =>
-    @changeTaskPic(show, 'taskpic1')
+    @changeTaskPic(show, 'taskstart')
     @changeTutorialPos(show, '350px', '200px')
     
   stepUiSignalButton: (show) =>
-    @changeTaskPic(show, 'taskpic1')
-    @changeTutorialPos(show, '350px', '200px')
-  
+    @changeTaskPic(show, 'taskstart')
+    @changeTutorialPos(show, '115px', '307px')
+
     @box = $('img#box-signal')
     if show is true
       @box.css(
@@ -355,28 +357,92 @@ class Tutorial extends Spine.Controller
       @box.hide()
   
   stepUiSignalShown: (show) =>
-    @changeTaskPic(show, 'taskpic2')
+    @changeTaskPic(show, 'tasksignalshown')
     @changeTutorialPos(show, '350px', '200px')
     
     @box = $('img#box-signal')
     if show is true
       @box.css(
         'position': 'absolute'
-        'top':      '110px'
+        'top':      '105px'
         'left':     '90px'      
       )
       @box.fadeIn()
     else
       @box.hide()
+
+    @box2 = $('img#box-signalintable')
+    if show is true
+      @box2.css(
+        'position': 'absolute'
+        'top':      '240px'
+        'left':     '425px'      
+      )
+      @box2.fadeIn()
+    else
+      @box2.hide()
     
   stepUiReportChoice: (show) =>
-
+    @changeTaskPic(show, 'taskchoosereport')
+    @changeTutorialPos(show, '350px', '200px')
+    
   stepUiReportConfirmed: (show) =>
-    @changeTaskPic(show, 'taskpic1')
-    @changeTutorialPos(show, '300px', '400px')
+    @changeTaskPic(show, 'taskreportconfirmed')
+    @changeTutorialPos(show, '350px', '200px')
+    
+    @box = $('img#box-signal')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '160px'
+        'left':     '90px'      
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+      
+    @box2 = $('img#box-signalintable')
+    if show is true
+      @box2.css(
+        'position': 'absolute'
+        'top':      '240px'
+        'left':     '495px'      
+      )
+      @box2.fadeIn()
+    else
+      @box2.hide()  
     
   stepUiFriendStatus: (show) =>
-
+    @changeTaskPic(show, 'taskreportconfirmed')
+    @changeTutorialPos(show, '340px', '600px')
+    
+    @box = $('img#box-signal')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '250px'
+        'left':     '643px'      
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+    
+  stepUiFriendAllConfirmed: (show) =>
+    @changeTaskPic(show, 'taskfriendsallconfirmed')
+    @changeTutorialPos(show, '340px', '600px')
+    
+    @box = $('img#box-signal')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '250px'
+        'left':     '643px'      
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+      
+    
   stepSummary: (show) =>
     console.log "step summary is called"
  

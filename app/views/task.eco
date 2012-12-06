@@ -323,7 +323,10 @@
             
             <% if @agg is true: %>
               <td class="leftb aggInfo">
-                <img class="candy_image" src="<%= @signalList[0] %>.png">&nbsp;<%= game.numSignal0 %><img class="candy_image" src="<%= @signalList[1] %>.png"><%= @numPlayers - 1 - game.numSignal0 %>
+                <img class="candy_image" src="<%= @signalList[0] %>.png">
+                &nbsp;&nbsp;<%= game.numSignal0 %>
+                <img class="candy_image" src="<%= @signalList[1] %>.png">
+                &nbsp;&nbsp;<%= @numPlayers - 1 - game.numSignal0 %>
               </td>
             <% end %>
           </tr>

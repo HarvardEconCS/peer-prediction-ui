@@ -7,18 +7,22 @@
   <img class="image" id="tutorial6" src="tutorial6.png">
   <img class="image" id="tutorial7" src="tutorial7.png">
   
-  <img class="image" id="taskpic1" src="task_initial.png">
-  <img class="image" id="taskpic2" src="task_signal_shown.png">
-  <img class="image" id="taskpic3" src="task_report_confirmed.png">
-  <img class="image" id="taskpic4" src="task_pastgame.png">
-  
+  <img class="image" id="taskstart"           src="task-start.png">
+  <img class="image" id="tasksignalshown"     src="task-signalshown.png">
+  <img class="image" id="taskchoosereport"    src="task-choosereport.png">
+  <img class="image" id="taskreportconfirmed" src="task-reportconfirmed.png">
+  <img class="image" id="taskfriendsallconfirmed" src="task-friendsallconfirmed.png">
+
+
   <img class="image" id="box-geninfo" src="box-geninfo.png">
   <img class="image" id="box-rule"    src="box-rule.png">
   <img class="image" id="box-table"   src="box-table.png">
   <img class="image" id="box-onegame" src="box-onegame.png">
+  <img class="image" id="box-onepastgame" src="box-onepastgame.png">
   <img class="image" id="box-signalReport" src="box-signalReport.png">
-
+  
   <img class="image" id="box-signal"  src="box-signal.png">
+  <img class="image" id="box-signalintable" src="box-signalintable.png">
   
 <div class="tutorial">
 
@@ -39,7 +43,9 @@
     <p>
       Welcome!  <br/><br/>
       
-      In this tutorial, you will learn about the rules of the game and the interface through which you will play the game.  <br/><br/>
+      In this experiment, you will be playing a game repeatedly, with a fixed group of other players, for a fixed number of rounds. <br/><br/>
+      
+      This tutorial will walk you through the rules and the interface of this game. <br/><br/>
       
       Let's get started!        
     </p>
@@ -50,9 +56,9 @@
     <p>
       It is Halloween night!  You and your friends are out for trick or treating.<br/><br/>
       
-      In this neighbourhood, the houses give out 2 types of candies. (Picture 1)<br/><br/>  
+      In this neighbourhood, the houses give out 2 types of candies M&amps;M's and Gummy Bears. (See 1)<br/><br/>  
       
-      Also, half of the houses give out more M&amp;M's, whereas the other half give out more Gummy Bears. (Picture 2)<br/><br/>
+      Also, half of the houses give out more M&amp;M's, whereas the other half give out more Gummy Bears. (See 2)<br/><br/>
        
       Unfortunately, you don't know which house is which kind.
       
@@ -67,35 +73,39 @@
 
   <div class="step takeCandy">
     <p>
-      The owner of the house comes out, with a huge bag of candies. (Picture 1)<br/><br/>
+      The owner of the house comes out, with a huge bag of candies. He has a peculiar way of giving out the candies....<br/><br/>
 
-      For each kid, the owner <span class="italic">randomly</span> takes 1 candy from the bag, and <span class="italic">secretly</span> gives this candy to the kid. (Pictures 2-4)<br/><br/>
+      <!-- For each kid, the owner <span class="italic">randomly</span> takes 1 candy from the bag, and <span class="italic">secretly</span> gives this candy to the kid. (See 2-4)<br/><br/>
       
-      Each candy taken from the bag is immediately replaced with one of the same kind, before the next candy is taken. (Picture 5)<br/><br/>
+      Each candy taken from the bag is immediately replaced with one of the same kind, before the next candy is taken. (See 5)<br/><br/> -->
       
       You notice 2 interesting things:<br/></br>
       
-      (1) Each candy is only seen by the kid intended, not by any other kid.<br/></br>
+      (1) Each candy is given to the intended kid in secret (PIcture 3), so it is never seen by any other kid.<br/></br>
       
-      (2) Since each candy taken is replaced, each kid has the same chance of getting either candy.
+      (2) Each candy taken is immediately replaced with one of the same kind (Picture 5).  So each kid has the same chance of getting a particular type of candy.
     </p>
   </div>
 
   <div class="step meetDad">
     <p>
-      As you are leaving, you run into your dad. (Picture 1)<br/><br/>  
+      As you are leaving, you run into your dad.  He has an interesting proposition for you...<br/><br/>
       
-      He asks you and your friends to show him your candies, but of course the kids refuse to do so. (Picture 2)<br/></br>
+      He won't force any of you to show him your candy.  Instead, you will agree to play a game with him.<br/><br/>  
       
-      So your dad decides to make you a deal:  He wants to play a game with you and your friends.  In return, he promises that he will never force any kid to show him his/her candy. (Picture 3)<br/><br/>  
+      You think this is a rather interesting idea.   
       
-      You agree and think that this is a rather interesting idea.
+      <!-- He asks you and your friends to show him your candies, but of course the kids refuse to do so. (See 2)<br/></br>
+      
+      So your dad decides to make you a deal:  He wants to play a game with you and your friends.  In return, he promises that he will never force any kid to show him his/her candy. (See 3)<br/><br/>  
+      
+      You agree and think that this is a rather interesting idea. -->
     </p>
   </div>
 
   <div class="step strategic">
     <p>
-      Your dad explains the rules of the game to you. (See picture)<br/><br/>
+      Your dad explains the rules of the game to you.<br/><br/>
       
       You notice 2 interesting things:<br/></br>
 
@@ -108,9 +118,11 @@
 
   <div class="step payRule">
     <p>
-      Your dad explains the payment rule to you. <br/><br/> 
+      Next, your dad explains how you and your friends will be paid. <br/><br/> 
       
-      Your reward depends on what you tell your dad, and what a random friend of yours tells your dad.  Given these 2 reports, your reward can be read off the table.<br/></br>  
+      According to the rule, your reward depends on what you tell your dad, and what a random friend of yours tells your dad.  <br/></br> 
+      
+      Given these 2 reports, your reward can be read off the table.<br/></br>  
       
       You stare at the table to try to understand it better...
     </p>
@@ -126,21 +138,30 @@
 
   <div class="step recap">
     <p>
-      Recaps the rules of the game
+      The rule of the game should be clear by now.  Here is recap.
+      
+      There are equal number of 2 types of houses.  The houses of either type gives out 2 types of candies in different proportions.
+      
+      A group of kids randomly choose a 1 house to go trick or treating.
+      
+      At the house, each kid gets a candy randomly drawn from a bag of candies with replacement. 
+      
+      Each kid chooses a type of candy to tell your dad.
+      
+      
+      
     </p>
   </div>
 
   <div class="step transition">
     <p>
-      Transitions to the next part of the tutorial
+      In the next part of this tutorial, I will highlight and explain different parts of the interface of the game.
     </p>
   </div>
 
   <div class="step uiStart">
     <p>
-      Here is the interface of the game.<br/><br/>  
-      
-      I'll highlight different parts of the interface using the green box and explain what they are.<br/><br/>
+      This is the interface of the game.  Please follow the green boxes which highlight different parts of the interface.
     </p>
   </div>
 
@@ -152,13 +173,13 @@
 
   <div class="step uiPayRule">
     <p>
-      The "Payment Rule" able is always displayed to remind you of how you are being paid in each game.
+      The "Payment Rule" table is always displayed to remind you of how you are being paid in each game.
     </p>
   </div>
 
   <div class="step uiInfoTable">
     <p>
-      This table shows you all the relevant information about past and ongoing games.<br/><br/>
+      This table shows you all the relevant information about all the past games and the currently ongoing game.<br/><br/>
       
       The bottom row, highlighted by the dashed box, describes the current game.
     </p>
@@ -166,7 +187,14 @@
 
   <div class="step uiPastInfo">
     <p>
-      For each past game, the table displays, the index of the game, your candy, what you told your Dad, your reward, and a summary of what your friends told your Dad.
+      For each past game, the corresponding row displays:
+      
+      <ul>
+        <li>index of the game</li>
+        <li>your candy</li>
+        <li>what you told your Dad</li>
+        <li>your reward</li>
+        <li>a summary of what your friends told your Dad</li>
     </p>
   </div>
 
@@ -180,19 +208,22 @@
 
   <div class="step uiCurrStart">
     <p>
-      At the start of the game, in the bottom row, the two question marks show that (1) you have not revealed the candy given to you, (2) you have not confirmed what you decide to tell your Dad.  Moreover, the third column shows that the number of your friends who have not confirmed what to tell your Dad.  
+      This is what the interface looks like at the start of a game.  
     </p>
   </div>
 
   <div class="step uiSignalButton">
     <p>
+      First, you need to get a candy from the owner of the house. <br/><br/>
+      
       You can click on the button "Show my candy!" to reveal the candy given to you.
     </p>
   </div>
 
   <div class="step uiSignalShown">
     <p>
-      Once the button is clicked, the candy you got is shown, both in the box on the left, and in the table on the right.
+      Once you've clicked the "Show my candy!" button, the candy you got will be shown 
+      both in the dashed box on the left, and in the dashed row on the right.
     </p>
   </div>
 
@@ -212,14 +243,21 @@
 
   <div class="step uiFriendStatus">
     <p>
-      As the game is ongoing, the last column of the current game row is continuously updated to display the number of your friends who have not confirmed their reports.  
-      
-      Once all your friends have confirmed their reports, the last cell will display "All confirmed!".
-      
-      Once you and all your friends have confirmed your reports, the next game automatically starts (unless this is the last game).
+      During the game, this cell is continuously updated to display the number of your friends who have not confirmed their reports.  
     </p>
   </div>
   
+  <div class="step uiFriendAllConfirmed">
+    <p>
+      Once all your friends have confirmed their reports, the last cell will display "All confirmed!".
+    </p>
+  </div>
+
+  <div class="step uiNextGame">
+    <p>
+      Once you and all your friends have confirmed your reports, the next game automatically starts (unless this is the last game).
+    </p>
+  </div>
 
   <div class="step last">
     <p>
