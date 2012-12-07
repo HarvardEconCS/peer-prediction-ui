@@ -22,6 +22,7 @@
   <img class="image" id="box-signalReport" src="box-signalReport.png">
   
   <img class="image" id="box-signal"  src="box-signal.png">
+  <img class="image" id="box-report"  src="box-report.png">
   <img class="image" id="box-signalintable" src="box-signalintable.png">
   
 <div class="tutorial">
@@ -187,14 +188,15 @@
 
   <div class="step uiPastInfo">
     <p>
-      For each past game, the corresponding row displays:
-      
+      The row for each past game display all the relevant information about the game.
+
+      <!-- For each past game, the corresponding row displays:
       <ul>
         <li>index of the game</li>
         <li>your candy</li>
         <li>what you told your Dad</li>
         <li>your reward</li>
-        <li>a summary of what your friends told your Dad</li>
+        <li>a summary of what your friends told your Dad</li> -->
     </p>
   </div>
 
@@ -208,36 +210,35 @@
 
   <div class="step uiCurrStart">
     <p>
-      This is what the interface looks like at the start of a game.  
+      This is the interface at the start of a game.
     </p>
   </div>
 
   <div class="step uiSignalButton">
     <p>
-      First, you need to get a candy from the owner of the house. <br/><br/>
-      
-      You can click on the button "Show my candy!" to reveal the candy given to you.
+      First, you can click on the button "Show my candy!" to reveal the candy 
+      given to you by the owner of the house.
     </p>
   </div>
 
   <div class="step uiSignalShown">
     <p>
-      Once you've clicked the "Show my candy!" button, the candy you got will be shown 
-      both in the dashed box on the left, and in the dashed row on the right.
+      You've got a Gummy Bear, and it is shown in the two highlighted boxes.<br/><br/>
     </p>
   </div>
 
   <div class="step uiReportChoice">
     <p>
-      Once your candy is revealed, you can select which candy you would like to tell your dad, and click the button "Confirm!" to confirm your choice.
+      Next, you can select which candy you would like to tell your dad (M&amp;M in this case), and click the button "Confirm!" to confirm your choice.
     </p>
   </div>
 
   <div class="step uiReportConfirmed">
     <p>
-      Once the button is clicked, the report you confirmed is shown in the box on the right.
+      You've confirmed that you will tell your dad you received M&amp;M, this choice
+      is immediately shown in the dashed box on the left.<br/><br/>  
       
-      Once the report is sent to all your friends and they have received it, your report is also shown in the table on the right.
+      Once this report is sent to all your friends they have received it, your report is also shown in the dashed row in the table.
     </p>
   </div>
 

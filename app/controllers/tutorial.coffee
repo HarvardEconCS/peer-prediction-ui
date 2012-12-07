@@ -40,7 +40,6 @@ class Tutorial extends Spine.Controller
       ['uiInfoTable', @stepUiInfoTable]
       ['uiPastInfo',  @stepUiPastInfo]
       ['uiCurrInfo',  @stepUiCurrInfo]      
-      ['uiCurrStart',       @stepUiCurrStart]
       ['uiSignalButton',    @stepUiSignalButton]
       ['uiSignalShown',     @stepUiSignalShown]
       ['uiReportChoice',    @stepUiReportChoice]
@@ -285,7 +284,7 @@ class Tutorial extends Spine.Controller
 
   stepUiInfoTable: (show) =>
     @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '50px', '55px')
+    @changeTutorialPos(show, '55px', '55px')
     
     @box = $('img#box-table')
     if show is true
@@ -301,7 +300,7 @@ class Tutorial extends Spine.Controller
   
   stepUiPastInfo: (show) =>
     @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '80px', '50px')
+    @changeTutorialPos(show, '195px', '53px')
     
     @box = $('img#box-onepastgame')
     if show is true
@@ -339,11 +338,11 @@ class Tutorial extends Spine.Controller
 
   stepUiCurrStart: (show) =>
     @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '350px', '200px')
+    @changeTutorialPos(show, '340px', '200px')
     
   stepUiSignalButton: (show) =>
     @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '115px', '307px')
+    @changeTutorialPos(show, '350px', '200px')
 
     @box = $('img#box-signal')
     if show is true
@@ -358,7 +357,7 @@ class Tutorial extends Spine.Controller
   
   stepUiSignalShown: (show) =>
     @changeTaskPic(show, 'tasksignalshown')
-    @changeTutorialPos(show, '350px', '200px')
+    @changeTutorialPos(show, '340px', '200px')
     
     @box = $('img#box-signal')
     if show is true
@@ -385,6 +384,18 @@ class Tutorial extends Spine.Controller
   stepUiReportChoice: (show) =>
     @changeTaskPic(show, 'taskchoosereport')
     @changeTutorialPos(show, '350px', '200px')
+    
+    @box = $('img#box-report')
+    if show is true
+      @box.css(
+        'position': 'absolute'
+        'top':      '160px'
+        'left':     '90px'      
+      )
+      @box.fadeIn()
+    else
+      @box.hide()
+    
     
   stepUiReportConfirmed: (show) =>
     @changeTaskPic(show, 'taskreportconfirmed')
