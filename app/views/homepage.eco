@@ -1,0 +1,7 @@
+<h1>Welcome to our experiment!</h1> 
+
+In this experiment, you will be playing a game with a group of players for a number of rounds.
+
+We are interested in studying how different people play this game, and whether you can gradually learn and improve by repeatedly playing the same game.<br/><br/>
+
+<a class="button" id="startExperiment" href="#">Go to the tutorial</a>

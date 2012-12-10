@@ -2,9 +2,11 @@ Spine = require('spine')
 
 Network   = require 'network'
 
+Homepage  = require 'controllers/homepage'
 Tutorial  = require 'controllers/tutorial'
+Quiz      = require 'controllers/quiz'
 Task      = require 'controllers/task'
-Exit      = require 'controllers/exitsurvey'
+Exitsurvey      = require 'controllers/exitsurvey'
 
 class Main extends Spine.Stack
   className: "main stack"
@@ -13,15 +15,20 @@ class Main extends Spine.Stack
     super
 
   controllers:
+    homepage: Homepage
     tutorial: Tutorial
+    quiz: Quiz
     task: Task
-    exit: Exit
+    exitsurvey: Exitsurvey
     
-  default: 'tutorial'
+  default: 'homepage'
   
   routes: 
+    '/': 'homepage'
+    '/tutorial': 'tutorial'
+    '/quiz': 'quiz'
     '/task': 'task'
-    '/exit': 'exit'
-    '/': 'tutorial'
+    '/exit': 'exitsurvey'
+
 
 module.exports = Main

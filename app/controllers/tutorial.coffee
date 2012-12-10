@@ -12,6 +12,7 @@ class Tutorial extends Spine.Controller
   events:
     "click .tutorial .button.next"    : "nextClicked"
     "click .tutorial .button.prev"    : "previousClicked"
+    'click a#endTutorial'             : "endTutorialClicked"
     
   constructor: ->
     super
@@ -26,14 +27,10 @@ class Tutorial extends Spine.Controller
     @steps = [
       ['welcome',     null]
       ['prior',       @stepPrior]
-      ['chooseWorld', @stepChooseWorld]
       ['takeCandy',   @stepTakeCandy]
-      ['meetDad',     @stepMeetDad]
-      ['strategic',   @stepStrategic]
-      ['payRule',     @stepPayRule]
+      ['gameRule',     @stepGameRule]
       ['example',     @stepExample]
-      ['recap',       null]
-      ['transition',  null]
+      ['recap',       @stepRecap]
       ['uiStart',     @stepUiStart]
       ['uiGenInfo',   @stepUiGenInfo]
       ['uiPayRule',   @stepUiPayRule]
@@ -46,7 +43,8 @@ class Tutorial extends Spine.Controller
       ['uiReportConfirmed', @stepUiReportConfirmed]
       ['uiFriendStatus',    @stepUiFriendStatus]
       ['uiFriendAllConfirmed', @stepUiFriendAllConfirmed]
-    ]
+      ['uiNextGame', @stepUiNextGame]
+    ] 
 
   active: ->
     super
@@ -127,6 +125,11 @@ class Tutorial extends Spine.Controller
       @stepIndex = @stepIndex + 1
       @stepShow()
 
+
+  endTutorialClicked: (ev)->  
+    ev.preventDefault()
+    @navigate '/quiz'
+    
   stepPrior: (show) =>
     if show is true
       $('img#tutorial1').css(
@@ -153,14 +156,14 @@ class Tutorial extends Spine.Controller
 
   stepTakeCandy: (show) =>
     if show is true
-      $('img#select_candy').css(
+      $('img#tutorial3').css(
         'position': 'absolute'
         'top':      '50px'
         'left':     @left
       )
-      $('img#select_candy').fadeIn()
+      $('img#tutorial3').fadeIn()
     else
-      $('img#select_candy').hide()
+      $('img#tutorial3').hide()
 
   stepGeneral: (show, selector) =>
     @img = $("img##{selector}")
@@ -174,7 +177,7 @@ class Tutorial extends Spine.Controller
     else
       @img.hide()
 
-  stepMeetDad: (show) =>
+  stepGameRule: (show) =>
     @img = $("img#tutorial4")
     if show is true
       @img.css(
@@ -186,20 +189,19 @@ class Tutorial extends Spine.Controller
     else
       @img.hide()
 
-  stepStrategic: (show) =>
-    @img = $("img#tutorial5")
+    @img2 = $("img#payment_rule")
     if show is true
-      @img.css(
+      @img2.css(
         'position': 'absolute'
-        'top':      '50px'
-        'left':     @left
+        'top':      '220px'
+        'left':     '60px'
       )
-      @img.fadeIn()
+      @img2.fadeIn()
     else
-      @img.hide()
-    
-  stepPayRule: (show) =>
-    @img = $("img#tutorial6")
+      @img2.hide()
+
+  stepExample: (show) =>
+    @img = $("img#tutorial7")
     if show is true
       @img.css(
         'position': 'absolute'
@@ -210,8 +212,8 @@ class Tutorial extends Spine.Controller
     else
       @img.hide()
 
-  stepExample: (show) =>
-    @img = $("img#tutorial7")
+  stepRecap: (show) =>
+    @img = $("img#tutorial8")
     if show is true
       @img.css(
         'position': 'absolute'
@@ -250,7 +252,7 @@ class Tutorial extends Spine.Controller
 
   stepUiStart: (show) =>
     @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '300px', '400px')
+    # @changeTutorialPos(show, '300px', '400px')
 
   stepUiGenInfo: (show) =>
     @changeTaskPic(show, 'taskstart')
@@ -336,9 +338,6 @@ class Tutorial extends Spine.Controller
       @boxLeft.hide()
       @box.hide()    
 
-  stepUiCurrStart: (show) =>
-    @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '340px', '200px')
     
   stepUiSignalButton: (show) =>
     @changeTaskPic(show, 'taskstart')
@@ -424,7 +423,7 @@ class Tutorial extends Spine.Controller
       @box2.hide()  
     
   stepUiFriendStatus: (show) =>
-    @changeTaskPic(show, 'taskreportconfirmed')
+    @changeTaskPic(show, 'taskfriendswaiting')
     @changeTutorialPos(show, '340px', '600px')
     
     @box = $('img#box-signal')
@@ -453,9 +452,10 @@ class Tutorial extends Spine.Controller
     else
       @box.hide()
       
-    
-  stepSummary: (show) =>
-    console.log "step summary is called"
+  stepUiNextGame: (show) =>
+    @changeTaskPic(show, 'tasknextgame')
+    @changeTutorialPos(show, '400px', '600px')
+
  
     
 module.exports = Tutorial
