@@ -8,12 +8,21 @@ class App extends Spine.Controller
   constructor: ->
     super
     
-    Network.initFake()
+    if @isBrowserCompatible()
+      Network.initFake()
+      @main = new Main
+      @append @main
+      Spine.Route.setup()
+    else 
+      @html("<p>Sorry!  Your browser is incompatible with this site.  Please upgrade your browser.</p>")
     
-    @main = new Main
-    @append @main
-    
-    Spine.Route.setup()
-    
+  isBrowserCompatible: ->
+    ua = $.browser
+    version = parseInt(ua.version)
+    if ua.msie && version < 9
+      return false
+    else 
+      return true
+  
 module.exports = App
     

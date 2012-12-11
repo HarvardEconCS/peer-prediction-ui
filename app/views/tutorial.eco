@@ -1,31 +1,31 @@
 
-  <img class="image" id="tutorial1" src="tutorial1.png">
-  <img class="image" id="tutorial2" src="tutorial2.png">
-  <img class="image" id="tutorial3" src="tutorial3.png">
-  <img class="image" id="tutorial4" src="tutorial4.png">
-  <img class="image" id="tutorial7" src="tutorial7.png">
-  <img class="image" id="tutorial8" src="tutorial8.png">
+  <img class="image" id="tutorial1" src="images/tutorial1.png">
+  <img class="image" id="tutorial2" src="images/tutorial2.png">
+  <img class="image" id="tutorial3" src="images/tutorial3.png">
+  <img class="image" id="tutorial4" src="images/tutorial4.png">
+  <img class="image" id="tutorial7" src="images/tutorial7.png">
+  <img class="image" id="tutorial8" src="images/tutorial8.png">
     
-  <img class="image" id="taskstart"           src="task-start.png">
-  <img class="image" id="tasksignalshown"     src="task-signalshown.png">
-  <img class="image" id="taskchoosereport"    src="task-choosereport.png">
-  <img class="image" id="taskreportconfirmed" src="task-reportconfirmed.png">
-  <img class="image" id="taskfriendswaiting"  src="task-friendswaiting.png">
-  <img class="image" id="taskfriendsallconfirmed" src="task-friendsallconfirmed.png">
-  <img class="image" id="tasknextgame"           src="task-nextgame.png">
+  <img class="image" id="taskstart"           src="images/task-start.png">
+  <img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
+  <img class="image" id="taskchoosereport"    src="images/task-choosereport.png">
+  <img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png">
+  <img class="image" id="taskfriendswaiting"  src="images/task-friendswaiting.png">
+  <img class="image" id="taskfriendsallconfirmed" src="images/task-friendsallconfirmed.png">
+  <img class="image" id="tasknextgame"           src="images/task-nextgame.png">
 
-  <img class="image" id="box-geninfo" src="box-geninfo.png">
-  <img class="image" id="box-rule"    src="box-rule.png">
-  <img class="image" id="box-table"   src="box-table.png">
-  <img class="image" id="box-onegame" src="box-onegame.png">
-  <img class="image" id="box-onepastgame" src="box-onepastgame.png">
-  <img class="image" id="box-signalReport" src="box-signalReport.png">
+  <img class="image" id="box-geninfo" src="images/box-geninfo.png">
+  <img class="image" id="box-rule"    src="images/box-rule.png">
+  <img class="image" id="box-table"   src="images/box-table.png">
+  <img class="image" id="box-onegame" src="images/box-onegame.png">
+  <img class="image" id="box-onepastgame" src="images/box-onepastgame.png">
+  <img class="image" id="box-signalReport" src="images/box-signalReport.png">
   
-  <img class="image" id="box-signal"  src="box-signal.png">
-  <img class="image" id="box-report"  src="box-report.png">
-  <img class="image" id="box-signalintable" src="box-signalintable.png">
+  <img class="image" id="box-signal"  src="images/box-signal.png">
+  <img class="image" id="box-report"  src="images/box-report.png">
+  <img class="image" id="box-signalintable" src="images/box-signalintable.png">
   
-  <img class="image" id="payment_rule" src="payment_rule.png">
+  <img class="image" id="payment_rule" src="images/payment_rule.png">
   
 <div class="tutorial">
 

@@ -4,7 +4,7 @@ Quiz
   
   <li>
     <p>
-      True or False:  If you randomly choose a house.  The house has a 50% chance of being the kind giving out 70% <img class="candy_image" src="<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="<%= @signalList[1] %>.png"> and 50% chance of being the kind giving out 40% <img class="candy_image" src="<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="<%= @signalList[1] %>.png">
+      True or False:  If you randomly choose a house.  The house has a 50% chance of being the kind giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and 50% chance of being the kind giving out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">
     </p>
     
     <input type="radio" name="tof1" id="tof11" value="false">
@@ -26,7 +26,7 @@ Quiz
   
   <li>
     <p>    
-      True of False:  If the house chosen is the kind giving out 70% <img class="candy_image" src="<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="<%= @signalList[1] %>.png">, then every kid has 70% chance of getting a <img class="candy_image" src="<%= @signalList[0] %>.png"> candy and 30% chance of getting a <img class="candy_image" src="<%= @signalList[1] %>.png"> candy.
+      True of False:  If the house chosen is the kind giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then every kid has 70% chance of getting a <img class="candy_image" src="images/<%= @signalList[0] %>.png"> candy and 30% chance of getting a <img class="candy_image" src="images/<%= @signalList[1] %>.png"> candy.
     </p>
     
     <input type="radio" name="tof3" id="tof31" value="false">
@@ -37,14 +37,14 @@ Quiz
   
   <li>
     <p>
-      If your candy is <img class="candy_image" src="<%= @signalList[0] %>.png">, which of the following is correct? (Choose 1 answer)
+      If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, which of the following is correct? (Choose 1 answer)
     </p>
     
     <input type="radio" name='priorHouse' id="priorhouse1" value="more0"> 
-    <label for="priorhouse1">The house is more likely to be kind giving out 70% <img class="candy_image" src="<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="<%= @signalList[1] %>.png">.</label><br/>
+    <label for="priorhouse1">The house is more likely to be kind giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
 
     <input type="radio" name='priorHouse' id="priorhouse2" value="more1"> 
-    <label for="priorhouse2">The house is more likely to be the kind giving out 40% <img class="candy_image" src="<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="<%= @signalList[1] %>.png">.</label><br/>
+    <label for="priorhouse2">The house is more likely to be the kind giving out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
 
     <input type="radio" name='priorHouse' id="priorhouse3" value="equal"> 
     <label for="priorhouse3">My candy does not tell me anything about what kind of house we chose.</label><br/>
@@ -53,14 +53,14 @@ Quiz
 
   <li>
     <p>
-      If your candy is <img class="candy_image" src="<%= @signalList[0] %>.png">, which of the following is correct? (Choose 1 answer)  
+      If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, which of the following is correct? (Choose 1 answer)  
     </p>
 
     <input type="radio" name='prior' id="prior1" value="more0"> 
-    <label for="prior1">From the same house, another kid is more likely to get <img class="candy_image" src="<%= @signalList[0] %>.png"> than <img class="candy_image" src="<%= @signalList[1] %>.png"></label><br/>
+    <label for="prior1">From the same house, another kid is more likely to get <img class="candy_image" src="images/<%= @signalList[0] %>.png"> than <img class="candy_image" src="images/<%= @signalList[1] %>.png"></label><br/>
 
     <input type="radio" name='prior' id="prior2" value="more1"> 
-    <label for="prior2">From the same house, another kid is more likely to get <img class="candy_image" src="<%= @signalList[1] %>.png"> than <img class="candy_image" src="<%= @signalList[0] %>.png"></label><br/>
+    <label for="prior2">From the same house, another kid is more likely to get <img class="candy_image" src="images/<%= @signalList[1] %>.png"> than <img class="candy_image" src="images/<%= @signalList[0] %>.png"></label><br/>
 
     <input type="radio" name='prior' id="prior3" value="equal"> 
     <label for="prior3">From the same house, another kid will get both candies with equal probabilities.</label><br/>
@@ -73,7 +73,7 @@ Quiz
   
   <li>
     <p class="question">
-      If your candy is <img class="candy_image" src="<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="<%= @signalList[1] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="<%= @signalList[0] %>.png">, what is your reward?
+      If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, what is your reward?
     </p>
     
     <input type="radio" name="reward1" id="reward11" value="0.58">
@@ -89,7 +89,7 @@ Quiz
   
   <li>
     <p class="question" >
-        If your candy is <img class="candy_image" src="<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="<%= @signalList[0] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="<%= @signalList[0] %>.png">, what is your reward?
+        If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, what is your reward?
     </p>
     
     <input type="radio" name="reward2" id="reward21" value="0.58">
@@ -105,23 +105,23 @@ Quiz
    
   <li>
     <p>
-    If you know that your random friend will definitely claim that he has <img class="candy_image" src="<%= @signalList[0] %>.png">, and your candy is <img class="candy_image" src="<%= @signalList[0] %>.png">, what candy should you tell the clown to maximize your payment in this game? 
+    If you know that your random friend will definitely claim that he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, and your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, what candy should you tell the clown to maximize your payment in this game? 
     </p>
     <input type="radio" name="claim1" id="claim11" value="mm">
-    <label for="claim11"><img class="candy_image" src="<%= @signalList[0] %>.png"></label>
+    <label for="claim11"><img class="candy_image" src="images/<%= @signalList[0] %>.png"></label>
     <input type="radio" name="claim1" id="claim12" value="gm">
-    <label for="claim12"><img class="candy_image" src="<%= @signalList[1] %>.png"></label>
+    <label for="claim12"><img class="candy_image" src="images/<%= @signalList[1] %>.png"></label>
   </li>
   
   <li>
     <p>
-    If you know that your random friend will definitely claim that he has <img class="candy_image" src="<%= @signalList[1] %>.png">, and your candy is <img class="candy_image" src="<%= @signalList[0] %>.png">, what candy should you tell the clown to maximize your payment in this game? 
+    If you know that your random friend will definitely claim that he has <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, what candy should you tell the clown to maximize your payment in this game? 
     </p>
     
     <input type="radio" name="claim2" id="claim21" value="mm">
-    <label for="claim21"><img class="candy_image" src="<%= @signalList[0] %>.png"></label>
+    <label for="claim21"><img class="candy_image" src="images/<%= @signalList[0] %>.png"></label>
     <input type="radio" name="claim2" id="claim22" value="gm">
-    <label for="claim22"><img class="candy_image" src="<%= @signalList[1] %>.png"></label>
+    <label for="claim22"><img class="candy_image" src="images/<%= @signalList[1] %>.png"></label>
   </li>
    
 

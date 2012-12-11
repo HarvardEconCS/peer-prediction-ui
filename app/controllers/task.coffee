@@ -55,14 +55,14 @@ class Task extends Spine.Controller
     # random order of the radio buttons
     if @randomRadio is 0
       $('input:radio#firstRadio').val("#{Network.signalList[0]}")
-      $('img#imgFirstRadio').attr('src', "#{Network.signalList[0]}.png")
+      $('img#imgFirstRadio').attr('src', "images/#{Network.signalList[0]}.png")
       $('input:radio#secondRadio').val("#{Network.signalList[1]}")
-      $('img#imgSecondRadio').attr('src', "#{Network.signalList[1]}.png")      
+      $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[1]}.png")      
     else
       $('input:radio#firstRadio').val("#{Network.signalList[1]}")
-      $('img#imgFirstRadio').attr('src', "#{Network.signalList[1]}.png")
+      $('img#imgFirstRadio').attr('src', "images/#{Network.signalList[1]}.png")
       $('input:radio#secondRadio').val("#{Network.signalList[0]}")
-      $('img#imgSecondRadio').attr('src', "#{Network.signalList[0]}.png")
+      $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[0]}.png")
 
     # make the table always scroll to the bottom
     $('div .resultTable').scrollTop($('div .resultTable').prop("scrollHeight"))
