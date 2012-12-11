@@ -88,6 +88,12 @@ class Tutorial extends Spine.Controller
       else 
         @ele.prepend(@pButtonPrev.contents().clone())
 
+    if @ele.find(".stepIndex").length
+      # do nothing
+    else 
+      @ele.prepend("<span class=\"stepIndex\">#{@stepIndex + 1}/#{@steps.length}</span><br/><br/>")
+        
+        
     @steps[@stepIndex][1]?(true)
     
   # tear down the current step
@@ -193,7 +199,7 @@ class Tutorial extends Spine.Controller
     if show is true
       @img2.css(
         'position': 'absolute'
-        'top':      '220px'
+        'top':      '260px'
         'left':     '60px'
       )
       @img2.fadeIn()
