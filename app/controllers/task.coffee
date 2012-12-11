@@ -127,22 +127,8 @@ class Task extends Spine.Controller
     # the player has confirmed a valid report
     Network.sendReport(@selected)
     
-    # @game = Game.last()
-    # if @game.result?
-    #   @game.result[0].action = @selected
-    # else 
-    #   @game.result = [ 
-    #     {'action': @selected}
-    #   ]
-    # @game.save()
-    
     @render()
         
-    # # start next game if all players have acted 
-    # if @game.numOtherActed is (Network.numPlayers - 1)
-    #   clearInterval(Network.intervalId)
-    #   Network.getGameResult()
-    
   helper: (msg) ->
     console.log msg
     

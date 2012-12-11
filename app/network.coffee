@@ -56,6 +56,11 @@ class Network
     ###############################################
 
     ################################################
+    # Message received from the server
+    # format: -------------------
+    #    status: confirmReport
+    #    playerName: 
+    # ---------------------------
     randomIndex = Math.floor(Math.random() * playerNotConfirmed.length)
     playerActed = playerNotConfirmed[randomIndex]
 
@@ -100,6 +105,14 @@ class Network
 
     ####################################################
     # Message received from server
+    # format: --------------------
+    #       status:     startRound
+    #       numPlayers: 
+    #       playerNames: 
+    #       yourName: 
+    #       numRounds: 
+    #       payments:
+    # -------------------------
     nPlayers = 5
     
     names = []
@@ -110,17 +123,17 @@ class Network
     currName = names[rndIndex]
     
     receivedMsg = 
-      "status"      : "startGame"
+      "status"      : "startRound"
       "numPlayers"  : nPlayers
       "playerNames" : names
       "yourName"    : currName 
       "numRounds"   : 10
-      "payAmounts"  : [0.58, 0.36, 0.43, 0.54]
+      "payments"  : [0.58, 0.36, 0.43, 0.54]
     ####################################################
     console.log "received msg: #{JSON.stringify(receivedMsg)}"
       
     # save metadata
-    Network.payAmounts      = receivedMsg.payAmounts
+    Network.payAmounts      = receivedMsg.payments
     Network.numPlayers      = receivedMsg.numPlayers
     Network.numRounds       = receivedMsg.numRounds 
     Network.playerNames     = receivedMsg.playerNames
@@ -140,6 +153,10 @@ class Network
 
     ####################################################
     # Message received from server
+    # format: -----------------
+    #     status: signal
+    #     signal: 
+    # -------------------------
     nextSignal = Network.chooseRandomly(Network.signalList)
     
     receivedMsg = 
@@ -174,21 +191,26 @@ class Network
     
     ##########################################
     # Message received from server
+    # format: --------------
+    #     status: results
+    #     result: 
+    # ----------------------
     receivedMsg = 
-      "status": "result"
+      "status": "results"
+      "result": {}
     for name in Network.playerNames
-      receivedMsg[name] = {}
+      receivedMsg.result[name] = {}
       if name is Network.currPlayerName
-        receivedMsg[name].report = Network.currPlayerReport
+        receivedMsg.result[name].report = Network.currPlayerReport
       else
-        receivedMsg[name].report = Network.chooseRandomly(Network.signalList)
+        receivedMsg.result[name].report = Network.chooseRandomly(Network.signalList)
     for name, i in Network.playerNames
       refIndex = Math.floor(Math.random() * (Network.numPlayers - 1))
       if i <= refIndex
         refIndex = refIndex  + 1
-      receivedMsg[name].refPlayer = Network.playerNames[refIndex]
+      receivedMsg.result[name].refPlayer = Network.playerNames[refIndex]
     ##########################################
-    console.log "result object: #{JSON.stringify(receivedMsg)}"
+    # console.log "result object: #{JSON.stringify(receivedMsg)}"
 
     @game = Game.last()
     if @game.result?
@@ -198,9 +220,9 @@ class Network
     for name in Network.playerNames
       @game.result[name] = {}
       
-      theReport     = receivedMsg[name].report
-      theRefPlayer  = receivedMsg[name].refPlayer
-      theRefReport  = receivedMsg[theRefPlayer].report
+      theReport     = receivedMsg.result[name].report
+      theRefPlayer  = receivedMsg.result[name].refPlayer
+      theRefReport  = receivedMsg.result[theRefPlayer].report
       
       @game.result[name].report     = theReport
       @game.result[name].refPlayer  = theRefPlayer
@@ -215,7 +237,7 @@ class Network
         if name is Network.currPlayerName
           continue
         else
-          if receivedMsg[name].report is Network.signalList[0]
+          if receivedMsg.result[name].report is Network.signalList[0]
             count = count + 1
     @game.numSignal0 = count
     @game.save()
