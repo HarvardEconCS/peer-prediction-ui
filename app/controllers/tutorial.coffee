@@ -28,8 +28,8 @@ class Tutorial extends Spine.Controller
       ['welcome',     null]
       ['prior',       @stepPrior]
       ['takeCandy',   @stepTakeCandy]
-      ['gameRule',     @stepGameRule]
-      ['example',     @stepExample]
+      ['gameRule',    @stepGameRule]
+      ['example',     @stepRewardExample]
       ['recap',       @stepRecap]
       ['uiStart',     @stepUiStart]
       ['uiGenInfo',   @stepUiGenInfo]
@@ -206,7 +206,7 @@ class Tutorial extends Spine.Controller
     else
       @img2.hide()
 
-  stepExample: (show) =>
+  stepRewardExample: (show) =>
     @img = $("img#tutorial7")
     if show is true
       @img.css(
@@ -217,6 +217,18 @@ class Tutorial extends Spine.Controller
       @img.fadeIn()
     else
       @img.hide()
+      
+    @img2 = $("img#payment_rule")
+    if show is true
+      @img2.css(
+        'position': 'absolute'
+        'top':      '230px'
+        'left':     '60px'
+      )
+      @img2.fadeIn()
+    else
+      @img2.hide()
+
 
   stepRecap: (show) =>
     @img = $("img#tutorial8")
@@ -258,7 +270,7 @@ class Tutorial extends Spine.Controller
 
   stepUiStart: (show) =>
     @changeTaskPic(show, 'taskstart')
-    # @changeTutorialPos(show, '300px', '400px')
+    @changeTutorialPos(show, '350px', '400px')
 
   stepUiGenInfo: (show) =>
     @changeTaskPic(show, 'taskstart')
@@ -347,7 +359,7 @@ class Tutorial extends Spine.Controller
     
   stepUiSignalButton: (show) =>
     @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '350px', '200px')
+    @changeTutorialPos(show, '340px', '200px')
 
     @box = $('img#box-signal')
     if show is true
@@ -388,7 +400,7 @@ class Tutorial extends Spine.Controller
     
   stepUiReportChoice: (show) =>
     @changeTaskPic(show, 'taskchoosereport')
-    @changeTutorialPos(show, '350px', '200px')
+    @changeTutorialPos(show, '340px', '200px')
     
     @box = $('img#box-report')
     if show is true
@@ -404,7 +416,7 @@ class Tutorial extends Spine.Controller
     
   stepUiReportConfirmed: (show) =>
     @changeTaskPic(show, 'taskreportconfirmed')
-    @changeTutorialPos(show, '350px', '200px')
+    @changeTutorialPos(show, '340px', '200px')
     
     @box = $('img#box-signal')
     if show is true
@@ -436,7 +448,7 @@ class Tutorial extends Spine.Controller
     if show is true
       @box.css(
         'position': 'absolute'
-        'top':      '250px'
+        'top':      '255px'
         'left':     '643px'      
       )
       @box.fadeIn()
@@ -451,7 +463,7 @@ class Tutorial extends Spine.Controller
     if show is true
       @box.css(
         'position': 'absolute'
-        'top':      '250px'
+        'top':      '255px'
         'left':     '643px'      
       )
       @box.fadeIn()

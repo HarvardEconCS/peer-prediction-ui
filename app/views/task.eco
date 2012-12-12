@@ -37,7 +37,7 @@
         <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
         <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= @signalList[1] %>.png"></label>    
         <br/><br/>
-        <a class="button confirm" href="#">Confirm!</a>
+        <a class="button confirm" href="#">Confirm your claim!</a>
       </p>
     <% end %>
   </div>

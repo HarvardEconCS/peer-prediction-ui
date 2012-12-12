@@ -57,27 +57,46 @@
     <p>
       It is Halloween night!  You and your friends are out for trick or treating.<br/><br/>
       
-      In this neighbourhood, 2 types houses give out 2 types of candies in different proportions.<br/><br/>
+      In this neighbourhood, there are <span class="emph">2 types of houses</span>, and the houses give out <span class="emph">2 types of candies</span> in different proportions.<br/><br/>
              
-      You have no idea which house is which kind, so you <span class="emph">randomly</span> choose a house to go trick or treating.
+      Unfortunately, nobody knows which house is which kind, so you and your friends <span class="emph">randomly</span> choose a house to go trick or treating.
     </p>
   </div>
 
   <div class="step takeCandy">
     <p>
-      The owner brings out a large bag of candies, and gives 1 candy to each kid.<br/><br/>
+      The owner brings out a large bag of candies.<br/><br/>  
       
-      Note: <br/></br>
+      Every kid gets 1 candy according to steps 1 ~ 5 described on the right.<br/><br/>
+      
+      <!-- Note: <br/></br>
       
       (1) Each candy is given to each kid <span class="emph">in secret</span>.<br/></br>
       
-      (2) Each candy taken is <span class="emph">immediately replaced</span> with one of the same kind.  
+      (2) Each candy taken is <span class="emph">immediately replaced</span> with one of the same kind.   -->
     </p>
   </div>
 
   <div class="step gameRule">
     <p>
       As you are leaving, you run into a clown.  He has an interesting proposition for you and your friends....
+      
+      
+      <!-- Hey kids, wanna play a game with me?
+      
+      Sure!  Tell us more...
+      
+      First, each of you tells me what candy you got.  
+      Then, each of you gets a reward from me.
+      
+      For each kid (called X), I select one of the other kids randoml (called Y).
+      Then X's reward depends on: 
+        (1) What X tells me about X's candy.
+        (2) What Y tells me about Y's candy.
+      Based on the payment rule table on the left.
+      
+       -->
+      
     </p>
   </div>
 
@@ -97,9 +116,9 @@
 
   <div class="step uiStart">
     <p>
-      This is the interface of the game.<br/><br/>  
+      This is the interface of the game. <br/><br/>
       
-      I will highlight different parts of the interface using green boxes, and explain what they are.
+      In this second part of the tutorial, I will highlight and explain different parts of the interface.  Please pay attention to the green boxes. 
     </p>
   </div>
 
@@ -120,13 +139,13 @@
     <p>
       This table displays all the information about all <span class="emph">past and ongoing games</span>.<br/><br/>
       
-      The bottom row, highlighted by the dashed box, describes the current game.
+      <!-- The bottom row, highlighted by the dashed box, describes the current game. -->
     </p>
   </div>
 
   <div class="step uiPastInfo">
     <p>
-      This row display <span class="emph">one particular past game</span>.
+      For instance, this row display <span class="emph">one particular past game</span>.
 
       <!-- For each past game, the corresponding row displays:
       <ul>
@@ -140,9 +159,7 @@
 
   <div class="step uiCurrInfo">
     <p>
-      The two boxes contain information about <span class="emph">the current game</span>. <br/><br/>
-      
-      Let's go through this game together!
+      These two boxes display information about <span class="emph">the current game</span>. <br/><br/>
     </p>
   </div>
 
@@ -183,13 +200,14 @@
   
   <div class="step uiFriendAllConfirmed">
     <p>
-      Once all your friends have confirmed their claims, the last cell displays <span class="emph">"All confirmed!"</span>.
+      Now suppose that you have not confirmed your claim yet, but all of your friends have confirmed their claims.<br/><br/>  
+      Then, the above cell should display <span class="emph">"All confirmed!"</span>, as shown here.
     </p>
   </div>
 
   <div class="step uiNextGame">
     <p>
-      Once everyone confirmed their claims, the game ends, and the next game automatically starts (unless this is the last game).<br/><br/>
+      As soon as everyone confirmed their claims, the game ends, its results are displayed, and the next game automatically starts.<br/><br/>
       
       This concludes the tutorial.<br/><br/>
       
