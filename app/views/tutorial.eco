@@ -27,22 +27,6 @@
   
   <img class="image" id="payment_rule" src="images/payment_rule.png">
     
-  <div id="help-wrap">
-    <div id="help-block">
-      <div id="help-content">
-        
-        <div id="help-content-wrap">
-          <div id="help-content-image">
-            <img src="images/info-house.png" />
-          </div>
-        </div>
-      </div>
-      <div id="help-tab">
-        <a class="button" href="#">Help</a>
-      </div>
-    </div>
-  </div>
-    
     
 <div class="tutorial">
 
@@ -125,7 +109,9 @@
 
   <div class="step recap">
     <p>
-      In this experiment, you will be playing this game repeatedly.  This is a recap of the entire game from start to finish.<br/><br/>
+      This is a <span class="emph">recap</span> of the game from start to finish.<br/><br/>
+      
+      In this experiment, you will be playing this game for multiple rounds.<br/><br/>
       
       This concludes the first part of the tutorial.
     </p>
@@ -154,7 +140,7 @@
 
   <div class="step uiInfoTable">
     <p>
-      This table displays all the information about all <span class="emph">past and ongoing games</span>.<br/><br/>
+      This table displays the information about all <span class="emph">past and ongoing games</span>.<br/><br/>
       
       <!-- The bottom row, highlighted by the dashed box, describes the current game. -->
     </p>
@@ -162,7 +148,7 @@
 
   <div class="step uiPastInfo">
     <p>
-      For instance, this row display <span class="emph">one particular past game</span>.
+      For instance, this is the result of <span class="emph">one particular past game</span>.
 
       <!-- For each past game, the corresponding row displays:
       <ul>
@@ -189,7 +175,7 @@
 
   <div class="step uiSignalShown">
     <p>
-      For this game, your candy is a <span class="emph">Gummy Bear</span>, shown in the 2 boxes.<br/><br/>
+      The candy you got is a <span class="emph">Gummy Bear</span>, shown in the 2 green boxes.<br/><br/>
     </p>
   </div>
 
@@ -203,7 +189,7 @@
     <p>
       You claim to have the <span class="emph">M&amp;M</span>. <br/><br/>
       
-      This is shown in the two highlighted places.
+      This is shown in the two green boxes.
     </p>
   </div>
 

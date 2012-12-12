@@ -2,6 +2,7 @@ require('lib/setup')
 
 Spine = require('spine')
 Main  = require('controllers/main')
+Dropdown = require 'controllers/dropdown'
 Network = require 'network'
 
 class App extends Spine.Controller
@@ -9,12 +10,19 @@ class App extends Spine.Controller
     super
     
     if @isBrowserCompatible()
+      # take out browser incompatibility warning 
+      @html ''
+      
       Network.initFake()
+      
+      dropdown = new Dropdown
+      @append dropdown
+      dropdown.active()
+      
       @main = new Main
       @append @main
       Spine.Route.setup()
-    else 
-      @html("<p>Sorry!  Your browser is incompatible with this site.  Please upgrade your browser.</p>")
+
     
   isBrowserCompatible: ->
     ua = $.browser

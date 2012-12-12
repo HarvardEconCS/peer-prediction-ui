@@ -13,8 +13,7 @@ class Tutorial extends Spine.Controller
     "click .tutorial .button.next"    : "nextClicked"
     "click .tutorial .button.prev"    : "previousClicked"
     'click a#endTutorial'             : "endTutorialClicked"
-    "click div#help-tab a"                     : "helpClicked"
-    
+ 
   constructor: ->
     super
     @left = '390px'
@@ -46,10 +45,6 @@ class Tutorial extends Spine.Controller
       ['uiFriendAllConfirmed', @stepUiFriendAllConfirmed]
       ['uiNextGame', @stepUiNextGame]
     ] 
-
-  helpClicked: (ev) ->
-    ev.preventDefault()
-    $('div#help-content').slideToggle()
     
   active: ->
     super
