@@ -13,6 +13,7 @@ class Tutorial extends Spine.Controller
     "click .tutorial .button.next"    : "nextClicked"
     "click .tutorial .button.prev"    : "previousClicked"
     'click a#endTutorial'             : "endTutorialClicked"
+    "click div#help-tab a"                     : "helpClicked"
     
   constructor: ->
     super
@@ -46,6 +47,10 @@ class Tutorial extends Spine.Controller
       ['uiNextGame', @stepUiNextGame]
     ] 
 
+  helpClicked: (ev) ->
+    ev.preventDefault()
+    $('div#help-content').slideToggle()
+    
   active: ->
     super
     @render()
@@ -473,6 +478,12 @@ class Tutorial extends Spine.Controller
   stepUiNextGame: (show) =>
     @changeTaskPic(show, 'tasknextgame')
     @changeTutorialPos(show, '400px', '600px')
+    
+    @tab = $('div#help-tab')
+    if show is true
+      @tab.fadeIn()
+    else
+      @tab.hide()
 
  
     

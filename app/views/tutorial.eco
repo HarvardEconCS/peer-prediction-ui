@@ -26,7 +26,24 @@
   <img class="image" id="box-signalintable" src="images/box-signalintable.png">
   
   <img class="image" id="payment_rule" src="images/payment_rule.png">
-  
+    
+  <div id="help-wrap">
+    <div id="help-block">
+      <div id="help-content">
+        
+        <div id="help-content-wrap">
+          <div id="help-content-image">
+            <img src="images/info-house.png" />
+          </div>
+        </div>
+      </div>
+      <div id="help-tab">
+        <a class="button" href="#">Help</a>
+      </div>
+    </div>
+  </div>
+    
+    
 <div class="tutorial">
 
   <div class="step buttonPrev">
@@ -214,6 +231,8 @@
       <a class="button" id="endTutorial" href="#">Go to the game</a>
     </p>
   </div>
+
+
 
 </div>
 
