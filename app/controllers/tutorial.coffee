@@ -270,7 +270,18 @@ class Tutorial extends Spine.Controller
 
   stepUiStart: (show) =>
     @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '350px', '400px')
+    #@changeTutorialPos(show, '350px', '400px')
+    if show is true
+      $('div.tutorial').animate
+        top: +350
+        left: +340
+        1000
+    else
+      $('div.tutorial').css(
+        'position': 'absolute'
+        'top':      '50px'
+        'left':     '60px'
+      )
 
   stepUiGenInfo: (show) =>
     @changeTaskPic(show, 'taskstart')
@@ -474,11 +485,22 @@ class Tutorial extends Spine.Controller
     @changeTaskPic(show, 'tasknextgame')
     @changeTutorialPos(show, '400px', '600px')
     
-    @tab = $('div#help-tab')
+    @box = $('img#box-newgame')
     if show is true
-      @tab.fadeIn()
+      @box.css(
+        'position': 'absolute'
+        'top':      '250px'
+        'left':     '340px'      
+      )
+      @box.fadeIn()
     else
-      @tab.hide()
+      @box.hide()
+    
+    # @tab = $('div#help-tab')
+    # if show is true
+    #   @tab.fadeIn()
+    # else
+    #   @tab.hide()
 
  
     

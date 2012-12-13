@@ -4,7 +4,7 @@
         
       <div id="help-content-wrap">
         <div id="help-content-image">
-          <img src="images/info-house.png" />
+          <img src="images/info-house.png">
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@
   <img class="image" id="box-onegame" src="images/box-onegame.png">
   <img class="image" id="box-onepastgame" src="images/box-onepastgame.png">
   <img class="image" id="box-signalReport" src="images/box-signalReport.png">
+  <img class="image" id="box-newgame" src="images/box-newgame.png">
   
   <img class="image" id="box-signal"  src="images/box-signal.png">
   <img class="image" id="box-report"  src="images/box-report.png">
@@ -169,7 +170,7 @@
 
   <div class="step uiSignalButton">
     <p>
-      First, you can click on the button <span class="emph">"Show my candy!"</span> to show the canndy you got.
+      At the beginning of the game, you can click on the button <span class="emph">"Show my candy!"</span> to show the canndy you got.
     </p>
   </div>
 
