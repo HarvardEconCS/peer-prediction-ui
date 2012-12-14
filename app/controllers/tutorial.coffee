@@ -3,7 +3,7 @@ Spine = require('spine')
 Network = require 'network'
 
 class Tutorial extends Spine.Controller
-  className: 'tutorialController'
+  className: 'tutorialCont'
   
   elements:
     ".tutorial .buttonPrev"     : "pButtonPrev"
@@ -16,8 +16,6 @@ class Tutorial extends Spine.Controller
  
   constructor: ->
     super
-    @left = '390px'
-
     @payAmounts = [0.58, 0.36, 0.43, 0.54]
     @signalList = Network.signalList
     
@@ -141,7 +139,7 @@ class Tutorial extends Spine.Controller
       $('img#tutorial1').css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     @left
+        'left':     '390px'
       )
       $('img#tutorial1').fadeIn()
     else 
@@ -153,7 +151,7 @@ class Tutorial extends Spine.Controller
       $('img#tutorial2').css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     @left
+        'left':     '390px'
       )
       $('img#tutorial2').fadeIn()
     else 
@@ -165,7 +163,7 @@ class Tutorial extends Spine.Controller
       $('img#tutorial3').css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     @left
+        'left':     '390px'
       )
       $('img#tutorial3').fadeIn()
     else
@@ -177,7 +175,7 @@ class Tutorial extends Spine.Controller
       @img.css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     @left
+        'left':     '390px'
       )
       @img.fadeIn()
     else
@@ -189,7 +187,7 @@ class Tutorial extends Spine.Controller
       @img.css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     @left
+        'left':     '390px'
       )
       @img.fadeIn()
     else
@@ -199,7 +197,7 @@ class Tutorial extends Spine.Controller
     if show is true
       @img2.css(
         'position': 'absolute'
-        'top':      '260px'
+        'top':      '380px'
         'left':     '60px'
       )
       @img2.fadeIn()
@@ -212,7 +210,7 @@ class Tutorial extends Spine.Controller
       @img.css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     @left
+        'left':     '390px'
       )
       @img.fadeIn()
     else
@@ -222,7 +220,7 @@ class Tutorial extends Spine.Controller
     if show is true
       @img2.css(
         'position': 'absolute'
-        'top':      '230px'
+        'top':      '280px'
         'left':     '60px'
       )
       @img2.fadeIn()
@@ -236,7 +234,7 @@ class Tutorial extends Spine.Controller
       @img.css(
         'position': 'absolute'
         'top':      '50px'
-        'left':     @left
+        'left':     '390px'
       )
       @img.fadeIn()
     else

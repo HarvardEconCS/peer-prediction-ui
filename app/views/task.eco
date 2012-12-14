@@ -11,45 +11,59 @@
   <p>Loading information...Please wait...</p>
   
 <% else: %>
-  <!-- Information about the game has been loaded.  Display it. -->
+  <!-- Inforation about the game has been loaded.  Display it. -->
+  
   <div class="generalInfo">
-    Game #<%= @game.numPlayed + 1 %> of <%= @numRounds %>: (You and <%= @numPlayers - 1 %> friends)  
+    You are playing a total of <%= @numRounds %> games with <%= @numPlayers - 1 %> friends.<br/> 
   </div>
+ 
+  <div class="task-gameIndex">
+    This is Game #<%= @game.numPlayed + 1 %>:
+  </div>
+
+  <div class="task-chosenHouse"> 
+    1. &nbsp;&nbsp;A house has been chosen. 
+  </div>
+  
+  <!-- <div class="task-houseInfo">
+    <img style="height: 200px;" src="images/info-house.png">
+  </div> -->
 
   <div class="task-yourSignal">
       <% if @revealSignal is true: %>
-        &nbsp;&nbsp;You got: <img class="candy_image" src="images/<%= @game.signal %>.png">
+        <span id="signalresult">
+          2. &nbsp;Your candy is: <img class="candy_image" src="images/<%= @game.signal %>.png">
+        </span>
       <% else: %>
-        <p>
-          <a class="button getsignal" href="#">Show my candy!</a>
-        </p>
+        <span id="signalbutton">
+          2. &nbsp;<a class="button getsignal" href="#">Get my candy!</a>
+        </span>
       <% end %>
     </p>
   </div>
 
   <div class="task-yourReport">
     <% if @reportChosen is true: %>
-      &nbsp;&nbsp;You say: <img class="candy_image" src="images/<%= @selected %>.png">
+      <div id="claimresult">3. &nbsp;You claim to have: <img class="candy_image" src="images/<%= @selected %>.png"></div>
     <% else: %>
-      <p>
+      <div id="claimprompt">3. &nbsp;Choose your claim:</div>
+      <div id="claimchoices">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" name="reportChoices" id="firstRadio"  value="<%= @signalList[0] %>" <% if @selected is $('#firstRadio').val() : %>checked<% end %>>
         <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="images/<%= @signalList[0] %>.png"></label>
         <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
-        <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= @signalList[1] %>.png"></label>    
-        <br/><br/>
-        <a class="button confirm" href="#">Confirm your claim!</a>
-      </p>
+        <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= @signalList[1] %>.png"></label>  
+      </div>
+      <div id="claimbutton">&nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm" href="#">Confirm your claim!</a></div>
     <% end %>
   </div>
-
-<% end %>
 
 
 <% if @payAmounts and @signalList: %>
 
   <div class="ruleTable">
     <table class="rule">
-      <caption>Payment Rule</caption>
+      <caption>Reward Rule</caption>
       
       <colgroup>
         <col class="colRuleYourReport">
@@ -118,8 +132,7 @@
 
 <% end %>
 
-
-
+<% end %>
 
 
 <% if @numPlayers: %>
@@ -178,7 +191,7 @@
     </table>
   </div>
 
-<div class="resultTable">
+<div class="resultTableBody">
   
   <table class="results">
 

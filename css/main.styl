@@ -4,61 +4,93 @@
 .task
   margin 0 auto
   position relative
-  width   1000px
-  height  750px
+  width   1024px
+  height  768px
 
-infoTop    = 20px
-infoHeight = 40px
-signalHeight  = 60px
-reportHeight  = 110px
-gap = 50px
-
-.generalInfo
+div.generalInfo 
   position absolute
-  top       infoTop
-  left      0px
-  width     350px
-  z-index  3
+  top 10px
+  left 0px
+  width 1024px
+  height 30px
+  text-align center
   
-.task-yourSignal
+
+infoHeight    = 30px
+houseHeight   = 25px
+signalHeight  = 50px
+reportHeight  = 130px
+gap = 30px
+leftGameInfo = 60px
+
+topGenInfo       = 40px
+
+.task-gameIndex
+  position  absolute
+  top       topGenInfo
+  left      leftGameInfo
+  width     300px
+  height    infoHeight
+  
+topChosenHouse = topGenInfo + infoHeight
+  
+.task-chosenHouse
+  position absolute
+  top     topChosenHouse
+  left    leftGameInfo
+  width   230px
+  height  houseHeight
+
+
+topSignal = topChosenHouse + houseHeight
+
+div.task-yourSignal
   position      absolute
-  top           infoTop + infoHeight
-  left          30px
-  width         180px
-  height        60px
-  border-left   2px dashed gray
-  border-right  2px dashed gray
-  border-top    2px dashed gray
+  top           topSignal
+  left          leftGameInfo
+  width         400px
+  height        signalHeight
+  // border-left   2px dashed gray
+  // border-right  2px dashed gray
+  // border-top    2px dashed gray
+
+topReport = topSignal + signalHeight
 
 .task-yourReport
   position      absolute
-  top           infoTop + infoHeight + signalHeight
-  left          30px
-  width         180px
-  border-left   2px dashed gray
-  border-right  2px dashed gray
-  border-bottom 2px dashed gray
+  top           topReport
+  left          leftGameInfo
+  width         230px
+  height        reportHeight
+  // border-left   2px dashed gray
+  // border-right  2px dashed gray
+  // border-bottom 2px dashed gray
+
+topRuleTable = topReport + reportHeight + gap
 
 .ruleTable
   z-index   0
   position  absolute
-  top       infoTop + infoHeight + signalHeight + reportHeight + gap
-  left      0px
+  top       topRuleTable
+  left      leftGameInfo
   width     250px
 
+
+resultTop = 35px
 resultTableHeaderHeight = 135px
 resultTableHeaderTop = 10px
+resultLeft = 400px
 
 .resultTableHeader
   position absolute
-  top      resultTableHeaderTop
-  left      280px
+  top      resultTop + resultTableHeaderTop
+  left     resultLeft
 
-.resultTable
+.resultTableBody
   z-index   0
   position  absolute
-  top       resultTableHeaderTop + resultTableHeaderHeight
-  left      280px
+  top       resultTop + resultTableHeaderTop + resultTableHeaderHeight
+  left      resultLeft
   height    300px
   overflow-y scroll
   

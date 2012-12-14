@@ -43,6 +43,7 @@ class Network
   # repeated called to get action updates from server
   @updateActions: ->
 
+
     ###############################################
     @game = Game.last()
     playerNotConfirmed = []

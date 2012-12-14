@@ -48,7 +48,9 @@
     <p>
       Welcome to the tutorial!  <br/><br/>
             
-      This tutorial will walk you through the rules and the interface of this game. <br/><br/>
+      This tutorial has <span class="emph">2 parts</span>.<br/><br/>  
+      The first part explains <span class="emph">the rules</span> of the game in 3 steps.<br/><br/> 
+      The second part walks you through <span class="emph">the interface</span> of this game. <br/><br/> 
       
       Let's get started!        
     </p>
@@ -57,64 +59,48 @@
   <!-- (2) Show 2 types of jars -->
   <div class="step prior">
     <p>
-      It is Halloween night!  You and your friends are out for trick or treating.<br/><br/>
+      Step 1: Choose a house  <br/><br/>
       
-      In this neighbourhood, there are <span class="emph">2 types of houses</span>, and the houses give out <span class="emph">2 types of candies</span> in different proportions.<br/><br/>
-             
-      Unfortunately, nobody knows which house is which kind, so you and your friends <span class="emph">randomly</span> choose a house to go trick or treating.
+      During Halloween night, a group of kids (including you) <span class="emph">randomly</span> choose a house to go trick or treating.<br/><br/>
+      
+      This house may be <span class="emph">1 of 2 types with equal chance</span>, but nobody knows which type it is.<br/><br/>
+      
+      The <span class="emph">2 types of houses</span> give out <span class="emph">2 types of candies</span> in <span class="emph">different proportions</span>.  
     </p>
   </div>
 
   <div class="step takeCandy">
     <p>
-      The owner brings out a large bag of candies.<br/><br/>  
+      Step 2: Each kid gets a candy from the chosen house<br/><br/>
       
-      Every kid gets 1 candy according to steps 1 ~ 5 described on the right.<br/><br/>
-      
-      <!-- Note: <br/></br>
-      
-      (1) Each candy is given to each kid <span class="emph">in secret</span>.<br/></br>
-      
-      (2) Each candy taken is <span class="emph">immediately replaced</span> with one of the same kind.   -->
+      At the chosen house, each kid in the group gets 1 candy, according to steps 1 ~ 4 on the right.<br/><br/>
     </p>
   </div>
 
   <div class="step gameRule">
     <p>
-      As you are leaving, you run into a clown.  He has an interesting proposition for you and your friends....
+      Step 3: Make a claim and get rewarded<br/><br/>
       
-      
-      <!-- Hey kids, wanna play a game with me?
-      
-      Sure!  Tell us more...
-      
-      First, each of you tells me what candy you got.  
-      Then, each of you gets a reward from me.
-      
-      For each kid (called X), I select one of the other kids randoml (called Y).
-      Then X's reward depends on: 
-        (1) What X tells me about X's candy.
-        (2) What Y tells me about Y's candy.
-      Based on the payment rule table on the left.
-      
-       -->
-      
+      The claim asks each kid in the group to tell him what candy he/she got from the chosen houses. <br/><br/> 
+      Then the clown gives each kid a reward based on a particular payment rule. 
     </p>
   </div>
 
   <div class="step example">
     <p>
-      Here is an example of how a reward is determined.
+      Step 3: Make a claim and get rewarded<br/><br/>
+            
+      This is an example for determining the rewards.
     </p>
   </div>
 
   <div class="step recap">
     <p>
-      This is a <span class="emph">recap</span> of the game from start to finish.<br/><br/>
+      This is a <span class="emph">recap</span> of the entire game<br/><br/>
       
-      In this experiment, you will be playing this game for multiple rounds.<br/><br/>
+      In the experiment, you will be playing this game many times with a fixed group of players.<br/><br/>
       
-      This concludes the first part of the tutorial.
+      Next, let's look at the interface of the game.  
     </p>
   </div>
 
@@ -122,7 +108,7 @@
     <p>
       This is the interface of the game. <br/><br/>
       
-      In this second part of the tutorial, I will highlight and explain different parts of the interface.  Please pay attention to the green boxes. 
+      I will highlight and explain different parts of the interface.  Please pay attention to the green boxes. 
     </p>
   </div>
 
@@ -170,7 +156,7 @@
 
   <div class="step uiSignalButton">
     <p>
-      At the beginning of the game, you can click on the button <span class="emph">"Show my candy!"</span> to show the canndy you got.
+      At the beginning of the game, you can click on the button <span class="emph">"Show my candy!"</span> to show the candy you got.
     </p>
   </div>
 

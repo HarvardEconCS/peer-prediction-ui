@@ -11,6 +11,7 @@ class Task extends Spine.Controller
     'click .confirm'  : 'confirmReport'     # button to confirm report
     'click .exit'     : 'goToExitSurvey'    # button to go to exit survey 
     'change input:radio:checked' : 'radioChanged'
+    'click a#slide' : "slideToggleClicked"
 
   constructor: ->
     super
@@ -28,6 +29,10 @@ class Task extends Spine.Controller
     @randomRadio = Math.floor(Math.random() * 2)
     
     Network.setTaskController @
+  
+  slideToggleClicked: (ev) ->
+    ev.preventDefault()
+    $('div.task-chosenHouse').slideToggle()
         
   # called when this controller is activated in the stack
   active: (params)->
@@ -65,7 +70,7 @@ class Task extends Spine.Controller
       $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[0]}.png")
 
     # make the table always scroll to the bottom
-    $('div .resultTable').scrollTop($('div .resultTable').prop("scrollHeight"))
+    $('div .resultTableBody').scrollTop($('div .resultTableBody').prop("scrollHeight"))
 
 
   # called after getting the game state

@@ -7,18 +7,18 @@ class Dropdown extends Spine.Controller
     "#help-content": "helpContent"
     
   events:
-    "click #help-tab a"                     : "helpClicked"
+    "click #help-tab a": "helpClicked"
   
   constructor: ->
     super
     
   active: ->
     @render()
+    @helpContent.hide()
     
   render: ->
     @html require 'views/dropdown'
     
-
   helpClicked: (ev) ->
     ev.preventDefault()
     @helpContent.slideToggle()
