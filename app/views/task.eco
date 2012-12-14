@@ -240,7 +240,14 @@
               <!-- aggregate view -->
               <td class="leftb aggInfo">
                 <% if game.numOtherActed is (@numPlayers - 1): %>
-                  All confirmed!
+                  <% if game.result? and Object.keys(game.result).length > 1 and (i+1) is @numRounds: %>
+                    <img class="candy_image" src="images/<%= @signalList[0] %>.png">
+                    &nbsp;&nbsp;<%= game.numSignal0 %>
+                    <img class="candy_image" src="images/<%= @signalList[1] %>.png">
+                    &nbsp;&nbsp;<%= @numPlayers - 1 - game.numSignal0 %>
+                  <% else: %>
+                    All confirmed!
+                  <% end %>
                 <% else: %>
                   Waiting for... <%= (@numPlayers - 1 - game.numOtherActed) %>
                 <% end %>

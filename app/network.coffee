@@ -43,7 +43,6 @@ class Network
   # repeated called to get action updates from server
   @updateActions: ->
 
-
     ###############################################
     @game = Game.last()
     playerNotConfirmed = []
@@ -88,6 +87,7 @@ class Network
     else
       @game.numOtherActed += 1
     @game.save()
+    console.log "game is #{JSON.stringify(@game)}"
 
     Network.task.render()
 
@@ -128,7 +128,7 @@ class Network
       "numPlayers"  : nPlayers
       "playerNames" : names
       "yourName"    : currName 
-      "numRounds"   : 10
+      "numRounds"   : 3
       "payments"  : [0.58, 0.36, 0.43, 0.54]
     ####################################################
     console.log "received msg: #{JSON.stringify(receivedMsg)}"
@@ -211,7 +211,8 @@ class Network
         refIndex = refIndex  + 1
       receivedMsg.result[name].refPlayer = Network.playerNames[refIndex]
     ##########################################
-    # console.log "result object: #{JSON.stringify(receivedMsg)}"
+    console.log "result object: #{JSON.stringify(receivedMsg)}"
+
 
     @game = Game.last()
     if @game.result?
