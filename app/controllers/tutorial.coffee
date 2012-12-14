@@ -24,25 +24,34 @@ class Tutorial extends Spine.Controller
     @stepIndex = 0
     @steps = [
       ['welcome',     null]
-      ['prior',       @stepPrior]
-      ['takeCandy',   @stepTakeCandy]
-      ['gameRule',    @stepGameRule]
-      ['example',     @stepRewardExample]
-      ['recap',       @stepRecap]
-      ['uiStart',     @stepUiStart]
-      ['uiGenInfo',   @stepUiGenInfo]
-      ['uiPayRule',   @stepUiPayRule]
-      ['uiInfoTable', @stepUiInfoTable]
-      ['uiPastInfo',  @stepUiPastInfo]
-      ['uiCurrInfo',  @stepUiCurrInfo]      
-      ['uiSignalButton',    @stepUiSignalButton]
-      ['uiSignalShown',     @stepUiSignalShown]
+      ['prior',       @stepTwoDescribePrior]
+      ['takeCandy',   @stepThreeChooseCandy]
+      ['gameRule',    @stepFourDescribeRule]
+      ['example',     @stepFiveDescribeReward]
+      ['recap',       @stepSixRecap]
+      ['uiStart',     @uiOneStart]
+      ['uiGenInfo',   @uiTwoGenInfo]
+      ['uiPayRule',   @uiThreePayRule]
+      ['uiInfoTable', @uiFourInfoTable]
+      ['uiPastInfo',  @uiFivePastInfo]
+      ['uiCurrInfo',  @uiSixCurrInfo]      
+      ['uiSignalButton',    @uiSevenSignalButton]
+      ['uiSignalShown',     @uiEightSignalShown]
       ['uiReportChoice',    @stepUiReportChoice]
       ['uiReportConfirmed', @stepUiReportConfirmed]
       ['uiFriendStatus',    @stepUiFriendStatus]
       ['uiFriendAllConfirmed', @stepUiFriendAllConfirmed]
       ['uiNextGame', @stepUiNextGame]
     ] 
+    
+    @tutOrgTop = '50px'
+    @tutOrgLeft = '10px'
+    
+    @picTop = '50px'
+    @picLeft = '350px'
+    
+    @interfaceTop = '50px'
+    @interfaceLeft = '50px'
     
   active: ->
     super
@@ -91,7 +100,6 @@ class Tutorial extends Spine.Controller
     else 
       @ele.prepend("<span class=\"stepIndex\">#{@stepIndex + 1}/#{@steps.length}</span><br/><br/>")
         
-        
     @steps[@stepIndex][1]?(true)
     
   # tear down the current step
@@ -129,123 +137,67 @@ class Tutorial extends Spine.Controller
       @stepIndex = @stepIndex + 1
       @stepShow()
 
-
   endTutorialClicked: (ev)->  
     ev.preventDefault()
     @navigate '/quiz'
+  
+  showSelected: (show, selector) ->
+     @img = $("img#{selector}")
+     if show is true
+       @img.css(
+         'position': 'absolute'
+         'top':      @picTop
+         'left':     @picLeft
+       )
+       @img.fadeIn()
+     else
+       @img.hide()
     
-  stepPrior: (show) =>
-    if show is true
-      $('img#tutorial1').css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '390px'
-      )
-      $('img#tutorial1').fadeIn()
-    else 
-      $('img#tutorial1').hide()
+  showSelectedCustom: (show, selector, locTop, locLeft) ->
+     @img = $("img#{selector}")
+     if show is true
+       @img.css(
+         'position': 'absolute'
+         'top':      locTop
+         'left':     locLeft
+       )
+       @img.fadeIn()
+     else
+       @img.hide()  
+    
+  stepTwoDescribePrior: (show) =>
+    selector = "#tutorial1"
+    @showSelected(show, selector)
 
+  stepThreeChooseCandy: (show) =>
+    selector = "#tutorial3"
+    @showSelected(show, selector)
+         
+  stepFourDescribeRule: (show) =>
+    selector = "#tutorial4"
+    @showSelected(show, selector)
 
-  stepChooseWorld: (show) =>
-    if show is true
-      $('img#tutorial2').css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '390px'
-      )
-      $('img#tutorial2').fadeIn()
-    else 
-      $('img#tutorial2').hide()
+    selector = "#payment_rule"
+    @showSelectedCustom(show, selector, '380px', '10px')
 
+  stepFiveDescribeReward: (show) =>
+    selector = "#tutorial7"
+    @showSelected(show, selector)
+    
+    selector = "#payment_rule"
+    @showSelectedCustom(show, selector, '280px', '10px')
 
-  stepTakeCandy: (show) =>
-    if show is true
-      $('img#tutorial3').css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '390px'
-      )
-      $('img#tutorial3').fadeIn()
-    else
-      $('img#tutorial3').hide()
+  stepSixRecap: (show) =>
+    selector = "#tutorial8"
+    @showSelected(show, selector)
 
-  stepGeneral: (show, selector) =>
-    @img = $("img##{selector}")
-    if show is true
-      @img.css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '390px'
-      )
-      @img.fadeIn()
-    else
-      @img.hide()
-
-  stepGameRule: (show) =>
-    @img = $("img#tutorial4")
-    if show is true
-      @img.css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '390px'
-      )
-      @img.fadeIn()
-    else
-      @img.hide()
-
-    @img2 = $("img#payment_rule")
-    if show is true
-      @img2.css(
-        'position': 'absolute'
-        'top':      '380px'
-        'left':     '60px'
-      )
-      @img2.fadeIn()
-    else
-      @img2.hide()
-
-  stepRewardExample: (show) =>
-    @img = $("img#tutorial7")
-    if show is true
-      @img.css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '390px'
-      )
-      @img.fadeIn()
-    else
-      @img.hide()
-      
-    @img2 = $("img#payment_rule")
-    if show is true
-      @img2.css(
-        'position': 'absolute'
-        'top':      '280px'
-        'left':     '60px'
-      )
-      @img2.fadeIn()
-    else
-      @img2.hide()
-
-
-  stepRecap: (show) =>
-    @img = $("img#tutorial8")
-    if show is true
-      @img.css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '390px'
-      )
-      @img.fadeIn()
-    else
-      @img.hide()
 
   changeTaskPic: (show, picId) =>
     @img = $("img##{picId}")
     @img.css(
       'position': 'absolute'
-      'top':      '50px'
-      'left':     '50px'
+      'top':      @interfaceTop
+      'left':     @interfaceLeft
     )
     if show is true
       @img.show()
@@ -262,13 +214,16 @@ class Tutorial extends Spine.Controller
     else
       $('div.tutorial').css(
         'position': 'absolute'
-        'top':      '50px'
-        'left':     '60px'
+        'top':      @tutOrgTop
+        'left':     @tutOrgLeft
       )
 
-  stepUiStart: (show) =>
+
+
+
+  uiOneStart: (show) =>
     @changeTaskPic(show, 'taskstart')
-    #@changeTutorialPos(show, '350px', '400px')
+    
     if show is true
       $('div.tutorial').animate
         top: +350
@@ -277,228 +232,73 @@ class Tutorial extends Spine.Controller
     else
       $('div.tutorial').css(
         'position': 'absolute'
-        'top':      '50px'
-        'left':     '60px'
+        'top':      @tutOrgTop
+        'left':     @tutOrgLeft
       )
-
-  stepUiGenInfo: (show) =>
-    @changeTaskPic(show, 'taskstart')
+      
+  uiTwoGenInfo: (show) =>
     @changeTutorialPos(show, '55px', '453px')
-    
-    @box = $('img#box-geninfo')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '55px'
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-
-  stepUiPayRule: (show) =>
     @changeTaskPic(show, 'taskstart')
+    @showSelectedCustom(show, "#box-geninfo", '50px', '55px')
+
+  uiThreePayRule: (show) =>   
     @changeTutorialPos(show, '325px', '340px')
+    @changeTaskPic(show, 'taskstart')
+    @showSelectedCustom(show, "#box-rule", '320px', '55px')
 
-    @box = $('img#box-rule')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '320px'
-        'left':     '55px'
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-
-  stepUiInfoTable: (show) =>
+  uiFourInfoTable: (show) =>
     @changeTaskPic(show, 'taskstart')
     @changeTutorialPos(show, '55px', '55px')
+    @showSelectedCustom(show, "#box-table", '50px', '350px')
     
-    @box = $('img#box-table')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '50px'
-        'left':     '350px'
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-    
-  
-  stepUiPastInfo: (show) =>
+  uiFivePastInfo: (show) =>
     @changeTaskPic(show, 'taskstart')
     @changeTutorialPos(show, '195px', '53px')
+    @showSelectedCustom show, "#box-onepastgame", '180px', '340px'
     
-    @box = $('img#box-onepastgame')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '180px'
-        'left':     '340px'
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
+  uiSixCurrInfo: (show) =>  
+    @changeTaskPic(show, 'taskstart')
+    @changeTutorialPos show, '340px', '200px'
+    @showSelectedCustom show, "#box-signalReport", '100px', '95px'
+    @showSelectedCustom show, "#box-onegame", '250px', '350px'
     
-  stepUiCurrInfo: (show) =>  
+  uiSevenSignalButton: (show) =>
     @changeTaskPic(show, 'taskstart')
     @changeTutorialPos(show, '340px', '200px')
-        
-    @boxLeft = $('img#box-signalReport')
-    @box = $('img#box-onegame')
-    if show is true
-      @boxLeft.css(
-        'position': 'absolute'
-        'top':      '100px'
-        'left':     '95px'
-      )
-      @boxLeft.fadeIn()
-      @box.css(
-        'position': 'absolute'
-        'top':      '250px'
-        'left':     '350px'
-      )
-      @box.fadeIn()
-    else
-      @boxLeft.hide()
-      @box.hide()    
-
-    
-  stepUiSignalButton: (show) =>
-    @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '340px', '200px')
-
-    @box = $('img#box-signal')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '110px'
-        'left':     '90px'      
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
+    @showSelectedCustom show, "#box-signal", '110px', '90px'
   
-  stepUiSignalShown: (show) =>
+  uiEightSignalShown: (show) =>
     @changeTaskPic(show, 'tasksignalshown')
     @changeTutorialPos(show, '340px', '200px')
-    
-    @box = $('img#box-signal')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '105px'
-        'left':     '90px'      
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-
-    @box2 = $('img#box-signalintable')
-    if show is true
-      @box2.css(
-        'position': 'absolute'
-        'top':      '240px'
-        'left':     '425px'      
-      )
-      @box2.fadeIn()
-    else
-      @box2.hide()
+    @showSelectedCustom show, "#box-signal", '105px', '90px'
+    @showSelectedCustom show, "#box-signalintable", '240px', '425px'
     
   stepUiReportChoice: (show) =>
     @changeTaskPic(show, 'taskchoosereport')
     @changeTutorialPos(show, '340px', '200px')
-    
-    @box = $('img#box-report')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '160px'
-        'left':     '90px'      
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-    
+    @showSelectedCustom show, "#box-report", '160px', '90px'
     
   stepUiReportConfirmed: (show) =>
     @changeTaskPic(show, 'taskreportconfirmed')
     @changeTutorialPos(show, '340px', '200px')
-    
-    @box = $('img#box-signal')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '160px'
-        'left':     '90px'      
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-      
-    @box2 = $('img#box-signalintable')
-    if show is true
-      @box2.css(
-        'position': 'absolute'
-        'top':      '240px'
-        'left':     '495px'      
-      )
-      @box2.fadeIn()
-    else
-      @box2.hide()  
-    
+    @showSelectedCustom show, "#box-signal", '160px', '90px'
+    @showSelectedCustom show, "#box-signalintable", '240px', '495px'
+
   stepUiFriendStatus: (show) =>
     @changeTaskPic(show, 'taskfriendswaiting')
     @changeTutorialPos(show, '340px', '600px')
-    
-    @box = $('img#box-signal')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '255px'
-        'left':     '643px'      
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
+    @showSelectedCustom show, "#box-signal", '255px', '643px'
     
   stepUiFriendAllConfirmed: (show) =>
     @changeTaskPic(show, 'taskfriendsallconfirmed')
     @changeTutorialPos(show, '340px', '600px')
-    
-    @box = $('img#box-signal')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '255px'
-        'left':     '643px'      
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-      
+    @showSelectedCustom show, "#box-signal", '255px', '643px'
+
   stepUiNextGame: (show) =>
     @changeTaskPic(show, 'tasknextgame')
     @changeTutorialPos(show, '400px', '600px')
-    
-    @box = $('img#box-newgame')
-    if show is true
-      @box.css(
-        'position': 'absolute'
-        'top':      '250px'
-        'left':     '340px'      
-      )
-      @box.fadeIn()
-    else
-      @box.hide()
-    
-    # @tab = $('div#help-tab')
-    # if show is true
-    #   @tab.fadeIn()
-    # else
-    #   @tab.hide()
+    @showSelectedCustom show, "#box-newgame", '250px', '340px'
+
 
  
     

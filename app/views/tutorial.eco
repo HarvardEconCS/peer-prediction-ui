@@ -49,7 +49,7 @@
       Welcome to the tutorial!  <br/><br/>
             
       This tutorial has <span class="emph">2 parts</span>.<br/><br/>  
-      The first part explains <span class="emph">the rules</span> of the game in 3 steps.<br/><br/> 
+      The first part explains the <span class="emph">3 steps</span> of the game.<br/><br/> 
       The second part walks you through <span class="emph">the interface</span> of this game. <br/><br/> 
       
       Let's get started!        
@@ -59,7 +59,7 @@
   <!-- (2) Show 2 types of jars -->
   <div class="step prior">
     <p>
-      Step 1: Choose a house  <br/><br/>
+      <span class="emph">Step 1: Choose a house</span>  <br/><br/>
       
       During Halloween night, a group of kids (including you) <span class="emph">randomly</span> choose a house to go trick or treating.<br/><br/>
       
@@ -71,15 +71,15 @@
 
   <div class="step takeCandy">
     <p>
-      Step 2: Each kid gets a candy from the chosen house<br/><br/>
+      <span class="emph">Step 2: Get a candy</span><br/><br/>
       
-      At the chosen house, each kid in the group gets 1 candy, according to steps 1 ~ 4 on the right.<br/><br/>
+      From the chosen house, each kid in the group gets 1 candy, according to steps on the right.<br/><br/>
     </p>
   </div>
 
   <div class="step gameRule">
     <p>
-      Step 3: Make a claim and get rewarded<br/><br/>
+      <span class="emph">Step 3: Make a claim and get rewarded</span><br/><br/>
       
       The claim asks each kid in the group to tell him what candy he/she got from the chosen houses. <br/><br/> 
       Then the clown gives each kid a reward based on a particular payment rule. 
@@ -88,7 +88,7 @@
 
   <div class="step example">
     <p>
-      Step 3: Make a claim and get rewarded<br/><br/>
+      <span class="emph">Step 3: Make a claim and get rewarded</span><br/><br/>
             
       This is an example for determining the rewards.
     </p>
