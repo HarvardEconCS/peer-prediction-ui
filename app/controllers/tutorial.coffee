@@ -29,19 +29,24 @@ class Tutorial extends Spine.Controller
       ['gameRule',    @stepFourDescribeRule]
       ['example',     @stepFiveDescribeReward]
       ['recap',       @stepSixRecap]
-      ['uiStart',     @uiOneStart]
-      ['uiGenInfo',   @uiTwoGenInfo]
-      ['uiPayRule',   @uiThreePayRule]
-      ['uiInfoTable', @uiFourInfoTable]
-      ['uiPastInfo',  @uiFivePastInfo]
-      ['uiCurrInfo',  @uiSixCurrInfo]      
-      ['uiSignalButton',    @uiSevenSignalButton]
-      ['uiSignalShown',     @uiEightSignalShown]
-      ['uiReportChoice',    @stepUiReportChoice]
-      ['uiReportConfirmed', @stepUiReportConfirmed]
-      ['uiFriendStatus',    @stepUiFriendStatus]
-      ['uiFriendAllConfirmed', @stepUiFriendAllConfirmed]
-      ['uiNextGame', @stepUiNextGame]
+      ['uiStart',           @uiOneStart]
+      ['uiExperimentStart', null]
+      ['uiGameActions',     null]
+      ['uiOtherStatus',     null]
+      ['uiGameResult',      null]
+      ['uiExperimentEnd',   null]
+      # ['uiGenInfo',   @uiTwoGenInfo]
+      # ['uiPayRule',   @uiThreePayRule]
+      # ['uiInfoTable', @uiFourInfoTable]
+      # ['uiPastInfo',  @uiFivePastInfo]
+      # ['uiCurrInfo',  @uiSixCurrInfo]      
+      # ['uiSignalButton',    @uiSevenSignalButton]
+      # ['uiSignalShown',     @uiEightSignalShown]
+      # ['uiReportChoice',    @stepUiReportChoice]
+      # ['uiReportConfirmed', @stepUiReportConfirmed]
+      # ['uiFriendStatus',    @stepUiFriendStatus]
+      # ['uiFriendAllConfirmed', @stepUiFriendAllConfirmed]
+      # ['uiNextGame', @stepUiNextGame]
     ] 
     
     @tutOrgTop = '50px'
@@ -224,15 +229,19 @@ class Tutorial extends Spine.Controller
     
     if show is true
       $('div.tutorial').animate
-        top: +350
-        left: +340
+        top: +390
+        left: +400
         1000
     else
       $('div.tutorial').css(
         'position': 'absolute'
         'top':      @tutOrgTop
         'left':     @tutOrgLeft
-      )
+      )   
+    # @showSelectedCustom(show, "#box-title", '-10px', '290px')
+    # @showSelectedCustom(show, "#box-currentgame", "100px", "50px")
+    # @showSelectedCustom(show, "#box-rewardrule", "365px", "55px")
+    # @showSelectedCustom(show, "#box-tablenew", "95px", "400px")
       
   uiTwoGenInfo: (show) =>
     @changeTutorialPos(show, '55px', '453px')

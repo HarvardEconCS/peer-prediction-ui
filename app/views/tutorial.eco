@@ -6,7 +6,7 @@
   <img class="image" id="tutorial7" src="images/tutorial7.png">
   <img class="image" id="tutorial8" src="images/tutorial8.png">
     
-  <img class="image" id="taskstart"           src="images/task-start.png">
+  <img class="image" id="taskstart"           src="images/tasknew-start.png">
   <img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
   <img class="image" id="taskchoosereport"    src="images/task-choosereport.png">
   <img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png">
@@ -21,6 +21,11 @@
   <img class="image" id="box-onepastgame" src="images/box-onepastgame.png">
   <img class="image" id="box-signalReport" src="images/box-signalReport.png">
   <img class="image" id="box-newgame" src="images/box-newgame.png">
+  
+  <img class="image" id="box-title" src="images/box-title.png">
+  <img class="image" id="box-currentgame" src="images/box-currentgame.png">
+  <img class="image" id="box-rewardrule" src="images/box-rewardrule.png">
+  <img class="image" id="box-tablenew" src="images/box-tablenew.png">
   
   <img class="image" id="box-signal"  src="images/box-signal.png">
   <img class="image" id="box-report"  src="images/box-report.png">
@@ -105,13 +110,47 @@
   <div class="step uiStart">
     <p>
       This is the interface of the game. <br/><br/>
-      
-      I will highlight and explain different parts of the interface.  Please pay attention to the green boxes. 
+       
+      The four main parts of the interface are highlighted in the green boxes.
     </p>
   </div>
 
+  <div class="step uiExperimentStart"> 
+    <p>
+      The title tells you the total number of games, and the number of other players. <br/><br/> 
+    
+      The reward rule table describes how the players are rewarded in the games.
+    </p>
+  </div>
 
-  <div class="step uiGenInfo">
+  <div class="step uiGameActions"> 
+    <p>
+      You can see the index of the current game that you are playing.<br/><br/>  
+    
+      During a game, you first need to select a random candy from the chosen house.  Then you need to choose a claim for the clown.  These two choices will both be both on the left and in the table on the right. 
+    </p>
+  </div>
+
+  <div class="step uiOtherStatus">      
+    <p>
+    In the table on the right, the row highlighted by the dashed box contains information about the current game.  The last cell in the row shows the number of other players who have not confirmed their claims (or "all confirmed" if this number is 0.). 
+    </p>
+  </div>
+  
+  <div class="step uiGameResult">
+    <p>
+    Once a game ends, the corresponding row in the table displays a summary of the claims made by the other players.  
+    </p>
+  </div>
+
+  <div class="step uiExperimentEnd">   
+    <p>
+      Once all games end, you can click on the button to go to the exit survey.
+    </p>
+  </div>
+  
+  
+  <!-- <div class="step uiGenInfo">
     <p>
       The upper left corner shows some <span class="emph">general information</span>.
     </p>
@@ -126,22 +165,12 @@
   <div class="step uiInfoTable">
     <p>
       This table displays the information about all <span class="emph">past and ongoing games</span>.<br/><br/>
-      
-      <!-- The bottom row, highlighted by the dashed box, describes the current game. -->
     </p>
   </div>
 
   <div class="step uiPastInfo">
     <p>
       For instance, this is the result of <span class="emph">one particular past game</span>.
-
-      <!-- For each past game, the corresponding row displays:
-      <ul>
-        <li>index of the game</li>
-        <li>your candy</li>
-        <li>what you told your Dad</li>
-        <li>your reward</li>
-        <li>a summary of what your friends told your Dad</li> -->
     </p>
   </div>
 
@@ -201,7 +230,7 @@
       
       <a class="button" id="endTutorial" href="#">Go to the quiz!</a>
     </p>
-  </div>
+  </div> -->
 
 
 

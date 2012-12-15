@@ -74,8 +74,8 @@
       </colgroup>
       
       <tr>
-        <th class="rule">You say:</th>
-        <th class="rule">Your friend says:</th>
+        <th class="rule">Your claim</th>
+        <th class="rule">Your friend's claim</th>
         <th class="rule leftb">Your<br/>reward</th>
       </tr>
       
@@ -168,12 +168,12 @@
 
         <tr>
           <th class="">Game</th>
-          <th class="leftb">You got:</th>
-          <th>You say:</th>
+          <th class="leftb">Your candy</th>
+          <th>Your claim</th>
           <th class="colRewardHeader">Your reward</th>
           
           <% if @agg is true: %>
-            <th class="leftb aggInfo">Your friends say:</th>
+            <th class="leftb aggInfo">Your friends' claims</th>
           <% else: %>
           
             <% for i in [1..(@numPlayers - 1)]: %>      
