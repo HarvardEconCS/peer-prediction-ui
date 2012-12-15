@@ -32,11 +32,11 @@
   <div class="task-yourSignal">
       <% if @revealSignal is true: %>
         <span id="signalresult">
-          2. &nbsp;Your candy is: <img class="candy_image" src="images/<%= @game.signal %>.png">
+          2. &nbsp;Your candy is: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img class="candy_image" src="images/<%= @game.signal %>.png">
         </span>
       <% else: %>
         <span id="signalbutton">
-          2. &nbsp;<a class="button getsignal" href="#">Get my candy!</a>
+          2. &nbsp;<a class="button getsignal" href="#">Select your candy!</a>
         </span>
       <% end %>
     </p>
@@ -46,15 +46,17 @@
     <% if @reportChosen is true: %>
       <div id="claimresult">3. &nbsp;You claim to have: <img class="candy_image" src="images/<%= @selected %>.png"></div>
     <% else: %>
-      <div id="claimprompt">3. &nbsp;Choose your claim:</div>
-      <div id="claimchoices">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="reportChoices" id="firstRadio"  value="<%= @signalList[0] %>" <% if @selected is $('#firstRadio').val() : %>checked<% end %>>
-        <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="images/<%= @signalList[0] %>.png"></label>
-        <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
-        <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= @signalList[1] %>.png"></label>  
-      </div>
-      <div id="claimbutton">&nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm" href="#">Confirm your claim!</a></div>
+      <div id="claimprompt">3. &nbsp;Choose your claim.</div>
+      <% if @revealSignal is true: %>
+        <div id="claimchoices">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="reportChoices" id="firstRadio"  value="<%= @signalList[0] %>" <% if @selected is $('#firstRadio').val() : %>checked<% end %>>
+          <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="images/<%= @signalList[0] %>.png"></label>
+          <input type="radio" name="reportChoices" id="secondRadio" value="<%= @signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
+          <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= @signalList[1] %>.png"></label>  
+        </div>
+        <div id="claimbutton">&nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm" href="#">Confirm your claim!</a></div>
+      <% end %>
     <% end %>
   </div>
 

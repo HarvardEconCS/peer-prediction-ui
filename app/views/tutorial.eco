@@ -63,9 +63,7 @@
       
       During Halloween night, a group of kids (including you) <span class="emph">randomly</span> choose a house to go trick or treating.<br/><br/>
       
-      This house may be <span class="emph">1 of 2 types with equal chance</span>, but nobody knows which type it is.<br/><br/>
-      
-      The <span class="emph">2 types of houses</span> give out <span class="emph">2 types of candies</span> in <span class="emph">different proportions</span>.  
+      There are <span class="emph">2 types of houses</span> in the neighbourhood, but nobody knows which house is which type.
     </p>
   </div>
 
@@ -201,7 +199,7 @@
       
       This concludes the tutorial.<br/><br/>
       
-      <a class="button" id="endTutorial" href="#">Go to the game</a>
+      <a class="button" id="endTutorial" href="#">Go to the quiz!</a>
     </p>
   </div>
 

@@ -1,41 +1,46 @@
-Quiz
+<h2>Quiz</h2>
 
 <ol>
-  
   <li>
-    <p>
-      True or False:  If you randomly choose a house.  The house has a 50% chance of being the kind giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and 50% chance of being the kind giving out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">
-    </p>
+    <span class="question"> Consider the following statements about step 1 of the game, select all correct answers.</span>  <br/><br/>
+    &nbsp;&nbsp;<input type="checkbox" name="step1" id="step14" value="firsttype">
+    <label for="step14">If you randomly choose a house, then there is 50% chance that this house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
+     
+    &nbsp;&nbsp;<input type="checkbox" name="step1" id="step12" value="diffhouse">
+    <label for="step12">At the beginning of each game, a different house is randomly chosen among all houses in the neighbourhood.</label><br/>
     
-    <input type="radio" name="tof1" id="tof11" value="false">
-    <label for="tof11">True</label>
-    <input type="radio" name="tof1" id="tof12" value="false">
-    <label for="tof12">False</label>
+    &nbsp;&nbsp;<input type="checkbox" name="step1" id="step11" value="randomunknown">
+    <label for="step11">For a randomly chosen house, nobody knows which type of houses it is (in terms of the proportions of candies it gives out).</label><br/>
+    
+    &nbsp;&nbsp;<input type="checkbox" name="step1" id="step13" value="secondtype">
+    <label for="step13">If you randomly choose a house, then there is 50% chance that this house is the type giving out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
+    <br/><br/>
   </li>
   
-  <li>
-    <p>
-      True or False: The candy you got is only known to you and the owner of house.  It is not known by anybody else.
-    </p>
-    
-    <input type="radio" name="tof2" id="tof21" value="false">
-    <label for="tof21">True</label>
-    <input type="radio" name="tof2" id="tof22" value="false">
-    <label for="tof22">False</label>
-  </li>
+  
+  
   
   <li>
-    <p>    
-      True of False:  If the house chosen is the kind giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then every kid has 70% chance of getting a <img class="candy_image" src="images/<%= @signalList[0] %>.png"> candy and 30% chance of getting a <img class="candy_image" src="images/<%= @signalList[1] %>.png"> candy.
-    </p>
+    <span class="question">Consider the following statements about step 2 of the game, select all correct answers.</span> <br/><br/>
     
-    <input type="radio" name="tof3" id="tof31" value="false">
-    <label for="tof31">True</label>
-    <input type="radio" name="tof3" id="tof32" value="false">
-    <label for="tof32">False</label>
+    &nbsp;&nbsp;<input type="checkbox" name="step2" id="step24" value="secretcandy4">
+    <label for="step24">If the chosen house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then the chance for every kid to get a <img class="candy_image" src="images/<%= @signalList[1] %>.png"> from
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this house is 30%.</label><br/>   
+    
+    &nbsp;&nbsp;<input type="checkbox" name="step2" id="step21" value="secretcandy1">
+    <label for="step21">The type of candy you got from the chosen house is only known by you and the owner of the house.</label><br/>
+    
+    &nbsp;&nbsp;<input type="checkbox" name="step2" id="step23" value="secretcandy3">
+    <label for="step23">If the chosen house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and the first kid gets a <img class="candy_image" src="images/<%= @signalList[0] %>.png"> from this house, 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then the chance for the second kid to get a <img class="candy_image" src="images/<%= @signalList[0] %>.png"> is less than 70%.</label><br/>   
+     
+    &nbsp;&nbsp;<input type="checkbox" name="step2" id="step22" value="secretcandy2">
+    <label for="step22">The other kids do not know what type of your candy you got.</label><br/>
+    <br/><br/>
   </li>
-  
-  <li>
+
+  <!-- Higher level questions about the prior -->
+  <!-- <li>
     <p>
       If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, which of the following is correct? (Choose 1 answer)
     </p>
@@ -49,7 +54,6 @@ Quiz
     <input type="radio" name='priorHouse' id="priorhouse3" value="equal"> 
     <label for="priorhouse3">My candy does not tell me anything about what kind of house we chose.</label><br/>
   </li>
-
 
   <li>
     <p>
@@ -68,42 +72,30 @@ Quiz
     <input type="radio" name='prior' id="prior4" value="noeffect"> 
     <label for="prior4">My candy does not tell me about what another kid will likely get from the same house.</label><br/>
   </li>
-  
-  
+   -->
   
   <li>
-    <p class="question">
-      If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, what is your reward?
-    </p>
+    <span class="question">Consider the following statements about step 3 of the game, select all correct answers:</span><br/><br/>
     
-    <input type="radio" name="reward1" id="reward11" value="0.58">
-    <label for="reward11">$0.58</label>
-    <input type="radio" name="reward1" id="reward12" value="0.36">
-    <label for="reward12">$0.36</label>
-    <input type="radio" name="reward1" id="reward13" value="0.43">
-    <label for="reward13">$0.43</label>
-    <input type="radio" name="reward1" id="reward14" value="0.54">
-    <label for="reward14">$0.54</label>
+    &nbsp;&nbsp;<input type="checkbox" name="step3" id="step34" value="readtable">
+    <label for="step34">If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.43.</label><br/>
     
+    &nbsp;&nbsp;<input type="checkbox" name="step3" id="step31" value="misreport">
+    <label for="step31">When you are making a claim to the clown, you can claim to have either <img class="candy_image" src="images/<%= @signalList[0] %>.png"> or <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
+    
+    &nbsp;&nbsp;<input type="checkbox" name="step3" id="step32" value="clown">
+    <label for="step32">The clown does not know what candy you got.  So the clown cannot verify whether the type of candy you claim 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to have matches the actual type of your candy.</label><br/>
+      
+    &nbsp;&nbsp;<input type="checkbox" name="step3" id="step33" value="reward">
+    <label for="step33">Suppose that you claim to have <img class="candy_image" src="images/<%= @signalList[0] %>.png">, the random friend of yours chosen is Josh and he claims to have <img class="candy_image" src="images/<%= @signalList[0] %>.png">, 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.58 regardless of the actual type of your candy.</label><br/>  
+      <br/><br/>
   </li>
   
-  <li>
-    <p class="question" >
-        If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, what is your reward?
-    </p>
-    
-    <input type="radio" name="reward2" id="reward21" value="0.58">
-    <label for="reward21">$0.58</label>
-    <input type="radio" name="reward2" id="reward22" value="0.36">
-    <label for="reward22">$0.36</label>
-    <input type="radio" name="reward2" id="reward23" value="0.43">
-    <label for="reward23">$0.43</label>
-    <input type="radio" name="reward2" id="reward24" value="0.54">
-    <label for="reward24">$0.54</label>
-  </li>
-  
-   
-  <li>
+  <!-- Higher level questions about reward rule -->
+  <!-- <li>
     <p>
     If you know that your random friend will definitely claim that he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, and your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, what candy should you tell the clown to maximize your payment in this game? 
     </p>
@@ -122,11 +114,27 @@ Quiz
     <label for="claim21"><img class="candy_image" src="images/<%= @signalList[0] %>.png"></label>
     <input type="radio" name="claim2" id="claim22" value="gm">
     <label for="claim22"><img class="candy_image" src="images/<%= @signalList[1] %>.png"></label>
-  </li>
+  </li> -->
    
-
- 
+   
+  <li>
+    <span class="question">Consider the following statements about the interface of the game, select all correct answers.</span><br/><br/>
+    
+    <input type="checkbox" name="interface1" id="interface11" value="duringclaim">
+    <label for="interface11">During a game, you can see which of the other players have confirmed their claims, but you do not know what claims 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the other players made.</label><br/>
+    
+    <input type="checkbox" name="interface1" id="interface12" value="endclaim">
+    <label for="interface12">Once the game ends, you can see a summary of the claims made by the other players.</label><br/>
+    
+    <input type="checkbox" name="interface1" id="interface13" value="chooseHouse">
+    <label for="interface13">The claim of the random friend of yours is not displayed, but you can infer it by checking your claim and your reward 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the reward rule table.</label><br/>
+  </li> 
 </ol>
 <p>
   <a class="button" id="quizSubmit" href="#">Submit answers</a>
+  <br/>
+  <br/> 
+  <br/>
 </p>

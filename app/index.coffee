@@ -10,14 +10,15 @@ class App extends Spine.Controller
     super
     
     if @isBrowserCompatible()
+      
       # take out browser incompatibility warning 
       @html ''
       
       Network.initFake()
       
-      dropdown = new Dropdown
-      @append dropdown
-      dropdown.active()
+      # dropdown = new Dropdown
+      # @append dropdown
+      # dropdown.active()
       
       @main = new Main
       @append @main

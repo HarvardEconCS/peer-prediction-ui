@@ -48,7 +48,7 @@ class Tutorial extends Spine.Controller
     @tutOrgLeft = '10px'
     
     @picTop = '50px'
-    @picLeft = '350px'
+    @picLeft = '310px'
     
     @interfaceTop = '50px'
     @interfaceLeft = '50px'
@@ -217,8 +217,6 @@ class Tutorial extends Spine.Controller
         'top':      @tutOrgTop
         'left':     @tutOrgLeft
       )
-
-
 
 
   uiOneStart: (show) =>

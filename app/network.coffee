@@ -6,20 +6,15 @@ class Network
   @signalL:     "GM"
   @signalList:  [@signalH, @signalL]
   @jarInfo:     [10, 3, 4]
-  # @defaultOption: "default"
   @unconfirmMsg:  "questionmarkred"
   
   @fakeServer: true
   @task: null
-  
   @intervalId: null
-  # @currPlayer: null
   @currPlayerName: null
-  
   @currPlayerReport: null
   @currPlayerReportConfirmed: false
-  
-  @finished: false
+  # @finished: false
   
   # Initialize fake server
   @initFake: ->	
@@ -126,9 +121,9 @@ class Network
     receivedMsg = 
       "status"      : "startRound"
       "numPlayers"  : nPlayers
+      "numRounds"   : 3
       "playerNames" : names
       "yourName"    : currName 
-      "numRounds"   : 3
       "payments"  : [0.58, 0.36, 0.43, 0.54]
     ####################################################
     console.log "received msg: #{JSON.stringify(receivedMsg)}"
@@ -213,7 +208,6 @@ class Network
     ##########################################
     console.log "result object: #{JSON.stringify(receivedMsg)}"
 
-
     @game = Game.last()
     if @game.result?
     else
@@ -255,10 +249,8 @@ class Network
     # get information for the next game
     Network.getNextGameInfo()
     
-
   @sendReport: (report) ->
     Network.currPlayerReport = report
-
 
   @chooseRandomly: (list) ->
     i = Math.floor(Math.random() * list.length)

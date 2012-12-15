@@ -16,7 +16,7 @@ class Task extends Spine.Controller
   constructor: ->
     super
     @unconfirmMsg   = Network.unconfirmMsg
-    # @defaultReport  = Network.defaultOption        
+    @defaultReport  = "default"      
     @signalList     = Network.signalList
     
     @revealSignal = false
@@ -87,7 +87,6 @@ class Task extends Spine.Controller
 
     @render()
     
-
   # called when games are finished
   finish: ->
     @finished = true
@@ -102,7 +101,6 @@ class Task extends Spine.Controller
   revealSignalFunc: (e) ->
     e.preventDefault()
     @revealSignal = true
-
     @render()
 
 	# called when selected report is changed
@@ -128,8 +126,6 @@ class Task extends Spine.Controller
     # set flag for rendering
     @reportChosen = true
 
-    # TODO: only render after server has confirmed the report
-    # the player has confirmed a valid report
     Network.sendReport(@selected)
     
     @render()
