@@ -1,10 +1,19 @@
-Exit Survey
+<h2>Exit Survey</h2>
 
-<p>Please comment on our task below</p>
-<textarea rows="2" cols="100" id="comments"></textarea>
+<p>1. Did you see any bugs?  Please report any bugs you observed in our task:</p>
+<textarea rows="5" cols="100" id="bugs">Please describe the bugs.</textarea>
 
-<p>Please report any bugs you observed in our task:</p>
-<textarea rows="2" cols="100" id="bugs"></textarea>
+<p>2. What do you think of the tutorial?  Was the rules of the game clearly explained? Was it too long?  <br/>
+   Please comment on our tutorial below.</p>
+<textarea rows="5" cols="100" id="tutorialComments"></textarea>
+
+<p>3. What do you think of the interface of the game? Does it have too much or too little information?  <br/>
+   Does it clearly indicate what you need to do during a game?  <br/>
+   Pleasea comment on the interface of the game below.</p> 
+<textarea rows="5" cols="100" id="interfaceComments"></textarea>
+
+<p>4. Were you able to figure out the best strategy to play this game?  Please describe how you played the games.</p>
+<textarea rows="5" cols="100" id="strategy"></textarea>
 
 <p>
   <a class="button" href="#">Submit</a>

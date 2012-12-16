@@ -28,7 +28,7 @@ class Main extends Spine.Stack
     '/tutorial': 'tutorial'
     '/quiz': 'quiz'
     '/task': 'task'
-    '/exit': 'exitsurvey'
+    '/exitsurvey': 'exitsurvey'
 
 
 module.exports = Main

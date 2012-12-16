@@ -1,7 +1,7 @@
 Spine = require('spine')
 
 class Exitsurvey extends Spine.Controller
-  className: 'exit'
+  className: 'exitsurvey'
     
   constructor: ->
     super
