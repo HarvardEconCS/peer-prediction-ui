@@ -1,9 +1,11 @@
 <% if @finished: %>
 
-  <!-- Game is finished, display the message and button to get to exit survey -->
-  <p>Thank you for playing!  <br/>
-     You have finished all of the games!</p>
-  <a class="button exit">Go to exit survey!</a>
+  <div id="finishmsg">
+    <p>Thank you for playing!  <br/>
+       You have finished all of the games!
+    </p>
+    <a class="button exit">Go to exit survey!</a>
+  </div>
   
 <% else unless @game: %>
 
@@ -13,7 +15,7 @@
 <% else: %>
   <!-- Inforation about the game has been loaded.  Display it. -->
   
-  <div class="generalInfo">
+  <div class="taskTitle">
     You are playing a total of <%= @numRounds %> games with <%= @numPlayers - 1 %> friends.<br/> 
   </div>
  
@@ -36,7 +38,7 @@
         </span>
       <% else: %>
         <span id="signalbutton">
-          2. &nbsp;<a class="button getsignal" href="#">Select your candy!</a>
+          2. &nbsp;<a class="button getsignal" href="#">Get your candy!</a>
         </span>
       <% end %>
     </p>
@@ -141,6 +143,7 @@
 
   <div class="resultTableHeader">
     <table class="resultsHeader">
+      <caption>Result Table</caption>
       <thead>
         <tr>
           <th class=""></th>
@@ -196,6 +199,7 @@
 <div class="resultTableBody">
   
   <table class="results">
+
 
     <tbody>
     <% if @games: %> 

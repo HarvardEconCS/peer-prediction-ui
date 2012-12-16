@@ -30,11 +30,12 @@ class Tutorial extends Spine.Controller
       ['example',     @stepFiveDescribeReward]
       ['recap',       @stepSixRecap]
       ['uiStart',           @uiOneStart]
-      ['uiExperimentStart', null]
-      ['uiGameActions',     null]
-      ['uiOtherStatus',     null]
-      ['uiGameResult',      null]
-      ['uiExperimentEnd',   null]
+      ['uiExperimentStart', @uiTwoExpStart]
+      ['uiGameActions',     @uiThreeActions]
+      ['uiChooseClaim',     @uiChooseClaim]
+      ['uiOtherStatus',     @uiFourOtherStatus]
+      ['uiGameResult',      @uiFiveResult]
+      ['uiExperimentEnd',   @uiSixExpEnd]
       # ['uiGenInfo',   @uiTwoGenInfo]
       # ['uiPayRule',   @uiThreePayRule]
       # ['uiInfoTable', @uiFourInfoTable]
@@ -229,8 +230,8 @@ class Tutorial extends Spine.Controller
     
     if show is true
       $('div.tutorial').animate
-        top: +390
-        left: +400
+        top:  "+=300px"
+        left: "+=350px"
         1000
     else
       $('div.tutorial').css(
@@ -238,10 +239,43 @@ class Tutorial extends Spine.Controller
         'top':      @tutOrgTop
         'left':     @tutOrgLeft
       )   
-    # @showSelectedCustom(show, "#box-title", '-10px', '290px')
-    # @showSelectedCustom(show, "#box-currentgame", "100px", "50px")
-    # @showSelectedCustom(show, "#box-rewardrule", "365px", "55px")
+
     # @showSelectedCustom(show, "#box-tablenew", "95px", "400px")
+ 
+  uiTwoExpStart: (show) =>
+    @changeTaskPic show, 'taskstart'
+    @changeTutorialPos show, '350px', '360px'
+    @showSelectedCustom show, "#box-title", '-10px', '290px'
+    @showSelectedCustom show, "#box-rewardrule", "365px", "65px"
+  
+  uiThreeActions: (show) =>
+    @changeTaskPic(show, 'taskstart')
+    @changeTutorialPos(show, '350px', '360px')
+    @showSelectedCustom(show, "#box-currentgame", "100px", "65px")
+      
+  uiChooseClaim: (show) =>
+    @changeTaskPic show, 'tasksignalshown'
+    @changeTutorialPos show, '350px', '360px'
+    @showSelectedCustom(show, "#box-currentgamelarger", "100px", "65px")
+    
+  uiFourOtherStatus: (show) =>
+    @changeTaskPic show, 'taskreportconfirmed'
+    @changeTutorialPos show, '350px', '360px'
+    @showSelectedCustom show, "#box-onegame", '260px', '410px'
+    
+  uiFiveResult: (show) =>
+    @changeTaskPic show, 'tasknextgame'
+    @changeTutorialPos show, '410px', '360px'
+    @showSelectedCustom show, "#box-onegame", '260px', '410px'
+    
+  uiSixExpEnd: (show) =>
+    @changeTaskPic(show, 'taskexpend')
+    @changeTutorialPos(show, '300px', '100px')
+    
+    
+    
+    
+    
       
   uiTwoGenInfo: (show) =>
     @changeTutorialPos(show, '55px', '453px')

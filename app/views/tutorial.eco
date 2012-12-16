@@ -8,11 +8,9 @@
     
   <img class="image" id="taskstart"           src="images/tasknew-start.png">
   <img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
-  <img class="image" id="taskchoosereport"    src="images/task-choosereport.png">
   <img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png">
-  <img class="image" id="taskfriendswaiting"  src="images/task-friendswaiting.png">
-  <img class="image" id="taskfriendsallconfirmed" src="images/task-friendsallconfirmed.png">
-  <img class="image" id="tasknextgame"           src="images/task-nextgame.png">
+  <img class="image" id="tasknextgame"        src="images/task-nextgame.png">
+  <img class="image" id="taskexpend"          src="images/task-expend.png">
 
   <img class="image" id="box-geninfo" src="images/box-geninfo.png">
   <img class="image" id="box-rule"    src="images/box-rule.png">
@@ -24,6 +22,7 @@
   
   <img class="image" id="box-title" src="images/box-title.png">
   <img class="image" id="box-currentgame" src="images/box-currentgame.png">
+  <img class="image" id="box-currentgamelarger" src="images/box-currentgamelarger.png">
   <img class="image" id="box-rewardrule" src="images/box-rewardrule.png">
   <img class="image" id="box-tablenew" src="images/box-tablenew.png">
   
@@ -109,129 +108,57 @@
 
   <div class="step uiStart">
     <p>
-      This is the interface of the game. <br/><br/>
-       
-      The four main parts of the interface are highlighted in the green boxes.
+      This is the interface of the game.
     </p>
   </div>
 
   <div class="step uiExperimentStart"> 
     <p>
-      The title tells you the total number of games, and the number of other players. <br/><br/> 
+      At the beginning of the experiment, <span class="emph">the title</span> displays <span class="emph">the total number of games</span>, and <span class="emph">the number of other players</span> in the games. <br/><br/> 
     
-      The reward rule table describes how the players are rewarded in the games.
+      <span class="emph">The reward rule table</span> is shown in the lower left corner.
     </p>
   </div>
 
   <div class="step uiGameActions"> 
     <p>
-      You can see the index of the current game that you are playing.<br/><br/>  
-    
-      During a game, you first need to select a random candy from the chosen house.  Then you need to choose a claim for the clown.  These two choices will both be both on the left and in the table on the right. 
+      During a game, the upper left corner shows <span class="emph">the index of the current game</span>.<br/><br/>  
+      
+      For <span class="emph">step 1</span> of the game, a random house is automatically chosen.<br/><br/>
+      
+      Then, for <span class="emph">step 2</span>, you need to click on the button to get your candy from the chosen house.<br/><br/>  
+    </p>
+  </div>
+
+  <div class="step uiChooseClaim">
+    <p>
+      Once you get your candy, then for <span class="emph">step 3</span>, you can choose amd confirm your claim for the clown.  
     </p>
   </div>
 
   <div class="step uiOtherStatus">      
     <p>
-    In the table on the right, the row highlighted by the dashed box contains information about the current game.  The last cell in the row shows the number of other players who have not confirmed their claims (or "all confirmed" if this number is 0.). 
+      During a game, <span class="emph">the dashed row</span> in the result table displays <span class="emph">your candy</span> and <span class="emph">your claim</span> as soon as you have taken the actions in steps 2 and 3. <br/><br/> 
+      
+      The last column in the dashed row displays <span class="emph">the number of other players who have not confirmed their claims</span>, or <span class="emph">"all confirmed"</span> if this number is 0.
     </p>
   </div>
   
   <div class="step uiGameResult">
     <p>
-    Once a game ends, the corresponding row in the table displays a summary of the claims made by the other players.  
+    Once a game ends, the next game automatically starts.  <br/><br/>
+    
+    For the ended game, the last cell in the corresponding row displays <span class="emph">the number of players who claim to have either type of candy</span>.  
     </p>
   </div>
 
   <div class="step uiExperimentEnd">   
     <p>
-      Once all games end, you can click on the button to go to the exit survey.
-    </p>
-  </div>
-  
-  
-  <!-- <div class="step uiGenInfo">
-    <p>
-      The upper left corner shows some <span class="emph">general information</span>.
-    </p>
-  </div>
-
-  <div class="step uiPayRule">
-    <p>
-      This is the <span class="emph">payment rule</span> table.
-    </p>
-  </div>
-
-  <div class="step uiInfoTable">
-    <p>
-      This table displays the information about all <span class="emph">past and ongoing games</span>.<br/><br/>
-    </p>
-  </div>
-
-  <div class="step uiPastInfo">
-    <p>
-      For instance, this is the result of <span class="emph">one particular past game</span>.
-    </p>
-  </div>
-
-  <div class="step uiCurrInfo">
-    <p>
-      These two boxes display information about <span class="emph">the current game</span>. <br/><br/>
-    </p>
-  </div>
-
-
-  <div class="step uiSignalButton">
-    <p>
-      At the beginning of the game, you can click on the button <span class="emph">"Show my candy!"</span> to show the candy you got.
-    </p>
-  </div>
-
-  <div class="step uiSignalShown">
-    <p>
-      The candy you got is a <span class="emph">Gummy Bear</span>, shown in the 2 green boxes.<br/><br/>
-    </p>
-  </div>
-
-  <div class="step uiReportChoice">
-    <p>
-      Next, you can <span class="emph">select which candy to tell the clown</span>.  Then you can click the button "Confirm!" to confirm your choice.
-    </p>
-  </div>
-
-  <div class="step uiReportConfirmed">
-    <p>
-      You claim to have the <span class="emph">M&amp;M</span>. <br/><br/>
-      
-      This is shown in the two green boxes.
-    </p>
-  </div>
-
-  <div class="step uiFriendStatus">
-    <p>
-      This cell displays <span class="emph">the number of your friends who have not confirmed their claims</span>.  <br/><br/>
-      
-      It is updated continuously during the game.
-    </p>
-  </div>
-  
-  <div class="step uiFriendAllConfirmed">
-    <p>
-      Now suppose that you have not confirmed your claim yet, but all of your friends have confirmed their claims.<br/><br/>  
-      Then, the above cell should display <span class="emph">"All confirmed!"</span>, as shown here.
-    </p>
-  </div>
-
-  <div class="step uiNextGame">
-    <p>
-      As soon as everyone confirmed their claims, the game ends, its results are displayed, and the next game automatically starts.<br/><br/>
-      
-      This concludes the tutorial.<br/><br/>
+      Once all games end, you can click on the button to go to the exit survey.<br/><br/>
       
       <a class="button" id="endTutorial" href="#">Go to the quiz!</a>
     </p>
-  </div> -->
-
+  </div>
 
 
 </div>

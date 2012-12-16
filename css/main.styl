@@ -7,7 +7,7 @@
   width   1024px
   height  768px
 
-div.generalInfo 
+div.taskTitle 
   position absolute
   top 10px
   left 0px
@@ -76,23 +76,28 @@ topRuleTable = topReport + reportHeight + gap
   width     250px
 
 
-resultTop = 35px
-resultTableHeaderHeight = 135px
-resultTableHeaderTop = 10px
+
+resultTableHeaderTop = 60px
+resultTableHeaderHeight = 155px
 resultLeft = 400px
 
 .resultTableHeader
   position absolute
-  top      resultTop + resultTableHeaderTop
+  top      resultTableHeaderTop
   left     resultLeft
+
+resultTableBodyTop = resultTableHeaderTop + resultTableHeaderHeight
 
 .resultTableBody
   z-index   0
   position  absolute
-  top       resultTop + resultTableHeaderTop + resultTableHeaderHeight
+  top       resultTableBodyTop
   left      resultLeft
   height    300px
   overflow-y scroll
   
   
-
+div#finishmsg
+  position absolute
+  top   50px
+  left  100px
