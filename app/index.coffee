@@ -14,7 +14,8 @@ class App extends Spine.Controller
       # take out browser incompatibility warning 
       @html ''
       
-      Network.initFake()
+      # Network.initFake()
+      Network.init()
       
       # dropdown = new Dropdown
       # @append dropdown

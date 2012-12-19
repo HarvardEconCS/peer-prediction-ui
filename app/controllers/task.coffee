@@ -17,7 +17,7 @@ class Task extends Spine.Controller
     super
     @unconfirmMsg   = Network.unconfirmMsg
     @defaultReport  = "default"      
-    @signalList     = Network.signalList
+
     
     @revealSignal = false
     @selected = @defaultReport
@@ -43,6 +43,7 @@ class Task extends Spine.Controller
   render: ->
     return unless @isActive()
     
+    @signalList   = Network.signalList
     @payAmounts   = Network.payAmounts    
     @numRounds    = Network.numRounds
     @numPlayers   = Network.numPlayers
@@ -57,17 +58,18 @@ class Task extends Spine.Controller
     $('tr.borderAroundDashed td:first-child').addClass('borderLeftDashed')
     $('tr.borderAroundDashed td:last-child').addClass('borderRightDashed')
 
-    # random order of the radio buttons
-    if @randomRadio is 0
-      $('input:radio#firstRadio').val("#{Network.signalList[0]}")
-      $('img#imgFirstRadio').attr('src', "images/#{Network.signalList[0]}.png")
-      $('input:radio#secondRadio').val("#{Network.signalList[1]}")
-      $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[1]}.png")      
-    else
-      $('input:radio#firstRadio').val("#{Network.signalList[1]}")
-      $('img#imgFirstRadio').attr('src', "images/#{Network.signalList[1]}.png")
-      $('input:radio#secondRadio').val("#{Network.signalList[0]}")
-      $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[0]}.png")
+    # random order of the radio buttons 
+    if Network.signalList?
+      if @randomRadio is 0
+        $('input:radio#firstRadio').val("#{Network.signalList[0]}")
+        $('img#imgFirstRadio').attr('src', "images/#{Network.signalList[0]}.png")
+        $('input:radio#secondRadio').val("#{Network.signalList[1]}")
+        $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[1]}.png")      
+      else
+        $('input:radio#firstRadio').val("#{Network.signalList[1]}")
+        $('img#imgFirstRadio').attr('src', "images/#{Network.signalList[1]}.png")
+        $('input:radio#secondRadio').val("#{Network.signalList[0]}")
+        $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[0]}.png")
 
     # make the table always scroll to the bottom
     $('div .resultTableBody').scrollTop($('div .resultTableBody').prop("scrollHeight"))
