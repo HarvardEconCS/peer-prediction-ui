@@ -1,28 +1,28 @@
 Game    = require 'models/game'
 TSClient = require 'turkserver-js-client'
+MockServer = require 'mockserver'
 
 class Network
   @cookieName = "peer.prediction.exp"
   
   @unconfirmMsg:  "questionmarkred"
   
-  @fakeServer   = undefined
-  @task         = undefined
-  @intervalId   = null
-  @currPlayerName     = null
-  @currPlayerReport   = null
-  @currPlayerReportConfirmed = false
-  
+  @fakeServer         = undefined
+  @task               = undefined
+  @intervalId         = null
+  @currPlayerName     = undefined
+  @currPlayerReport   = undefined
+  @currConfirmed      = undefined
+
   @signalList      = undefined
   @payAmounts      = undefined
   @numPlayers      = undefined
   @numRounds       = undefined
   @playerNames     = undefined
-  @currPlayerName  = undefined
   
   # Initialize fake server
   @initFake: ->	
-    # @currPlayerName = 'turkId3'
+    @fakeServer = true
 
   # Initialize real server
   @init: ->
@@ -33,14 +33,16 @@ class Network
     TSClient.ServiceMessage @getMessage 
 
   # Configure task controller
-  @setTaskController: (taskController) ->
-    Network.task = taskController
+  @setTaskController: (taskCont) ->
+    @task = taskCont
 
   @ready: ->
     if @fakeServer
-      console.log "Network.ready:"
       Game.init()
-      setTimeout(( => @getGeneralInfo(MockServer.getGeneralInfo "player 1")), 2000)
+      setTimeout (=> 
+        @getGeneralInfo MockServer.getGeneralInfo() 
+      ), 2000
+      
     else
       Game.init();
       TSClient.init(@cookieName, "")
@@ -53,7 +55,7 @@ class Network
       when "signal"
         @getSignal msg
       when "confirmReport"
-        @updateActions msg
+        @getReportConfirmation msg
       when "results"
         @getGameResult msg
 
@@ -61,68 +63,66 @@ class Network
     
   # start the first game    
   @getGeneralInfo: (receivedMsg) ->  
-    # console.log "got general info: #{JSON.stringify(receivedMsg)}"    
-    
-    Network.signalList      = receivedMsg.signalList
-    Network.payAmounts      = receivedMsg.payments
-    Network.numPlayers      = receivedMsg.numPlayers
-    Network.numRounds       = receivedMsg.numRounds 
-    Network.playerNames     = receivedMsg.playerNames
-    Network.currPlayerName  = receivedMsg.yourName
+    @signalList      = receivedMsg.signalList
+    @payAmounts      = receivedMsg.payments
+    @numPlayers      = receivedMsg.numPlayers
+    @numRounds       = receivedMsg.numRounds 
+    @playerNames     = receivedMsg.playerNames
+    @currPlayerName  = receivedMsg.yourName
+    @numPlayed   = 0
         
     # if there are only 2 players, no point to aggregate the information
-    if Network.numPlayers is 2
-      Network.task.agg = false
-      
-    Network.numPlayed   = 0
+    if @numPlayers is 2
+      @task.agg = false
 
     @task.render()
 
     # get information for the next game
     if @fakeServer
-      setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )
-
+      setTimeout (=> 
+        @getSignal MockServer.getRoundSignal()
+      ), 100
 
 
   @getSignal: (receivedMsg) ->    
-    # console.log "got signal: #{JSON.stringify(receivedMsg)}"
-    
-    Network.currPlayerReportConfirmed = false
-    Network.currPlayerReport = null
+    # reset variables
+    @currConfirmed    = false
+    @currPlayerReport = null
     
     reportConfirmed = {}
-    for name in Network.playerNames
+    for name in @playerNames
       reportConfirmed[name] = false
     
     gameState =
-      "numPlayed":        Network.numPlayed
+      "numPlayed":        @numPlayed
       "signal":           receivedMsg.signal 
       "numOtherActed":    0
       "reportConfirmed":  reportConfirmed
     
     # update interface
-    Network.task.gotGameState(gameState)
-    Network.task.render()
+    @task.gotGameState(gameState)
+    @task.render()
     
     # get updates from the server
     if @fakeServer
-      Network.intervalId = 
-        setInterval Network.updateActions(MockServer.getConfirmReport()), 5000        
-    
+      @intervalId = setInterval (=> 
+        @getReportConfirmation MockServer.getConfirmReport()
+      ), 3000
   
   # get next game
   @getGameResult: (receivedMsg) ->    
-    # console.log "got result: #{JSON.stringify(receivedMsg)}"
+    console.log "get game result is #{JSON.stringify(receivedMsg)}"
 
     @game = Game.last()
     if @game.result?
     else
       @game.result = {}
     
-    for name in Network.playerNames
+    for name in @playerNames
       @game.result[name] = {}
 
       @game.result[name].report     = receivedMsg.result[name].report
+      
       theRefPlayer = receivedMsg.result[name].refPlayer
       @game.result[name].refPlayer  = theRefPlayer 
       @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
@@ -133,21 +133,21 @@ class Network
     # count number of people who reported signalList[0]
     count = 0
     if @game.result?
-      for name in Network.playerNames
-        if name is Network.currPlayerName
+      for name in @playerNames
+        if name is @currPlayerName
           continue
         else
-          if receivedMsg.result[name].report is Network.signalList[0]
+          if receivedMsg.result[name].report is @signalList[0]
             count = count + 1
     @game.numSignal0 = count
     @game.save()
 
-    Network.task.render()
+    @task.render()
 
     # Check if we are finished with all games
-    Network.numPlayed += 1
-    if Network.numPlayed is Network.numRounds
-      Network.task.finish()
+    @numPlayed += 1
+    if @numPlayed is @numRounds
+      @task.finish()
       return
     
     # get information for the next game
@@ -155,48 +155,47 @@ class Network
       setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )    
     
     
-    
-    
   @sendReport: (report) ->
     if @fakeServer
-      Network.currPlayerReport = report
+      @currPlayerReport = report
+      MockServer.sendReportToServer(report)
     else
       TSClient.sendExperimentService
         "report": report
 
-
-
-  # repeated called to get action updates from server
-  @updateActions: (receivedMsg) ->
-    # console.log "server confirmed report by #{receivedMsg.playerName}"
+  @getReportConfirmation: (receivedMsg) ->
+    if receivedMsg is null
+      return
+    
+    console.log "update actions: receivedMsg is #{JSON.stringify(receivedMsg)}"
 
     @game = Game.last()
     
     @game.reportConfirmed[receivedMsg.playerName] = true
-    if receivedMsg.playerName is Network.currPlayerName
+    if receivedMsg.playerName is @currPlayerName
       if @game.result?
-        if @game.result[Network.currPlayerName]?
-          @game.result[Network.currPlayerName].report = Network.currPlayerReport
+        if @game.result[@currPlayerName]?
+          @game.result[@currPlayerName].report = @currPlayerReport
         else
-          @game.result[Network.currPlayerName] = {"report": Network.currPlayerReport}
+          @game.result[@currPlayerName] = {"report": @currPlayerReport}
       else
         @game.result = {}
-        @game.result[Network.currPlayerName] = {"report": Network.currPlayerReport}
-      Network.currPlayerReportConfirmed = true
+        @game.result[@currPlayerName] = {"report": @currPlayerReport}
+      @currConfirmed = true
     else
       @game.numOtherActed += 1
     @game.save()
-    
-    Network.task.render()
+ 
+    @task.render()
 
     # check if other players have acted
-    if @game.numOtherActed is (Network.numPlayers - 1) and Network.currPlayerReportConfirmed is true
+    if @game.numOtherActed is (@numPlayers - 1) and @currConfirmed is true
       console.log "all players have reported."
-      clearInterval(Network.intervalId)
+      clearInterval(@intervalId)
       
       if @game.result?   # if the result array exists, then the player must have confirmed report already
         console.log "load the next game."
-        Network.getGameResult()    
+        @getGameResult(MockServer.getResult())    
 
 
 module.exports = Network

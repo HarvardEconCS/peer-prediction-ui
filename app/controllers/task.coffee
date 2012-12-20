@@ -138,6 +138,6 @@ class Task extends Spine.Controller
   # go to the exit survey
   goToExitSurvey: (e) ->
     e.preventDefault()
-    @navigate '/exit'
+    @navigate '/exitsurvey'
 
 module.exports = Task

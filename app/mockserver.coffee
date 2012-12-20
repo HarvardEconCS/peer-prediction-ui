@@ -1,22 +1,25 @@
+Game    = require 'models/game'
 
 class MockServer
   
-  @signalH =    "MM"
-  @signalL =    "GM"
+  @signalH    = "MM"
+  @signalL    = "GM"
   @signalList = [@signalH, @signalL]
-  @jarInfo =    [10, 3, 4]
+  @jarInfo    = [10, 3, 4]
+  @payAmounts = [0.58, 0.36, 0.43, 0.54]
+  @nPlayers   = 5
   
-  @nPlayers = 5
-  @playerNames = []
-  @results = []
+  @playerNames  = []
+  @results      = []
+  @currName     = null
+  @currSignal   = null
+  @currReport   = null
 
   @chooseRandomly: (list) ->
     i = Math.floor(Math.random() * list.length)
     list[i]  
   
-  @getGeneralInfo: (currName) -> 
-    # Need to know which player is it sending the message to
-  
+  @getGeneralInfo: -> 
     # Message received from server
     # format: --------------------
     #       status:     startRound
@@ -25,32 +28,48 @@ class MockServer
     #       yourName: 
     #       numRounds: 
     #       payments:
+    #       signalList: 
     # -------------------------
     for i in [0..(@nPlayers - 1)]
       @playerNames.push "Player #{i}"
     
     rndIndex = Math.floor(Math.random() * @playerNames.length)
-    currName = @playerNames[rndIndex]
-    
-    receivedMsg = 
+    @currName = @playerNames[rndIndex]
+
+    msg = 
       "status"      : "startRound"
       "numPlayers"  : @nPlayers
       "numRounds"   : 3
       "playerNames" : @playerNames
-      "yourName"    : currName 
-      "payments"  : [0.58, 0.36, 0.43, 0.54]
+      "yourName"    : @currName 
+      "payments"    : @payAmounts
+      "signalList"  : @signalList
     
   @getRoundSignal: ->
+    @currSignal = null
+    @currReport = null
+
     # Message received from server
     # format: -----------------
     #     status: signal
     #     signal: 
     # -------------------------
-    nextSignal = @chooseRandomly(@signalList)
+    @currSignal = @chooseRandomly(@signalList)
     
-    receivedMsg = 
+    # create result object
+    game = 
+      'signal': @currSignal
+      'reportConfirmed': {}
+      'result': {}
+    for name in @playerNames
+      game.reportConfirmed[name] = false
+    @results.push game
+    console.log "results are #{JSON.stringify(@results)}}"
+    
+    
+    msg = 
       "status:" : "signal"
-      "signal"  : nextSignal 
+      "signal"  : @currSignal
     
   @getResult: ->
     # Message received from server
@@ -58,62 +77,78 @@ class MockServer
     #     status: results
     #     result: 
     # ----------------------
-    receivedMsg = 
+    msg = 
       "status": "results"
       "result": {}
       
     # We should have the reports already
     for name in @playerNames
-      receivedMsg.result[name] = {}
-      receivedMsg.result[name].report = @chooseRandomly(@signalList)
+      msg.result[name] = {}
+      if name is @currName
+        msg.result[@currName].report = @currReport
+      else 
+        msg.result[name].report = @chooseRandomly(@signalList)
       
     # this is getting the reference players
     for name, i in @playerNames
       refIndex = Math.floor(Math.random() * (@nPlayers - 1))
       if i <= refIndex
         refIndex = refIndex  + 1
-      receivedMsg.result[name].refPlayer = @playerNames[refIndex]
+      msg.result[name].refPlayer = @playerNames[refIndex]
 
+    # determine the rewards
     for name in @playerNames
-      theReport     = receivedMsg.result[name].report
-      theRefPlayer  = receivedMsg.result[name].refPlayer
-      theRefReport  = receivedMsg.result[theRefPlayer].report
-      receivedMsg.result[name].reward     = Network.getPayment(theReport, theRefReport)
+      theReport     = msg.result[name].report
+      theRefPlayer  = msg.result[name].refPlayer
+      theRefReport  = msg.result[theRefPlayer].report
+      msg.result[name].reward = @getPayment(theReport, theRefReport)
       
-    receivedMsg
+    msg
+  
+  # send report by current player to server
+  @sendReportToServer: (report) ->
+    @currReport = report
+    
+    # update result object
+    @results[@results.length - 1].result[@currName] = {}
+    @results[@results.length - 1].result[@currName].report = report
+    console.log "results are #{JSON.stringify(@results)}}"
   
   @getConfirmReport: ->
-    ###############################################
+    
     @game = Game.last()
     playerNotConfirmed = []
     for name in Object.keys(@game.reportConfirmed)
-      if name is Network.currPlayerName and Network.currPlayerReport is null
+      if name is @currName and @currReport is null
       else 
         if @game.reportConfirmed[name] is false
           playerNotConfirmed.push name
-    if playerNotConfirmed.length is 0
-      return
-    ###############################################
 
-    ################################################
+    # just waiting for report from the current player
+    if playerNotConfirmed.length is 0
+      return null
+
     # Message received from the server
     # format: -------------------
     #    status: confirmReport
     #    playerName: 
     # ---------------------------
-    randomIndex = Math.floor(Math.random() * playerNotConfirmed.length)
-    playerActed = playerNotConfirmed[randomIndex]
+    rnd = Math.floor(Math.random() * playerNotConfirmed.length)
+    reporter = playerNotConfirmed[rnd]
 
-    # get new status from server
-    receivedMsg = 
+    # update result object
+    @results[@results.length - 1].reportConfirmed[reporter] = true
+    console.log "results are #{JSON.stringify(@results)}}"
+
+    msg = 
       "status"      : "confirmReport"
-      "playerName"  : playerActed 
-    ##############################################
+      "playerName"  : reporter 
+
 
   @getPayment: (report, refReport) ->
-    left = Network.signalList.indexOf(report)
-    right = Network.signalList.indexOf(refReport)
+    left  = @signalList.indexOf(report)
+    right = @signalList.indexOf(refReport)
     index = left * 2 + right
-    return Network.payAmounts[index]    
+    return @payAmounts[index]    
   
 module.exports = MockServer
