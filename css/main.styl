@@ -7,88 +7,101 @@
   width   1024px
   height  768px
 
+
+
 div.taskTitle 
   position absolute
-  top 10px
-  left 0px
-  width 1024px
-  height 30px
+  top       10px
+  left      0px
+  width     1024px
+  height    25px
   text-align center
   
 
-infoHeight    = 30px
-houseHeight   = 25px
-signalHeight  = 50px
-reportHeight  = 130px
+infoHeight    = 25px
+houseHeight   = 120px
+signalHeight  = 100px
+reportHeight  = 110px
 gap = 30px
-leftGameInfo = 60px
+leftGameInfo = 0px
 
-topGenInfo       = 60px
+topGenInfo       = 48px
 
-.task-gameIndex
+currGameWidth = 450px
+
+
+div.task-gameIndex
   position  absolute
   top       topGenInfo
   left      leftGameInfo
-  width     300px
+  width     currGameWidth
   height    infoHeight
   
 topChosenHouse = topGenInfo + infoHeight
   
-.task-chosenHouse
-  position absolute
-  top     topChosenHouse
-  left    leftGameInfo
-  width   230px
-  height  houseHeight
-
+div.task-chosenHouse
+  position  absolute
+  top       topChosenHouse
+  left      leftGameInfo
+  width     currGameWidth
+  height    houseHeight
+  border-top 2px solid #6678b1
 
 topSignal = topChosenHouse + houseHeight
 
 div.task-yourSignal
-  position      absolute
-  top           topSignal
-  left          leftGameInfo
-  width         400px
-  height        signalHeight
-  // border-left   2px dashed gray
-  // border-right  2px dashed gray
-  // border-top    2px dashed gray
+  position  absolute
+  top       topSignal
+  left      leftGameInfo
+  width     currGameWidth
+  height    signalHeight
+  border-top 2px solid #6678b1
 
 topReport = topSignal + signalHeight
 
-.task-yourReport
-  position      absolute
-  top           topReport
-  left          leftGameInfo
-  width         230px
-  height        reportHeight
-  // border-left   2px dashed gray
-  // border-right  2px dashed gray
-  // border-bottom 2px dashed gray
+div.task-yourReport
+  position  absolute
+  top       topReport
+  left      leftGameInfo
+  width     currGameWidth
+  height    reportHeight  
+  border-top 2px solid #6678b1
+  
 
-topRuleTable = topReport + reportHeight + gap
+infoLeft = 230px
 
-.ruleTable
+div.info-house
+  z-index   0 
+  position  absolute
+  top       topChosenHouse + 30px
+  left      50px
+  width     250px
+
+ruleTableTop = 300px
+
+div.ruleTable
   z-index   0
   position  absolute
-  top       topRuleTable
-  left      leftGameInfo
+  top       topReport + 20px
+  left      infoLeft
   width     250px
 
 
 
-resultTableHeaderTop = 60px
-resultTableHeaderHeight = 155px
-resultLeft = 400px
 
-.resultTableHeader
+
+resultTop = 50px
+resultHeaderHeight = 90px
+resultLeft = 500px
+
+div.resultTableHeader
   position absolute
-  top      resultTableHeaderTop
+  top      resultTop
   left     resultLeft
 
-resultTableBodyTop = resultTableHeaderTop + resultTableHeaderHeight
+resultTableBodyTop = resultTop + resultHeaderHeight
 
-.resultTableBody
+div.resultTableBody
   z-index   0
   position  absolute
   top       resultTableBodyTop

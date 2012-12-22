@@ -5,9 +5,11 @@ div.taskTitle
   font-size 18px
   font-weight bold
 
+
+
 // Index of current game
 div.task-gameIndex
-  font-size 18px
+  font-size   18px
   font-weight bold  
   
 // Step 1: House
@@ -17,64 +19,60 @@ div.task-chosenHouse
 // Step 2: Signal
 div.task-yourSignal
   font-size 18px
-  // vertical-align middle
-  // text-align center
   
 div.task-yourSignal img
   vertical-align middle
   
 div.task-yourSignal span
-  line-height 50px
-  
+  line-height 40px
+
 // Step 3: Report
 div.task-yourReport
   font-size 18px
-  // text-align center
 
 div.task-yourReport img
   vertical-align middle
 
 div#claimresult
 div#claimprompt
-  line-height 50px
+  line-height 35px
   
 div#claimchoices
-  line-height 40px
+  line-height 35px
   
 div#claimbutton
-  line-height 40px
+  line-height 35px
+
+
+
 
 // Payment rule table
 table.rule
-  margin 0 auto
   border-collapse: collapse
-  padding 0px 10px
   table-layout fixed
   
 table.rule caption
   padding-bottom 10px
   font-weight bold
-  font-size 17px
+  font-size   17px
   
 table.rule th   
+  font-size   16px
+  text-align  center
   border-bottom 2px solid #6678b1
-  text-align center
-  font-size 17px
 
 table.rule td
   border-bottom 1px solid #6678b1
-  text-align center
-  height 30px
-  font-size 19px
+  text-align  center
+  font-size   19px
 
 table.rule th.leftb, td.leftb
   border-left 2px solid #6678b1
 
-.colRuleYourReport,.colRuleOtherReport
-  width 100px
-  
-.colRuleYourReward
-  width 100px
+col.colRuleYourReport
+col.colRuleOtherReport
+col.colRuleYourReward
+  width 75px
 
 
 
@@ -83,16 +81,18 @@ table.resultsHeader
   table-layout fixed
 
 table.resultsHeader caption
+  font-size   17px
   font-weight bold
-  font-size 17px
+
 
 table.resultsHeader th
+  width   65px
+  height  60px
+  font-size 17px
+  border-top    2px solid #6678b1
   border-bottom 2px solid #6678b1
   border-left   2px white solid
   border-right  2px white solid
-  width   65px
-  height  60px
-  font-size 18px
 
 table.resultsHeader th img
   vertical-align middle
@@ -101,7 +101,7 @@ table.resultsHeader th.leftb
   border-left 2px solid #6678b1
 
 table.resultsHeader th.aggInfo
-  width 210px
+  width 200px
 
 
 
@@ -113,9 +113,9 @@ table.results td
   text-align    center
   border-left   2px white solid
   border-right  2px white solid
-  width   65px
-  height  55px
-  font-size 19px
+  width         65px
+  height        50px
+  font-size     19px
 
 table.results td.leftb
   border-left 2px solid #6678b1
@@ -131,9 +131,9 @@ table.results td.borderRightDashed
   border-right 2px black dashed 
   
 table.results td.aggInfo
-  width 210px
-  vertical-align middle
   font-size 20px
+  width     200px
+  vertical-align middle
 
 table.results td.aggInfo img
   vertical-align middle
@@ -143,35 +143,3 @@ table.results td.aggInfo img
 
 
   
-// Style the hyperlinks as buttons
-a.button
-  padding 6px 9px
-  background #4479BA
-  color #FFF
-  -webkit-border-radius 4px
-  -moz-border-radius 4px
-  border-radius 4px
-  border solid 1px #20538D
-  text-shadow 0 -1px 0 rgba(0, 0, 0, 0.4)
-  -webkit-box-shadow inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2)
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-  -webkit-transition-duration 0.2s
-  -moz-transition-duration 0.2s
-  transition-duration 0.2s
-  -webkit-user-select none
-  -moz-user-select none
-  -ms-user-select none
-  user-select none
-
-a.button:hover, a.button:focus
-  background: #356094;
-  border: solid 1px #2A4E77;
-  text-decoration: none;  
-  
-a.button:active
-  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-  background: #2E5481;
-  border: solid 1px #203E5F;

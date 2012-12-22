@@ -16,7 +16,7 @@ class Quiz extends Spine.Controller
     @render()
     
   render: ->
-    @signalList = Network.signalList unless @signalList
+    @signalList = ["MM", "GM"]
     @html require('views/quiz')(@)
     
   submitClicked: (ev) -> 

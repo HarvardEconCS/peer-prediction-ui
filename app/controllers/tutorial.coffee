@@ -14,6 +14,10 @@ class Tutorial extends Spine.Controller
     "click .tutorial .button.prev"    : "previousClicked"
     'click a#endTutorial'             : "endTutorialClicked"
  
+  endTutorialClicked: (ev) ->
+    ev.preventDefault()
+    @navigate '/quiz'
+ 
   constructor: ->
     super
     @payAmounts = [0.58, 0.36, 0.43, 0.54]
@@ -36,18 +40,6 @@ class Tutorial extends Spine.Controller
       ['uiOtherStatus',     @uiFourOtherStatus]
       ['uiGameResult',      @uiFiveResult]
       ['uiExperimentEnd',   @uiSixExpEnd]
-      # ['uiGenInfo',   @uiTwoGenInfo]
-      # ['uiPayRule',   @uiThreePayRule]
-      # ['uiInfoTable', @uiFourInfoTable]
-      # ['uiPastInfo',  @uiFivePastInfo]
-      # ['uiCurrInfo',  @uiSixCurrInfo]      
-      # ['uiSignalButton',    @uiSevenSignalButton]
-      # ['uiSignalShown',     @uiEightSignalShown]
-      # ['uiReportChoice',    @stepUiReportChoice]
-      # ['uiReportConfirmed', @stepUiReportConfirmed]
-      # ['uiFriendStatus',    @stepUiFriendStatus]
-      # ['uiFriendAllConfirmed', @stepUiFriendAllConfirmed]
-      # ['uiNextGame', @stepUiNextGame]
     ] 
     
     @tutOrgTop = '50px'

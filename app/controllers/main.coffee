@@ -25,9 +25,9 @@ class Main extends Spine.Stack
   
   routes: 
     '/': 'homepage'
-    '/tutorial': 'tutorial'
-    '/quiz': 'quiz'
-    '/task': 'task'
+    '/tutorial' : 'tutorial'
+    '/quiz'     : 'quiz'
+    '/task'     : 'task'
     '/exitsurvey': 'exitsurvey'
 
 

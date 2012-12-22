@@ -8,6 +8,7 @@ class MockServer
   @jarInfo    = [10, 3, 4]
   @payAmounts = [0.58, 0.36, 0.43, 0.54]
   @nPlayers   = 5
+  @nRounds    = 6
   
   @playerNames  = []
   @results      = []
@@ -39,7 +40,7 @@ class MockServer
     msg = 
       "status"      : "startRound"
       "numPlayers"  : @nPlayers
-      "numRounds"   : 3
+      "numRounds"   : @nRounds
       "playerNames" : @playerNames
       "yourName"    : @currName 
       "payments"    : @payAmounts
