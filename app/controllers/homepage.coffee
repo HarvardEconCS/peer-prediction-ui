@@ -1,6 +1,7 @@
 Spine = require('spine')
 
 class Homepage extends Spine.Controller
+  className: 'homepage'
   
   events:
     "click a#startExperiment": "buttonClicked"

@@ -1,7 +1,13 @@
 <h1>Welcome to our experiment!</h1> 
 
-In this experiment, you will be playing a game with a group of players for a number of rounds.
+<p>
+In this experiment, you with be playing a game for a fixed number of rounds with a fixed group of players in real time. <br/><br/>
 
-We are interested in studying how different people play this game, and whether you can gradually learn and improve by repeatedly playing the same game.<br/><br/>
+The objective of this experiment is to study how different people learn and play this game through the repeated interaction. <br/><br/> 
+
+First, you will need to go through a tutorial to learn about the rules and the interface of the game.  Then you need to pass a quiz about the game.  Once you pass the quiz, you will be matched with a group of other players and play the game for a fixed number of rounds.<br/><br/>
+
+Let's get started with the tutorial.<br/><br/>
+</p>
 
 <a class="button" id="startExperiment" href="#">Go to the tutorial</a>

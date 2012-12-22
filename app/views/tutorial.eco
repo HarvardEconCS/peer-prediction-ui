@@ -4,9 +4,10 @@
   <img class="image" id="tutorial3" src="images/tutorial3.png">
   <img class="image" id="tutorial4" src="images/tutorial4.png">
   <img class="image" id="tutorial7" src="images/tutorial7.png">
-  <img class="image" id="tutorial8" src="images/tutorial8.png">
+  <!-- <img class="image" id="tutorial8" src="images/tutorial8.png"> -->
+  <img class="image" id="tutorial8" src="images/tutorial-recap.png">
     
-  <img class="image" id="taskstart"           src="images/tasknew-start.png">
+  <img class="image" id="taskstart"           src="images/task-start.png">
   <img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
   <img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png">
   <img class="image" id="tasknextgame"        src="images/task-nextgame.png">
@@ -19,6 +20,9 @@
   <img class="image" id="box-onepastgame" src="images/box-onepastgame.png">
   <img class="image" id="box-signalReport" src="images/box-signalReport.png">
   <img class="image" id="box-newgame" src="images/box-newgame.png">
+  
+  <img class="image" id="box-stepsonetwo" src="images/box-stepsonetwo.png">
+  <img class="image" id="box-stepthree" src="images/box-stepthree.png">
   
   <img class="image" id="box-title" src="images/box-title.png">
   <img class="image" id="box-currentgame" src="images/box-currentgame.png">
@@ -50,41 +54,43 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
-      Welcome to the tutorial!  <br/><br/>
+      <span class="emph">Welcome!</span><br/><br/>
             
-      This tutorial has <span class="emph">2 parts</span>.<br/><br/>  
-      The first part explains the <span class="emph">3 steps</span> of the game.<br/><br/> 
-      The second part walks you through <span class="emph">the interface</span> of this game. <br/><br/> 
-      
-      Let's get started!        
+      This tutorial explains
+      <ul>
+        <li><span class="emphtext">3 steps</span> of the game, and</li>
+        <li><span class="emphtext">the interface</span> of the game</li>
+      </ul>
+      Imagine that it is Halloween night.  A group of kids are excited to go trick or treating.
     </p>
   </div>
 
   <!-- (2) Show 2 types of jars -->
   <div class="step prior">
     <p>
-      <span class="emph">Step 1: Choose a house</span>  <br/><br/>
+      <span class="emph">Step 1: Choose a random house</span>  <br/><br/>
       
-      During Halloween night, a group of kids (including you) <span class="emph">randomly</span> choose a house to go trick or treating.<br/><br/>
+      The group of kids <span class="emphtext">randomly choose a house</span> to go trick or treating.<br/><br/>
       
-      There are <span class="emph">2 types of houses</span> in the neighbourhood, but nobody knows which house is which type.
+      The chosen house can be <span class="emphtext">1 of 2 types with equal chance</span>, but nobody knows which type of house it is.
     </p>
   </div>
 
   <div class="step takeCandy">
     <p>
-      <span class="emph">Step 2: Get a candy</span><br/><br/>
+      <span class="emph">Step 2: Get a random candy</span><br/><br/>
       
-      From the chosen house, each kid in the group gets 1 candy, according to steps on the right.<br/><br/>
+      Each kid <span class="emphtext">gets a random candy, in secret, from the chosen house</span>, as described on the right.
     </p>
   </div>
 
   <div class="step gameRule">
     <p>
-      <span class="emph">Step 3: Make a claim and get rewarded</span><br/><br/>
+      <span class="emph">Step 3: Make a claim and get a reward</span><br/><br/>
       
-      The clown asks each kid in the group to tell him what candy he/she got from the chosen houses. <br/><br/> 
-      Then the clown gives each kid a reward based on a particular payment rule. 
+      The kids run into a clown.  He makes an interesting offer:<br/><br/>
+      
+      "If each kid tells me <span class="emphtext">what candy you just got</span>, then I will give each kid <span class="emphtext">a reward</span>." (explained on the right)
     </p>
   </div>
 
@@ -92,63 +98,71 @@
     <p>
       <span class="emph">Step 3: Make a claim and get rewarded</span><br/><br/>
             
-      This is an example for determining the rewards.
+      This example illustrates how the rewards are determined.
     </p>
   </div>
 
   <div class="step recap">
     <p>
-      This is a <span class="emph">recap</span> of the entire game<br/><br/>
+      <span class="emph">Recap of the game</span><br/><br/>
       
-      In the experiment, you will be playing this game many times with a fixed group of players.<br/><br/>
+      In the experiment, you will be playing this game for multiple rounds with a fixed group of players.<br/><br/>
       
-      Next, let's look at the interface of the game.  
+      Next, let's take a look at the interface of the game.  
     </p>
   </div>
 
   <div class="step uiStart">
     <p>
-      This is the interface of the game.
+      This is the interface of the game.<br/><br/>
+      
+      The <span class="emphtext">left side</span> describes the 3 steps of the game.<br/><br/>
+      
+      The <span class="emphtext">right side</span> displays the results of previous games and the status of the current game. 
     </p>
   </div>
 
   <div class="step uiExperimentStart"> 
     <p>
-      At the beginning of the experiment, <span class="emph">the title</span> displays <span class="emph">the total number of games</span>, and <span class="emph">the number of other players</span> in the games. <br/><br/> 
+      At the beginning of the experiment, <span class="emphtext">the title</span> displays <span class="emphtext">the total number of rounds</span>, and <span class="emphtext">the number of other players</span> in the games.
     
-      <span class="emph">The reward rule table</span> is shown in the lower left corner.
     </p>
   </div>
 
   <div class="step uiGameActions"> 
     <p>
-      During a game, the upper left corner shows <span class="emph">the index of the current game</span>.<br/><br/>  
+      During a round, the upper left corner displays <span class="emphtext">the number of the current round</span>.<br/><br/>  
       
-      For <span class="emph">step 1</span> of the game, a random house is automatically chosen.<br/><br/>
+      For <span class="emphtext">step 1</span> of each round, a house is randomly chosen.<br/><br/>
       
-      Then, for <span class="emph">step 2</span>, you need to click on the button to get your candy from the chosen house.<br/><br/>  
+      For <span class="emphtext">step 2</span>, you can click on the button to get your candy from the chosen house.
     </p>
   </div>
 
   <div class="step uiChooseClaim">
     <p>
-      Once you get your candy, then for <span class="emph">step 3</span>, you can choose amd confirm your claim for the clown.  
+      Once you get your candy, for <span class="emphtext">step 3</span>, you can choose amd confirm your claim for the clown.<br/><br/>
+      
+      The reward rule table is also shown for your information.
     </p>
   </div>
 
   <div class="step uiOtherStatus">      
     <p>
-      During a game, <span class="emph">the dashed row</span> in the result table displays <span class="emph">your candy</span> and <span class="emph">your claim</span> as soon as you have taken the actions in steps 2 and 3. <br/><br/> 
-      
-      The last column in the dashed row displays <span class="emph">the number of other players who have not confirmed their claims</span>, or <span class="emph">"all confirmed"</span> if this number is 0.
+      During a round, <span class="emphtext">the dashed row in the result table</span> displays information about the current game, such as 
+      <ul>
+        <li><span class="emphtext">your candy</span></li>
+        <li><span class="emphtext">your claim</span></li>
+        <li><span class="emphtext">the number of other players who have not confirmed their claims</span> (or <span class="emphtext">"all confirmed"</span> if this number is 0)</li>
+      </ul>
     </p>
   </div>
   
   <div class="step uiGameResult">
     <p>
-    Once a game ends, the next game automatically starts.  <br/><br/>
+    Once a round ends, the next round automatically starts.  <br/><br/>
     
-    For the ended game, the last cell in the corresponding row displays <span class="emph">the number of players who claim to have either type of candy</span>.  
+    For the game that just ended, the row in the result table shows <span class="emphtext">the number of players who claim to have either type of candy</span>.  
     </p>
   </div>
 

@@ -16,15 +16,15 @@
   <!-- Inforation about the game has been loaded.  Display it. -->
   
   <div class="taskTitle">
-    You are playing a total of <%= @numRounds %> games with <%= @numPlayers - 1 %> friends.<br/> 
+    You are playing <span class="emphtitle"><%= @numRounds %> rounds</span> of the game with <span class="emphtitle"><%= @numPlayers - 1 %> other players</span><br/> 
   </div>
  
   <div class="task-gameIndex">
-    This is Game #<%= @game.numPlayed + 1 %>:
+    This is <span class="emphtitle">Round #<%= @game.numPlayed + 1 %></span>:
   </div>
 
   <div class="task-chosenHouse"> 
-    1. &nbsp;&nbsp;A house has been randomly chosen for this game. <br/>
+    1. &nbsp;&nbsp;A house has been randomly chosen for this round. <br/>
   </div>
   
   <div class="info-house">
@@ -154,12 +154,12 @@
       <caption>Results</caption>
       <thead>
         <tr>
-          <th class="">Game</th>
+          <th class="">Round</th>
           <th class="leftb">Your candy</th>
           <th class="leftb">Your claim</th>
           
           <% if @agg is true: %>
-            <th class="aggInfo">Your friends' claims</th>
+            <th class="aggInfo">Other players' claims</th>
           <% else: %>
           
             <% for i in [1..(@numPlayers - 1)]: %>      
