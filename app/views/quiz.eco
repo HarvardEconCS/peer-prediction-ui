@@ -4,16 +4,17 @@
   <li>
     <span class="question"> Consider the following statements about step 1 of the game, select all correct answers.</span>  <br/><br/>
     &nbsp;&nbsp;<input type="checkbox" name="step1" id="step14" value="firsttype">
-    <label for="step14">If you randomly choose a house, then there is 50% chance that this house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
+    <label for="step14">There is 60% chance that the randomly chosen house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
      
     &nbsp;&nbsp;<input type="checkbox" name="step1" id="step12" value="diffhouse">
-    <label for="step12">At the beginning of each game, a different house is randomly chosen among all houses in the neighbourhood.</label><br/>
+    <label for="step12">A house is randomly chosen at the beginning of each game.</label><br/>
     
     &nbsp;&nbsp;<input type="checkbox" name="step1" id="step11" value="randomunknown">
-    <label for="step11">For a randomly chosen house, nobody knows which type of houses it is (in terms of the proportions of candies it gives out).</label><br/>
+    <label for="step11">At the beginning of each game, none of the players knows the type of the chosen house (in terms of 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the proportions of candies it gives out).</label><br/>
     
     &nbsp;&nbsp;<input type="checkbox" name="step1" id="step13" value="secondtype">
-    <label for="step13">If you randomly choose a house, then there is 50% chance that this house is the type giving out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
+    <label for="step13">There is 50% chance that the randomly chosen house is the type giving out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
     <br/><br/>
   </li>
   
@@ -79,7 +80,7 @@
     
     &nbsp;&nbsp;<input type="checkbox" name="step3" id="step34" value="readtable">
     <label for="step34">If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">, 
-      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.43.</label><br/>
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.58.</label><br/>
     
     &nbsp;&nbsp;<input type="checkbox" name="step3" id="step31" value="misreport">
     <label for="step31">When you are making a claim to the clown, you can claim to have either <img class="candy_image" src="images/<%= @signalList[0] %>.png"> or <img class="candy_image" src="images/<%= @signalList[1] %>.png">.</label><br/>
@@ -89,8 +90,8 @@
       <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to have matches the actual type of your candy.</label><br/>
       
     &nbsp;&nbsp;<input type="checkbox" name="step3" id="step33" value="reward">
-    <label for="step33">Suppose that you claim to have <img class="candy_image" src="images/<%= @signalList[0] %>.png">, the random friend of yours chosen is Josh and he claims to have <img class="candy_image" src="images/<%= @signalList[0] %>.png">, 
-      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.58 regardless of the actual type of your candy.</label><br/>  
+    <label for="step33">Suppose that you claim to have <img class="candy_image" src="images/<%= @signalList[0] %>.png">, the random friend of yours chosen is Josh and he claims to have <img class="candy_image" src="images/<%= @signalList[1] %>.png">, 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.36 regardless of the actual type of your candy.</label><br/>  
       <br/><br/>
   </li>
   
@@ -128,8 +129,8 @@
     <label for="interface12">Once the game ends, you can see a summary of the claims made by the other players.</label><br/>
     
     <input type="checkbox" name="interface1" id="interface13" value="chooseHouse">
-    <label for="interface13">The claim of the random friend of yours is not displayed, but you can infer it by checking your claim and your reward 
-      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the reward rule table.</label><br/>
+    <label for="interface13">By knowing your claim and your reward, you can infer the claim of the randomly chosen player, whose claim was used 
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to determine your reward.</label><br/>
   </li> 
 </ol>
 <p>
