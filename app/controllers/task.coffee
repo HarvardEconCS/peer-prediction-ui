@@ -52,6 +52,9 @@ class Task extends Spine.Controller
     @game   = Game.last()
     @games  = Game.all()
     
+    @avgreward = @calcAvgReward()
+    console.log @avgreward
+    
     @html require('views/task')(@)
 
     # add left and right dashed border style for the last row
@@ -74,6 +77,17 @@ class Task extends Spine.Controller
     # make the table always scroll to the bottom
     $('div .resultTableBody').scrollTop($('div .resultTableBody').prop("scrollHeight"))
 
+  calcAvgReward: ->
+    totalReward = 0
+    num = 0
+    if @games
+      for @eachgame in @games
+        if @eachgame.result?[Network.currPlayerName]?.reward?
+          totalReward = totalReward + @eachgame.result[Network.currPlayerName].reward
+          num = num + 1
+          
+    if num > 0
+      return Math.round(totalReward / num * 100)/100
 
   # called after getting the game state
   gotGameState: (gameState) ->

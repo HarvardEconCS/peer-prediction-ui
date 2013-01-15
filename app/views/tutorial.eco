@@ -162,7 +162,7 @@
     <p>
     Once a round ends, the next round automatically starts.  <br/><br/>
     
-    For the game that just ended, the row in the result table shows <span class="emphtext">the number of players who claim to have either type of candy</span>.  
+    For the game that just ended, the row in the result table shows <span class="emphtext">your claim and the number of other players who claim to have either type of candy</span>.  
     </p>
   </div>
 

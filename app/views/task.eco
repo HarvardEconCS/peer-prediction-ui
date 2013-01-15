@@ -352,11 +352,18 @@
 
   </table>
 
-  <!-- <p> How did you choose your report for this game?</p>
-  <textarea rows="4" cols="70">
-  </textarea><br/><br/>
-  <a class="button" href="#">Confirm your rationale</a> -->
+</div>
 
+
+<div class="avgreward">
+  <p>
+    Average Reward: 
+    <% if @avgreward: %>
+      $<%= @avgreward %>
+    <% else: %>
+      $0.00
+    <% end %>
+  </p>
 </div>
 
 <% end %>
