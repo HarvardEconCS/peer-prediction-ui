@@ -23,7 +23,7 @@ class Tutorial extends Spine.Controller
     @payAmounts = [0.58, 0.36, 0.43, 0.54]
     @signalList = Network.signalList
     
-    $(document).keypress @keyPressed
+    # $(document).keypress @keyPressed
 
     @stepIndex = 0
     @steps = [

@@ -1,5 +1,6 @@
 <h2>Exit Survey</h2>
 
+<form>
 <p>1. Did you see any bugs?  Please report any bugs you observed in the task.</p>
 <textarea rows="5" cols="100" name="bugs"></textarea>
 
@@ -15,3 +16,4 @@
 <p>
   <a class="button" href="#">Submit</a>
 </p>
+</form>
