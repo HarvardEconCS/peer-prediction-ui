@@ -11,16 +11,16 @@
     <br/>
     
     <span id='q1choices'>
-      <input type="checkbox" name="step1" id="q11" value="randomunknown">
+      <input type="checkbox" name="step1" id="q11" value="v11">
       <label for="q11" id="l11">&nbsp;&nbsp;At the beginning of each game, none of the players knows the type of the chosen house (in terms of<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the proportions of candies it gives out).<br/></label>
 
-      <input type="checkbox" name="step1" id="q12" value="diffhouse">
+      <input type="checkbox" name="step1" id="q12" value="v12">
       <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the beginning of each game.<br/></label>
         
-      <input type="checkbox" name="step1" id="q13" value="secondtype">
+      <input type="checkbox" name="step1" id="q13" value="v13">
       <label for="q13" id="l13">&nbsp;&nbsp;There is 50% chance that the randomly chosen house is the type giving out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     
-      <input type="checkbox" name="step1" id="q14" value="firsttype">
+      <input type="checkbox" name="step1" id="q14" value="v14">
       <label for="q14" id="l14">&nbsp;&nbsp;There is 60% chance that the randomly chosen house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     </span>
     <br/>
@@ -42,18 +42,20 @@
     <br/>
     <br/>
     <span id="q2choices">
-      <input type="checkbox" name="step2" id="q24" value="secretcandy4">
-      <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then the chance for every kid to get a <img class="candy_image" src="images/<%= @signalList[1] %>.png"> from<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this house is 30%.<br/></label>   
-    
-      <input type="checkbox" name="step2" id="q21" value="secretcandy1">
+
+      <input type="checkbox" name="step2" id="q21" value="v21">
       <label for="q21" id="l21">&nbsp;&nbsp;The type of candy you got from the chosen house is only known by you and the owner of the house.<br/></label>
     
-      <input type="checkbox" name="step2" id="q23" value="secretcandy3">
+      <input type="checkbox" name="step2" id="q22" value="v22">
+      <label for="q22" id="l22">&nbsp;&nbsp;The other kids do not know what type of your candy you got.<br/></label>
+    
+      <input type="checkbox" name="step2" id="q23" value="v23">
       <label for="q23" id="l23">&nbsp;&nbsp;If the chosen house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and the first kid gets a <img class="candy_image" src="images/<%= @signalList[0] %>.png"> from this house, 
       <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then the chance for the second kid to get a <img class="candy_image" src="images/<%= @signalList[0] %>.png"> is less than 70%.<br/></label>   
-     
-      <input type="checkbox" name="step2" id="q22" value="secretcandy2">
-      <label for="q22" id="l22">&nbsp;&nbsp;The other kids do not know what type of your candy you got.<br/></label>
+
+      <input type="checkbox" name="step2" id="q24" value="v24">
+      <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house is the type giving out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then the chance for every kid to get a <img class="candy_image" src="images/<%= @signalList[1] %>.png"> from<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this house is 30%.<br/></label>   
+    
     </span>
     
     <br/><br/>
@@ -107,16 +109,16 @@
     
     <span id="q3choices">
       
-      <input type="checkbox" name="step3" id="q31" value="misreport">
+      <input type="checkbox" name="step3" id="q31" value="v31">
       <label for="q31" id="l31">&nbsp;&nbsp;When you are making a claim to the clown, you can claim to have either <img class="candy_image" src="images/<%= @signalList[0] %>.png"> or <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     
-      <input type="checkbox" name="step3" id="q32" value="clown">
-      <label for="q32" id="l32">&nbsp;&nbsp;The clown does not know what candy you got.  So the clown cannot verify whether the type of candy you claim<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to have matches the actual type of your candy.<br/></label>
+      <input type="checkbox" name="step3" id="q32" value="v32">
+      <label for="q32" id="l32">&nbsp;&nbsp;The clown does not know what candy you got.  So the clown cannot verify whether your claim matches <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the actual type of your candy.<br/></label>
       
-      <input type="checkbox" name="step3" id="q33" value="reward">
+      <input type="checkbox" name="step3" id="q33" value="v33">
       <label for="q33" id="l33">&nbsp;&nbsp;Suppose that you claim to have <img class="candy_image" src="images/<%= @signalList[0] %>.png">, the random friend of yours chosen is Josh and he claims to have <img class="candy_image" src="images/<%= @signalList[1] %>.png">,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.36 regardless of the actual type of your candy.<br/></label>
       
-      <input type="checkbox" name="step3" id="q34" value="readtable">
+      <input type="checkbox" name="step3" id="q34" value="v34">
       <label for="q34" id="l34">&nbsp;&nbsp;If your candy is <img class="candy_image" src="images/<%= @signalList[0] %>.png">, your claim to the clown is <img class="candy_image" src="images/<%= @signalList[1] %>.png">, and your random friend Thomas claims he has <img class="candy_image" src="images/<%= @signalList[0] %>.png">,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then your reward is $0.58.<br/></label>
     
     </span>

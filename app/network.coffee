@@ -198,7 +198,7 @@ class Network
         @getGameResult(MockServer.getResult())    
 
 
-  @sendQuizAns: (ans) ->
+  @sendQuizInfo: (num) ->
     # send quiz answer to server
 
 module.exports = Network

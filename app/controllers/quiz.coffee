@@ -26,26 +26,32 @@ class Quiz extends Spine.Controller
     ev.preventDefault()
     
     # validate answers and send them to server
-    ans = 
-      stepOneAns: []
-      stepTwoAns: []
-      stepThreeAns: []
-      interfaceAns: []
+    ans = []
     $('input:checkbox[name=step1]:checked').each ->
-      ans.stepOneAns.push $(this).val()
+      ans.push $(this).val()
     $('input:checkbox[name=step2]:checked').each ->
-      ans.stepTwoAns.push $(this).val()
+      ans.push $(this).val()
     $('input:checkbox[name=step3]:checked').each ->
-      ans.stepThreeAns.push $(this).val()
+      ans.push $(this).val()
     $('input:checkbox[name=interface1]:checked').each ->
-      ans.interfaceAns.push $(this).val()
-    ans.stepOneAns.sort()
-    ans.stepTwoAns.sort()
-    ans.stepThreeAns.sort()
-    ans.interfaceAns.sort()
+      ans.push $(this).val()
+    ans.sort()
+      
+    key = ['v14', 'v23', 'v34']
+    key.sort()
     
+    num = 0
+    for ch in ans
+      if key.indexOf(ch) is -1
+        num++
+    for ch in key
+      if ans.indexOf(ch) is -1
+        num++
+        
+    console.log "score is #{num}/15"
+
     # send answers to the server
-    Network.sendQuizAns(ans)
+    Network.sendQuizInfo(num)
     
     # @navigate "/task"
     
@@ -69,8 +75,6 @@ class Quiz extends Spine.Controller
     for input, i in newInputList
       choices.append(input)
       choices.append(newLabelList[i])
-    
-    
     
   randomizeList: (len) ->
     oldList = (num for num in [0..(len-1)])
