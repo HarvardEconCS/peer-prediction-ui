@@ -18,7 +18,10 @@ class Quiz extends Spine.Controller
   render: ->
     @signalList = ["MM", "GM"]
     @html require('views/quiz')(@)
-    
+
+    for i in [1..4]
+      @randomizeChoices(i)
+  
   submitClicked: (ev) -> 
     ev.preventDefault()
     
@@ -45,5 +48,42 @@ class Quiz extends Spine.Controller
     Network.sendQuizAns(ans)
     
     # @navigate "/task"
+    
+  randomizeChoices: (qNum)->
+    inputList = []
+    labelList = []
+    choices = $('span#q'+qNum+'choices')
+    len = choices.contents().length / 2
+    for num in [1..len]
+      inputList.push($('input:checkbox#q'+qNum+num))
+      labelList.push($('label#l'+qNum+num))
+    
+    newInputList = []
+    newLabelList = []
+    randList = @randomizeList(len)
+    for index in randList
+      newInputList.push(inputList[index])
+      newLabelList.push(labelList[index])
+    
+    choices.contents().remove()
+    for input, i in newInputList
+      choices.append(input)
+      choices.append(newLabelList[i])
+    
+    
+    
+  randomizeList: (len) ->
+    oldList = (num for num in [0..(len-1)])
+    num = len
+    newList = []
+    
+    while num > 0
+      rand = Math.floor(Math.random() * num)
+      newList.push(oldList[rand])
+      oldList.splice(rand, 1)
+      num = num - 1
+    
+    newList
+      
     
 module.exports = Quiz

@@ -57,10 +57,20 @@ class Task extends Spine.Controller
     
     @html require('views/task')(@)
 
+    @addDashedBorder()
+    @randomizeRadioButtons()
+    @scrollTableToBottom()
+
+  scrollTableToBottom: ->
+    # make the table always scroll to the bottom
+    $('div .resultTableBody').scrollTop($('div .resultTableBody').prop("scrollHeight"))
+    
+  addDashedBorder: ->
     # add left and right dashed border style for the last row
     $('tr.borderAroundDashed td:first-child').addClass('borderLeftDashed')
     $('tr.borderAroundDashed td:last-child').addClass('borderRightDashed')
 
+  randomizeRadioButtons: ->
     # random order of the radio buttons 
     if Network.signalList?
       if @randomRadio is 0
@@ -73,9 +83,6 @@ class Task extends Spine.Controller
         $('img#imgFirstRadio').attr('src', "images/#{Network.signalList[1]}.png")
         $('input:radio#secondRadio').val("#{Network.signalList[0]}")
         $('img#imgSecondRadio').attr('src', "images/#{Network.signalList[0]}.png")
-
-    # make the table always scroll to the bottom
-    $('div .resultTableBody').scrollTop($('div .resultTableBody').prop("scrollHeight"))
 
   calcAvgReward: ->
     totalReward = 0
