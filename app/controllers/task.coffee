@@ -37,7 +37,7 @@ class Task extends Spine.Controller
   # called when this controller is activated in the stack
   active: (params)->
     super
-    Network.ready()    
+    Network.ready() # Perhaps name this something else   
     @render()
         
   render: ->
@@ -53,7 +53,6 @@ class Task extends Spine.Controller
     @games  = Game.all()
     
     @avgreward = @calcAvgReward()
-    console.log @avgreward
     
     @html require('views/task')(@)
 
@@ -95,6 +94,8 @@ class Task extends Spine.Controller
           
     if num > 0
       return Math.round(totalReward / num * 100)/100
+    else
+      return 0
 
   # called after getting the game state
   gotGameState: (gameState) ->

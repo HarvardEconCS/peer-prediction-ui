@@ -16,6 +16,7 @@ class Tutorial extends Spine.Controller
  
   endTutorialClicked: (ev) ->
     ev.preventDefault()
+    @stepIndex = 0
     @navigate '/quiz'
  
   constructor: ->
@@ -54,12 +55,13 @@ class Tutorial extends Spine.Controller
   active: ->
     super
     @render()
-    @stepShow()
+
 
   render: ->
     @signalList = Network.signalList unless @signalList
     @jarInfo = Network.jarInfo unless @jarInfo
     @html require('views/tutorial')(@)
+    @stepShow()
 
   # navigate the tutorial using arrows
   keyPressed: (ev) =>

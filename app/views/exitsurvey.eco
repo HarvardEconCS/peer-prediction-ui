@@ -1,19 +1,19 @@
 <h2>Exit Survey</h2>
 
+
+<p>We appreciate your comments to help us improve this task!</p>
+
 <form>
-<p>1. Did you see any bugs?  Please report any bugs you observed in the task.</p>
-<textarea rows="5" cols="100" name="bugs"></textarea>
+<p>1. Please report bugs in the task.</p>
+<textarea rows="5" cols="100" id="bugs"></textarea>
 
-<p>2. What do you think of the tutorial?  Please comment on our tutorial below.</p>
-<textarea rows="5" cols="100" name="tutorialComments"></textarea>
+<p>2. What do you think of the tutorial and the game interface?</p>
+<textarea rows="5" cols="100" id="uiComments"></textarea>
 
-<p>3. What do you think of the interface of the game? Please comment on the interface of the game below.</p> 
-<textarea rows="5" cols="100" name="interfaceComments"></textarea>
-
-<p>4. Were you able to figure out the best strategy to play this game?  Please describe how you played the game.</p>
-<textarea rows="5" cols="100" name="strategy"></textarea>
+<p>4. How did you play the game? </p>
+<textarea rows="5" cols="100" id="strategy"></textarea>
 
 <p>
-  <a class="button" href="#">Submit</a>
+  <a class="button" id="submitTask" href="#">Submit the task</a>
 </p>
 </form>

@@ -5,6 +5,7 @@ Network   = require 'network'
 Homepage  = require 'controllers/homepage'
 Tutorial  = require 'controllers/tutorial'
 Quiz      = require 'controllers/quiz'
+Lobby     = require 'controllers/lobby'
 Task      = require 'controllers/task'
 Exitsurvey      = require 'controllers/exitsurvey'
 
@@ -18,6 +19,7 @@ class Main extends Spine.Stack
     homepage: Homepage
     tutorial: Tutorial
     quiz: Quiz
+    lobby: Lobby
     task: Task
     exitsurvey: Exitsurvey
     
@@ -27,6 +29,7 @@ class Main extends Spine.Stack
     '/': 'homepage'
     '/tutorial' : 'tutorial'
     '/quiz'     : 'quiz'
+    '/lobby'    : 'lobby'
     '/task'     : 'task'
     '/exitsurvey': 'exitsurvey'
 

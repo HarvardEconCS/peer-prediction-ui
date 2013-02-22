@@ -1,16 +1,15 @@
 <h1>Welcome!</h1> 
 
 <p>
-For this task, you will be playing a game with a group of players for a number of rounds in real time. This is part of a research project to study how different people learn to play this game through the repeated interaction. <br/><br/> 
+  This task is part of a research project.  You will be playing a game with other players in real time for a number of rounds. <br/><br/> 
 
-For this task, you first must go through a tutorial and pass a quiz.  Then you will be matched with a group of other players and play a number of rounds of the same game.  Finally, you need to complete a short survey.<br/><br/>
+  This task has three components: (1) a tutorial and a quiz, (2) the game, (3) an exit survey.<br/><br/>
 
-If you finish this task, you will get a base payment of $0.05.  Your bonus payment will be the average of the payments of all the rounds of the game that you played.  Participation in this task is voluntary and you can quit at any time.  If you quit before finishing this task, you will not receive any payment.<br/><br/>
+  If you finish this task, your base payment is $0.05 and your bonus payment will be the average of your payments in all the rounds of the game you play.  <br/><br/>
 
-If you have any questions, please do not hesitate to contact Alice Gao at xagao@fas.harvard.edu.  <br/><br/>
+  Participation in this task is voluntary and you will not be paid if you quit before finishing this task.  If you have any questions, please contact Alice Gao at alice.gao11@gmail.com.<br/><br/>
 
-
-Let's get started with the tutorial.<br/><br/>
+Please click next to continue.<br/><br/>
 </p>
 
-<a class="button" id="startExperiment" href="#">Go to the tutorial</a>
+<a class="button" id="startExperiment" href="#">Next</a>

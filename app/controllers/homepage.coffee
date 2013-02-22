@@ -1,5 +1,7 @@
 Spine = require('spine')
 
+Network = require 'network'
+
 class Homepage extends Spine.Controller
   className: 'homepage'
   
@@ -18,6 +20,11 @@ class Homepage extends Spine.Controller
   
   buttonClicked: (ev) ->
     ev.preventDefault()
-    @navigate '/tutorial'
+    if Network.fakeServer
+      @navigate '/tutorial'
+    else if Network.showQuiz
+      @navigate '/tutorial'
+    else if Network.showLobby
+      @navigate '/lobby'
   
 module.exports = Homepage

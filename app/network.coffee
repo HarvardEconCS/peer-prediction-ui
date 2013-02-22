@@ -2,6 +2,7 @@ Game    = require 'models/game'
 TSClient = require 'turkserver-js-client'
 MockServer = require 'mockserver'
 
+
 class Network
   @cookieName = "peer.prediction.exp"
   
@@ -9,6 +10,7 @@ class Network
   
   @fakeServer         = undefined
   @task               = undefined
+  @mainCont           = undefined
   @intervalId         = null
   @currPlayerName     = undefined
   @currPlayerReport   = undefined
@@ -20,6 +22,9 @@ class Network
   @numRounds       = undefined
   @playerNames     = undefined
   
+  @showQuiz = false
+  @showLobby = false
+    
   # Initialize fake server
   @initFake: ->	
     @fakeServer = true
@@ -27,25 +32,55 @@ class Network
   # Initialize real server
   @init: ->
     @fakeServer = false
+    TSClient.QuizRequired @quizNeeded
+    TSClient.QuizFailed @quizFail
+    TSClient.EnterLobby @enterLobby
+    
     TSClient.StartExperiment -> console.log "@StartExperiment"
     TSClient.StartRound (round) -> console.log("@StartRound" + round)
     TSClient.FinishExperiment -> console.log "@FinishExperiment"
     TSClient.ServiceMessage @getMessage 
-
+    
+    TSClient.init(@cookieName, "")
+    
   # Configure task controller
   @setTaskController: (taskCont) ->
     @task = taskCont
 
+  @setMainController: (cont) ->
+    @mainCont = cont
+
   @ready: ->
+    Game.init()
+    
     if @fakeServer
-      Game.init()
       setTimeout (=> 
         @getGeneralInfo MockServer.getGeneralInfo() 
       ), 2000
+
+  @quizNeeded: =>
+    console.log "server asked for quiz"
+    # show quiz
+    @showQuiz = true
+
+  @quizFail: =>
+    console.log "quiz failed"
+    # display message that quiz failed, restart quiz
+    # alert "Sorry, you have failed the quiz.  Would you like to try again?"
+    r = confirm("You failed the quiz.  "
+      +"Would you like to try again? "
+      +"(Click OK to reload the tutorial and the quiz.  "
+      +"Click Cancel to quit this task.)")
+    if r
+      @mainCont.navigate '/tutorial'
+    else 
+      #@mainCont.navigate '/exitsurvey'
       
-    else
-      Game.init();
-      TSClient.init(@cookieName, "")
+      
+  @enterLobby: =>
+    console.log "entering lobby"
+    # display pre-game message
+    @showLobby = true
 
   @getMessage: (msg) =>
     console.log msg
@@ -58,8 +93,6 @@ class Network
         @getReportConfirmation msg
       when "results"
         @getGameResult msg
-
-
     
   # start the first game    
   @getGeneralInfo: (receivedMsg) ->  
@@ -198,7 +231,9 @@ class Network
         @getGameResult(MockServer.getResult())    
 
 
-  @sendQuizInfo: (num) ->
+  @sendQuizInfo: (correct, total) ->
     # send quiz answer to server
+    TSClient.sendQuizResults correct, total  
+    
 
 module.exports = Network

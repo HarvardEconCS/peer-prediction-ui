@@ -13,11 +13,11 @@
   <img class="image" id="tasknextgame"        src="images/task-nextgame.png">
   <img class="image" id="taskexpend"          src="images/task-expend.png">
 
-  <img class="image" id="box-geninfo" src="images/box-geninfo.png">
+  <!-- <img class="image" id="box-geninfo" src="images/box-geninfo.png"> -->
   <img class="image" id="box-rule"    src="images/box-rule.png">
   <img class="image" id="box-table"   src="images/box-table.png">
   <img class="image" id="box-onegame" src="images/box-onegame.png">
-  <img class="image" id="box-onepastgame" src="images/box-onepastgame.png">
+  <!-- <img class="image" id="box-onepastgame" src="images/box-onepastgame.png"> -->
   <img class="image" id="box-signalReport" src="images/box-signalReport.png">
   <img class="image" id="box-newgame" src="images/box-newgame.png">
   
