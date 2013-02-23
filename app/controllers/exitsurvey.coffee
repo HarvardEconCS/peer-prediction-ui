@@ -18,30 +18,19 @@ class Exitsurvey extends Spine.Controller
   render: ->
     @html require('views/exitsurvey')(@)
   
-  submitClicked: (ev) ->
+  submitClicked: (ev) =>
     ev.preventDefault()
     
     # retrieve comments
-    bugComments = $('textarea#bugs').val()
-    uiComments = $('textarea#uiComments').val()
-    strategyComments = $('textarea#strategy').val()
+    bugComments       = $('textarea#bugComments').val()
+    uiComments        = $('textarea#uiComments').val()
+    strategyComments  = $('textarea#strategyComments').val()
     exitComments = {}
-    if bugComments.length > 0
-      exitComments.bugs = bugComments
-    else 
-      exitComments = exitComments + "no bugs; "
-      
-    if uiComments.length > 0
-      exitComments = exitComments + "ui: #{uiComments}; "
-    else 
-      exitComments = exitComments + "no ui comments; "
+    exitComments.bug      = bugComments
+    exitComments.ui       = uiComments
+    exitComments.strategy = strategyComments
     
-    if strategyComments.length > 0
-      exitComments = exitComments + "strategy: #{strategyComments}"
-    else
-      exitComments = exitComments + "no strategy comments; "
-    
-    Network.finalSubmit(exitComments)
+    Network.sendFinalInfo(exitComments)
   
   
 module.exports = Exitsurvey

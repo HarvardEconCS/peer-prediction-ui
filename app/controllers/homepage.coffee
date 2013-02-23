@@ -18,8 +18,9 @@ class Homepage extends Spine.Controller
   render: ->
     @html require('views/homepage')(@)
   
-  buttonClicked: (ev) ->
+  buttonClicked: (ev) =>
     ev.preventDefault()
+    
     if Network.fakeServer
       @navigate '/tutorial'
     else if Network.showQuiz

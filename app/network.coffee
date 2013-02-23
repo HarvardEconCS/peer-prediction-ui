@@ -1,6 +1,6 @@
-Game    = require 'models/game'
-TSClient = require 'turkserver-js-client'
-MockServer = require 'mockserver'
+Game        = require 'models/game'
+TSClient    = require 'turkserver-js-client'
+MockServer  = require 'mockserver'
 
 
 class Network
@@ -22,67 +22,53 @@ class Network
   @numRounds       = undefined
   @playerNames     = undefined
   
-  @showQuiz = false
-  @showLobby = false
+  @showQuiz   = false
+  @showLobby  = false
     
-  # Initialize fake server
   @initFake: ->	
     @fakeServer = true
 
-  # Initialize real server
   @init: ->
     @fakeServer = false
     TSClient.QuizRequired @quizNeeded
     TSClient.QuizFailed @quizFail
     TSClient.EnterLobby @enterLobby
     
-    TSClient.StartExperiment @ready
+    TSClient.StartExperiment @startExperiment
     TSClient.StartRound (round) -> console.log("@StartRound" + round)
     TSClient.FinishExperiment -> console.log "@FinishExperiment"
     TSClient.ServiceMessage @getMessage 
     
     TSClient.init(@cookieName, "")
     
-  # Configure task controller
   @setTaskController: (taskCont) ->
     @task = taskCont
 
   @setMainController: (cont) ->
     @mainCont = cont
 
-  @ready: =>
-    console.log "ready called"    
+  @startExperiment: =>
     Game.init()    
-    @mainCont.navigate '/task'
     
-    # TODO: fix this for mock server
-    if @fakeServer
+    if not @fakeServer
+      @mainCont.navigate '/task'
+    else
       setTimeout (=> 
         @getGeneralInfo MockServer.getGeneralInfo() 
       ), 2000
 
   @quizNeeded: =>
     console.log "server asked for quiz"
-    # show quiz
     @showQuiz = true
     @mainCont.navigate '/'
 
   @quizFail: =>
     console.log "quiz failed"
-    # display message that quiz failed, restart quiz
-    # alert "Sorry, you have failed the quiz.  Would you like to try again?"
-    r = confirm("You failed the quiz.  "
-      +"Would you like to try again? "
-      +"(Click OK to reload the tutorial and the quiz.  "
-      +"Click Cancel to quit this task.)")
-    if r
-      @mainCont.navigate '/tutorial'
-    else 
-      #@mainCont.navigate '/exitsurvey'
+    alert "Sorry!  You failed the quiz.  We encourage you to try again.  If you'd like to quit, feel free to return this HIT."
+    @mainCont.navigate '/'
       
   @enterLobby: =>
     console.log "entering lobby"
-    # display pre-game message
     @mainCont.navigate '/lobby'
 
   @getMessage: (msg) =>
@@ -96,8 +82,7 @@ class Network
         @getReportConfirmation msg
       when "results"
         @getGameResult msg
-    
-  # start the first game    
+
   @getGeneralInfo: (receivedMsg) ->  
     @signalList      = receivedMsg.signalList
     @payAmounts      = receivedMsg.payments
@@ -105,20 +90,16 @@ class Network
     @numRounds       = receivedMsg.numRounds 
     @playerNames     = receivedMsg.playerNames
     @currPlayerName  = receivedMsg.yourName
-    @numPlayed   = 0
+    @numPlayed = 0
         
-    # if there are only 2 players, no point to aggregate the information
-    if @numPlayers is 2
-      @task.agg = false
-
+    # if there are only 2 players, no point to aggregate the info
+    @task.agg = false if @numPlayers is 2
     @task.render()
 
-    # get information for the next game
     if @fakeServer
       setTimeout (=> 
         @getSignal MockServer.getRoundSignal()
       ), 100
-
 
   @getSignal: (receivedMsg) ->    
     # reset variables
@@ -145,7 +126,6 @@ class Network
         @getReportConfirmation MockServer.getConfirmReport()
       ), 3000
   
-  # get next game
   @getGameResult: (receivedMsg) ->    
     console.log "get game result is #{JSON.stringify(receivedMsg)}"
 
@@ -190,7 +170,6 @@ class Network
     if @fakeServer
       setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )    
     
-    
   @sendReport: (report) ->
     if @fakeServer
       @currPlayerReport = report
@@ -200,8 +179,7 @@ class Network
         "report": report
 
   @getReportConfirmation: (receivedMsg) ->
-    if receivedMsg is null
-      return
+    return unless receivedMsg
     
     console.log "update actions: receivedMsg is #{JSON.stringify(receivedMsg)}"
 
@@ -238,9 +216,9 @@ class Network
     # send quiz answer to server
     TSClient.sendQuizResults correct, total  
 
-  @finalSubmit: (data) ->
+  @sendFinalInfo: (data) ->
     if @fakeServer
-      alert data
+      alert "exit survey answers: #{JSON.stringify(data)}"
     else
       TSClient.submitHIT(data)
 

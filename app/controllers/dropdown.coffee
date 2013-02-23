@@ -19,7 +19,7 @@ class Dropdown extends Spine.Controller
   render: ->
     @html require 'views/dropdown'
     
-  helpClicked: (ev) ->
+  helpClicked: (ev) =>
     ev.preventDefault()
     @helpContent.slideToggle()
     

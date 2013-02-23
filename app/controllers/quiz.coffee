@@ -22,7 +22,7 @@ class Quiz extends Spine.Controller
     for i in [1..4]
       @randomizeChoices(i)
   
-  submitClicked: (ev) -> 
+  submitClicked: (ev) => 
     ev.preventDefault()
     
     # validate answers and send them to server

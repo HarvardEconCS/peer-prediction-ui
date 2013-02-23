@@ -5,13 +5,13 @@
 
 <form>
 <p>1. Please report bugs in the task.</p>
-<textarea rows="5" cols="100" id="bugs"></textarea>
+<textarea rows="5" cols="100" id="bugComments"></textarea>
 
 <p>2. What do you think of the tutorial and the game interface?</p>
 <textarea rows="5" cols="100" id="uiComments"></textarea>
 
 <p>4. How did you play the game? </p>
-<textarea rows="5" cols="100" id="strategy"></textarea>
+<textarea rows="5" cols="100" id="strategyComments"></textarea>
 
 <p>
   <a class="button" id="submitTask" href="#">Submit the task</a>

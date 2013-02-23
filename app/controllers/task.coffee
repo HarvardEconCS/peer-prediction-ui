@@ -18,7 +18,6 @@ class Task extends Spine.Controller
     @unconfirmMsg   = Network.unconfirmMsg
     @defaultReport  = "default"      
 
-    
     @revealSignal = false
     @selected = @defaultReport
     
@@ -37,6 +36,10 @@ class Task extends Spine.Controller
   # called when this controller is activated in the stack
   active: (params)->
     super
+    
+    if Network.fakeServer
+      Network.startExperiment()
+    
     @render()
         
   render: ->
