@@ -37,7 +37,6 @@ class Task extends Spine.Controller
   # called when this controller is activated in the stack
   active: (params)->
     super
-    Network.ready() # Perhaps name this something else   
     @render()
         
   render: ->

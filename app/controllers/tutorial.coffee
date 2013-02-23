@@ -14,9 +14,8 @@ class Tutorial extends Spine.Controller
     "click .tutorial .button.prev"    : "previousClicked"
     'click a#endTutorial'             : "endTutorialClicked"
  
-  endTutorialClicked: (ev) ->
+  endTutorialClicked: (ev) =>
     ev.preventDefault()
-    @stepIndex = 0
     @navigate '/quiz'
  
   constructor: ->
@@ -55,7 +54,10 @@ class Tutorial extends Spine.Controller
   active: ->
     super
     @render()
-
+  
+  deactivate: ->
+    super
+    @stepIndex = 0
 
   render: ->
     @signalList = Network.signalList unless @signalList

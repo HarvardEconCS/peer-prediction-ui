@@ -36,7 +36,7 @@ class Network
     TSClient.QuizFailed @quizFail
     TSClient.EnterLobby @enterLobby
     
-    TSClient.StartExperiment -> console.log "@StartExperiment"
+    TSClient.StartExperiment @ready
     TSClient.StartRound (round) -> console.log("@StartRound" + round)
     TSClient.FinishExperiment -> console.log "@FinishExperiment"
     TSClient.ServiceMessage @getMessage 
@@ -50,9 +50,12 @@ class Network
   @setMainController: (cont) ->
     @mainCont = cont
 
-  @ready: ->
-    Game.init()
+  @ready: =>
+    console.log "ready called"    
+    Game.init()    
+    @mainCont.navigate '/task'
     
+    # TODO: fix this for mock server
     if @fakeServer
       setTimeout (=> 
         @getGeneralInfo MockServer.getGeneralInfo() 
@@ -62,6 +65,7 @@ class Network
     console.log "server asked for quiz"
     # show quiz
     @showQuiz = true
+    @mainCont.navigate '/'
 
   @quizFail: =>
     console.log "quiz failed"
@@ -76,11 +80,10 @@ class Network
     else 
       #@mainCont.navigate '/exitsurvey'
       
-      
   @enterLobby: =>
     console.log "entering lobby"
     # display pre-game message
-    @showLobby = true
+    @mainCont.navigate '/lobby'
 
   @getMessage: (msg) =>
     console.log msg
@@ -230,10 +233,15 @@ class Network
         console.log "load the next game."
         @getGameResult(MockServer.getResult())    
 
-
   @sendQuizInfo: (correct, total) ->
+    return unless not @fakeServer
     # send quiz answer to server
     TSClient.sendQuizResults correct, total  
-    
+
+  @finalSubmit: (data) ->
+    if @fakeServer
+      alert data
+    else
+      TSClient.submitHIT(data)
 
 module.exports = Network

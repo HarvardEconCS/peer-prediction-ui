@@ -13,25 +13,23 @@ class App extends Spine.Controller
 
       # take out browser incompatibility warning 
       @html ''
-      
-      params = @getURLParams()
-      if params['assignmentId'] is undefined
-        Network.initFake()
-      else
-        Network.init()
-      
-      # Network.initFake()
-      # Network.init()
-      
+                
       # dropdown = new Dropdown
       # @append dropdown
       # dropdown.active()
       
       @main = new Main
-      @append @main
+      @append @main      
       Spine.Route.setup()
       Network.setMainController(@main)
-
+      
+      params = @getURLParams()      
+      # Network.initFake()
+      # Network.init()      
+      if not params['assignmentId']
+        Network.initFake()
+      else
+        Network.init()      
     
   isBrowserCompatible: ->
     ua = $.browser

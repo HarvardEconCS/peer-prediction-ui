@@ -25,9 +25,9 @@ class Exitsurvey extends Spine.Controller
     bugComments = $('textarea#bugs').val()
     uiComments = $('textarea#uiComments').val()
     strategyComments = $('textarea#strategy').val()
-    exitComments = ""
+    exitComments = {}
     if bugComments.length > 0
-      exitComments = exitComments + "bugs: #{bugComments}; "
+      exitComments.bugs = bugComments
     else 
       exitComments = exitComments + "no bugs; "
       
@@ -41,10 +41,7 @@ class Exitsurvey extends Spine.Controller
     else
       exitComments = exitComments + "no strategy comments; "
     
-    if Network.fakeServer
-      alert "#{exitComments}"
-    else
-      # submit the task
+    Network.finalSubmit(exitComments)
   
   
 module.exports = Exitsurvey
