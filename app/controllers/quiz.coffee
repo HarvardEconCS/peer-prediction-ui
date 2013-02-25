@@ -16,7 +16,7 @@ class Quiz extends Spine.Controller
     @render()
     
   render: ->
-    @signalList = ["MM", "GM"]
+    @signalList = ["MM", "GB"]
     @html require('views/quiz')(@)
 
     for i in [1..4]
@@ -30,16 +30,16 @@ class Quiz extends Spine.Controller
     
     ans = []
     $('input:checkbox[name=step1]:checked').each ->
-      ans.push $(this).val()
+      ans.push $(this).attr('id')
     $('input:checkbox[name=step2]:checked').each ->
-      ans.push $(this).val()
+      ans.push $(this).attr('id')
     $('input:checkbox[name=step3]:checked').each ->
-      ans.push $(this).val()
+      ans.push $(this).attr('id')
     $('input:checkbox[name=interface1]:checked').each ->
-      ans.push $(this).val()
+      ans.push $(this).attr('id')
     ans.sort()
       
-    key = ['v14', 'v23', 'v34']
+    key = ['q14', 'q23', 'q34']
     key.sort()
     
     correct = 0

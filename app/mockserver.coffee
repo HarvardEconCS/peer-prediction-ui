@@ -3,7 +3,7 @@ Game    = require 'models/game'
 class MockServer
   
   @signalH    = "MM"
-  @signalL    = "GM"
+  @signalL    = "GB"
   @signalList = [@signalH, @signalL]
   @jarInfo    = [10, 3, 4]
   @payAmounts = [0.50, 0.10, 0.23, 0.43]
