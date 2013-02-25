@@ -16,16 +16,16 @@
     <br/>
     
     <span id='q1choices'>
-      <input type="checkbox" name="step1" id="q11" value="v11">
+      <input type="checkbox" name="step1" id="q11" value="dont_know_fraction">
       <label for="q11" id="l11">&nbsp;&nbsp;At the start of each round, no player knows the fraction of <img class="candy_image" src="images/<%= @signalList[0] %>.png"> the randomly chosen house gives out.<br/></label>
 
-      <input type="checkbox" name="step1" id="q12" value="v12">
+      <input type="checkbox" name="step1" id="q12" value="choose_random_house_each_round">
       <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the start of each round.<br/></label>
         
-      <input type="checkbox" name="step1" id="q13" value="v13">
+      <input type="checkbox" name="step1" id="q13" value="half_chance_60percent_mm">
       <label for="q13" id="l13">&nbsp;&nbsp;With 50% chance, the randomly chosen house gives out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     
-      <input type="checkbox" name="step1" id="q14" value="v14">
+      <input type="checkbox" name="step1" id="q14" value="60_chance_70percent_mm">
       <label for="q14" id="l14">&nbsp;&nbsp;With 60% chance, the randomly chosen house gives out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     </span>
     <br/>
@@ -49,13 +49,13 @@
       <!-- <input type="checkbox" name="step2" id="q21" value="v21">
       <label for="q21" id="l21">&nbsp;&nbsp;The type of candy you got from the chosen house is only known by you and the owner of the house.<br/></label> -->
     
-      <input type="checkbox" name="step2" id="q22" value="v22">
+      <input type="checkbox" name="step2" id="q22" value="your_candy_private">
       <label for="q22" id="l22">&nbsp;&nbsp;The other players do not know the type of your candy.<br/></label>
     
-      <input type="checkbox" name="step2" id="q23" value="v23">
+      <input type="checkbox" name="step2" id="q23" value="fraction_decreases">
       <label for="q23" id="l23">&nbsp;&nbsp; As the house gives out candies, the number of <img class="candy_image" src="images/<%= @signalList[0] %>.png"> in the bag decreases.<br/></label>   
 
-      <input type="checkbox" name="step2" id="q24" value="v24">
+      <input type="checkbox" name="step2" id="q24" value="fraction_remains_same">
       <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house gives out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then every kid gets <img class="candy_image" src="images/<%= @signalList[1] %>.png"> with 30% chance.<br/></label>   
     
     </span>
@@ -109,16 +109,16 @@
     
     <span id="q3choices">
       
-      <input type="checkbox" name="step3" id="q31" value="v31">
+      <input type="checkbox" name="step3" id="q31" value="can_make_either_claim">
       <label for="q31" id="l31">&nbsp;&nbsp;To the clown, you can claim to have either <img class="candy_image" src="images/<%= @signalList[0] %>.png"> or <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     
-      <input type="checkbox" name="step3" id="q32" value="v32">
+      <input type="checkbox" name="step3" id="q32" value="cannot_verify_claim">
       <label for="q32" id="l32">&nbsp;&nbsp;The clown cannot verify whether your claim matches your candy.<br/></label>
       
-      <input type="checkbox" name="step3" id="q33" value="v33">
+      <input type="checkbox" name="step3" id="q33" value="read_reward_MG_036">
       <label for="q33" id="l33">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then you get $0.36.<br/></label>
       
-      <input type="checkbox" name="step3" id="q34" value="v34">
+      <input type="checkbox" name="step3" id="q34" value="read_reward_GM_043">
       <label for="q34" id="l34">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, then you get $0.58.<br/></label>
     
     </span>
@@ -155,13 +155,13 @@
     
     <span id="q4choices">
       
-      <input type="checkbox" name="interface1" id="q41" value="v41">
+      <input type="checkbox" name="interface1" id="q41" value="claim_display_at_end">
       <label for="q41" id="l41">You do not know the other player's claims until the round ends.<br/></label>
     
-      <input type="checkbox" name="interface1" id="q42" value="v42">
+      <input type="checkbox" name="interface1" id="q42" value="claim_summary">
       <label for="q42" id="l42">For a round that ended, the table displays the number of the other players who claimed to have either type of candy.<br/></label>
     
-      <input type="checkbox" name="interface1" id="q43" value="v43">
+      <input type="checkbox" name="interface1" id="q43" value="infer_reference_candy">
       <label for="q43" id="l43">If your claim is <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and your reward is $0.43, then your random friend's claim is <img class="candy_image" src="images/<%= @signalList[0] %>.png">.<br/></label>
       
     </span>

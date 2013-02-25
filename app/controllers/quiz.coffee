@@ -26,8 +26,6 @@ class Quiz extends Spine.Controller
     ev.preventDefault()
     
     # validate answers and send them to server
-    total= $('input:checkbox').length
-    
     ans = []
     $('input:checkbox[name=step1]:checked').each ->
       ans.push $(this).attr('id')
@@ -50,12 +48,21 @@ class Quiz extends Spine.Controller
       if ans.indexOf(ch) is -1
         correct++
         
-    console.log "score is #{correct}/#{total}"
+    total= $('input:checkbox').length    
+
+    checkedChoices = {}
+    $('input:checkbox:checked').each ->
+      n = $(this).attr('name')
+      if not checkedChoices[n]?
+        checkedChoices[n] = []
+      checkedChoices[n].push $(this).val()
+    console.log "checked choices are #{JSON.stringify(checkedChoices)}"
 
     if Network.fakeServer
       @navigate '/task'
     else
       # send answers to the server
+      # TODO: send checked choices to server
       Network.sendQuizInfo(correct, total)
     
   randomizeChoices: (qNum)->
