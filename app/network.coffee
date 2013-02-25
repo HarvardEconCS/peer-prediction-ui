@@ -24,12 +24,14 @@ class Network
   
   @showQuiz   = false
   @showLobby  = false
+  
+  @experimentStarted = false
     
-  @initFake: ->	
-    @fakeServer = true
+  # @initFake: ->  
+  #   @fakeServer = true
 
   @init: ->
-    @fakeServer = false
+    # @fakeServer = false
     TSClient.QuizRequired @quizNeeded
     TSClient.QuizFailed @quizFail
     TSClient.EnterLobby @enterLobby
@@ -218,7 +220,7 @@ class Network
 
   @sendFinalInfo: (data) ->
     if @fakeServer
-      alert "exit survey answers: #{JSON.stringify(data)}"
+       # alert "exit survey answers: #{JSON.stringify(data)}"
     else
       TSClient.submitHIT(data)
 

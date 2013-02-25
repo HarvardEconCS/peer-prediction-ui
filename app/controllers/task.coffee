@@ -8,54 +8,46 @@ class Task extends Spine.Controller
 
   events:
     'click .getsignal': 'revealSignalFunc'  # button to reveal signal
+    'change input:radio:checked' : 'radioChanged'    
     'click .confirm'  : 'confirmReport'     # button to confirm report
     'click .exit'     : 'goToExitSurvey'    # button to go to exit survey 
-    'change input:radio:checked' : 'radioChanged'
-    'click a#slide' : "slideToggleClicked"
 
   constructor: ->
     super
-    @unconfirmMsg   = Network.unconfirmMsg
+    @revealSignal   = false    
     @defaultReport  = "default"      
-
-    @revealSignal = false
-    @selected = @defaultReport
-    
-    # default to displaying aggregate information for now
-    @agg = true
-    
-    # order of radio buttons may change
+    @selected       = @defaultReport
     @randomRadio = Math.floor(Math.random() * 2)
     
+    @bonus = 0
+    
     Network.setTaskController @
-  
-  slideToggleClicked: (ev) ->
-    ev.preventDefault()
-    $('div.task-chosenHouse').slideToggle()
-        
-  # called when this controller is activated in the stack
+
   active: (params)->
-    super
-    
-    if Network.fakeServer
-      Network.startExperiment()
-    
+    super    
     @render()
         
   render: ->
     return unless @isActive()
+
+    if Network.fakeServer and Network.experimentStarted is false
+      Network.startExperiment()
+      Network.experimentStarted = true
+
+    # always display aggregate information
+    @agg = true
     
-    @signalList   = Network.signalList
-    @payAmounts   = Network.payAmounts    
-    @numRounds    = Network.numRounds
-    @numPlayers   = Network.numPlayers
-    @currPlayerName = Network.currPlayerName
+    # @unconfirmMsg   = Network.unconfirmMsg
+    # @numRounds      = Network.numRounds
+    # @numPlayers     = Network.numPlayers
+    # @payAmounts     = Network.payAmounts    
+    # @signalList     = Network.signalList
+    # @currPlayerName = Network.currPlayerName
     
     @game   = Game.last()
     @games  = Game.all()
-    
-    @avgreward = @calcAvgReward()
-    
+    @bonus = @calcAvgReward()
+      
     @html require('views/task')(@)
 
     @addDashedBorder()
@@ -95,9 +87,7 @@ class Task extends Spine.Controller
           num = num + 1
           
     if num > 0
-      return Math.round(totalReward / num * 100)/100
-    else
-      return 0
+      @bonus =  Math.round(totalReward / num * 100)/100
 
   # called after getting the game state
   gotGameState: (gameState) ->
@@ -107,13 +97,11 @@ class Task extends Spine.Controller
     @revealSignal = false 
     @selected = @defaultReport
     @reportChosen = false
-
-    # order of radio buttons may change
     @randomRadio = Math.floor(Math.random() * 2)
 
     @render()
     
-  # called when games are finished
+  # called when all games are finished
   finish: ->
     @finished = true
     @render()
@@ -122,45 +110,41 @@ class Task extends Spine.Controller
     $('tr').removeClass("borderAroundDashed")
     $('td').removeClass("borderLeftDashed")
     $('td').removeClass("borderRightDashed")
-    
-  # if player clicks button to reveal the selected candy
-  revealSignalFunc: (e) ->
+
+  # gets a random signal
+  revealSignalFunc: (e) =>
     e.preventDefault()
     @revealSignal = true
     @render()
 
-	# called when selected report is changed
-  radioChanged: ->
+	# selected report is changed
+  radioChanged: =>
     @selected = $('input:radio:checked').val()
 
-  # if player clicks button to confirm action
-  confirmReport: (e) ->
+  # player confirms report
+  confirmReport: (e) =>
     e.preventDefault()
     
     # if the player hasn't revealed the candy yet, 
     if @revealSignal is false
-      alert("Please look at your candy first before choosing your report!")
+      alert("Please get a candy first before choosing your report!")
       @selected = @defaultReport # reset selected report
       @render()
       return
     
     # the player hasn't selected a report yet
     if @selected is @defaultReport
-      alert("Please choose a color to report!")
+      alert("Please choose a candy to report!")
       return
 
-    # set flag for rendering
-    @reportChosen = true
-
     Network.sendReport(@selected)
-    
+
+    # set flag for rendering
+    @reportChosen = true    
     @render()
         
-  helper: (msg) ->
-    console.log msg
-    
   # go to the exit survey
-  goToExitSurvey: (e) ->
+  goToExitSurvey: (e) =>
     e.preventDefault()
     @navigate '/exitsurvey'
 

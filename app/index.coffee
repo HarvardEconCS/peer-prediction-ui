@@ -14,21 +14,26 @@ class App extends Spine.Controller
       # take out browser incompatibility warning 
       @html ''
                 
-      # dropdown = new Dropdown
-      # @append dropdown
-      # dropdown.active()
+      params = @getURLParams()      
+
+      if not params.assignmentId
+        # testing mode
+        Network.fakeServer = true
+      else if params.assignmentId is "ASSIGNMENT_ID_NOT_AVAILABLE"
+        # preview mode
+        Network.preview = true
+        Network.fakeServer = true
+      else
+        # accepted mode
+        Network.fakeServer = false
       
       @main = new Main
       @append @main      
       Spine.Route.setup()
       Network.setMainController(@main)
       
-      params = @getURLParams()      
-      # Network.initFake()
-      # Network.init()      
-      if not params['assignmentId']
-        Network.initFake()
-      else
+      if Network.fakeServer is false
+        # accepted mode
         Network.init()      
     
   isBrowserCompatible: ->

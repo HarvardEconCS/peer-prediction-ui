@@ -1,3 +1,7 @@
+<% Network = require('network') %>
+<% if Network.preview is true: %>
+<p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
+<% end %>
 
   <img class="image" id="tutorial1" src="images/tutorial1.png">
   <img class="image" id="tutorial2" src="images/tutorial2.png">

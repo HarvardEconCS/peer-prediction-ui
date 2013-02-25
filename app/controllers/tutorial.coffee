@@ -20,9 +20,7 @@ class Tutorial extends Spine.Controller
  
   constructor: ->
     super
-    @payAmounts = [0.58, 0.36, 0.43, 0.54]
-    @signalList = Network.signalList
-    
+    # no keyboard shortcuts for now
     # $(document).keypress @keyPressed
 
     @stepIndex = 0
@@ -60,8 +58,6 @@ class Tutorial extends Spine.Controller
     @stepIndex = 0
 
   render: ->
-    @signalList = Network.signalList unless @signalList
-    @jarInfo = Network.jarInfo unless @jarInfo
     @html require('views/tutorial')(@)
     @stepShow()
 

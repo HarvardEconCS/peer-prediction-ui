@@ -1,8 +1,13 @@
+<% Network = require('network') %>
+<% if Network.preview is true: %>
+  <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
+<% end %>
+
 <h2>Quiz</h2>
 
 <ol>
   <li>
-    <span class="question">Select all correct statements about step 1 of the game.        <br/>
+    <span class="question">Select all correct statements about step 1 of a round of the game.        <br/>
     </span>  
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -12,10 +17,10 @@
     
     <span id='q1choices'>
       <input type="checkbox" name="step1" id="q11" value="v11">
-      <label for="q11" id="l11">&nbsp;&nbsp;At the start of each game, no player knows what fraction of <img class="candy_image" src="images/<%= @signalList[0] %>.png"> the randomly chosen house gives out.<br/></label>
+      <label for="q11" id="l11">&nbsp;&nbsp;At the start of each round, no player knows the fraction of <img class="candy_image" src="images/<%= @signalList[0] %>.png"> the randomly chosen house gives out.<br/></label>
 
       <input type="checkbox" name="step1" id="q12" value="v12">
-      <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the beginning of each game.<br/></label>
+      <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the start of each round.<br/></label>
         
       <input type="checkbox" name="step1" id="q13" value="v13">
       <label for="q13" id="l13">&nbsp;&nbsp;With 50% chance, the randomly chosen house gives out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
@@ -32,7 +37,7 @@
   
   
   <li>
-    <span class="question">Select all correct statements about step 2 of the game.        <br/>
+    <span class="question">Select all correct statements about step 2 of a round of the game.        <br/>
     </span> 
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -94,7 +99,7 @@
    -->
   
   <li>
-    <span class="question">Select all correct statements about step 3 of the game.        <br/>
+    <span class="question">Select all correct statements about step 3 of a round of the game.        <br/>
     </span>
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -151,10 +156,10 @@
     <span id="q4choices">
       
       <input type="checkbox" name="interface1" id="q41" value="v41">
-      <label for="q41" id="l41">You do not know the other player's claims until the end of each game.<br/></label>
+      <label for="q41" id="l41">You do not know the other player's claims until the round ends.<br/></label>
     
       <input type="checkbox" name="interface1" id="q42" value="v42">
-      <label for="q42" id="l42">For a game that ended, the table displays the number of the other players who claimed to have either type of candy.<br/></label>
+      <label for="q42" id="l42">For a round that ended, the table displays the number of the other players who claimed to have either type of candy.<br/></label>
     
       <input type="checkbox" name="interface1" id="q43" value="v43">
       <label for="q43" id="l43">If your claim is <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and your reward is $0.43, then your random friend's claim is <img class="candy_image" src="images/<%= @signalList[0] %>.png">.<br/></label>

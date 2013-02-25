@@ -1,16 +1,21 @@
-<h2>Exit Survey</h2>
+<% Network = require('network') %>
+<% if Network.preview is true: %>
+  <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
+<% end %>
 
+
+<h2>Exit Survey</h2>
 
 <p>We appreciate your comments to help us improve this task!</p>
 
 <form>
-<p>1. Please report bugs in the task.</p>
+<p>Please report bugs in the task.</p>
 <textarea rows="5" cols="100" id="bugComments"></textarea>
 
-<p>2. What do you think of the tutorial and the game interface?</p>
+<p>What do you think of the tutorial, the quiz and the game interface?</p>
 <textarea rows="5" cols="100" id="uiComments"></textarea>
 
-<p>4. How did you play the game? </p>
+<p>How did you play the game? </p>
 <textarea rows="5" cols="100" id="strategyComments"></textarea>
 
 <p>
