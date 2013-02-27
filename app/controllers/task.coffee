@@ -7,8 +7,8 @@ class Task extends Spine.Controller
   className: "task"
 
   events:
-    'click .getsignal': 'revealSignalFunc'  # button to reveal signal
     'change input:radio:checked' : 'radioChanged'    
+    'click .getsignal': 'revealSignalFunc'  # button to reveal signal
     'click .confirm'  : 'confirmReport'     # button to confirm report
     'click .exit'     : 'goToExitSurvey'    # button to go to exit survey 
 

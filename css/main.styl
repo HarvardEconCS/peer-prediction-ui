@@ -1,97 +1,95 @@
 .main
   margin 0 auto
   
-.task
-  margin 0 auto
+div.task
+  margin   0 auto
   position relative
-  width   1024px
-  height  768px
+  width    1024px
+  height   768px
 
-
+taskTitleTop = 50px
 
 div.taskTitle 
-  position absolute
-  top       20px
-  left      0px
-  width     1024px
-  height    25px
+  position   absolute
+  top        taskTitleTop 
+  left       0px
+  width      1024px
+  height     25px
   text-align center
   
 
-infoHeight    = 25px
-houseHeight   = 120px
-signalHeight  = 100px
-reportHeight  = 110px
-gap = 30px
-leftGameInfo = 0px
+roundStepsLeft  = 0px
+roundStepsWidth = 450px
 
-topGenInfo       = 48px
+roundIndexHeight = 25px
+step1Height  = 120px
+step2Height  = 100px
+step3Height  = 110px
 
-currGameWidth = 450px
+roundIndexTop = 80px
 
-
-div.task-gameIndex
+div.task-roundIndex
   position  absolute
-  top       topGenInfo
-  left      leftGameInfo
-  width     currGameWidth
-  height    infoHeight
+  top       roundIndexTop
+  left      roundStepsLeft
+  width     roundStepsWidth
+  height    roundIndexHeight
   
-topChosenHouse = topGenInfo + infoHeight
+step1Top = roundIndexTop + roundIndexHeight
   
-div.task-chosenHouse
+div.task-chooseHouse
   position  absolute
-  top       topChosenHouse
-  left      leftGameInfo
-  width     currGameWidth
-  height    houseHeight
+  top       step1Top
+  left      roundStepsLeft
+  width     roundStepsWidth
+  height    step1Height
   border-top 2px solid #6678b1
 
-topSignal = topChosenHouse + houseHeight
-
-div.task-yourSignal
-  position  absolute
-  top       topSignal
-  left      leftGameInfo
-  width     currGameWidth
-  height    signalHeight
-  border-top 2px solid #6678b1
-
-topReport = topSignal + signalHeight
-
-div.task-yourReport
-  position  absolute
-  top       topReport
-  left      leftGameInfo
-  width     currGameWidth
-  height    reportHeight  
-  border-top 2px solid #6678b1
-  
-
-infoLeft = 230px
-
-div.info-house
+div.step1PicDiv
   z-index   0 
   position  absolute
-  top       topChosenHouse + 30px
+  top       step1Top + 30px
   left      50px
   width     250px
 
+step2Top = step1Top + step1Height
+
+div.task-chooseYourSignal
+  position  absolute
+  top       step2Top
+  left      roundStepsLeft
+  width     roundStepsWidth
+  height    step2Height
+  border-top 2px solid #6678b1
+
+step3Top = step2Top + step2Height
+
+div.task-chooseYourClaim
+  position  absolute
+  top       step3Top
+  left      roundStepsLeft
+  width     roundStepsWidth
+  height    step3Height  
+  border-top 2px solid #6678b1
+  
 ruleTableTop = 300px
+ruleTableLeft = 230px
 
 div.ruleTable
   z-index   0
   position  absolute
-  top       topReport + 20px
-  left      infoLeft
+  top       step3Top + 20px
+  left      ruleTableLeft
   width     250px
 
 
+div#finishmsg
+  position absolute
+  top   50px
+  left  100px
 
 
-
-resultTop = 50px
-resultHeaderHeight = 90px
+resultTop  = 80px
 resultLeft = 500px
 
 div.resultTableHeader
@@ -99,24 +97,22 @@ div.resultTableHeader
   top      resultTop
   left     resultLeft
 
-resultTableBodyTop = resultTop + resultHeaderHeight
+resultHeaderHeight = 90px
+resultBodyTop = resultTop + resultHeaderHeight
+resultBodyHeight = 400px
 
 div.resultTableBody
-  z-index   0
-  position  absolute
-  top       resultTableBodyTop
-  left      resultLeft
-  height    300px
-  overflow-y scroll
+  z-index     0
+  position    absolute
+  top         resultBodyTop
+  left        resultLeft
+  height      resultBodyHeight
+  overflow-y  scroll
   
 div.avgreward
   position  absolute
-  top       resultTableBodyTop + 300px
-  left      resultLeft + 250px
+  top       resultBodyTop + resultBodyHeight
+  left      resultLeft + 255px
   height    50px
-  
-  
-div#finishmsg
-  position absolute
-  top   50px
-  left  100px
+    
+

@@ -2,7 +2,6 @@ require('lib/setup')
 
 Spine = require('spine')
 Main  = require('controllers/main')
-Dropdown = require 'controllers/dropdown'
 Network = require 'network'
 
 class App extends Spine.Controller

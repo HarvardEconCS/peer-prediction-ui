@@ -24,20 +24,20 @@
     You are playing <span class="emphtitle"><%= Network.numRounds %> rounds</span> of the game with <span class="emphtitle"><%= Network.numPlayers - 1 %> other players</span><br/> 
   </div>
  
-  <div class="task-gameIndex">
+  <div class="task-roundIndex">
     This is <span class="emphtitle">Round #<%= @game.numPlayed + 1 %></span>:
   </div>
 
-  <div class="task-chosenHouse"> 
+  <div class="task-chooseHouse"> 
     1. &nbsp;&nbsp;A house has been randomly chosen for this round. <br/>
   </div>
   
-  <div class="info-house">
+  <div class="step1PicDiv">
     <img style="height: 75px;" src="images/houseinfo.png">
   </div>
   
   
-  <div class="task-yourSignal">
+  <div class="task-chooseYourSignal">
     2. Get a random candy from the chosen house.<br/><br/> 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
       <% if @revealSignal is true: %>
@@ -52,7 +52,7 @@
     </p>
   </div>
 
-  <div class="task-yourReport"> 
+  <div class="task-chooseYourClaim"> 
     3. Choose your claim.<br/><br/>
     <% if @reportChosen is true: %>
       <div id="claimresult">

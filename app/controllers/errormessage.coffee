@@ -1,6 +1,8 @@
 Spine = require('spine')
 
 class Errormessage extends Spine.Controller
+  className: 'errorMessage'
+      
   constructor: ->
     super
     
