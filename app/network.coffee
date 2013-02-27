@@ -35,6 +35,7 @@ class Network
     TSClient.QuizRequired @quizNeeded
     TSClient.QuizFailed @quizFail
     TSClient.EnterLobby @enterLobby
+    TSClient.ErrorMessage @rcvErrorMsg
     
     TSClient.StartExperiment @startExperiment
     TSClient.StartRound (round) -> console.log("@StartRound" + round)
@@ -67,11 +68,17 @@ class Network
   @quizFail: =>
     console.log "quiz failed"
     alert "Sorry!  You failed the quiz.  We encourage you to try again.  If you'd like to quit, feel free to return this HIT."
-    @mainCont.navigate '/'
+    @mainCont.navigate '/quiz'
       
   @enterLobby: =>
     console.log "entering lobby"
     @mainCont.navigate '/lobby'
+
+  @rcvErrorMsg: (msg) =>
+    console.log "received error message"
+    @mainCont.errormessage.setMessage msg
+    @mainCont.navigate '/errormessage'
+    @mainCont.errormessage.render()
 
   @getMessage: (msg) =>
     console.log msg

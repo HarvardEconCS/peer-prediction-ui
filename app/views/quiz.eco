@@ -3,7 +3,9 @@
   <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
 
-<h2>Quiz</h2>
+<h2 class="centered">Quiz</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click this button to go back to the tutorial.<a class="button" id="goBackToTutorial" href="#">Go back to tutorial</a></p>
 
 <ol>
   <li>
@@ -156,21 +158,19 @@
     <span id="q4choices">
       
       <input type="checkbox" name="interface1" id="q41" value="claim_display_at_end">
-      <label for="q41" id="l41">You do not know the other player's claims until the round ends.<br/></label>
+      <label for="q41" id="l41">&nbsp;&nbsp;You do not know the other player's claims until the round ends.<br/></label>
     
       <input type="checkbox" name="interface1" id="q42" value="claim_summary">
-      <label for="q42" id="l42">For a round that ended, the table displays the number of the other players who claimed to have either type of candy.<br/></label>
+      <label for="q42" id="l42">&nbsp;&nbsp;For a round that ended, the table displays the number of the other players who claimed to have either type of candy.<br/></label>
     
       <input type="checkbox" name="interface1" id="q43" value="infer_reference_candy">
-      <label for="q43" id="l43">If your claim is <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and your reward is $0.43, then your random friend's claim is <img class="candy_image" src="images/<%= @signalList[0] %>.png">.<br/></label>
+      <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and your reward is $0.43, then your random friend's claim is <img class="candy_image" src="images/<%= @signalList[0] %>.png">.<br/></label>
       
     </span>
     
   </li> 
 </ol>
-<p>
+<p class="centered">
   <a class="button" id="quizSubmit" href="#">Submit answers</a>
-  <br/>
-  <br/> 
-  <br/>
+  <br/><br/><br/>
 </p>

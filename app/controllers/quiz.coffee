@@ -6,7 +6,8 @@ class Quiz extends Spine.Controller
   className: 'quiz'
 
   events:
-    "click a#quizSubmit": "submitClicked"
+    "click a#quizSubmit"        : "submitClicked"
+    "click a#goBackToTutorial"  : "goBackToTutorialClicked" 
 
   constructor: ->
     super
@@ -21,6 +22,10 @@ class Quiz extends Spine.Controller
 
     for i in [1..4]
       @randomizeChoices(i)
+  
+  goBackToTutorialClicked: (ev) =>
+    ev.preventDefault()
+    @navigate "/tutorial"
   
   submitClicked: (ev) => 
     ev.preventDefault()

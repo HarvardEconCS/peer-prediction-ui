@@ -8,8 +8,8 @@
   <img class="image" id="tutorial3" src="images/tutorial3.png">
   <img class="image" id="tutorial4" src="images/tutorial4.png">
   <img class="image" id="tutorial7" src="images/tutorial7.png">
-  <!-- <img class="image" id="tutorial8" src="images/tutorial8.png"> -->
   <img class="image" id="tutorial8" src="images/tutorial-recap.png">
+  <!-- <img class="image" id="tutorial8" src="images/tutorial8.png"> -->
     
   <img class="image" id="taskstart"           src="images/task-start.png">
   <img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
@@ -18,10 +18,10 @@
   <img class="image" id="taskexpend"          src="images/task-expend.png">
 
   <!-- <img class="image" id="box-geninfo" src="images/box-geninfo.png"> -->
+  <!-- <img class="image" id="box-onepastgame" src="images/box-onepastgame.png"> -->
   <img class="image" id="box-rule"    src="images/box-rule.png">
   <img class="image" id="box-table"   src="images/box-table.png">
   <img class="image" id="box-onegame" src="images/box-onegame.png">
-  <!-- <img class="image" id="box-onepastgame" src="images/box-onepastgame.png"> -->
   <img class="image" id="box-signalReport" src="images/box-signalReport.png">
   <img class="image" id="box-newgame" src="images/box-newgame.png">
   
@@ -58,14 +58,15 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
-      <span class="emph">Welcome!</span><br/><br/>
-            
-      This tutorial explains
-      <ul>
-        <li><span class="emphtext">3 steps</span> of the game, and</li>
-        <li><span class="emphtext">the interface</span> of the game</li>
-      </ul>
+      This is a <span class="emphtext">tutorial</span> exlpaining the game you are going to play.  If you would like to skip the tutorial, click the button below.<br/><br/>
+      <a class="button" id="skipTutorial" href="#">Skip the tutorial</a><br/><br/>
+
+      This tutorial has 2 main parts, covering the <span class="emphtext">3 steps</span> of the game and <span class="emphtext">the interface</span> of the game.<br/><br/>
+      
+      Let's get started!<br/><br/>
+
       Imagine that it is Halloween night.  A group of kids are excited to go trick or treating.
+      
     </p>
   </div>
 
@@ -108,9 +109,9 @@
 
   <div class="step recap">
     <p>
-      <span class="emph">Recap of the game</span><br/><br/>
+      <span class="emph">Recap</span><br/><br/>
       
-      In the experiment, you will be playing this game for multiple rounds with a fixed group of players.<br/><br/>
+      This is a recap of the 3 steps of the game.  In the actual task, you will be playing this game with a fixed group of players for a fixed number of rounds.<br/><br/>
       
       Next, let's take a look at the interface of the game.  
     </p>
@@ -120,32 +121,32 @@
     <p>
       This is the interface of the game.<br/><br/>
       
-      The <span class="emphtext">left side</span> describes the 3 steps of the game.<br/><br/>
+      The <span class="emphtext">left side</span> describes the 3 steps of each round.<br/><br/>
       
-      The <span class="emphtext">right side</span> displays the results of previous games and the status of the current game. 
+      The <span class="emphtext">right side</span> displays the results of previous rounds games and the status of the current round. 
     </p>
   </div>
 
   <div class="step uiExperimentStart"> 
     <p>
-      At the beginning of the experiment, <span class="emphtext">the title</span> displays <span class="emphtext">the total number of rounds</span>, and <span class="emphtext">the number of other players</span> in the games.
+      <span class="emphtext">The title</span> displays <span class="emphtext">the total number of rounds</span>, and <span class="emphtext">the number of other players</span> in the games.
     
     </p>
   </div>
 
   <div class="step uiGameActions"> 
     <p>
-      During a round, the upper left corner displays <span class="emphtext">the number of the current round</span>.<br/><br/>  
+      The upper left corner shows <span class="emphtext">the current round number</span>.<br/><br/>  
       
-      For <span class="emphtext">step 1</span> of each round, a house is randomly chosen.<br/><br/>
+      <span class="emphtext">Step 1:</span> a house is randomly chosen.<br/><br/>
       
-      For <span class="emphtext">step 2</span>, you can click on the button to get your candy from the chosen house.
+      For <span class="emphtext">Step 2:</span>, you can click on the button to get your candy from the chosen house.
     </p>
   </div>
 
   <div class="step uiChooseClaim">
     <p>
-      Once you get your candy, for <span class="emphtext">step 3</span>, you can choose amd confirm your claim for the clown.<br/><br/>
+      Once you get your candy, for <span class="emphtext">step 3</span>, you can choose amd confirm your claim.<br/><br/>
       
       The reward rule table is also shown for your information.
     </p>
@@ -153,11 +154,11 @@
 
   <div class="step uiOtherStatus">      
     <p>
-      During a round, <span class="emphtext">the dashed row in the result table</span> displays information about the current game, such as 
+      During a round, <span class="emphtext">the dashed row in the result table</span> displays information about the current round, such as 
       <ul>
         <li><span class="emphtext">your candy</span></li>
         <li><span class="emphtext">your claim</span></li>
-        <li><span class="emphtext">the number of other players who have not confirmed their claims</span> (or <span class="emphtext">"all confirmed"</span> if this number is 0)</li>
+        <li><span class="emphtext">number of other players</span> who have not confirmed their claims (or <span class="emphtext">"all confirmed"</span>)</li>
       </ul>
     </p>
   </div>
@@ -174,7 +175,9 @@
     <p>
       Once all games end, you can click on the button to go to the exit survey.<br/><br/>
       
-      <a class="button" id="endTutorial" href="#">Go to the quiz!</a>
+      This is the end of the tutorial.<br/><br/>
+      <a class="button" id="backToPageOne">Go back to page one</a>
+      <a class="button" id="endTutorial" href="#">Go to the quiz</a>
     </p>
   </div>
 

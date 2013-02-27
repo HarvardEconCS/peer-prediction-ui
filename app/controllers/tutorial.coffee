@@ -6,17 +6,32 @@ class Tutorial extends Spine.Controller
   className: 'tutorialCont'
   
   elements:
-    ".tutorial .buttonPrev"     : "pButtonPrev"
-    ".tutorial .buttonNext"     : "pButtonNext"
+    ".tutorial .buttonPrev" : "pButtonPrev"
+    ".tutorial .buttonNext" : "pButtonNext"
     
   events:
-    "click .tutorial .button.next"    : "nextClicked"
-    "click .tutorial .button.prev"    : "previousClicked"
-    'click a#endTutorial'             : "endTutorialClicked"
+    "click .tutorial .button.next"  : "nextClicked"
+    "click .tutorial .button.prev"  : "previousClicked"
+    "click a#skipTutorial"          : "skipTutorialClicked"
+    "click a#endTutorial"           : "endTutorialClicked"
+    "click a#backToPageOne"         : "backToPageOneClicked"
  
+ 
+  # skip tutorial and go to quiz 
+  skipTutorialClicked: (ev) =>
+    ev.preventDefault()
+    @navigate '/quiz'
+    
+  # end tutorial and go to quiz
   endTutorialClicked: (ev) =>
     ev.preventDefault()
     @navigate '/quiz'
+ 
+  # go back to beginning of tutorial
+  backToPageOneClicked: (ev) =>
+    ev.preventDefault()
+    @stepIndex = 0
+    @render()
  
   constructor: ->
     super
@@ -96,7 +111,7 @@ class Tutorial extends Spine.Controller
     if @ele.find(".stepIndex").length
       # do nothing
     else 
-      @ele.prepend("<span class=\"stepIndex\">(#{@stepIndex + 1}/#{@steps.length})</span>&nbsp;")
+      @ele.prepend("<span class=\"stepIndex\">(Page #{@stepIndex + 1}/#{@steps.length})</span>&nbsp;")
         
     @steps[@stepIndex][1]?(true)
     
