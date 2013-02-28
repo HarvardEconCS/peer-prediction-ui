@@ -284,68 +284,68 @@ class Tutorial extends Spine.Controller
     
     
       
-  uiTwoGenInfo: (show) =>
-    @changeTutorialPos(show, '55px', '453px')
-    @changeTaskPic(show, 'taskstart')
-    @showSelectedCustom(show, "#box-geninfo", '50px', '55px')
-
-  uiThreePayRule: (show) =>   
-    @changeTutorialPos(show, '325px', '340px')
-    @changeTaskPic(show, 'taskstart')
-    @showSelectedCustom(show, "#box-rule", '320px', '55px')
-
-  uiFourInfoTable: (show) =>
-    @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '55px', '55px')
-    @showSelectedCustom(show, "#box-table", '50px', '350px')
-    
-  uiFivePastInfo: (show) =>
-    @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '195px', '53px')
-    @showSelectedCustom show, "#box-onepastgame", '180px', '340px'
-    
-  uiSixCurrInfo: (show) =>  
-    @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos show, '340px', '200px'
-    @showSelectedCustom show, "#box-signalReport", '100px', '95px'
-    @showSelectedCustom show, "#box-onegame", '250px', '350px'
-    
-  uiSevenSignalButton: (show) =>
-    @changeTaskPic(show, 'taskstart')
-    @changeTutorialPos(show, '340px', '200px')
-    @showSelectedCustom show, "#box-signal", '110px', '90px'
-  
-  uiEightSignalShown: (show) =>
-    @changeTaskPic(show, 'tasksignalshown')
-    @changeTutorialPos(show, '340px', '200px')
-    @showSelectedCustom show, "#box-signal", '105px', '90px'
-    @showSelectedCustom show, "#box-signalintable", '240px', '425px'
-    
-  stepUiReportChoice: (show) =>
-    @changeTaskPic(show, 'taskchoosereport')
-    @changeTutorialPos(show, '340px', '200px')
-    @showSelectedCustom show, "#box-report", '160px', '90px'
-    
-  stepUiReportConfirmed: (show) =>
-    @changeTaskPic(show, 'taskreportconfirmed')
-    @changeTutorialPos(show, '340px', '200px')
-    @showSelectedCustom show, "#box-signal", '160px', '90px'
-    @showSelectedCustom show, "#box-signalintable", '240px', '495px'
-
-  stepUiFriendStatus: (show) =>
-    @changeTaskPic(show, 'taskfriendswaiting')
-    @changeTutorialPos(show, '340px', '600px')
-    @showSelectedCustom show, "#box-signal", '255px', '643px'
-    
-  stepUiFriendAllConfirmed: (show) =>
-    @changeTaskPic(show, 'taskfriendsallconfirmed')
-    @changeTutorialPos(show, '340px', '600px')
-    @showSelectedCustom show, "#box-signal", '255px', '643px'
-
-  stepUiNextGame: (show) =>
-    @changeTaskPic(show, 'tasknextgame')
-    @changeTutorialPos(show, '400px', '600px')
-    @showSelectedCustom show, "#box-newgame", '250px', '340px'
+  # uiTwoGenInfo: (show) =>
+  #   @changeTutorialPos(show, '55px', '453px')
+  #   @changeTaskPic(show, 'taskstart')
+  #   @showSelectedCustom(show, "#box-geninfo", '50px', '55px')
+  # 
+  # uiThreePayRule: (show) =>   
+  #   @changeTutorialPos(show, '325px', '340px')
+  #   @changeTaskPic(show, 'taskstart')
+  #   @showSelectedCustom(show, "#box-rule", '320px', '55px')
+  # 
+  # uiFourInfoTable: (show) =>
+  #   @changeTaskPic(show, 'taskstart')
+  #   @changeTutorialPos(show, '55px', '55px')
+  #   @showSelectedCustom(show, "#box-table", '50px', '350px')
+  #   
+  # uiFivePastInfo: (show) =>
+  #   @changeTaskPic(show, 'taskstart')
+  #   @changeTutorialPos(show, '195px', '53px')
+  #   @showSelectedCustom show, "#box-onepastgame", '180px', '340px'
+  #   
+  # uiSixCurrInfo: (show) =>  
+  #   @changeTaskPic(show, 'taskstart')
+  #   @changeTutorialPos show, '340px', '200px'
+  #   @showSelectedCustom show, "#box-signalReport", '100px', '95px'
+  #   @showSelectedCustom show, "#box-onegame", '250px', '350px'
+  #   
+  # uiSevenSignalButton: (show) =>
+  #   @changeTaskPic(show, 'taskstart')
+  #   @changeTutorialPos(show, '340px', '200px')
+  #   @showSelectedCustom show, "#box-signal", '110px', '90px'
+  # 
+  # uiEightSignalShown: (show) =>
+  #   @changeTaskPic(show, 'tasksignalshown')
+  #   @changeTutorialPos(show, '340px', '200px')
+  #   @showSelectedCustom show, "#box-signal", '105px', '90px'
+  #   @showSelectedCustom show, "#box-signalintable", '240px', '425px'
+  #   
+  # stepUiReportChoice: (show) =>
+  #   @changeTaskPic(show, 'taskchoosereport')
+  #   @changeTutorialPos(show, '340px', '200px')
+  #   @showSelectedCustom show, "#box-report", '160px', '90px'
+  #   
+  # stepUiReportConfirmed: (show) =>
+  #   @changeTaskPic(show, 'taskreportconfirmed')
+  #   @changeTutorialPos(show, '340px', '200px')
+  #   @showSelectedCustom show, "#box-signal", '160px', '90px'
+  #   @showSelectedCustom show, "#box-signalintable", '240px', '495px'
+  # 
+  # stepUiFriendStatus: (show) =>
+  #   @changeTaskPic(show, 'taskfriendswaiting')
+  #   @changeTutorialPos(show, '340px', '600px')
+  #   @showSelectedCustom show, "#box-signal", '255px', '643px'
+  #   
+  # stepUiFriendAllConfirmed: (show) =>
+  #   @changeTaskPic(show, 'taskfriendsallconfirmed')
+  #   @changeTutorialPos(show, '340px', '600px')
+  #   @showSelectedCustom show, "#box-signal", '255px', '643px'
+  # 
+  # stepUiNextGame: (show) =>
+  #   @changeTaskPic(show, 'tasknextgame')
+  #   @changeTutorialPos(show, '400px', '600px')
+  #   @showSelectedCustom show, "#box-newgame", '250px', '340px'
 
 
  

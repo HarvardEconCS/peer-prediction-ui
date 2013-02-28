@@ -65,7 +65,7 @@ class MockServer
     for name in @playerNames
       game.reportConfirmed[name] = false
     @results.push game
-    console.log "results are #{JSON.stringify(@results)}}"
+    # console.log "results are #{JSON.stringify(@results)}}"
     
     
     msg = 
@@ -113,7 +113,7 @@ class MockServer
     # update result object
     @results[@results.length - 1].result[@currName] = {}
     @results[@results.length - 1].result[@currName].report = report
-    console.log "results are #{JSON.stringify(@results)}}"
+    # console.log "results are #{JSON.stringify(@results)}}"
   
   @getConfirmReport: ->
     
@@ -139,7 +139,7 @@ class MockServer
 
     # update result object
     @results[@results.length - 1].reportConfirmed[reporter] = true
-    console.log "results are #{JSON.stringify(@results)}}"
+    # console.log "results are #{JSON.stringify(@results)}}"
 
     msg = 
       "status"      : "confirmReport"

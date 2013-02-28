@@ -136,24 +136,22 @@ class Network
       ), 3000
   
   @getGameResult: (receivedMsg) ->    
-    console.log "get game result is #{JSON.stringify(receivedMsg)}"
+    # console.log "get game result is #{JSON.stringify(receivedMsg)}"
 
+    # save game result
     @game = Game.last()
     if @game.result?
     else
       @game.result = {}
-    
     for name in @playerNames
       @game.result[name] = {}
-
       @game.result[name].report     = receivedMsg.result[name].report
-      
       theRefPlayer = receivedMsg.result[name].refPlayer
       @game.result[name].refPlayer  = theRefPlayer 
       @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
       @game.result[name].reward     = receivedMsg.result[name].reward
     @game.save()
-    console.log "game with result is #{@game}"
+    # console.log "game with result is #{@game}"
     
     # count number of people who reported signalList[0]
     count = 0
@@ -167,6 +165,7 @@ class Network
     @game.numSignal0 = count
     @game.save()
 
+    # update ui
     @task.render()
 
     # Check if we are finished with all games
@@ -190,10 +189,10 @@ class Network
   @getReportConfirmation: (receivedMsg) ->
     return unless receivedMsg
     
-    console.log "update actions: receivedMsg is #{JSON.stringify(receivedMsg)}"
+    console.log "confirmed report from #{receivedMsg.playerName}"
 
+    # save confirmed report
     @game = Game.last()
-    
     @game.reportConfirmed[receivedMsg.playerName] = true
     if receivedMsg.playerName is @currPlayerName
       if @game.result?
@@ -209,6 +208,7 @@ class Network
       @game.numOtherActed += 1
     @game.save()
  
+    # update ui
     @task.render()
 
     # check if other players have acted
