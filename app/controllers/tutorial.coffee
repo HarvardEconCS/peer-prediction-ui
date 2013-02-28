@@ -38,6 +38,10 @@ class Tutorial extends Spine.Controller
     # no keyboard shortcuts for now
     # $(document).keypress @keyPressed
 
+    # needs to be changed if actual payment rule changes.
+    @payRule = [0.50, 0.10, 0.23, 0.43]
+    @signals = ['MM', 'GB']
+
     @stepIndex = 0
     @steps = [
       ['welcome',     null]
@@ -178,31 +182,70 @@ class Tutorial extends Spine.Controller
      else
        @img.hide()  
     
+  showDiv: (show, selector, locTop, locLeft) ->
+     @div = $("div#{selector}")
+     if show is true
+       @div.css(
+         'top':      locTop
+         'left':     locLeft
+       )
+       @div.fadeIn()
+     else
+       @div.hide() 
+    
   stepTwoDescribePrior: (show) =>
-    selector = "#tutorial1"
+    selector = "#pic-prior"
+    $("img#{selector}").css(
+      'height' : 'auto'
+    )
     @showSelected(show, selector)
 
   stepThreeChooseCandy: (show) =>
-    selector = "#tutorial3"
+    selector = "#step2"
     @showSelected(show, selector)
          
   stepFourDescribeRule: (show) =>
-    selector = "#tutorial4"
+    selector = "#step3-description"
     @showSelected(show, selector)
 
-    selector = "#payment_rule"
-    @showSelectedCustom(show, selector, '340px', '40px')
+    # selector = "#payment_rule"
+    # @showSelectedCustom(show, selector, '340px', '40px')
+
+    selector = "#ruleTableTutorial"
+    @showDiv(show, selector, '300px', '40px')
 
   stepFiveDescribeReward: (show) =>
-    selector = "#tutorial7"
+    selector = "#step3-example"
     @showSelected(show, selector)
     
-    selector = "#payment_rule"
-    @showSelectedCustom(show, selector, '250px', '40px')
+    selector = "#ruleTableTutorial"
+    @showDiv(show, selector, '270px', '40px')
+
+    selector = "#eg-MM-GB"
+    @showSelectedCustom(show, selector, '440px', '320px')
+
+    selector = "#eg-MM-MM"
+    @showSelectedCustom(show, selector, '440px', '557px')
+
+    selector = "#eg-GB-MM"
+    @showSelectedCustom(show, selector, '440px', '782px')
 
   stepSixRecap: (show) =>
-    selector = "#tutorial8"
+    selector = "#steps-recap"
     @showSelected(show, selector)
+
+    selector = "#pic-prior"
+    $("img#{selector}").css(
+      'z-index' : 5
+      'height' : '120px'
+    )
+    @showSelectedCustom(show, selector, '100px', '360px')
+    
+    selector = "#ruleTableTutorial"
+    @showDiv(show, selector, '450px', '750px')
+
+    selector = "#eg-MM-GB"
+    @showSelectedCustom(show, selector, '600px', '450px')
 
 
   changeTaskPic: (show, picId) =>

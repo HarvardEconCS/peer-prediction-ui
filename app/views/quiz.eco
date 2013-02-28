@@ -5,7 +5,7 @@
 
 <h2 class="centered">Quiz</h2>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click this button to go back to the tutorial.<a class="button" id="goBackToTutorial" href="#">Go back to tutorial</a></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click this button to go back to the tutorial  <a class="button" id="goBackToTutorial" href="#">Go back to tutorial</a></p>
 
 <ol>
   <li>

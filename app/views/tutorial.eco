@@ -3,14 +3,16 @@
 <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
 
-  <img class="image" id="tutorial1" src="images/tutorial1.png">
-  <img class="image" id="tutorial2" src="images/tutorial2.png">
-  <img class="image" id="tutorial3" src="images/tutorial3.png">
-  <img class="image" id="tutorial4" src="images/tutorial4.png">
-  <img class="image" id="tutorial7" src="images/tutorial7.png">
-  <img class="image" id="tutorial8" src="images/tutorial-recap.png">
-  <!-- <img class="image" id="tutorial8" src="images/tutorial8.png"> -->
-    
+  <img class="image" id="pic-prior" src="images/pic-prior.png">
+  <img class="image" id="step2" src="images/step2.png">
+  <img class="image" id="step3-description" src="images/step3-description.png">
+  <img class="image" id="step3-example" src="images/step3-example.png">
+  <img class="image" id="steps-recap" src="images/steps-recap.png">
+  
+  <img class="image" id="eg-MM-MM" src="images/eg-MM-MM.png">
+  <img class="image" id="eg-MM-GB" src="images/eg-MM-GB.png">
+  <img class="image" id="eg-GB-MM" src="images/eg-GB-MM.png">
+  
   <img class="image" id="taskstart"           src="images/task-start.png">
   <img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
   <img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png">
@@ -38,8 +40,77 @@
   <img class="image" id="box-report"  src="images/box-report.png">
   <img class="image" id="box-signalintable" src="images/box-signalintable.png">
   
-  <img class="image" id="payment_rule" src="images/payment_rule.png">
     
+    
+<div id="ruleTableTutorial">
+    <table class="rule">
+      <caption>Reward Rule</caption>
+      
+      <colgroup>
+        <col class="colRuleYourReport">
+        <col class="colRuleOtherReport">
+        <col class="colRuleYourReward">
+      </colgroup>
+      
+      <tr>
+        <th class="rule">Your claim</th>
+        <th class="rule">Your friend's claim</th>
+        <th class="rule leftb">Your<br/>reward</th>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        </td>
+        
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        </td>
+        
+        <td class="rule leftb money">
+          $<%= @payRule[0].toFixed(2) %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        </td>
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        </td>
+        <td class="rule leftb money">
+          $<%= @payRule[1].toFixed(2) %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        </td>
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        </td>
+        <td class="rule leftb money">
+          $<%= @payRule[2].toFixed(2) %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        </td>
+        <td class="rule">
+          <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        </td>
+        <td class="rule leftb money">
+          $<%= @payRule[3].toFixed(2) %>
+        </td>
+      </tr>
+      
+    </table> 
+</div>
+
     
 <div class="tutorial">
 
@@ -103,7 +174,7 @@
     <p>
       <span class="emph">Step 3: Make a claim and get rewarded</span><br/><br/>
             
-      This example illustrates how the rewards are determined.
+      The rewards are determined in 2 steps.  First, the clown collects all claims.  Then he computes everyone's reward based on the table.
     </p>
   </div>
 
