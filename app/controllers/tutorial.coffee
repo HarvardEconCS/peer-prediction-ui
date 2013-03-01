@@ -248,12 +248,12 @@ class Tutorial extends Spine.Controller
     @showSelectedCustom(show, selector, '600px', '450px')
 
 
-  changeTaskPic: (show, picId) =>
+  changeTaskPic: (show, picId, taskPicTop, taskPicLeft) =>
     @img = $("img##{picId}")
     @img.css(
       'position': 'absolute'
-      'top':      @interfaceTop
-      'left':     @interfaceLeft
+      'top':      taskPicTop
+      'left':     taskPicLeft
     )
     if show is true
       @img.show()
@@ -276,7 +276,7 @@ class Tutorial extends Spine.Controller
 
 
   uiOneStart: (show) =>
-    @changeTaskPic(show, 'taskstart')
+    @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
     
     if show is true
       $('div.tutorial').animate
@@ -293,104 +293,35 @@ class Tutorial extends Spine.Controller
     # @showSelectedCustom(show, "#box-tablenew", "95px", "400px")
  
   uiTwoExpStart: (show) =>
-    @changeTaskPic show, 'taskstart'
+    @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom show, "#box-title", '10px', '230px'
     # @showSelectedCustom show, "#box-rewardrule", "365px", "65px"
   
   uiThreeActions: (show) =>
-    @changeTaskPic show, 'taskstart'
+    @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom show, "#box-stepsonetwo", "85px", "-20px"
       
   uiChooseClaim: (show) =>
-    @changeTaskPic show, 'tasksignalshown'
+    @changeTaskPic show, 'tasksignalshown', @interfaceTop, '3px'
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom(show, "#box-stepthree", "335px", "-20px")
     
   uiFourOtherStatus: (show) =>
-    @changeTaskPic show, 'taskreportconfirmed'
+    @changeTaskPic show, 'taskreportconfirmed', @interfaceTop, '5px'
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom show, "#box-onegame", '185px', '490px'
     
   uiFiveResult: (show) =>
-    @changeTaskPic show, 'tasknextgame'
+    @changeTaskPic show, 'tasknextgame', '51px', '6px'
     @changeTutorialPos show, '350px', '510px'
     @showSelectedCustom show, "#box-onegame", '184px', '490px'
     
   uiSixExpEnd: (show) =>
-    @changeTaskPic(show, 'taskexpend')
+    @changeTaskPic show, 'taskexpend', @interfaceTop, '7px'
     @changeTutorialPos(show, '300px', '100px')
     
-    
-    
-    
-    
-      
-  # uiTwoGenInfo: (show) =>
-  #   @changeTutorialPos(show, '55px', '453px')
-  #   @changeTaskPic(show, 'taskstart')
-  #   @showSelectedCustom(show, "#box-geninfo", '50px', '55px')
-  # 
-  # uiThreePayRule: (show) =>   
-  #   @changeTutorialPos(show, '325px', '340px')
-  #   @changeTaskPic(show, 'taskstart')
-  #   @showSelectedCustom(show, "#box-rule", '320px', '55px')
-  # 
-  # uiFourInfoTable: (show) =>
-  #   @changeTaskPic(show, 'taskstart')
-  #   @changeTutorialPos(show, '55px', '55px')
-  #   @showSelectedCustom(show, "#box-table", '50px', '350px')
-  #   
-  # uiFivePastInfo: (show) =>
-  #   @changeTaskPic(show, 'taskstart')
-  #   @changeTutorialPos(show, '195px', '53px')
-  #   @showSelectedCustom show, "#box-onepastgame", '180px', '340px'
-  #   
-  # uiSixCurrInfo: (show) =>  
-  #   @changeTaskPic(show, 'taskstart')
-  #   @changeTutorialPos show, '340px', '200px'
-  #   @showSelectedCustom show, "#box-signalReport", '100px', '95px'
-  #   @showSelectedCustom show, "#box-onegame", '250px', '350px'
-  #   
-  # uiSevenSignalButton: (show) =>
-  #   @changeTaskPic(show, 'taskstart')
-  #   @changeTutorialPos(show, '340px', '200px')
-  #   @showSelectedCustom show, "#box-signal", '110px', '90px'
-  # 
-  # uiEightSignalShown: (show) =>
-  #   @changeTaskPic(show, 'tasksignalshown')
-  #   @changeTutorialPos(show, '340px', '200px')
-  #   @showSelectedCustom show, "#box-signal", '105px', '90px'
-  #   @showSelectedCustom show, "#box-signalintable", '240px', '425px'
-  #   
-  # stepUiReportChoice: (show) =>
-  #   @changeTaskPic(show, 'taskchoosereport')
-  #   @changeTutorialPos(show, '340px', '200px')
-  #   @showSelectedCustom show, "#box-report", '160px', '90px'
-  #   
-  # stepUiReportConfirmed: (show) =>
-  #   @changeTaskPic(show, 'taskreportconfirmed')
-  #   @changeTutorialPos(show, '340px', '200px')
-  #   @showSelectedCustom show, "#box-signal", '160px', '90px'
-  #   @showSelectedCustom show, "#box-signalintable", '240px', '495px'
-  # 
-  # stepUiFriendStatus: (show) =>
-  #   @changeTaskPic(show, 'taskfriendswaiting')
-  #   @changeTutorialPos(show, '340px', '600px')
-  #   @showSelectedCustom show, "#box-signal", '255px', '643px'
-  #   
-  # stepUiFriendAllConfirmed: (show) =>
-  #   @changeTaskPic(show, 'taskfriendsallconfirmed')
-  #   @changeTutorialPos(show, '340px', '600px')
-  #   @showSelectedCustom show, "#box-signal", '255px', '643px'
-  # 
-  # stepUiNextGame: (show) =>
-  #   @changeTaskPic(show, 'tasknextgame')
-  #   @changeTutorialPos(show, '400px', '600px')
-  #   @showSelectedCustom show, "#box-newgame", '250px', '340px'
-
-
  
     
 module.exports = Tutorial

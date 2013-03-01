@@ -80,7 +80,7 @@ class Network
       when "status.toomanyfails"
         msg = "Sorry!  You have failed the quiz too many times.  You cannot work on this task anymore. Please return this HIT."
       when "status.killed"
-        msg = "Sorry!  You previously disconnected for too long.  You can no longer work on this task.  Please return this HIT."
+        msg = "Sorry!  You disconnected from this task for too long.  You can no longer work on this task.  Please return this HIT."
     
     console.log "msg = #{msg}"
     @mainCont.errormessage.setMessage msg
@@ -188,8 +188,9 @@ class Network
       setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )    
     
   @sendReport: (report) ->
+    @currPlayerReport = report
+    
     if @fakeServer
-      @currPlayerReport = report
       MockServer.sendReportToServer(report)
     else
       TSClient.sendExperimentService
@@ -216,6 +217,9 @@ class Network
     else
       @game.numOtherActed += 1
     @game.save()
+    @currPlayerReport = undefined # reset curr player report after using it
+    # console.log "current player name is #{@currPlayerName}"
+    # console.log "current player report is #{@game.result[@currPlayerName]}"
  
     # update ui
     @task.render()

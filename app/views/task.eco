@@ -240,7 +240,7 @@
                 
             <!-- Your report -->
             <td class="leftb">
-              <img class="candy_image" src="images/<%=  game.result[Network.currPlayerName].report %>.png">
+              <img class="candy_image" src="images/<%= game.result[Network.currPlayerName].report %>.png">
             </td>
             
             <!-- Other Players' Claims -->
