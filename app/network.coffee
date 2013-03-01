@@ -2,7 +2,6 @@ Game        = require 'models/game'
 TSClient    = require 'turkserver-js-client'
 MockServer  = require 'mockserver'
 
-
 class Network
   @cookieName = "peer.prediction.exp"
   
@@ -74,8 +73,16 @@ class Network
     console.log "entering lobby"
     @mainCont.navigate '/lobby'
 
-  @rcvErrorMsg: (msg) =>
-    console.log "received error message"
+  @rcvErrorMsg: (status) =>
+    console.log "error message received with status #{status}"
+    msg = ""
+    switch status
+      when "status.toomanyfails"
+        msg = "Sorry!  You have failed the quiz too many times.  You cannot work on this task anymore. Please return this HIT."
+      when "status.killed"
+        msg = "Sorry!  You previously disconnected for too long.  You can no longer work on this task.  Please return this HIT."
+    
+    console.log "msg = #{msg}"
     @mainCont.errormessage.setMessage msg
     @mainCont.navigate '/errormessage'
     @mainCont.errormessage.render()
@@ -91,6 +98,8 @@ class Network
         @getReportConfirmation msg
       when "results"
         @getGameResult msg
+      when "killed"
+        @rcvErrorMsg "status.killed"
 
   @getGeneralInfo: (receivedMsg) ->  
     @signalList      = receivedMsg.signalList
