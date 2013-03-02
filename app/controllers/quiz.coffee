@@ -77,7 +77,7 @@ class Quiz extends Spine.Controller
     else
       # send checkedIdswers to the server
       # TODO: send checked choices to server
-      Network.sendQuizInfo(correct, total)
+      Network.sendQuizInfo(correct, total, checkedChoices)
     
   listWrongQuestions: ->
     list = []

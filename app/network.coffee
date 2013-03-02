@@ -240,10 +240,10 @@ class Network
         console.log "load the next game."
         @getGameResult(MockServer.getResult())    
 
-  @sendQuizInfo: (correct, total) ->
+  @sendQuizInfo: (correct, total, checkedChoices) ->
     return unless not @fakeServer
     # send quiz answer to server
-    TSClient.sendQuizResults correct, total  
+    TSClient.sendQuizResults correct, total, checkedChoices
 
   @sendFinalInfo: (data) ->
     if @fakeServer
