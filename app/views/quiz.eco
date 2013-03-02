@@ -30,10 +30,10 @@
       <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the start of each round.<br/></label>
         
       <input type="checkbox" name="step1" id="q13" value="half_chance_60percent_mm" <% if @checkedValues and  @checkedValues.indexOf("half_chance_60percent_mm") >= 0: %>checked<% end %>>
-      <label for="q13" id="l13">&nbsp;&nbsp;With 50% chance, the randomly chosen house gives out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
+      <label for="q13" id="l13">&nbsp;&nbsp;With 50% chance, the randomly chosen house gives out 30% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 70% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     
       <input type="checkbox" name="step1" id="q14" value="60_chance_70percent_mm" <% if @checkedValues and  @checkedValues.indexOf("60_chance_70percent_mm") >= 0: %>checked<% end %>>
-      <label for="q14" id="l14">&nbsp;&nbsp;With 60% chance, the randomly chosen house gives out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
+      <label for="q14" id="l14">&nbsp;&nbsp;With 60% chance, the randomly chosen house gives out 85% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 15% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     </span>
     <br/>
     <br/>
@@ -63,7 +63,7 @@
       <label for="q23" id="l23">&nbsp;&nbsp; As the house gives out candies, the number of <img class="candy_image" src="images/<%= @signalList[0] %>.png"> in the bag decreases.<br/></label>   
 
       <input type="checkbox" name="step2" id="q24" value="fraction_remains_same" <% if @checkedValues and  @checkedValues.indexOf("fraction_remains_same") >= 0: %>checked<% end %>>
-      <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house gives out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then every kid gets <img class="candy_image" src="images/<%= @signalList[1] %>.png"> with 30% chance.<br/></label>   
+      <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house gives out 85% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 15% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then every kid gets <img class="candy_image" src="images/<%= @signalList[1] %>.png"> with 15% chance.<br/></label>   
     
     </span>
     
@@ -123,10 +123,10 @@
       <label for="q32" id="l32">&nbsp;&nbsp;The clown cannot verify whether your claim matches your candy.<br/></label>
       
       <input type="checkbox" name="step3" id="q33" value="read_reward_MG_036" <% if @checkedValues and  @checkedValues.indexOf("read_reward_MG_036") >= 0: %>checked<% end %>>
-      <label for="q33" id="l33">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then you get $0.36.<br/></label>
+      <label for="q33" id="l33">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then you get $0.10.<br/></label>
       
       <input type="checkbox" name="step3" id="q34" value="read_reward_GM_043" <% if @checkedValues and  @checkedValues.indexOf("read_reward_GM_043") >= 0: %>checked<% end %>>
-      <label for="q34" id="l34">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, then you get $0.58.<br/></label>
+      <label for="q34" id="l34">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, then you get $0.50.<br/></label>
     
     </span>
     
@@ -158,7 +158,7 @@
    
   <li>
     <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(4) >= 0: %>(Incorrect)<% end %> Select all correct statements below about the interface of the game.<br/>
-      <a target="_blank" href="images/quiz-question4.png">Click here</a> to open a screenshot of the interface in a new window.</span><br/><br/>
+      <a target="_blank" href="images/task-nextgame.png">Click here</a> to open a screenshot of the interface in a new window.</span><br/><br/>
     
     <span id="q4choices">
       
@@ -166,10 +166,10 @@
       <label for="q41" id="l41">&nbsp;&nbsp;You do not know the other player's claims until the round ends.<br/></label>
     
       <input type="checkbox" name="interface1" id="q42" value="claim_summary" <% if @checkedValues and  @checkedValues.indexOf("claim_summary") >= 0: %>checked<% end %>>
-      <label for="q42" id="l42">&nbsp;&nbsp;For a round that ended, the table displays the number of the other players who claimed to have either type of candy.<br/></label>
+      <label for="q42" id="l42">&nbsp;&nbsp;For a finished round, the table displays the number of the other players who claimed to<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; have either type of candy.<br/></label>
     
       <input type="checkbox" name="interface1" id="q43" value="infer_reference_candy" <% if @checkedValues and  @checkedValues.indexOf("infer_reference_candy") >= 0: %>checked<% end %>>
-      <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and your reward is $0.43, then your random friend's claim is <img class="candy_image" src="images/<%= @signalList[0] %>.png">.<br/></label>
+      <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and your reward is $0.23, then your random friend's claim is <img class="candy_image" src="images/<%= @signalList[0] %>.png">.<br/></label>
       
     </span>
     
