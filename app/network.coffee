@@ -65,12 +65,13 @@ class Network
     @mainCont.navigate '/'
 
   @quizFail: =>
-    console.log "quiz failed"
+    console.log "received quiz failed message"
     alert "Sorry!  You failed the quiz.  We encourage you to try again.  If you'd like to quit, feel free to return this HIT."
     @mainCont.navigate '/quiz'
+    @mainCont.quiz.render()
       
   @enterLobby: =>
-    console.log "entering lobby"
+    console.log "received enter lobby message"
     @mainCont.navigate '/lobby'
 
   @rcvErrorMsg: (status) =>
@@ -81,6 +82,12 @@ class Network
         msg = "Sorry!  You have failed the quiz too many times.  You cannot work on this task anymore. Please return this HIT."
       when "status.killed"
         msg = "Sorry!  You disconnected from this task for too long.  You can no longer work on this task.  Please return this HIT."
+      when "status.simultaneoussessions"
+        msg = "It appears that you have already accepted another HIT for this game. Please return this HIT and submit your other HIT. Look for your other HIT in your dashboard."
+      when "status.sessionoverlap"
+        msg = "This HIT was returned by another worker who has already started playing the game, so it cannot be reused. Please return the HIT and accept another HIT from the group. "        
+      when "status.toomanysessions"
+        msg = "It appears that you have reached the limit for the number of HITs allowed for each worker.  Please return this HIT."
     
     console.log "msg = #{msg}"
     @mainCont.errormessage.setMessage msg

@@ -12,16 +12,19 @@ class Quiz extends Spine.Controller
   constructor: ->
     super
     
+    @signalList = ["MM", "GB"]
+    @wrongAnswers = undefined
+    
   active: ->
     super
     @render()
     
   render: ->
-    @signalList = ["MM", "GB"]
     @html require('views/quiz')(@)
 
-    for i in [1..4]
-      @randomizeChoices(i)
+    if not @checkedValues
+      for i in [1..4]
+        @randomizeChoices(i)
   
   goBackToTutorialClicked: (ev) =>
     ev.preventDefault()
@@ -30,27 +33,30 @@ class Quiz extends Spine.Controller
   submitClicked: (ev) => 
     ev.preventDefault()
     
-    # validate answers and send them to server
-    ans = []
-    $('input:checkbox[name=step1]:checked').each ->
-      ans.push $(this).attr('id')
-    $('input:checkbox[name=step2]:checked').each ->
-      ans.push $(this).attr('id')
-    $('input:checkbox[name=step3]:checked').each ->
-      ans.push $(this).attr('id')
-    $('input:checkbox[name=interface1]:checked').each ->
-      ans.push $(this).attr('id')
-    ans.sort()
+    # for rendering after failing
+    checkedValuesRaw = []
+    $('input:checkbox:checked').each ->
+      checkedValuesRaw.push $(this).val()
+    @checkedValues = checkedValuesRaw
+    
+    # validate checkedIdswers and send them to server
+    checkedIds = []
+    $('input:checkbox:checked').each ->
+      checkedIds.push $(this).attr('id')
+    checkedIds.sort()
       
     key = ['q14', 'q23', 'q34']
     key.sort()
     
     correct = 0
-    for ch in ans
-      if key.indexOf(ch) is -1
+    for checkedId in checkedIds
+      if key.indexOf(checkedId) is -1
+        # checked choice is correct
         correct++
-    for ch in key
-      if ans.indexOf(ch) is -1
+        
+    for eachKey in key
+      if checkedIds.indexOf(eachKey) is -1
+        # wrong choice is not checked
         correct++
         
     total= $('input:checkbox').length    
@@ -63,14 +69,61 @@ class Quiz extends Spine.Controller
       checkedChoices[n].push $(this).val()
     console.log "checked choices are #{JSON.stringify(checkedChoices)}"
 
+    @wrongAnswers = @listWrongQuestions()
+    console.log "wrong answers are #{JSON.stringify(@wrongAnswers)}"
+
     if Network.fakeServer
       @navigate '/task'
     else
-      # send answers to the server
+      # send checkedIdswers to the server
       # TODO: send checked choices to server
       Network.sendQuizInfo(correct, total)
     
-  randomizeChoices: (qNum)->
+  listWrongQuestions: ->
+    list = []
+    for i in [1..4]
+      if @isQuestionWrong(i) is true
+        list.push i
+    return list
+    
+  isQuestionWrong: (qNum) ->
+    if qNum is 1
+      qName = 'step1'
+      key = ['q14']
+    else if qNum is 2
+      qName = 'step2'
+      key = ['q23']
+    else if qNum is 3
+      qName = 'step3'
+      key = ['q34']
+    else if qNum is 4
+      qName = 'interface1'
+      key = []
+      
+    key.sort()      
+    checkedIds = []
+    $('input:checkbox[name=' + qName + ']:checked').each ->
+      checkedIds.push $(this).attr('id')
+    checkedIds.sort()
+      
+    correct = 0
+    for checkedId in checkedIds
+      if key.indexOf(checkedId) is -1
+        # checked choice is correct
+        correct++
+        
+    for eachKey in key
+      if checkedIds.indexOf(eachKey) is -1
+        # wrong choice is not checked
+        correct++
+
+    total = $('input:checkbox[name=' + qName + ']').length
+    if (correct < total)      
+      return true
+    else
+      return false
+
+  randomizeChoices: (qNum) ->
     inputList = []
     labelList = []
     choices = $('span#q'+qNum+'choices')

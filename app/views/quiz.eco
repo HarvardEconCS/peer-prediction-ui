@@ -3,13 +3,18 @@
   <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
 
-<h2 class="centered">Quiz</h2>
-
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click this button to go back to the tutorial  <a class="button" id="goBackToTutorial" href="#">Go back to tutorial</a></p>
+
+<% if @wrongAnswers: %>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To help you pass the quiz, we have indicated below the questions you answered incorrectly (<% for ansIndex, i in @wrongAnswers: %>#<%= ansIndex %><% if i < @wrongAnswers.length - 1: %>,<% end %><% end %>).
+</p>
+<% end %>
+
+<h2 class="centered">Quiz</h2>
 
 <ol>
   <li>
-    <span class="question">Select all correct statements about step 1 of a round of the game.        <br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(1) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 1 of a round of the game.<br/>
     </span>  
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -18,16 +23,16 @@
     <br/>
     
     <span id='q1choices'>
-      <input type="checkbox" name="step1" id="q11" value="dont_know_fraction">
+      <input type="checkbox" name="step1" id="q11" value="dont_know_fraction" <% if @checkedValues and  @checkedValues.indexOf("dont_know_fraction") >= 0: %>checked<% end %>>
       <label for="q11" id="l11">&nbsp;&nbsp;At the start of each round, no player knows the fraction of <img class="candy_image" src="images/<%= @signalList[0] %>.png"> the randomly chosen house gives out.<br/></label>
 
-      <input type="checkbox" name="step1" id="q12" value="choose_random_house_each_round">
+      <input type="checkbox" name="step1" id="q12" value="choose_random_house_each_round" <% if @checkedValues and  @checkedValues.indexOf("choose_random_house_each_round") >= 0: %>checked<% end %>>
       <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the start of each round.<br/></label>
         
-      <input type="checkbox" name="step1" id="q13" value="half_chance_60percent_mm">
+      <input type="checkbox" name="step1" id="q13" value="half_chance_60percent_mm" <% if @checkedValues and  @checkedValues.indexOf("half_chance_60percent_mm") >= 0: %>checked<% end %>>
       <label for="q13" id="l13">&nbsp;&nbsp;With 50% chance, the randomly chosen house gives out 40% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 60% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     
-      <input type="checkbox" name="step1" id="q14" value="60_chance_70percent_mm">
+      <input type="checkbox" name="step1" id="q14" value="60_chance_70percent_mm" <% if @checkedValues and  @checkedValues.indexOf("60_chance_70percent_mm") >= 0: %>checked<% end %>>
       <label for="q14" id="l14">&nbsp;&nbsp;With 60% chance, the randomly chosen house gives out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     </span>
     <br/>
@@ -39,7 +44,7 @@
   
   
   <li>
-    <span class="question">Select all correct statements about step 2 of a round of the game.        <br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(2) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 2 of a round of the game.<br/>
     </span> 
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,13 +56,13 @@
       <!-- <input type="checkbox" name="step2" id="q21" value="v21">
       <label for="q21" id="l21">&nbsp;&nbsp;The type of candy you got from the chosen house is only known by you and the owner of the house.<br/></label> -->
     
-      <input type="checkbox" name="step2" id="q22" value="your_candy_private">
+      <input type="checkbox" name="step2" id="q22" value="your_candy_private" <% if @checkedValues and  @checkedValues.indexOf("your_candy_private") >= 0: %>checked<% end %>>
       <label for="q22" id="l22">&nbsp;&nbsp;The other players do not know the type of your candy.<br/></label>
     
-      <input type="checkbox" name="step2" id="q23" value="fraction_decreases">
+      <input type="checkbox" name="step2" id="q23" value="fraction_decreases" <% if @checkedValues and  @checkedValues.indexOf("fraction_decreases") >= 0: %>checked<% end %>>
       <label for="q23" id="l23">&nbsp;&nbsp; As the house gives out candies, the number of <img class="candy_image" src="images/<%= @signalList[0] %>.png"> in the bag decreases.<br/></label>   
 
-      <input type="checkbox" name="step2" id="q24" value="fraction_remains_same">
+      <input type="checkbox" name="step2" id="q24" value="fraction_remains_same" <% if @checkedValues and  @checkedValues.indexOf("fraction_remains_same") >= 0: %>checked<% end %>>
       <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house gives out 70% <img class="candy_image" src="images/<%= @signalList[0] %>.png"> and 30% <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then every kid gets <img class="candy_image" src="images/<%= @signalList[1] %>.png"> with 30% chance.<br/></label>   
     
     </span>
@@ -101,7 +106,7 @@
    -->
   
   <li>
-    <span class="question">Select all correct statements about step 3 of a round of the game.        <br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(3) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 3 of a round of the game.<br/>
     </span>
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -111,16 +116,16 @@
     
     <span id="q3choices">
       
-      <input type="checkbox" name="step3" id="q31" value="can_make_either_claim">
+      <input type="checkbox" name="step3" id="q31" value="can_make_either_claim" <% if @checkedValues and  @checkedValues.indexOf("can_make_either_claim") >= 0: %>checked<% end %>>
       <label for="q31" id="l31">&nbsp;&nbsp;To the clown, you can claim to have either <img class="candy_image" src="images/<%= @signalList[0] %>.png"> or <img class="candy_image" src="images/<%= @signalList[1] %>.png">.<br/></label>
     
-      <input type="checkbox" name="step3" id="q32" value="cannot_verify_claim">
+      <input type="checkbox" name="step3" id="q32" value="cannot_verify_claim" <% if @checkedValues and  @checkedValues.indexOf("cannot_verify_claim") >= 0: %>checked<% end %>>
       <label for="q32" id="l32">&nbsp;&nbsp;The clown cannot verify whether your claim matches your candy.<br/></label>
       
-      <input type="checkbox" name="step3" id="q33" value="read_reward_MG_036">
+      <input type="checkbox" name="step3" id="q33" value="read_reward_MG_036" <% if @checkedValues and  @checkedValues.indexOf("read_reward_MG_036") >= 0: %>checked<% end %>>
       <label for="q33" id="l33">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, then you get $0.36.<br/></label>
       
-      <input type="checkbox" name="step3" id="q34" value="read_reward_GM_043">
+      <input type="checkbox" name="step3" id="q34" value="read_reward_GM_043" <% if @checkedValues and  @checkedValues.indexOf("read_reward_GM_043") >= 0: %>checked<% end %>>
       <label for="q34" id="l34">&nbsp;&nbsp;Suppose: Your Candy: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, Your claim: <img class="candy_image" src="images/<%= @signalList[1] %>.png">, Your friend's claim: <img class="candy_image" src="images/<%= @signalList[0] %>.png">, then you get $0.58.<br/></label>
     
     </span>
@@ -152,18 +157,18 @@
    
    
   <li>
-    <span class="question">Select all correct statements below about the interface of the game.<br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(4) >= 0: %>(Incorrect)<% end %> Select all correct statements below about the interface of the game.<br/>
       <a target="_blank" href="images/quiz-question4.png">Click here</a> to open a screenshot of the interface in a new window.</span><br/><br/>
     
     <span id="q4choices">
       
-      <input type="checkbox" name="interface1" id="q41" value="claim_display_at_end">
+      <input type="checkbox" name="interface1" id="q41" value="claim_display_at_end" <% if @checkedValues and  @checkedValues.indexOf("claim_display_at_end") >= 0: %>checked<% end %>>
       <label for="q41" id="l41">&nbsp;&nbsp;You do not know the other player's claims until the round ends.<br/></label>
     
-      <input type="checkbox" name="interface1" id="q42" value="claim_summary">
+      <input type="checkbox" name="interface1" id="q42" value="claim_summary" <% if @checkedValues and  @checkedValues.indexOf("claim_summary") >= 0: %>checked<% end %>>
       <label for="q42" id="l42">&nbsp;&nbsp;For a round that ended, the table displays the number of the other players who claimed to have either type of candy.<br/></label>
     
-      <input type="checkbox" name="interface1" id="q43" value="infer_reference_candy">
+      <input type="checkbox" name="interface1" id="q43" value="infer_reference_candy" <% if @checkedValues and  @checkedValues.indexOf("infer_reference_candy") >= 0: %>checked<% end %>>
       <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signalList[1] %>.png"> and your reward is $0.43, then your random friend's claim is <img class="candy_image" src="images/<%= @signalList[0] %>.png">.<br/></label>
       
     </span>
