@@ -71,7 +71,7 @@ class Quiz extends Spine.Controller
     console.log "checked choices are #{JSON.stringify(checkedChoices)}"
 
     @wrongAnswers = @listWrongQuestions()
-    console.log "wrong answers are #{JSON.stringify(@wrongAnswers)}"
+    # console.log "wrong answers are #{JSON.stringify(@wrongAnswers)}"
 
     if Network.fakeServer
       @navigate '/task'

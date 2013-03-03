@@ -62,36 +62,41 @@ class Network
       ), 2000
 
   @quizNeeded: =>
-    console.log "server asked for quiz"
+    console.log "quiz required"
     @showQuiz = true
     @mainCont.navigate '/'
 
   @quizFail: =>
-    console.log "received quiz failed message"
-    alert "Sorry!  You failed the quiz.  We encourage you to try again.  If you'd like to quit, feel free to return this HIT."
+    console.log "quiz failed"
+    alert "Sorry!  You failed the quiz.  We encourage you to try again.  
+           If you'd like to quit, feel free to return this HIT."
     @mainCont.navigate '/quiz'
     @mainCont.quiz.render()
       
   @enterLobby: =>
-    console.log "received enter lobby message"
+    console.log "enter lobby"
     @mainCont.navigate '/lobby'
 
   @rcvErrorMsg: (status) =>
     console.log "error message received with status #{status}"
     msg = ""
     switch status
-      when "status.toomanyfails"
-        msg = "Sorry!  You have failed the quiz too many times.  You cannot work on this task anymore. Please return this HIT."
+      when Codec.status_failsauce
+        msg = "Sorry!  You have failed the quiz too many times.  
+               You cannot work on this task anymore. Please return this HIT."
       when "status.killed"
-        msg = "Sorry!  You disconnected from this task for too long.  You can no longer work on this task.  Please return this HIT."
-      when "status.simultaneoussessions"
-        msg = "It appears that you have already accepted another HIT for this game. Please return this HIT and submit your other HIT. Look for your other HIT in your dashboard."
-      when "status.sessionoverlap"
-        msg = "This HIT was returned by another worker who has already started playing the game, so it cannot be reused. Please return the HIT and accept another HIT from the group. "        
-      when "status.toomanysessions"
-        msg = "It appears that you have reached the limit for the number of HITs allowed for each worker.  Please return this HIT."
-    
-    console.log "msg = #{msg}"
+        msg = "Sorry!  You disconnected from this task for too long.  
+               You can no longer work on this task.  Please return this HIT."
+      when Codec.status_simultaneoussessions
+        msg = "It appears that you have already accepted another HIT for this game. 
+               Please return this HIT and submit your other HIT. 
+               Look for your other HIT in your dashboard."
+      when Codec.status_sessionoverlap
+        msg = "This HIT was returned by another worker who has already started playing the game, 
+               so it cannot be reused. Please return the HIT and accept another HIT from the group. "        
+      when Codec.status_toomanysessions
+        msg = "It appears that you have reached the limit for the number of HITs allowed for each worker.  
+               Please return this HIT."
     @mainCont.errormessage.setMessage msg
     @mainCont.navigate '/errormessage'
     @mainCont.errormessage.render()
@@ -119,8 +124,6 @@ class Network
     @currPlayerName  = receivedMsg.yourName
     @numPlayed = 0
         
-    # if there are only 2 players, no point to aggregate the info
-    @task.agg = false if @numPlayers is 2
     @task.render()
 
     if @fakeServer
@@ -148,7 +151,6 @@ class Network
     # update interface
     @task.gotGameState(gameState)
     @task.render()
-    console.log "after get signal render"
     
     # get updates from the server
     if @fakeServer
@@ -229,8 +231,6 @@ class Network
       @game.numOtherActed += 1
     @game.save()
     @currPlayerReport = undefined # reset curr player report after using it
-    # console.log "current player name is #{@currPlayerName}"
-    # console.log "current player report is #{@game.result[@currPlayerName]}"
  
     # update ui
     @task.render()
@@ -247,14 +247,13 @@ class Network
           @getGameResult(MockServer.getResult())       
 
   @sendQuizInfo: (correct, total, checkedChoices) ->
-    return unless not @fakeServer
-    # send quiz answer to server
+    return if @fakeServer is true
+
     TSClient.sendQuizResults correct, total, JSON.stringify(checkedChoices)
 
   @sendFinalInfo: (data) ->
-    if @fakeServer
-       # alert "exit survey answers: #{JSON.stringify(data)}"
-    else
-      TSClient.submitHIT JSON.stringify(data)
+    return if @fakeServer is true
+
+    TSClient.submitHIT JSON.stringify(data)
 
 module.exports = Network

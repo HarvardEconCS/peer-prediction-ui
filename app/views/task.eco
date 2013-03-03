@@ -159,7 +159,7 @@
       <caption>Results</caption>
       <thead>
         <tr>
-          <th class="">Round</th>
+          <th>Round</th>
           <th class="leftb">Your candy</th>
           <th class="leftb">Your claim</th>
           <th class="aggInfo">Other players' claims</th>
@@ -183,7 +183,7 @@
           <tr class="borderAroundDashed">
             
             <!-- Round number -->
-            <td class=""><%= (i+1) %></td>  
+            <td><%= (i+1) %></td>  
         
             <!-- Your signal -->
             <td class="leftb">

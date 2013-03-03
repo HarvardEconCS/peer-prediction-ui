@@ -30,8 +30,6 @@ class Task extends Spine.Controller
   render: ->
     return unless @isActive()
 
-    console.log "render called"
-
     if Network.fakeServer and Network.experimentStarted is false
       Network.startExperiment()
       Network.experimentStarted = true
@@ -39,7 +37,7 @@ class Task extends Spine.Controller
     @game   = Game.last()
     @games  = Game.all()
     @bonus  = @calcAvgReward()
-    console.log "games are #{JSON.stringify(@games)}"
+    # console.log "games are #{JSON.stringify(@games)}"
       
     @html require('views/task')(@)
 
