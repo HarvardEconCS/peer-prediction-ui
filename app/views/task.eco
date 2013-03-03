@@ -8,7 +8,7 @@
 
   <div id="finishmsg">
     <p>Thank you for playing!<br/>  
-      Your will be paid a total of $<%= 0.05 + @bonus %> (=$0.05 + $<%= @bonus %>).<br/>
+      Your will be paid a total of $<%= (0.05 + @bonus).toFixed(2) %> (=$0.05 + $<%= @bonus.toFixed(2) %>).<br/>
     </p>
     <a class="button exit">Go to exit survey!</a>
   </div>
@@ -207,7 +207,8 @@
             <td class="aggInfo">
               <% if game.numOtherActed is (Network.numPlayers - 1): %>
                 <% if game.result? and Object.keys(game.result).length > 1 and (i+1) is Network.numRounds: %>
-                  <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">                     &nbsp;&nbsp;<%= game.numSignal0 %>
+                  <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">                       
+                  &nbsp;&nbsp;<%= game.numSignal0 %>
                   <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
                   &nbsp;&nbsp;<%= Network.numPlayers - 1 - game.numSignal0 %>
                 <% else: %>
@@ -232,27 +233,23 @@
           <!-- display previous records -->
           <tr>
             <td><%= (i + 1) %></td>
-            
-            <!-- Your candy -->
-            <td class="leftb">
+
+            <td class="leftb"><!-- Your candy -->
               <img class="candy_image" src="images/<%= game.signal %>.png">
             </td>  
                 
-            <!-- Your report -->
-            <td class="leftb">
+            <td class="leftb"><!-- Your report -->
               <img class="candy_image" src="images/<%= game.result[Network.currPlayerName].report %>.png">
             </td>
             
-            <!-- Other Players' Claims -->
-            <td class="aggInfo">
+            <td class="aggInfo"><!-- Other Players' Claims -->
               <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
               &nbsp;&nbsp;<%= game.numSignal0 %>
               <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
               &nbsp;&nbsp;<%= Network.numPlayers - 1 - game.numSignal0 %>
             </td>
 
-            <!-- Your reward -->
-            <td class="leftb colReward">
+            <td class="leftb colReward"><!-- Your reward -->
               <span>$<%= game.result[Network.currPlayerName].reward.toFixed(2) %></span>
             </td>
             

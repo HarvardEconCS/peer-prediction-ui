@@ -1,6 +1,7 @@
 Game        = require 'models/game'
 TSClient    = require 'turkserver-js-client'
 MockServer  = require 'mockserver'
+Codec       = require 'turkserver-js-client/src/codec'
 
 class Network
   @cookieName = "peer.prediction.exp"
@@ -50,6 +51,7 @@ class Network
     @mainCont = cont
 
   @startExperiment: =>
+    console.log "start experiment"
     Game.init()    
     
     if not @fakeServer
@@ -95,7 +97,7 @@ class Network
     @mainCont.errormessage.render()
 
   @getMessage: (msg) =>
-    console.log msg
+    console.log "service message received: #{JSON.stringify(msg)}"
     switch msg.status
       when "startRound"
         @getGeneralInfo msg
@@ -127,6 +129,8 @@ class Network
       ), 100
 
   @getSignal: (receivedMsg) ->    
+    console.log "get signal #{JSON.stringify(receivedMsg)}"
+    
     # reset variables
     @currConfirmed    = false
     @currPlayerReport = null
@@ -144,6 +148,7 @@ class Network
     # update interface
     @task.gotGameState(gameState)
     @task.render()
+    console.log "after get signal render"
     
     # get updates from the server
     if @fakeServer
@@ -152,22 +157,21 @@ class Network
       ), 3000
   
   @getGameResult: (receivedMsg) ->    
-    # console.log "get game result is #{JSON.stringify(receivedMsg)}"
+    console.log "get game result is #{JSON.stringify(receivedMsg)}"
 
     # save game result
     @game = Game.last()
-    if @game.result?
-    else
-      @game.result = {}
+    @game.result ?= {}
+      
     for name in @playerNames
       @game.result[name] = {}
       @game.result[name].report     = receivedMsg.result[name].report
       theRefPlayer = receivedMsg.result[name].refPlayer
       @game.result[name].refPlayer  = theRefPlayer 
       @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
-      @game.result[name].reward     = receivedMsg.result[name].reward
+      @game.result[name].reward     = parseFloat(receivedMsg.result[name].reward)
     @game.save()
-    # console.log "game with result is #{@game}"
+
     
     # count number of people who reported signalList[0]
     count = 0
@@ -231,24 +235,26 @@ class Network
     # update ui
     @task.render()
 
-    # check if other players have acted
-    if @game.numOtherActed is (@numPlayers - 1) and @currConfirmed is true
-      console.log "all players have reported."
-      clearInterval(@intervalId)
+    # if we are using the mock server, check whether all other players have acted
+    # if all other players have acted, get the result of the game
+    if @fakeServer
+      if @game.numOtherActed is (@numPlayers - 1) and @currConfirmed is true
+        console.log "all players have reported."
+        clearInterval(@intervalId)
       
-      if @game.result?   # if the result array exists, then the player must have confirmed report already
-        console.log "load the next game."
-        @getGameResult(MockServer.getResult())    
+        if @game.result?   # if the result array exists, then the player must have confirmed report already
+          console.log "load the next game." 
+          @getGameResult(MockServer.getResult())       
 
   @sendQuizInfo: (correct, total, checkedChoices) ->
     return unless not @fakeServer
     # send quiz answer to server
-    TSClient.sendQuizResults correct, total, checkedChoices
+    TSClient.sendQuizResults correct, total, JSON.stringify(checkedChoices)
 
   @sendFinalInfo: (data) ->
     if @fakeServer
        # alert "exit survey answers: #{JSON.stringify(data)}"
     else
-      TSClient.submitHIT(data)
+      TSClient.submitHIT JSON.stringify(data)
 
 module.exports = Network

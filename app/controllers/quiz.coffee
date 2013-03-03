@@ -13,7 +13,8 @@ class Quiz extends Spine.Controller
     super
     
     @signalList = ["MM", "GB"]
-    @wrongAnswers = undefined
+    @wrongAnswers   = undefined
+    @checkedValues  = undefined
     
   active: ->
     super
@@ -75,17 +76,24 @@ class Quiz extends Spine.Controller
     if Network.fakeServer
       @navigate '/task'
     else
-      # send checkedIdswers to the server
-      # TODO: send checked choices to server
+      console.log "sending quiz results to server"
+      
+      # For testing convenience.  TAKE OUT
+      # correct = 14
+      # total = 14
       Network.sendQuizInfo(correct, total, checkedChoices)
     
+  # for rendering quiz after fail
+  # get list of questions answered incorrectly
   listWrongQuestions: ->
     list = []
     for i in [1..4]
       if @isQuestionWrong(i) is true
         list.push i
     return list
-    
+
+  # for rendering quiz after fail    
+  # check if a question is answered incorrectly
   isQuestionWrong: (qNum) ->
     if qNum is 1
       qName = 'step1'

@@ -30,23 +30,16 @@ class Task extends Spine.Controller
   render: ->
     return unless @isActive()
 
+    console.log "render called"
+
     if Network.fakeServer and Network.experimentStarted is false
       Network.startExperiment()
       Network.experimentStarted = true
 
-    # always display aggregate information
-    @agg = true
-    
-    # @unconfirmMsg   = Network.unconfirmMsg
-    # @numRounds      = Network.numRounds
-    # @numPlayers     = Network.numPlayers
-    # @payAmounts     = Network.payAmounts    
-    # @signalList     = Network.signalList
-    # @currPlayerName = Network.currPlayerName
-    
     @game   = Game.last()
     @games  = Game.all()
-    @bonus = @calcAvgReward()
+    @bonus  = @calcAvgReward()
+    console.log "games are #{JSON.stringify(@games)}"
       
     @html require('views/task')(@)
 
@@ -88,6 +81,8 @@ class Task extends Spine.Controller
           
     if num > 0
       @bonus =  Math.round(totalReward / num * 100)/100
+    else
+      @bonus = 0
 
   # called after getting the game state
   gotGameState: (gameState) ->

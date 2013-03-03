@@ -7,7 +7,7 @@ class MockServer
   @signalList = [@signalH, @signalL]
   @jarInfo    = [10, 3, 4]
   @payAmounts = [0.50, 0.10, 0.23, 0.43]
-  @nPlayers   = 5
+  @nPlayers   = 2
   @nRounds    = 6
   
   @playerNames  = []
