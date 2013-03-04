@@ -98,6 +98,9 @@ class Network
       when Codec.status_toomanysessions
         msg = "It appears that you have reached the limit for the number of HITs allowed for each worker.  
                Please return this HIT."
+      when Codec.status_completed
+        @mainCont.navigate '/exitsurvey'
+        return
     @mainCont.errormessage.setMessage msg
     @mainCont.navigate '/errormessage'
     @mainCont.errormessage.render()
