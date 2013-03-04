@@ -8,13 +8,13 @@ class Network
   
   @unconfirmMsg:  "questionmarkred"
   
-  @fakeServer         = undefined
-  @task               = undefined
-  @mainCont           = undefined
-  @intervalId         = null
-  @currPlayerName     = undefined
-  @currPlayerReport   = undefined
-  @currConfirmed      = undefined
+  @fakeServer      = undefined
+  @intervalId      = null
+  
+  @taskCont        = undefined
+  @mainCont        = undefined
+
+  @currPlayerName  = undefined
 
   @signalList      = undefined
   @payAmounts      = undefined
@@ -26,40 +26,25 @@ class Network
   @showLobby  = false
   
   @experimentStarted = false
-    
-  # @initFake: ->  
-  #   @fakeServer = true
 
   @init: ->
-    # @fakeServer = false
     TSClient.QuizRequired @quizNeeded
-    TSClient.QuizFailed @quizFail
-    TSClient.EnterLobby @enterLobby
+    TSClient.QuizFailed   @quizFail
+    TSClient.EnterLobby   @enterLobby
     TSClient.ErrorMessage @rcvErrorMsg
     
-    TSClient.StartExperiment @startExperiment
+    TSClient.StartExperiment  @startExperiment
     TSClient.StartRound (round) -> console.log("@StartRound" + round)
-    TSClient.FinishExperiment -> console.log "@FinishExperiment"
-    TSClient.ServiceMessage @getMessage 
+    TSClient.FinishExperiment @finishExperiment
+    TSClient.ServiceMessage   @getMessage 
     
     TSClient.init(@cookieName, "")
     
-  @setTaskController: (taskCont) ->
-    @task = taskCont
+  @setTaskController: (cont) ->
+    @taskCont = cont
 
   @setMainController: (cont) ->
     @mainCont = cont
-
-  @startExperiment: =>
-    console.log "start experiment"
-    Game.init()    
-    
-    if not @fakeServer
-      @mainCont.navigate '/task'
-    else
-      setTimeout (=> 
-        @getGeneralInfo MockServer.getGeneralInfo() 
-      ), 2000
 
   @quizNeeded: =>
     console.log "quiz required"
@@ -76,6 +61,22 @@ class Network
   @enterLobby: =>
     console.log "enter lobby"
     @mainCont.navigate '/lobby'
+
+  @startExperiment: =>
+    console.log "@StartExperiment"
+    Game.init()    
+    
+    if not @fakeServer
+      @mainCont.navigate '/task'
+    else
+      setTimeout (=> 
+        @getGeneralInfo MockServer.getGeneralInfo() 
+      ), 2000
+
+  @finishExperiment: =>
+    console.log "@FinishExperiment"
+    
+    @taskCont.finish()
 
   @rcvErrorMsg: (status) =>
     console.log "error message received with status #{status}"
@@ -104,7 +105,7 @@ class Network
   @getMessage: (msg) =>
     console.log "service message received: #{JSON.stringify(msg)}"
     switch msg.status
-      when "startRound"
+      when "generalInfo"
         @getGeneralInfo msg
       when "signal"
         @getSignal msg
@@ -112,8 +113,78 @@ class Network
         @getReportConfirmation msg
       when "results"
         @getGameResult msg
+      when "resendState"
+        @getResendState msg
+      when "loadExitSurvey"
+        @mainCont.navigate '/exitsurvey'
       when "killed"
         @rcvErrorMsg "status.killed"
+  
+  @getResendState: (receivedMsg) ->
+    console.log "process resend state #{JSON.stringify(receivedMsg)}"
+    return if @numPlayers?
+    
+    
+    
+    @signalList      = receivedMsg.signalList
+    @payAmounts      = receivedMsg.payments
+    @numPlayers      = receivedMsg.numPlayers
+    @numRounds       = receivedMsg.numRounds 
+    @playerNames     = receivedMsg.playerNames
+    @currPlayerName  = receivedMsg.yourName
+    
+    for res in receivedMsg.existingResults
+      resultObj = {}
+      for name in @playerNames
+        resultObj[name] = {'report' : res[name].report}
+        if name is @currPlayerName
+          resultObj[name].reward = parseFloat(res[name].reward)
+      signalZeroCount = 0 
+      for name in @playerNames
+        if name isnt @currPlayerName and res[name].report is @signalList[0]
+          signalZeroCount = signalZeroCount + 1
+      gameState = 
+        'result'          : resultObj
+        'currPlayerSignal': res[@currPlayerName].signal
+        'numSignalZero'   : signalZeroCount 
+      Game.saveGame(gameState)  
+
+
+    # save information of last game
+    currReportConfirmed = receivedMsg.workersConfirmed.indexOf(@currPlayerName) >= 0
+
+    numOtherReportsConfirmed = receivedMsg.workersConfirmed.length
+    if currReportConfirmed is true
+      numOtherReportsConfirmed = numOtherReportsConfirmed - 1
+      
+    reportsConfirmed = {}
+    for name in @playerNames
+      if receivedMsg.workersConfirmed.indexOf(name) >= 0
+        reportsConfirmed[name] = true
+      else
+        reportsConfirmed[name] = false
+
+    if currReportConfirmed is true
+      @taskCont.revealSignal = true
+      @taskCont.reportChosen = true
+      @taskCont.selected = receivedMsg.currPlayerReport
+
+    resultObj = {}
+    if currReportConfirmed is true
+      resultObj[@currPlayerName] = {'report' : receivedMsg.currPlayerReport}
+     
+    lastGame = 
+      'reportConfirmed'  : reportsConfirmed
+      'result'           : resultObj 
+      'currPlayerSignal' : receivedMsg.currPlayerSignal
+      'numOtherReportsConfirmed' : numOtherReportsConfirmed 
+    Game.saveGame(lastGame)
+    
+    # update ui
+    @mainCont.navigate '/task'
+    @taskCont.render()
+
+      
 
   @getGeneralInfo: (receivedMsg) ->  
     @signalList      = receivedMsg.signalList
@@ -122,136 +193,108 @@ class Network
     @numRounds       = receivedMsg.numRounds 
     @playerNames     = receivedMsg.playerNames
     @currPlayerName  = receivedMsg.yourName
-    @numPlayed = 0
-        
-    @task.render()
+    
+    # update ui
+    @taskCont.render()
 
+    # mockserver: get signal for the first round
     if @fakeServer
       setTimeout (=> 
         @getSignal MockServer.getRoundSignal()
       ), 100
 
   @getSignal: (receivedMsg) ->    
-    console.log "get signal #{JSON.stringify(receivedMsg)}"
+    return unless receivedMsg
     
-    # reset variables
-    @currConfirmed    = false
-    @currPlayerReport = null
-    
+    # save new game
     reportConfirmed = {}
     for name in @playerNames
-      reportConfirmed[name] = false
-    
+      reportConfirmed[name] = false 
     gameState =
-      "numPlayed":        @numPlayed
-      "signal":           receivedMsg.signal 
-      "numOtherActed":    0
-      "reportConfirmed":  reportConfirmed
-    
-    # update interface
-    @task.gotGameState(gameState)
-    @task.render()
-    
-    # get updates from the server
+      "reportConfirmed":          reportConfirmed
+      "currPlayerSignal":         receivedMsg.signal 
+      "numOtherReportsConfirmed": 0
+    @taskCont.gotGameState(gameState)
+
+    # mockserver: set up call back for report confirmations
     if @fakeServer
       @intervalId = setInterval (=> 
         @getReportConfirmation MockServer.getConfirmReport()
       ), 3000
   
-  @getGameResult: (receivedMsg) ->    
-    console.log "get game result is #{JSON.stringify(receivedMsg)}"
-
-    # save game result
-    @game = Game.last()
-    @game.result ?= {}
-      
-    for name in @playerNames
-      @game.result[name] = {}
-      @game.result[name].report     = receivedMsg.result[name].report
-      theRefPlayer = receivedMsg.result[name].refPlayer
-      @game.result[name].refPlayer  = theRefPlayer 
-      @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
-      @game.result[name].reward     = parseFloat(receivedMsg.result[name].reward)
-    @game.save()
-
-    
-    # count number of people who reported signalList[0]
-    count = 0
-    if @game.result?
-      for name in @playerNames
-        if name is @currPlayerName
-          continue
-        else
-          if receivedMsg.result[name].report is @signalList[0]
-            count = count + 1
-    @game.numSignal0 = count
-    @game.save()
-
-    # update ui
-    @task.render()
-
-    # Check if we are finished with all games
-    @numPlayed += 1
-    if @numPlayed is @numRounds
-      @task.finish()
-      return
-    
-    # get information for the next game
-    if @fakeServer
-      setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )    
-    
-  @sendReport: (report) ->
-    @currPlayerReport = report
-    
-    if @fakeServer
-      MockServer.sendReportToServer(report)
-    else
-      TSClient.sendExperimentService
-        "report": report
-
   @getReportConfirmation: (receivedMsg) ->
     return unless receivedMsg
-    
-    console.log "confirmed report from #{receivedMsg.playerName}"
 
     # save confirmed report
     @game = Game.last()
     @game.reportConfirmed[receivedMsg.playerName] = true
     if receivedMsg.playerName is @currPlayerName
-      if @game.result?
-        if @game.result[@currPlayerName]?
-          @game.result[@currPlayerName].report = @currPlayerReport
-        else
-          @game.result[@currPlayerName] = {"report": @currPlayerReport}
-      else
-        @game.result = {}
-        @game.result[@currPlayerName] = {"report": @currPlayerReport}
-      @currConfirmed = true
+      @game.result ?= {}
+      @game.result[@currPlayerName] ?= {"report": @game.currPlayerReport}
+      @game.result[@currPlayerName].report = @game.currPlayerReport
     else
-      @game.numOtherActed += 1
+      @game.numOtherReportsConfirmed += 1
     @game.save()
-    @currPlayerReport = undefined # reset curr player report after using it
  
     # update ui
-    @task.render()
+    @taskCont.render()
 
-    # if we are using the mock server, check whether all other players have acted
-    # if all other players have acted, get the result of the game
+    # mockserver: if all reports are confirmed, load next game
     if @fakeServer
-      if @game.numOtherActed is (@numPlayers - 1) and @currConfirmed is true
-        console.log "all players have reported."
+      @game = Game.last()
+      if @game.numOtherReportsConfirmed is (@numPlayers - 1) and @game.currPlayerReport?
         clearInterval(@intervalId)
-      
-        if @game.result?   # if the result array exists, then the player must have confirmed report already
-          console.log "load the next game." 
-          @getGameResult(MockServer.getResult())       
+        @getGameResult(MockServer.getResult())        
+  
+  @getGameResult: (receivedMsg) ->    
+    # console.log "get game result is #{JSON.stringify(receivedMsg)}"
 
+    # save game result
+    @game = Game.last()
+    @game.result ?= {}
+    for name in @playerNames
+      @game.result[name] ?= {}
+      @game.result[name].report     = receivedMsg.result[name].report
+      theRefPlayer = receivedMsg.result[name].refPlayer
+      @game.result[name].refPlayer  = theRefPlayer 
+      @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
+      @game.result[name].reward     = parseFloat(receivedMsg.result[name].reward)
+    signalZeroCount = 0 # count number of people who reported signalList[0]
+    for name in @playerNames
+      if name isnt @currPlayerName and receivedMsg.result[name].report is @signalList[0]
+        signalZeroCount = signalZeroCount + 1
+    @game.numSignalZero = signalZeroCount
+    @game.save()
+
+    # update ui
+    @taskCont.render()
+
+    # mockserver: if all games are finished, update ui, otherwise, get signal for next game
+    if @fakeServer
+      if Game.all().length is @numRounds
+        # update ui if all games are finished
+        @taskCont.finish()
+      else
+        # get signal for next game
+        setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )    
+    
+  @sendReport: (report) ->
+    @game = Game.last()
+    @game.currPlayerReport = report if @game
+    @game.save()
+    
+    if not @fakeServer
+      TSClient.sendExperimentService
+        "report": report
+    else 
+      MockServer.sendReportToServer(report)
+ 
   @sendQuizInfo: (correct, total, checkedChoices) ->
     return if @fakeServer is true
 
     TSClient.sendQuizResults correct, total, JSON.stringify(checkedChoices)
 
-  @sendFinalInfo: (data) ->
+  @sendHITSubmitInfo: (data) ->
     return if @fakeServer is true
 
     TSClient.submitHIT JSON.stringify(data)

@@ -17,9 +17,8 @@ class Task extends Spine.Controller
     @revealSignal   = false    
     @defaultReport  = "default"      
     @selected       = @defaultReport
-    @randomRadio = Math.floor(Math.random() * 2)
-    
-    @bonus = 0
+    @randomRadio    = Math.floor(Math.random() * 2)
+    @bonus          = 0
     
     Network.setTaskController @
 
@@ -34,11 +33,10 @@ class Task extends Spine.Controller
       Network.startExperiment()
       Network.experimentStarted = true
 
-    @game   = Game.last()
     @games  = Game.all()
+    @game   = Game.last()
     @bonus  = @calcAvgReward()
-    # console.log "games are #{JSON.stringify(@games)}"
-      
+    
     @html require('views/task')(@)
 
     @addDashedBorder()
@@ -88,7 +86,7 @@ class Task extends Spine.Controller
 
     # reset these for rendering
     @revealSignal = false 
-    @selected = @defaultReport
+    @selected     = @defaultReport
     @reportChosen = false
     @randomRadio = Math.floor(Math.random() * 2)
 
@@ -99,12 +97,11 @@ class Task extends Spine.Controller
     @finished = true
     @render()
     
-    # game is finished, remove the dashed border around the current game
+    # game is finished, remove the dashed border around the last game
     $('tr').removeClass("borderAroundDashed")
     $('td').removeClass("borderLeftDashed")
     $('td').removeClass("borderRightDashed")
 
-  # gets a random signal
   revealSignalFunc: (e) =>
     e.preventDefault()
     @revealSignal = true

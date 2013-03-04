@@ -35,7 +35,7 @@ class Exitsurvey extends Spine.Controller
     exitComments.ui       = uiComments
     exitComments.strategy = strategyComments
     
-    Network.sendFinalInfo(exitComments)
+    Network.sendHITSubmitInfo(exitComments)
   
   
 module.exports = Exitsurvey
