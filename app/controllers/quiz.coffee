@@ -79,8 +79,8 @@ class Quiz extends Spine.Controller
       console.log "sending quiz results to server"
       
       # For testing convenience.  TAKE OUT
-      correct = 14
-      total = 14
+      # correct = 14
+      # total = 14
       Network.sendQuizInfo(correct, total, checkedChoices)
     
   # for rendering quiz after fail
