@@ -33,45 +33,25 @@ class Quiz extends Spine.Controller
   
   submitClicked: (ev) => 
     ev.preventDefault()
-    
-    # for rendering after failing
-    checkedValuesRaw = []
+
+    # for rendering
+    checkedValues = []
     $('input:checkbox:checked').each ->
-      checkedValuesRaw.push $(this).val()
-    @checkedValues = checkedValuesRaw
-    
-    # validate checkedIdswers and send them to server
-    checkedIds = []
-    $('input:checkbox:checked').each ->
-      checkedIds.push $(this).attr('id')
-    checkedIds.sort()
-      
-    key = ['q14', 'q23', 'q34']
-    key.sort()
-    
-    correct = 0
-    for checkedId in checkedIds
-      if key.indexOf(checkedId) is -1
-        # checked choice is correct
-        correct++
-        
-    for eachKey in key
-      if checkedIds.indexOf(eachKey) is -1
-        # wrong choice is not checked
-        correct++
-        
+      checkedValues.push $(this).val()
+    @checkedValues = checkedValues
+
+    # get total num of questions
     total= $('input:checkbox').length    
-
-    checkedChoices = {}
-    $('input:checkbox:checked').each ->
-      n = $(this).attr('name')
-      if not checkedChoices[n]?
-        checkedChoices[n] = []
-      checkedChoices[n].push $(this).val()
-    console.log "checked choices are #{JSON.stringify(checkedChoices)}"
-
+    # get num correct answers
+    correct = @getNumCorrectAnswers()
+    console.log "score: #{correct}/#{total}"
+    
+    # get object to store quiz answers
+    quizAnsObj = @getQuizAnsObj()
+    console.log "quiz answer object #{JSON.stringify(quizAnsObj)}"
+    
+    # get list of wrong answers
     @wrongAnswers = @listWrongQuestions()
-    # console.log "wrong answers are #{JSON.stringify(@wrongAnswers)}"
 
     if Network.fakeServer
       @navigate '/task'
@@ -81,7 +61,46 @@ class Quiz extends Spine.Controller
       # For testing convenience.  TAKE OUT
       # correct = 14
       # total = 14
-      Network.sendQuizInfo(correct, total, checkedChoices)
+      Network.sendQuizInfo(correct, total, quizAnsObj)
+    
+  getQuizAnsObj: ->
+    ansObj = {}
+    
+    $('input:checkbox').each -> 
+      n = $(this).attr('name')
+      i = $(this).attr('id')
+      if not ansObj[n]?
+        ansObj[n] = {}
+      if not ansObj[n][i]?
+        ansObj[n][i] = {}
+        
+    for name in Object.keys(ansObj)
+      for id in Object.keys(ansObj[name])
+        ansObj[name][id]["value"] = $('input:checkbox#'+id).val()
+        ansObj[name][id].checked = $('input:checkbox#'+id).is(':checked')       
+    ansObj
+  
+  getNumCorrectAnswers: ->
+    # ids of checked choices
+    checkedIds = []
+    $('input:checkbox:checked').each ->
+      checkedIds.push $(this).attr('id')
+    checkedIds.sort()
+    
+    key = ['q14', 'q23', 'q34']
+    key.sort()
+    
+    correct = 0
+    for checkedId in checkedIds
+      if key.indexOf(checkedId) is -1
+        # checked choice is correct
+        correct++
+    for eachKey in key
+      if checkedIds.indexOf(eachKey) is -1
+        # wrong choice is not checked
+        correct++
+        
+    return correct
     
   # for rendering quiz after fail
   # get list of questions answered incorrectly
@@ -91,7 +110,7 @@ class Quiz extends Spine.Controller
       if @isQuestionWrong(i) is true
         list.push i
     return list
-
+    
   # for rendering quiz after fail    
   # check if a question is answered incorrectly
   isQuestionWrong: (qNum) ->

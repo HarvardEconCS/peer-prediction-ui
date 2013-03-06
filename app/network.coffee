@@ -53,8 +53,7 @@ class Network
 
   @quizFail: =>
     console.log "quiz failed"
-    alert "Sorry!  You failed the quiz.  We encourage you to try again.  
-           If you'd like to quit, feel free to return this HIT."
+    alert "Sorry!  You failed the quiz.  We encourage you to try again.  If you'd like to quit, feel free to return this HIT."
     @mainCont.navigate '/quiz'
     @mainCont.quiz.render()
       
