@@ -25,16 +25,16 @@ class Exitsurvey extends Spine.Controller
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
       return
     
-    # retrieve comments
-    bugComments       = $('textarea#bugComments').val()
-    uiComments        = $('textarea#uiComments').val()
-    strategyComments  = $('textarea#strategyComments').val()
-    
+    # construct exit comments object
     exitComments = {}
-    exitComments.bug      = bugComments
-    exitComments.ui       = uiComments
-    exitComments.strategy = strategyComments
-    
+    $('textarea').each ->
+      i = $(this).attr('id')
+      if not exitComments[i]?
+        exitComments[i] = {}
+    for id in Object.keys(exitComments)
+      exitComments[i] = $('textarea#' + id).val()
+      
+    # send exit comments to server
     Network.sendHITSubmitInfo(exitComments)
   
   
