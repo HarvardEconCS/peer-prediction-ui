@@ -24,7 +24,7 @@ class Exitsurvey extends Spine.Controller
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
       return
-    
+
     # construct exit comments object
     exitComments = {}
     $('textarea').each ->
@@ -32,7 +32,7 @@ class Exitsurvey extends Spine.Controller
       if not exitComments[i]?
         exitComments[i] = {}
     for id in Object.keys(exitComments)
-      exitComments[i] = $('textarea#' + id).val()
+      exitComments[id] = $('textarea#' + id).val()
       
     # send exit comments to server
     Network.sendHITSubmitInfo(exitComments)
