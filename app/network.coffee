@@ -47,18 +47,18 @@ class Network
     @mainCont = cont
 
   @quizNeeded: =>
-    console.log "quiz required"
+    console.log "@QuizRequired"
     @showQuiz = true
     @mainCont.navigate '/'
 
   @quizFail: =>
-    console.log "quiz failed"
+    console.log "@QuizFailed"
     alert "Sorry!  You failed the quiz.  We encourage you to try again.  If you'd like to quit, feel free to return this HIT."
     @mainCont.navigate '/quiz'
     @mainCont.quiz.render()
       
   @enterLobby: =>
-    console.log "enter lobby"
+    console.log "@EnterLobby"
     @mainCont.navigate '/lobby'
 
   @startExperiment: =>
@@ -78,7 +78,7 @@ class Network
     @taskCont.finish()
 
   @rcvErrorMsg: (status) =>
-    console.log "error message received with status #{status}"
+    console.log "@ErrorMessageStatus:#{status}"
     msg = ""
     switch status
       when Codec.status_failsauce
@@ -105,7 +105,7 @@ class Network
     @mainCont.errormessage.render()
 
   @getMessage: (msg) =>
-    console.log "service message received: #{JSON.stringify(msg)}"
+    console.log "@ServiceMessage:#{JSON.stringify(msg)}"
     switch msg.status
       when "generalInfo"
         @getGeneralInfo msg
@@ -123,10 +123,8 @@ class Network
         @rcvErrorMsg "status.killed"
   
   @getResendState: (receivedMsg) ->
-    console.log "process resend state #{JSON.stringify(receivedMsg)}"
+    console.log "@ReconnectWithState:#{JSON.stringify(receivedMsg)}"
     return if @numPlayers?
-    
-    
     
     @signalList      = receivedMsg.signalList
     @payAmounts      = receivedMsg.payments
@@ -150,7 +148,6 @@ class Network
         'currPlayerSignal': res[@currPlayerName].signal
         'numSignalZero'   : signalZeroCount 
       Game.saveGame(gameState)  
-
 
     # save information of last game
     currReportConfirmed = receivedMsg.workersConfirmed.indexOf(@currPlayerName) >= 0
@@ -186,9 +183,9 @@ class Network
     @mainCont.navigate '/task'
     @taskCont.render()
 
-      
-
   @getGeneralInfo: (receivedMsg) ->  
+    return unless receivedMsg
+    
     @signalList      = receivedMsg.signalList
     @payAmounts      = receivedMsg.payments
     @numPlayers      = receivedMsg.numPlayers
@@ -248,9 +245,9 @@ class Network
         clearInterval(@intervalId)
         @getGameResult(MockServer.getResult())        
   
-  @getGameResult: (receivedMsg) ->    
-    # console.log "get game result is #{JSON.stringify(receivedMsg)}"
-
+  @getGameResult: (receivedMsg) ->
+    return unless receivedMsg
+    
     # save game result
     @game = Game.last()
     @game.result ?= {}

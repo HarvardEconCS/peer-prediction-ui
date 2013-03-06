@@ -81,14 +81,13 @@ class Tutorial extends Spine.Controller
     @stepShow()
 
   # navigate the tutorial using arrows
-  keyPressed: (ev) =>
-    ev.preventDefault()
-    # console.log "key pressed is #{ev.which}"
-    
-    if ev.which is 102
-      $(".tutorial .button.next:visible").click()
-    else if ev.which is 100
-      $(".tutorial .button.prev:visible").click()
+  # keyPressed: (ev) =>
+  #   ev.preventDefault()
+  #   
+  #   if ev.which is 102
+  #     $(".tutorial .button.next:visible").click()
+  #   else if ev.which is 100
+  #     $(".tutorial .button.prev:visible").click()
 
   stepShow: ->
     @ele = $(".tutorial .#{@steps[@stepIndex][0]}")

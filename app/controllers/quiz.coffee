@@ -44,11 +44,11 @@ class Quiz extends Spine.Controller
     total= $('input:checkbox').length    
     # get num correct answers
     correct = @getNumCorrectAnswers()
-    console.log "score: #{correct}/#{total}"
+    # console.log "score: #{correct}/#{total}"
     
     # get object to store quiz answers
     quizAnsObj = @getQuizAnsObj()
-    console.log "quiz answer object #{JSON.stringify(quizAnsObj)}"
+    # console.log "quiz answer object #{JSON.stringify(quizAnsObj)}"
     
     # get list of wrong answers
     @wrongAnswers = @listWrongQuestions()
@@ -56,7 +56,7 @@ class Quiz extends Spine.Controller
     if Network.fakeServer
       @navigate '/task'
     else
-      console.log "sending quiz results to server"
+      # console.log "sending quiz results to server"
       
       # For testing convenience.  TAKE OUT
       # correct = 14
