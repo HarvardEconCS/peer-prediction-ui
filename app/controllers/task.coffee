@@ -45,7 +45,7 @@ class Task extends Spine.Controller
 
   scrollTableToBottom: ->
     # make the table always scroll to the bottom
-    $('div .resultTableBody').scrollTop($('div .resultTableBody').prop("scrollHeight"))
+    $('div #resultTableBody').scrollTop($('div #resultTableBody').prop("scrollHeight"))
     
   addDashedBorder: ->
     # add left and right dashed border style for the last row

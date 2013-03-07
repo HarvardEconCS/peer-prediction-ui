@@ -1,114 +1,78 @@
 <% Network = require('network') %>
 <% if Network.preview is true: %>
-<p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
+  <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
 
-  <img class="image" id="pic-prior" src="images/pic-prior.png">
-  <img class="image" id="step2" src="images/step2.png">
-  <img class="image" id="step3-description" src="images/step3-description.png">
-  <img class="image" id="step3-example" src="images/step3-example.png">
-  <img class="image" id="steps-recap" src="images/steps-recap.png">
+<!-- Pictures for explaining steps of the game -->
+<img class="image" id="pic-prior"         src="images/pic-prior.png">
+<img class="image" id="step2"             src="images/step2.png">
+<img class="image" id="step3-description" src="images/step3-description.png">
+<img class="image" id="step3-example"     src="images/step3-example.png">
+<img class="image" id="steps-recap"       src="images/steps-recap.png">
+<img class="image" id="eg-MM-MM" src="images/eg-MM-MM.png">
+<img class="image" id="eg-MM-GB" src="images/eg-MM-GB.png">
+<img class="image" id="eg-GB-MM" src="images/eg-GB-MM.png">
   
-  <img class="image" id="eg-MM-MM" src="images/eg-MM-MM.png">
-  <img class="image" id="eg-MM-GB" src="images/eg-MM-GB.png">
-  <img class="image" id="eg-GB-MM" src="images/eg-GB-MM.png">
+<!-- Pictures for explaining interface of the game -->
+<img class="image" id="taskstart"           src="images/task-start.png">
+<img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
+<img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png">
+<img class="image" id="tasknextgame"        src="images/task-nextgame.png">
+<img class="image" id="taskexpend"          src="images/task-expend.png">
+<img class="image" id="box-table"       src="images/box-table.png">
+<img class="image" id="box-onegame"     src="images/box-onegame.png">
+<img class="image" id="box-stepsonetwo" src="images/box-stepsonetwo.png">
+<img class="image" id="box-stepthree"   src="images/box-stepthree.png">
+<img class="image" id="box-title"       src="images/box-title.png">
+<img class="image" id="box-rewardrule"  src="images/box-rewardrule.png">
+<img class="image" id="box-tablenew"    src="images/box-tablenew.png">
   
-  <img class="image" id="taskstart"           src="images/task-start.png">
-  <img class="image" id="tasksignalshown"     src="images/task-signalshown.png">
-  <img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png">
-  <img class="image" id="tasknextgame"        src="images/task-nextgame.png">
-  <img class="image" id="taskexpend"          src="images/task-expend.png">
 
-  <!-- <img class="image" id="box-geninfo" src="images/box-geninfo.png"> -->
-  <!-- <img class="image" id="box-onepastgame" src="images/box-onepastgame.png"> -->
-  <img class="image" id="box-rule"    src="images/box-rule.png">
-  <img class="image" id="box-table"   src="images/box-table.png">
-  <img class="image" id="box-onegame" src="images/box-onegame.png">
-  <img class="image" id="box-signalReport" src="images/box-signalReport.png">
-  <img class="image" id="box-newgame" src="images/box-newgame.png">
-  
-  <img class="image" id="box-stepsonetwo" src="images/box-stepsonetwo.png">
-  <img class="image" id="box-stepthree" src="images/box-stepthree.png">
-  
-  <img class="image" id="box-title" src="images/box-title.png">
-  <img class="image" id="box-currentgame" src="images/box-currentgame.png">
-  <img class="image" id="box-currentgamelarger" src="images/box-currentgamelarger.png">
-  <img class="image" id="box-rewardrule" src="images/box-rewardrule.png">
-  <img class="image" id="box-tablenew" src="images/box-tablenew.png">
-  
-  <img class="image" id="box-signal"  src="images/box-signal.png">
-  <img class="image" id="box-report"  src="images/box-report.png">
-  <img class="image" id="box-signalintable" src="images/box-signalintable.png">
-  
-    
-    
+<div id="interfaceTutorial">
+  <div id="int-task-title">
+    You are playing <span class="textBold">10 rounds</span> of the game with <span class="textBold">2 other players</span><br/> 
+  </div>
+  <div id="int-task-roundIndex">
+    This is <span class="textBold">Round #1</span>:
+  </div>
+</div>
+
+
+
 <div id="ruleTableTutorial">
-    <table class="rule">
-      <caption>Reward Rule</caption>
-      
-      <colgroup>
-        <col class="colRuleYourReport">
-        <col class="colRuleOtherReport">
-        <col class="colRuleYourReward">
-      </colgroup>
-      
-      <tr>
-        <th class="rule">Your claim</th>
-        <th class="rule">Your friend's claim</th>
-        <th class="rule leftb">Your<br/>reward</th>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        
-        <td class="rule leftb money">
-          $<%= @payRule[0].toFixed(2) %>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="rule leftb money">
-          $<%= @payRule[1].toFixed(2) %>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="rule leftb money">
-          $<%= @payRule[2].toFixed(2) %>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="rule">
-          <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="rule leftb money">
-          $<%= @payRule[3].toFixed(2) %>
-        </td>
-      </tr>
-      
-    </table> 
+  <table>
+    <caption>Reward Rule</caption>
+    <colgroup>
+      <col class="colRuleYourReport">
+      <col class="colRuleOtherReport">
+      <col class="colRuleYourReward">
+    </colgroup>
+    <tr>
+      <th>Your claim</th>
+      <th>Your friend's claim</th>
+      <th class="leftb">Your<br/>reward</th>
+    </tr>
+    <tr>
+      <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+      <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+      <td class="leftb">$<%= @payRule[0].toFixed(2) %></td>
+    </tr>
+    <tr>
+      <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+      <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+      <td class="leftb">$<%= @payRule[1].toFixed(2) %></td>
+    </tr>
+    <tr>
+      <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+      <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+      <td class="leftb">$<%= @payRule[2].toFixed(2) %></td>
+    </tr>
+    <tr>
+      <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+      <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+      <td class="leftb">$<%= @payRule[3].toFixed(2) %></td>
+    </tr>
+  </table> 
 </div>
 
     

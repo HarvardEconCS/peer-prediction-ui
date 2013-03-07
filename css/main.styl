@@ -8,100 +8,98 @@ div.task
   height   768px
 
 taskTitleTop = 50px
-
-div.taskTitle 
+div#task-title 
   position   absolute
   top        taskTitleTop 
   left       0px
   width      1024px
   height     25px
   text-align center
+  font-size 19px
   
-
-roundStepsLeft  = 0px
-roundStepsWidth = 450px
-
+roundIndexTop    = 80px
+roundStepsLeft   = 0px
+roundStepsWidth  = 450px
 roundIndexHeight = 25px
-step1Height  = 120px
-step2Height  = 100px
-step3Height  = 110px
-
-roundIndexTop = 80px
-
-div.task-roundIndex
+div#task-roundIndex
   position  absolute
   top       roundIndexTop
   left      roundStepsLeft
   width     roundStepsWidth
   height    roundIndexHeight
+  font-size 18px
   
+step1Height  = 120px
 step1Top = roundIndexTop + roundIndexHeight
-  
-div.task-chooseHouse
+div#task-step1
   position  absolute
   top       step1Top
   left      roundStepsLeft
   width     roundStepsWidth
   height    step1Height
   border-top 2px solid #6678b1
-
-div.step1PicDiv
+  font-size 18px
+div#task-step1pic
   z-index   0 
   position  absolute
   top       step1Top + 20px
   left      25px
   width     250px
 
+step2Height  = 100px
 step2Top = step1Top + step1Height
-
-div.task-chooseYourSignal
+div#task-step2
   position  absolute
   top       step2Top
   left      roundStepsLeft
   width     roundStepsWidth
   height    step2Height
   border-top 2px solid #6678b1
+  font-size 18px
+div#task-step2 img
+  vertical-align middle
+div#task-step2 span
+  line-height 40px
 
+step3Height  = 110px  
 step3Top = step2Top + step2Height
-
-div.task-chooseYourClaim
-  position  absolute
-  top       step3Top
-  left      roundStepsLeft
-  width     roundStepsWidth
-  height    step3Height  
+div#task-step3
+  position   absolute
+  top        step3Top
+  left       roundStepsLeft
+  width      roundStepsWidth
+  height     step3Height  
   border-top 2px solid #6678b1
+  font-size  18px
+div#task-step3 img
+  vertical-align middle
   
 ruleTableTop = 300px
 ruleTableLeft = 230px
-
-div.ruleTable
+div#task-ruleTable
   z-index   0
   position  absolute
   top       step3Top + 20px
   left      ruleTableLeft
   width     250px
 
-
 div#finishmsg
   position absolute
-  top   50px
-  left  100px
+  top      50px
+  left     100px
 
 
 resultTop  = 80px
 resultLeft = 500px
-
-div.resultTableHeader
+div#resultTableHeader
   position absolute
   top      resultTop
   left     resultLeft
 
 resultHeaderHeight = 90px
-resultBodyTop = resultTop + resultHeaderHeight
-resultBodyHeight = 400px
-
-div.resultTableBody
+resultBodyTop      = resultTop + resultHeaderHeight
+resultBodyHeight   = 400px
+div#resultTableBody
   z-index     0
   position    absolute
   top         resultBodyTop
@@ -109,10 +107,12 @@ div.resultTableBody
   height      resultBodyHeight
   overflow-y  scroll
   
-div.avgreward
-  position  absolute
-  top       resultBodyTop + resultBodyHeight
-  left      resultLeft + 255px
-  height    50px
+div#avgreward
+  position    absolute
+  top         resultBodyTop + resultBodyHeight
+  left        resultLeft + 255px
+  height      50px
+  font-size   20px
+  font-weight bold
     
 

@@ -8,6 +8,7 @@ div.step
 div.image
 img.image
 div#ruleTableTutorial
+div#interfaceTutorial
   display none
 
 div.tutorial
@@ -27,6 +28,71 @@ div#ruleTableTutorial
   z-index 5
   position absolute
   width 250px
+ 
+    
+///////////////////////////////////////       
+// Payment rule table
+div#ruleTableTutorial
+  border-collapse collapse
+  table-layout fixed
+  
+div#ruleTableTutorial caption
+  font-size       17px
+  padding-bottom  10px
+  font-weight     bold
+
+div#ruleTableTutorial th   
+  font-size     16px
+  text-align    center
+  border-bottom 2px solid #6678b1
+
+div#ruleTableTutorial td
+  font-size     19px
+  text-align    center
+  border-bottom 1px solid #6678b1
+
+div#ruleTableTutorial th.leftb, td.leftb
+  border-left 2px solid #6678b1
+
+div#ruleTableTutorial col.colRuleYourReport
+div#ruleTableTutorial col.colRuleOtherReport
+div#ruleTableTutorial col.colRuleYourReward
+  width 75px    
+    
+    
+///////////////////////////////////////    
+// Interface of game    
+intTaskTitleTop = 50px
+div#int-task-title 
+  position   absolute
+  top        intTaskTitleTop  
+  left       0px
+  width      1024px
+  height     25px
+  text-align center
+  font-size  19px    
+    
+intRoundIndexTop    = 80px
+intRoundStepsLeft   = 0px
+intRoundStepsWidth  = 450px
+intRoundIndexHeight = 25px
+div#int-task-roundIndex
+  position  absolute
+  top       intRoundIndexTop
+  left      intRoundStepsLeft
+  width     intRoundStepsWidth
+  height    intRoundIndexHeight
+  font-size 18px   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 img#eg-MM-MM
 img#eg-MM-GB

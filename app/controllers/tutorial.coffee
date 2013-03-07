@@ -207,9 +207,6 @@ class Tutorial extends Spine.Controller
     selector = "#step3-description"
     @showSelected(show, selector)
 
-    # selector = "#payment_rule"
-    # @showSelectedCustom(show, selector, '340px', '40px')
-
     selector = "#ruleTableTutorial"
     @showDiv(show, selector, '300px', '40px')
 
@@ -276,6 +273,8 @@ class Tutorial extends Spine.Controller
 
   uiOneStart: (show) =>
     @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
+    # selector = "#interfaceTutorial"
+    # @showDiv show, selector, '0px', '0px'
     
     if show is true
       $('div.tutorial').animate
@@ -288,14 +287,13 @@ class Tutorial extends Spine.Controller
         'top':      @tutOrgTop
         'left':     @tutOrgLeft
       )   
+      
 
-    # @showSelectedCustom(show, "#box-tablenew", "95px", "400px")
  
   uiTwoExpStart: (show) =>
     @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom show, "#box-title", '10px', '230px'
-    # @showSelectedCustom show, "#box-rewardrule", "365px", "65px"
   
   uiThreeActions: (show) =>
     @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft

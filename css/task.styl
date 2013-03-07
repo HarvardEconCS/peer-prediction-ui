@@ -1,93 +1,51 @@
-
-
-// General information
-div.taskTitle
-  font-size 19px
-  // font-weight bold
-
-span.emphtitle
+span.textBold
   font-weight bold
-
-
-// Index of current game
-div.task-roundIndex
-  font-size   18px
-  // font-weight bold  
-  
-// Step 1: House
-div.task-chooseHouse
-  font-size 18px
-
-// Step 2: Signal
-div.task-chooseYourSignal
-  font-size 18px
-  
-div.task-chooseYourSignal img
-  vertical-align middle
-  
-div.task-chooseYourSignal span
-  line-height 40px
-
-// Step 3: Report
-div.task-chooseYourClaim
-  font-size 18px
-
-div.task-chooseYourClaim img
-  vertical-align middle
 
 div#claimresult
 div#claimprompt
-  line-height 35px
-  
 div#claimchoices
-  line-height 35px
-  
 div#claimbutton
   line-height 35px
 
-
-
-
 // Payment rule table
-table.rule
-  border-collapse: collapse
+div#task-ruleTable
+  border-collapse collapse
   table-layout fixed
   
-table.rule caption
-  padding-bottom 10px
-  font-weight bold
-  font-size   17px
-  
-table.rule th   
-  font-size   16px
-  text-align  center
+div#task-ruleTable caption
+  font-size       17px
+  padding-bottom  10px
+  font-weight     bold
+
+div#task-ruleTable th   
+  font-size     16px
+  text-align    center
   border-bottom 2px solid #6678b1
 
-table.rule td
+div#task-ruleTable td
+  font-size     19px
+  text-align    center
   border-bottom 1px solid #6678b1
-  text-align  center
-  font-size   19px
 
-table.rule th.leftb, td.leftb
+div#task-ruleTable th.leftb, td.leftb
   border-left 2px solid #6678b1
 
-col.colRuleYourReport
-col.colRuleOtherReport
-col.colRuleYourReward
+div#task-ruleTable col.colRuleYourReport
+div#task-ruleTable col.colRuleOtherReport
+div#task-ruleTable col.colRuleYourReward
   width 75px
 
 
 
 // Results table header
-table.resultsHeader
+div#resultTableHeader
   table-layout fixed
 
-table.resultsHeader caption
+div#resultTableHeader caption
   font-size   17px
   font-weight bold
 
-
-table.resultsHeader th
+div#resultTableHeader th
   width   65px
   height  60px
   font-size 17px
@@ -96,13 +54,13 @@ table.resultsHeader th
   border-left   2px white solid
   border-right  2px white solid
 
-table.resultsHeader th img
+div#resultTableHeader th img
   vertical-align middle
 
-table.resultsHeader th.leftb
+div#resultTableHeader th.leftb
   border-left 2px solid #6678b1
 
-table.resultsHeader th.aggInfo
+div#resultTableHeader th.otherClaims
   width 200px
 
 
@@ -132,19 +90,12 @@ table.results td.borderLeftDashed
 table.results td.borderRightDashed
   border-right 2px black dashed 
   
-table.results td.aggInfo
+table.results td.otherClaims
   font-size 20px
   width     200px
   vertical-align middle
 
-table.results td.aggInfo img
+table.results td.otherClaims img
   vertical-align middle
-
-
-
-div.avgreward
-  font-size 20px
-  font-weight bold
-
-
+  
   
