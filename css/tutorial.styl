@@ -62,18 +62,22 @@ div#ruleTableTutorial col.colRuleYourReward
     
 ///////////////////////////////////////    
 // Interface of game    
-intTaskTitleTop = 50px
+down = 20px
+right = 10px
+
+intTaskTitleTop = 50px + down 
+intTaskTitleLeft = 0px + right
 div#int-task-title 
   position   absolute
   top        intTaskTitleTop  
-  left       0px
+  left       intTaskTitleLeft
   width      1024px
   height     25px
   text-align center
   font-size  19px    
     
-intRoundIndexTop    = 80px
-intRoundStepsLeft   = 0px
+intRoundIndexTop    = 80px + down
+intRoundStepsLeft   = 0px + right
 intRoundStepsWidth  = 450px
 intRoundIndexHeight = 25px
 div#int-task-roundIndex
@@ -116,7 +120,6 @@ div#int-task-step2 img
 div#int-task-step2 span
   line-height 40px    
     
-    
 intStep3Height = 110px  
 intStep3Top = intStep2Top + intStep2Height 
 div#int-task-step3
@@ -130,15 +133,14 @@ div#int-task-step3
 div#int-task-step3 img
   vertical-align middle    
     
-intRuleTableTop = 300px
-intRuleTableLeft = 230px
+intRuleTableTop = 300px + down
+intRuleTableLeft = 230px + right
 div#int-task-ruleTable
   z-index   0
   position  absolute
   top       intStep3Top + 20px
   left      intRuleTableLeft 
   width     250px
-    
 div#int-task-ruleTable
   border-collapse collapse
   table-layout fixed
@@ -161,9 +163,77 @@ div#int-task-ruleTable col.colRuleOtherReport
 div#int-task-ruleTable col.colRuleYourReward
   width 75px
     
+intResultTop  = 80px + down
+intResultLeft = 500px + right
+div#int-result-header
+  position absolute
+  top      intResultTop
+  left     intResultLeft
+div#int-result-header
+  table-layout fixed
+div#int-result-header caption
+  font-size   17px
+  font-weight bold
+div#int-result-header th
+  width   65px
+  height  60px
+  font-size 17px
+  border-top    2px solid #6678b1
+  border-bottom 2px solid #6678b1
+  border-left   2px white solid
+  border-right  2px white solid
+div#int-result-header th img
+  vertical-align middle
+div#int-result-header th.leftb
+  border-left 2px solid #6678b1
+div#int-result-header th.otherClaims
+  width 200px    
     
+intResultHeaderHeight = 90px
+intResultBodyTop      = intResultTop + intResultHeaderHeight
+intResultBodyHeight   = 400px
+div#int-result-body
+  z-index     0
+  position    absolute
+  top         intResultBodyTop
+  left        intResultLeft
+  height      intResultBodyHeight
+  overflow-y  scroll    
+div#int-result-body
+  table-layout fixed
+div#int-result-body td
+  text-align    center
+  border-left   2px white solid
+  border-right  2px white solid
+  width         65px
+  height        50px
+  font-size     19px
+div#int-result-body td.leftb
+  border-left   2px solid #6678b1
+div#int-result-body tr.borderAroundDashed td
+  border-top    2px black dashed 
+  border-bottom 2px black dashed 
+div#int-result-body td.borderLeftDashed
+  border-left   2px black dashed 
+div#int-result-body td.borderRightDashed
+  border-right  2px black dashed 
+div#int-result-body td.otherClaims
+  font-size 20px
+  width     200px
+  vertical-align middle
+div#int-result-body td.otherClaims img
+  vertical-align middle    
+
+div#int-avgreward
+  position    absolute
+  top         intResultBodyTop + intResultBodyHeight
+  left        intResultLeft + 255px
+  height      50px
+  font-size   20px
+  font-weight bold
+
     
-    
+        
 img#eg-MM-MM
 img#eg-MM-GB
 img@eg-GB-MM

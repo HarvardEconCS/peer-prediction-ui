@@ -86,6 +86,46 @@
       </tr>
     </table> 
   </div>
+  
+  <div id="int-result-header">
+    <table>
+      <caption>Results</caption>
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th class="leftb">Your candy</th>
+          <th class="leftb">Your claim</th>
+          <th class="otherClaims">Other players' claims</th>
+          <th class="leftb">Your reward</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  
+  <div id="int-result-body">
+    <table>
+      <tbody>
+        <tr class="borderAroundDashed">
+          <td class="borderLeftDashed">1</td><!-- Round number -->
+          <td class="leftb"><!-- Your signal -->
+            <img class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
+          </td>
+          <td class="leftb"><!-- Your claim -->
+            <img class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
+          </td>
+          <td class="otherClaims"><!-- Other Players' Claims-->
+            Waiting for... 2
+          </td>     
+          <td class="leftb borderRightDashed"><!-- Your reward -->
+          </td>  
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   
+  <div id="int-avgreward">
+    <p>Average Reward: $0.00</p>
+  </div>
 </div>
 
 

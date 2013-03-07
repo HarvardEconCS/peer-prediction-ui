@@ -274,10 +274,10 @@ class Tutorial extends Spine.Controller
 
 
   uiOneStart: (show) =>
-    @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
-    # selector = "#interfaceTutorial"
-    # @showDiv show, selector, '0px', '0px'
-    
+    # @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+
     if show is true
       $('div.tutorial').animate
         top:  "+=250px"
@@ -291,12 +291,18 @@ class Tutorial extends Spine.Controller
       )   
     
   uiTwoExpStart: (show) =>
-    @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
+    # @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+    
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom show, "#box-title", '10px', '230px'
   
   uiThreeActions: (show) =>
-    @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
+    # @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+    
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom show, "#box-stepsonetwo", "85px", "-20px"
       

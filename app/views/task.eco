@@ -123,7 +123,7 @@
 
 <% if Network.numPlayers: %>
 
-  <div id="resultTableHeader">
+  <div id="result-header">
     <table>
       <caption>Results</caption>
       <thead>
@@ -138,8 +138,8 @@
     </table>
   </div>
 
-  <div id="resultTableBody">
-    <table class="results">
+  <div id="result-body">
+    <table>
       <tbody>
       <% if @games: %> 
    
@@ -211,7 +211,7 @@
     </table>
   </div>
 
-  <div id="avgreward">
+<div id="avgreward">
   <p>
     Average Reward: 
     <% if @bonus: %>
