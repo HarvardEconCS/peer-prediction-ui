@@ -31,7 +31,6 @@
   <div id="task-step1"> 
     1. &nbsp;&nbsp;A house has been randomly chosen for this round. <br/>
   </div>
-  
   <div id="task-step1pic">
     <img style="height: 95px;" src="images/pic-prior.png">
   </div>
@@ -39,16 +38,15 @@
   <div id="task-step2">
     2. Get a random candy from the chosen house.<br/><br/> 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
-      <% if @revealSignal is true: %>
-        <span id="signalresult">
-          <img class="candy_image" src="images/<%= @game.currPlayerSignal %>.png">
-        </span>
-      <% else: %>
-        <span id="signalbutton">
-          <a class="button getsignal" href="#">Get your candy!</a>
-        </span>
-      <% end %>
-    </p>
+    <% if @revealSignal is true: %>
+      <span id="signalresult">
+        <img class="candy_image" src="images/<%= @game.currPlayerSignal %>.png">
+      </span>
+    <% else: %>
+      <span>
+        <a class="button getsignal" href="#">Get your candy!</a>
+      </span>
+    <% end %>
   </div>
 
   <div id="task-step3"> 
@@ -57,20 +55,18 @@
       <div id="claimresult">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <img class="candy_image" src="images/<%= @selected %>.png">
       </div>
-    <% else: %>
-      <% if @revealSignal is true: %>
-        <div id="claimchoices">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <br/>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="reportChoices" id="firstRadio"  value="<%= Network.signalList[0] %>" <% if @selected is $('#firstRadio').val(): %>checked<% end %>>
-          <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="images/<%= Network.signalList[0] %>.png"></label>
-          <input type="radio" name="reportChoices" id="secondRadio" value="<%= Network.signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
-          <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= Network.signalList[1] %>.png"></label>  
-        </div>
-        <div id="claimbutton">
-          &nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm" href="#">Confirm your claim!</a>
-        </div>
-      <% end %>
+    <% else if @revealSignal is true: %>
+      <div id="claimchoices">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="reportChoices" id="firstRadio"  value="<%= Network.signalList[0] %>" <% if @selected is $('#firstRadio').val(): %>checked<% end %>>
+        <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="images/<%= Network.signalList[0] %>.png"></label>
+        <input type="radio" name="reportChoices" id="secondRadio" value="<%= Network.signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
+        <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= Network.signalList[1] %>.png"></label> 
+      </div>
+      <div id="claimbutton">
+        &nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm" href="#">Confirm your claim!</a>
+      </div>
     <% end %>
   </div>
 

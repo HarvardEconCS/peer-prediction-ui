@@ -35,6 +35,57 @@
   <div id="int-task-roundIndex">
     This is <span class="textBold">Round #1</span>:
   </div>
+  <div id="int-task-step1"> 
+    1. &nbsp;&nbsp;A house has been randomly chosen for this round. <br/>
+  </div>
+  <div id="int-task-step1pic">
+    <img style="height: 95px;" src="images/pic-prior.png">
+  </div>
+  <div id="int-task-step2">
+    2. Get a random candy from the chosen house.<br/><br/> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
+    <span>
+      <a class="button fake" href="#">Get your candy!</a>
+    </span>
+  </div>
+  <div id="int-task-step3"> 
+    3. Choose your claim.<br/><br/>
+  </div>
+  <div id="int-task-ruleTable">
+    <table>
+      <caption>Reward Rule</caption>
+      <colgroup>
+        <col class="colRuleYourReport">
+        <col class="colRuleOtherReport">
+        <col class="colRuleYourReward">
+      </colgroup>
+      <tr>
+        <th>Your claim</th>
+        <th>Your friend's claim</th>
+        <th class="leftb">Your<br/>reward</th>
+      </tr>
+      <tr>
+        <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+        <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+        <td class="leftb">$<%= @payRule[0].toFixed(2) %></td>
+      </tr>
+      <tr>
+        <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+        <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+        <td class="leftb">$<%= @payRule[1].toFixed(2) %></td>
+      </tr>
+      <tr>
+        <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+        <td><img class="candy_image" src="images/<%= @signals[0] %>.png"></td>
+        <td class="leftb">$<%= @payRule[2].toFixed(2) %></td>
+      </tr>
+      <tr>
+        <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+        <td><img class="candy_image" src="images/<%= @signals[1] %>.png"></td>
+        <td class="leftb">$<%= @payRule[3].toFixed(2) %></td>
+      </tr>
+    </table> 
+  </div>
 </div>
 
 

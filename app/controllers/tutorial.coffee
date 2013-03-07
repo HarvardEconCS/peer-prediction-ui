@@ -14,8 +14,13 @@ class Tutorial extends Spine.Controller
     "click .tutorial .button.prev"  : "previousClicked"
     "click a#skipTutorial"          : "skipTutorialClicked"
     "click a#endTutorial"           : "endTutorialClicked"
-    "click a#backToPageOne"         : "backToPageOneClicked"
+    "click a#backToPageOne"         : "backToPageOneClicked" 
+    "click a.fake"                  : "fakeButtonClicked"
  
+  
+  # does not do anything when fake button is clicked
+  fakeButtonClicked: (ev) =>
+    ev.preventDefault()
  
   # skip tutorial and go to quiz 
   skipTutorialClicked: (ev) =>
@@ -35,9 +40,6 @@ class Tutorial extends Spine.Controller
  
   constructor: ->
     super
-    # no keyboard shortcuts for now
-    # $(document).keypress @keyPressed
-
     # needs to be changed if actual payment rule changes.
     @payRule = [0.50, 0.10, 0.23, 0.43]
     @signals = ['MM', 'GB']
@@ -287,9 +289,7 @@ class Tutorial extends Spine.Controller
         'top':      @tutOrgTop
         'left':     @tutOrgLeft
       )   
-      
-
- 
+    
   uiTwoExpStart: (show) =>
     @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
     @changeTutorialPos show, '300px', '510px'

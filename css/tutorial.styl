@@ -84,12 +84,82 @@ div#int-task-roundIndex
   height    intRoundIndexHeight
   font-size 18px   
     
+intStep1Height  = 120px
+intStep1Top     = intRoundIndexTop + intRoundIndexHeight 
+div#int-task-step1
+  position    absolute
+  top         intStep1Top
+  left        intRoundStepsLeft
+  width       intRoundStepsWidth
+  height      intStep1Height
+  border-top  2px solid #6678b1
+  font-size   18px
+div#int-task-step1pic
+  z-index   0 
+  position  absolute
+  top       intStep1Top + 20px
+  left      25px
+  width     250px    
+
+intStep2Height = 100px
+intStep2Top = intStep1Top + intStep1Height
+div#int-task-step2
+  position   absolute
+  top        intStep2Top 
+  left       intRoundStepsLeft   
+  width      intRoundStepsWidth  
+  height     intStep2Height 
+  border-top 2px solid #6678b1
+  font-size  18px
+div#int-task-step2 img
+  vertical-align middle
+div#int-task-step2 span
+  line-height 40px    
     
     
+intStep3Height = 110px  
+intStep3Top = intStep2Top + intStep2Height 
+div#int-task-step3
+  position   absolute
+  top        intStep3Top
+  left       intRoundStepsLeft
+  width      intRoundStepsWidth
+  height     intStep3Height  
+  border-top 2px solid #6678b1
+  font-size  18px
+div#int-task-step3 img
+  vertical-align middle    
     
+intRuleTableTop = 300px
+intRuleTableLeft = 230px
+div#int-task-ruleTable
+  z-index   0
+  position  absolute
+  top       intStep3Top + 20px
+  left      intRuleTableLeft 
+  width     250px
     
-    
-    
+div#int-task-ruleTable
+  border-collapse collapse
+  table-layout fixed
+div#int-task-ruleTable caption
+  font-size       17px
+  padding-bottom  10px
+  font-weight     bold
+div#int-task-ruleTable th   
+  font-size     16px
+  text-align    center
+  border-bottom 2px solid #6678b1
+div#int-task-ruleTable td
+  font-size     19px
+  text-align    center
+  border-bottom 1px solid #6678b1
+div#int-task-ruleTable th.leftb, td.leftb
+  border-left 2px solid #6678b1
+div#int-task-ruleTable col.colRuleYourReport
+div#int-task-ruleTable col.colRuleOtherReport
+div#int-task-ruleTable col.colRuleYourReward
+  width 75px
     
     
     
