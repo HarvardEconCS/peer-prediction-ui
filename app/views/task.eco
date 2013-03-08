@@ -39,7 +39,7 @@
     2. Get a random candy from the chosen house.<br/><br/> 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
     <% if @revealSignal is true: %>
-      <span id="signalresult">
+      <span>
         <img class="candy_image" src="images/<%= @game.currPlayerSignal %>.png">
       </span>
     <% else: %>
@@ -59,8 +59,9 @@
       <div id="claimchoices">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="reportChoices" id="firstRadio"  value="<%= Network.signalList[0] %>" <% if @selected is $('#firstRadio').val(): %>checked<% end %>>
+        <input type="radio" name="reportChoices" id="firstRadio" value="<%= Network.signalList[0] %>" <% if @selected is $('#firstRadio').val(): %>checked<% end %>>
         <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="images/<%= Network.signalList[0] %>.png"></label>
+        
         <input type="radio" name="reportChoices" id="secondRadio" value="<%= Network.signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
         <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= Network.signalList[1] %>.png"></label> 
       </div>

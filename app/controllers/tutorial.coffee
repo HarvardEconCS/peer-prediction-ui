@@ -56,7 +56,7 @@ class Tutorial extends Spine.Controller
       ['uiExperimentStart', @uiTwoExpStart]
       ['uiGameActions',     @uiThreeActions]
       ['uiChooseClaim',     @uiChooseClaim]
-      ['uiOtherStatus',     @uiFourOtherStatus]
+      ['uiOtherStatus',     @uiFourReportConfirmed]
       ['uiGameResult',      @uiFiveResult]
       ['uiExperimentEnd',   @uiSixExpEnd]
     ] 
@@ -69,6 +69,8 @@ class Tutorial extends Spine.Controller
     
     @interfaceTop = '50px'
     @interfaceLeft = '0px'
+    
+    @showSignal = false
     
   active: ->
     super
@@ -190,7 +192,7 @@ class Tutorial extends Spine.Controller
          'top':      locTop
          'left':     locLeft
        )
-       @div.fadeIn()
+       @div.show()
      else
        @div.hide() 
     
@@ -307,22 +309,128 @@ class Tutorial extends Spine.Controller
     @showSelectedCustom show, "#box-stepsonetwo", "85px", "-20px"
       
   uiChooseClaim: (show) =>
-    @changeTaskPic show, 'tasksignalshown', @interfaceTop, '3px'
+    # @changeTaskPic show, 'tasksignalshown', @interfaceTop, '3px'
+    if show is true
+      $('#int-task-step2').hide()
+      $('#int-task-step2-v2').show()
+      $('#int-task-step3').hide()
+      $('#int-task-step3-v2').show()     
+      $('#t-nocandy').hide()
+      $('#t-showcandy').show()       
+    else
+      $('#int-task-step2').show()
+      $('#int-task-step2-v2').hide()
+      $('#int-task-step3').show()
+      $('#int-task-step3-v2').hide()    
+      $('#t-nocandy').show()
+      $('#t-showcandy').hide()      
+  
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+
     @changeTutorialPos show, '300px', '510px'
     @showSelectedCustom(show, "#box-stepthree", "335px", "-20px")
     
-  uiFourOtherStatus: (show) =>
-    @changeTaskPic show, 'taskreportconfirmed', @interfaceTop, '5px'
+  uiFourReportConfirmed: (show) =>
+    # @changeTaskPic show, 'taskreportconfirmed', @interfaceTop, '5px'
+    if show is true
+      $('#int-task-step2').hide()
+      $('#int-task-step2-v2').show()
+      $('#int-task-step3').hide()
+      $('#int-task-step3-v2').hide()   
+      $('#int-task-step3-v3').show()      
+      $('#t-nocandy').hide()
+      $('#t-showcandy').show()      
+      $('#t-noclaim').hide()
+      $('#t-showclaim').show()
+    else
+      $('#int-task-step2').show()
+      $('#int-task-step2-v2').hide()
+      $('#int-task-step3').show()
+      $('#int-task-step3-v2').hide()      
+      $('#int-task-step3-v3').hide()   
+      $('#t-nocandy').show()
+      $('#t-showcandy').hide()      
+      $('#t-noclaim').show()
+      $('#t-showclaim').hide()
+
+    $('#box-onegame').css(
+      'z-index': '3'
+      )
+    
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+    
     @changeTutorialPos show, '300px', '510px'
-    @showSelectedCustom show, "#box-onegame", '185px', '490px'
+    @showSelectedCustom show, "#box-onegame", '180px', '490px'
     
   uiFiveResult: (show) =>
-    @changeTaskPic show, 'tasknextgame', '51px', '6px'
+    # @changeTaskPic show, 'tasknextgame', '51px', '6px'
+    if show is true
+      $('#r-finishedround').show()
+      $('#r-zero').hide()
+      $('#r-nextgame').show()
+      $('#r-endgame').hide()
+      $('#r-1strow').hide()
+      $('#r-2ndrow').show()
+      $('#int-task-roundIndex').hide()
+      $('#int-task-roundIndex-v2').show()
+    else
+      $('#r-finishedround').hide()
+      $('#r-zero').show()
+      $('#r-nextgame').hide()
+      $('#r-endgame').hide()
+      $('#r-1strow').show()
+      $('#r-2ndrow').hide()
+      $('#int-task-roundIndex').show()
+      $('#int-task-roundIndex-v2').hide()
+      
+    $('#box-onegame').css(
+      'z-index': '3'
+      )
+
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+    
     @changeTutorialPos show, '350px', '510px'
-    @showSelectedCustom show, "#box-onegame", '184px', '490px'
+    @showSelectedCustom show, "#box-onegame", '175px', '490px'
     
   uiSixExpEnd: (show) =>
-    @changeTaskPic show, 'taskexpend', @interfaceTop, '7px'
+    # @changeTaskPic show, 'taskexpend', @interfaceTop, '7px'
+    if show is true
+      $('#int-task-title').hide()
+      $('#int-task-roundIndex').hide()
+      $('#int-task-step1').hide()
+      $('#int-task-step1pic').hide()
+      $('#int-task-step2').hide()
+      $('#int-task-step3').hide()
+      $('#int-task-ruleTable').hide()
+      $('#int-result-body').hide()
+      $('#int-result-body-v2').show()
+      $('#r-zero').hide()
+      $('#r-nextgame').hide()
+      $('#r-endgame').show()
+      $('#int-finishmsg').show()
+    else
+      $('#int-task-title').show()
+      $('#int-task-roundIndex').show()
+      $('#int-task-step1').show()
+      $('#int-task-step1pic').show()
+      $('#int-task-step2').show()
+      $('#int-task-step3').show()
+      $('#int-task-ruleTable').show()
+      $('#int-result-body').show()
+      $('#int-result-body-v2').hide()
+      $('#r-zero').show()
+      $('#r-nextgame').hide()
+      $('#r-endgame').hide()
+      $('#int-finishmsg').hide()
+    
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+    
+    $('div#int-result-body-v2').scrollTop($('div#int-result-body-v2').prop("scrollHeight"))
+    
     @changeTutorialPos(show, '300px', '100px')
     
  

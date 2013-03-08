@@ -9,6 +9,18 @@ div.image
 img.image
 div#ruleTableTutorial
 div#interfaceTutorial
+#int-task-step2-v2
+#int-task-step3-v2
+#int-task-step3-v3
+#t-showcandy
+#t-showclaim
+#r-finishedround
+#r-nextgame
+#int-task-roundIndex-v2
+#r-endgame
+#r-2ndrow
+#int-result-body-v2
+#int-finishmsg
   display none
 
 div.tutorial
@@ -62,6 +74,17 @@ div#ruleTableTutorial col.colRuleYourReward
     
 ///////////////////////////////////////    
 // Interface of game    
+div#int-claimresult
+div#int-claimchoices
+div#int-claimbutton
+  line-height 35px
+
+div#int-finishmsg
+  position absolute
+  top      50px
+  left     100px
+
+
 down = 20px
 right = 10px
 
@@ -80,7 +103,7 @@ intRoundIndexTop    = 80px + down
 intRoundStepsLeft   = 0px + right
 intRoundStepsWidth  = 450px
 intRoundIndexHeight = 25px
-div#int-task-roundIndex
+div.roundnumber
   position  absolute
   top       intRoundIndexTop
   left      intRoundStepsLeft
@@ -107,7 +130,7 @@ div#int-task-step1pic
 
 intStep2Height = 100px
 intStep2Top = intStep1Top + intStep1Height
-div#int-task-step2
+div.step2
   position   absolute
   top        intStep2Top 
   left       intRoundStepsLeft   
@@ -115,14 +138,14 @@ div#int-task-step2
   height     intStep2Height 
   border-top 2px solid #6678b1
   font-size  18px
-div#int-task-step2 img
+div.step2 img
   vertical-align middle
-div#int-task-step2 span
+div.step2 span
   line-height 40px    
-    
+
 intStep3Height = 110px  
 intStep3Top = intStep2Top + intStep2Height 
-div#int-task-step3
+div.step3
   position   absolute
   top        intStep3Top
   left       intRoundStepsLeft
@@ -130,7 +153,7 @@ div#int-task-step3
   height     intStep3Height  
   border-top 2px solid #6678b1
   font-size  18px
-div#int-task-step3 img
+div.step3 img
   vertical-align middle    
     
 intRuleTableTop = 300px + down
@@ -193,35 +216,36 @@ intResultHeaderHeight = 90px
 intResultBodyTop      = intResultTop + intResultHeaderHeight
 intResultBodyHeight   = 400px
 div#int-result-body
+div#int-result-body-v2
   z-index     0
   position    absolute
   top         intResultBodyTop
   left        intResultLeft
   height      intResultBodyHeight
   overflow-y  scroll    
-div#int-result-body
+div.resultbody
   table-layout fixed
-div#int-result-body td
+div.resultbody td
   text-align    center
   border-left   2px white solid
   border-right  2px white solid
   width         65px
   height        50px
   font-size     19px
-div#int-result-body td.leftb
+div.resultbody td.leftb
   border-left   2px solid #6678b1
-div#int-result-body tr.borderAroundDashed td
+div.resultbody tr.borderAroundDashed td
   border-top    2px black dashed 
   border-bottom 2px black dashed 
-div#int-result-body td.borderLeftDashed
+div.resultbody td.borderLeftDashed
   border-left   2px black dashed 
-div#int-result-body td.borderRightDashed
+div.resultbody td.borderRightDashed
   border-right  2px black dashed 
-div#int-result-body td.otherClaims
+div.resultbody td.otherClaims
   font-size 20px
   width     200px
   vertical-align middle
-div#int-result-body td.otherClaims img
+div.resultbody td.otherClaims img
   vertical-align middle    
 
 div#int-avgreward
