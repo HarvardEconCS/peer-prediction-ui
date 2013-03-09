@@ -438,7 +438,9 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
-      This <span class="textBold">tutorial</span> has 2 main parts, explaining the <span class="textBold">3 steps</span> and <span class="textBold">the interface</span> of the game you are going to play. <br/><br/>
+      This <span class="textBold">tutorial</span> explains the game you are going to play.<br/><br/>  
+      
+      It has 2 main parts.  The first part (pages 1-5) explains the <span class="textBold">3 steps</span> of the game.  The second part (pages 6-11) explains <span class="textBold">the interface</span> of the game. <br/><br/>
 
       Click Next to continue, or you can <br/><br/><a class="button" id="skipTutorial" href="#">Skip the Tutorial</a>
       
@@ -466,13 +468,13 @@
       
       Note: Each candy is only known by the kid who received it.<br/><br/>
       
-      Note: The fraction of each type of candy in the house remains the same.<br/><br/>
+      Note: The fraction of each type of candy in the house remains the same.
     </p>
   </div>
 
   <div class="step gameRule">
     <p>
-      <span class="textUnderline">Step 3: Make a claim and get a reward</span><br/><br/>
+      <span class="textUnderline">Step 3: Report a claim and get a reward</span><br/><br/>
       
       The kids meet a clown, and the clown offers to give the kids <span class="textBold">rewards</span> if they kids <span class="textBold">tell him what candies they got</span>, explained on the right.
       
@@ -538,7 +540,14 @@
 
   <div class="step uiOtherStatus">      
     <p>
-      The bottom row in the result table shows <span class="textBold">the status of the current round</span>, such as <span class="textBold">your candy</span>, <span class="textBold">your claim</span>, and <span class="textBold">whether other players' claims are confirmed</span>.
+      The bottom row in the result table shows <span class="textBold">the status of the current round</span>, such as 
+      <ul>
+      <li><span class="textBold">your candy</span></li>
+      <li><span class="textBold">your claim</span></li>
+      <li><span class="textBold">whether other players' claims are confirmed</span></li>
+      </ul>
+      
+      Other player's claims are not displayed until the round ends. 
     </p>
   </div>
   
@@ -546,7 +555,12 @@
     <p>
     Once a round ends, the next round automatically starts.  <br/><br/>
     
-    For an ended round, the row shows <span class="textBold">your candy</span>, <span class="textBold">your claim</span> and <span class="textBold">the number of other players who claimed to have either type of candy</span>.  
+    For an ended round, the row shows 
+    <ul>
+    <li><span class="textBold">your candy</span></li>
+    <li><span class="textBold">your claim</span></li>
+    <li><span class="textBold">the number of other players who claimed to have either type of candy</span></li>
+    </ul>
     </p>
   </div>
 
