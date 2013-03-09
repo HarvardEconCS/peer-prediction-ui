@@ -21,6 +21,8 @@ class Exitsurvey extends Spine.Controller
   submitClicked: (ev) =>
     ev.preventDefault()
     
+    # TODO: check if all required questions are answers.
+        
     # construct exit comments object
     exitComments = {}
     

@@ -157,8 +157,10 @@
    
    
   <li>
-    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(4) >= 0: %>(Incorrect)<% end %> Select all correct statements below about the interface of the game.<br/>
-      <a target="_blank" href="images/task-nextgame.png">Click here</a> to open a screenshot of the interface in a new window.</span><br/><br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(4) >= 0: %>(Incorrect)<% end %> Select all correct statements below about the interface of the game.<br/><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a target="_blank" href="images/quiz-question4.png">See a screenshot of the game interface</a></span><br/><br/>
     
     <span id="q4choices">
       

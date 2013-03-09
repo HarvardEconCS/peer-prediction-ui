@@ -8,8 +8,8 @@
 <img class="image" id="step1"             src="images/step1 copy.png">
 <img class="image" id="step2"             src="images/step2 copy.png">
 <img class="image" id="step3"             src="images/step3.png">
-<img class="image" id="step3-description" src="images/step3-description.png">
-<img class="image" id="step3-example"     src="images/step3-example.png">
+<!-- <img class="image" id="step3-description" src="images/step3-description.png">
+<img class="image" id="step3-example"     src="images/step3-example.png"> -->
 <img class="image" id="steps-recap"       src="images/steps-recap.png">
 <img class="image" id="eg-MM-MM" src="images/eg-MM-MM.png">
 <img class="image" id="eg-MM-GB" src="images/eg-MM-GB.png">
@@ -43,9 +43,6 @@
     You are playing <span class="textBold">10 rounds</span> of the game with <span class="textBold">2 other players</span><br/> 
   </div>
   <div id="int-task-roundIndex" class="roundnumber">
-    This is <span class="textBold">Round #1</span>:
-  </div>
-  <div id="int-task-roundIndex-v2" class="roundnumber">
     This is <span class="textBold">Round #2</span>:
   </div>
   
@@ -56,25 +53,24 @@
     <img style="height: 95px;" src="images/pic-prior.png">
   </div>
 
-  <div id="int-task-step2" class="step2">
+  <div id="int-task-step2-v1" class="step2">
     2. Get a random candy from the chosen house.<br/><br/> 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
     <span>
-      <a class="button fake" href="#">Get your candy!</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="button textBold fake" href="#">Get your candy!</a>
     </span>
   </div>
   <div id="int-task-step2-v2" class="step2">
     2. Get a random candy from the chosen house.<br/><br/> 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
     <span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
       <img class="candy_image" src="images/MM.png">
     </span>
   </div>
   
-  <div id="int-task-step3" class="step3"> 
-    3. Choose your claim.<br/><br/>
-  </div>
-  <div id="int-task-step3-v2" class="step3"> 
+  <div id="int-task-step3-v1" class="step3"> 
     3. Choose your claim.<br/><br/>
     <div id="int-claimchoices">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <br/>
@@ -85,10 +81,10 @@
       <label><img class="candy_image" id="imgSecondRadio" src="images/<%= @signals[1] %>.png"></label> 
     </div>
     <div id="int-claimbutton">
-      &nbsp;&nbsp;&nbsp;&nbsp;<a class="button fake" href="#">Confirm your claim!</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;<a class="button textBold fake" href="#">Confirm your claim!</a>
     </div>
   </div>  
-  <div id="int-task-step3-v3" class="step3"> 
+  <div id="int-task-step3-v2" class="step3"> 
     3. Choose your claim.<br/><br/>
     <div id="int-claimresult">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <img class="candy_image" src="images/MM.png">
@@ -146,10 +142,10 @@
     </table>
   </div>
   
-  <div id="int-result-body" class="resultbody">
+  <div id="int-result-body-v1" class="resultbody">
     <table>
       <tbody>
-        <tr id="r-finishedround">
+        <tr>
           <td>1</td><!-- Round number -->
           <td class="leftb"><!-- Your signal -->
             <img class="candy_image" src="images/MM.png">
@@ -168,10 +164,7 @@
           </td>  
         </tr>
         <tr class="borderAroundDashed">
-          
-          <td id="r-1strow" class="borderLeftDashed">1</td><!-- Round number -->
-          <td id="r-2ndrow" class="borderLeftDashed">2</td><!-- Round number -->
-          
+          <td class="borderLeftDashed">2</td><!-- Round number -->
           <td class="leftb"><!-- Your signal -->
             <img id="t-nocandy"   class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
             <img id="t-showcandy" class="candy_image" src="images/MM.png">
@@ -180,9 +173,15 @@
             <img id="t-noclaim"   class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
             <img id="t-showclaim" class="candy_image" src="images/MM.png">
           </td>
-          <td class="otherClaims"><!-- Other Players' Claims-->
-            Waiting for... 2
+          <td id="status-waitforclaims" class="otherClaims"><!-- Other Players' Claims-->
+            Waiting for claims from 2 other player(s)
           </td>     
+          <td id="status-getcandy" class="otherClaims">
+            Please get your candy!
+          </td>
+          <td id="status-confirmclaim" class="otherClaims">
+            Please confirm your claim!
+          </td>
           <td class="leftb borderRightDashed"><!-- Your reward -->
           </td>  
         </tr>
@@ -378,8 +377,7 @@
   </div>   
    
   <div id="int-avgreward">
-    <p id="r-zero">Average Reward: $0.00</p>
-    <p id="r-nextgame">Average Reward: $0.50</p>
+    <p id="r-zero">Average Reward: $0.50</p>
     <p id="r-endgame">Average Reward: $0.31</p>
   </div>
 </div>
@@ -493,9 +491,11 @@
     <p>
       <span class="textUnderline">Recap</span><br/><br/>
       
-      This is a recap of the 3 steps of the game.  In the actual task, you will be playing this game with a fixed group of players for a fixed number of rounds.<br/><br/>
+      This is a recap of <span class="textBold">the 3 steps of the game</span>.<br/><br/>
       
-      Next, let's take a look at the interface of the game.  
+      In the task, you will be playing this game with a group of players for a number of rounds.<br/><br/>
+      
+      Next, let's take a look at <span class="textBold">the interface of the game</span>.  
     </p>
   </div>
 
@@ -503,45 +503,42 @@
     <p>
       This is the interface of the game.<br/><br/>
       
-      The <span class="textBold">left side</span> describes the 3 steps of each round.<br/><br/>
+      <span class="textBold">The title</span> displays <span class="textBold">the total number of rounds</span>, and <span class="textBold">the number of other players</span>.<br/><br/>
       
-      The <span class="textBold">right side</span> displays the results of previous rounds and the status of the current round. 
+      The <span class="textBold">left side</span> shows the 3 steps of the current round.<br/><br/>
+      
+      The <span class="textBold">right side</span> displays results of previous rounds and the status of the current round. 
     </p>
   </div>
 
-  <div class="step uiExperimentStart"> 
+  <!-- <div class="step uiExperimentStart"> 
     <p>
       <span class="textBold">The title</span> displays <span class="textBold">the total number of rounds</span>, and <span class="textBold">the number of other players</span> in the games.
     
     </p>
-  </div>
+  </div> -->
 
   <div class="step uiGameActions"> 
     <p>
       The upper left corner shows <span class="textBold">the current round number</span>.<br/><br/>  
       
-      <span class="textBold">Step 1:</span> a house is randomly chosen.<br/><br/>
+      <span class="textBold">Step 1</span> shows the 2 types of houses.<br/><br/>
       
-      For <span class="textBold">Step 2:</span>, you can click on the button to get your candy from the chosen house.
+      <span class="textBold">Step 2</span> shows the button to click to get your random candy.
     </p>
   </div>
 
   <div class="step uiChooseClaim">
     <p>
-      Once you get your candy, for <span class="textBold">step 3</span>, you can choose amd confirm your claim.<br/><br/>
+      Once you get your candy, <span class="textBold">step 3</span> allows you to choose amd confirm your claim.<br/><br/>
       
-      The reward rule table is also shown for your information.
+      The <span class="textBold">reward rule</span> is also displayed.
     </p>
   </div>
 
   <div class="step uiOtherStatus">      
     <p>
-      During a round, <span class="textBold">the dashed row in the result table</span> displays information about the current round, such as 
-      <ul>
-        <li><span class="textBold">your candy</span></li>
-        <li><span class="textBold">your claim</span></li>
-        <li><span class="textBold">number of other players</span> who have not confirmed their claims (or <span class="textBold">"all confirmed"</span>)</li>
-      </ul>
+      The bottom row in the result table shows <span class="textBold">the status of the current round</span>, such as <span class="textBold">your candy</span>, <span class="textBold">your claim</span>, and <span class="textBold">whether other players' claims are confirmed</span>.
     </p>
   </div>
   
@@ -549,13 +546,13 @@
     <p>
     Once a round ends, the next round automatically starts.  <br/><br/>
     
-    For the game that just ended, the row in the result table shows <span class="textBold">your claim and the number of other players who claim to have either type of candy</span>.  
+    For an ended round, the row shows <span class="textBold">your candy</span>, <span class="textBold">your claim</span> and <span class="textBold">the number of other players who claimed to have either type of candy</span>.  
     </p>
   </div>
 
   <div class="step uiExperimentEnd">   
     <p>
-      Once all rounds end, you can click on the button to go to the exit survey.<br/><br/>
+      When all rounds are finished, you can see your total payment and go to the exit survey.<br/><br/>
       
       This is the end of the tutorial.<br/><br/>
       <a class="button" id="backToPageOne">Go back to page one</a>

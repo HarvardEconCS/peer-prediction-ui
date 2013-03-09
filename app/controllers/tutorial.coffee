@@ -17,7 +17,6 @@ class Tutorial extends Spine.Controller
     "click a#backToPageOne"         : "backToPageOneClicked" 
     "click a.fake"                  : "fakeButtonClicked"
  
-  
   # does not do anything when fake button is clicked
   fakeButtonClicked: (ev) =>
     ev.preventDefault()
@@ -50,27 +49,23 @@ class Tutorial extends Spine.Controller
       ['prior',       @stepTwoDescribePrior]
       ['takeCandy',   @stepThreeChooseCandy]
       ['gameRule',    @stepFourDescribeRule]
-      # ['example',     @stepFiveDescribeReward]
       ['recap',       @stepSixRecap]
-      ['uiStart',           @uiOneStart]
-      ['uiExperimentStart', @uiTwoExpStart]
-      ['uiGameActions',     @uiThreeActions]
-      ['uiChooseClaim',     @uiChooseClaim]
-      ['uiOtherStatus',     @uiFourReportConfirmed]
-      ['uiGameResult',      @uiFiveResult]
-      ['uiExperimentEnd',   @uiSixExpEnd]
+      ['uiStart',         @uiOneStart]
+      ['uiGameActions',   @uiTwoGetCandy]
+      ['uiChooseClaim',   @uiThreeSignalShown]
+      ['uiOtherStatus',   @uiFourReportConfirmed]
+      ['uiGameResult',    @uiFiveResult]
+      ['uiExperimentEnd', @uiSixExpEnd]
     ] 
     
     @tutOrgTop = '50px'
-    @tutOrgLeft = '10px'
+    @tutOrgLeft = '-10px'
     
     @picTop = '50px'
     @picLeft = '310px'
     
     @interfaceTop = '50px'
     @interfaceLeft = '0px'
-    
-    @showSignal = false
     
   active: ->
     super
@@ -130,7 +125,7 @@ class Tutorial extends Spine.Controller
     @steps[@stepIndex][1]?(false)
 
   # previous button clicked
-  previousClicked: (ev) ->
+  previousClicked: (ev) =>
     ev.preventDefault?()
   
     # tear down the current step
@@ -143,7 +138,7 @@ class Tutorial extends Spine.Controller
     @stepShow()
 
   # next button clicked
-  nextClicked: (ev) ->
+  nextClicked: (ev) =>
     ev.preventDefault?()
   
     # tear down the current step
@@ -157,7 +152,7 @@ class Tutorial extends Spine.Controller
       @stepIndex = @stepIndex + 1
       @stepShow()
 
-  endTutorialClicked: (ev)->  
+  endTutorialClicked: (ev) =>  
     ev.preventDefault()
     @navigate '/quiz'
   
@@ -239,8 +234,9 @@ class Tutorial extends Spine.Controller
 
     selector = "#pic-prior"
     $("img#{selector}").css(
-      'z-index' : 5
-      'height' : '120px'
+      'z-index':'5'
+      'height': 'auto'
+      'width':  '50%'
     )
     @showSelectedCustom(show, selector, '100px', '360px')
     
@@ -277,16 +273,32 @@ class Tutorial extends Spine.Controller
         'left':     @tutOrgLeft
       )
 
-
   uiOneStart: (show) =>
-    # @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
     selector = "#interfaceTutorial"
     @showDiv show, selector, '0px', '0px'
 
     if show is true
+      $('#status-getcandy').show()
+      $('#status-confirmclaim').hide()
+      $('#status-waitforclaims').hide()      
+      $('#int-task-step3-v1').hide()
+      $('#int-task-step3-v2').hide()     
+      $('#int-task-ruleTable').hide() 
+    else
+      $('#status-getcandy').hide()
+      $('#status-confirmclaim').hide()
+      $('#status-waitforclaims').show()   
+      $('#int-task-step3-v1').show()
+      $('#int-task-step3-v2').hide()  
+      $('#int-task-ruleTable').show() 
+
+    @showSelectedCustom show, "#box-title", '10px', '230px'
+
+    # change dialog position
+    if show is true
       $('div.tutorial').animate
-        top:  "+=250px"
-        left: "+=500px"
+        top:  "+=260px"
+        left: "+=520px"
         1000
     else
       $('div.tutorial').css(
@@ -294,64 +306,71 @@ class Tutorial extends Spine.Controller
         'top':      @tutOrgTop
         'left':     @tutOrgLeft
       )   
-    
-  uiTwoExpStart: (show) =>
-    # @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
+
+  uiTwoGetCandy: (show) =>
     selector = "#interfaceTutorial"
     @showDiv show, selector, '0px', '0px'
     
-    @changeTutorialPos show, '300px', '510px'
-    @showSelectedCustom show, "#box-title", '10px', '230px'
-  
-  uiThreeActions: (show) =>
-    # @changeTaskPic show, 'taskstart', @interfaceTop, @interfaceLeft
-    selector = "#interfaceTutorial"
-    @showDiv show, selector, '0px', '0px'
+    if show is true
+      $('#status-getcandy').show()
+      $('#status-confirmclaim').hide()
+      $('#status-waitforclaims').hide()  
+      $('#int-task-step3-v1').hide()
+      $('#int-task-step3-v2').hide()    
+      $('#int-task-ruleTable').hide() 
+    else
+      $('#status-getcandy').hide()
+      $('#status-confirmclaim').hide()
+      $('#status-waitforclaims').show()   
+      $('#int-task-step3-v1').show()
+      $('#int-task-step3-v2').hide()  
+      $('#int-task-ruleTable').show() 
     
-    @changeTutorialPos show, '300px', '510px'
+    @changeTutorialPos show, '310px', '510px'
     @showSelectedCustom show, "#box-stepsonetwo", "85px", "-20px"
       
-  uiChooseClaim: (show) =>
-    # @changeTaskPic show, 'tasksignalshown', @interfaceTop, '3px'
-    if show is true
-      $('#int-task-step2').hide()
-      $('#int-task-step2-v2').show()
-      $('#int-task-step3').hide()
-      $('#int-task-step3-v2').show()     
-      $('#t-nocandy').hide()
-      $('#t-showcandy').show()       
-    else
-      $('#int-task-step2').show()
-      $('#int-task-step2-v2').hide()
-      $('#int-task-step3').show()
-      $('#int-task-step3-v2').hide()    
-      $('#t-nocandy').show()
-      $('#t-showcandy').hide()      
-  
+  uiThreeSignalShown: (show) =>
     selector = "#interfaceTutorial"
     @showDiv show, selector, '0px', '0px'
-
-    @changeTutorialPos show, '300px', '510px'
+    
+    if show is true
+      $('#int-task-step2-v1').hide()
+      $('#int-task-step2-v2').show()   
+      $('#t-nocandy').hide()
+      $('#t-showcandy').show()      
+      $('#status-getcandy').hide()
+      $('#status-confirmclaim').show()
+      $('#status-waitforclaims').hide()      
+    else
+      $('#int-task-step2-v1').show()
+      $('#int-task-step2-v2').hide()
+      $('#t-nocandy').show()
+      $('#t-showcandy').hide()  
+      $('#status-getcandy').hide()
+      $('#status-confirmclaim').hide()
+      $('#status-waitforclaims').show()         
+  
+    @changeTutorialPos show, '310px', '510px'
     @showSelectedCustom(show, "#box-stepthree", "335px", "-20px")
     
   uiFourReportConfirmed: (show) =>
-    # @changeTaskPic show, 'taskreportconfirmed', @interfaceTop, '5px'
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+
     if show is true
-      $('#int-task-step2').hide()
+      $('#int-task-step2-v1').hide()
       $('#int-task-step2-v2').show()
-      $('#int-task-step3').hide()
-      $('#int-task-step3-v2').hide()   
-      $('#int-task-step3-v3').show()      
+      $('#int-task-step3-v1').hide()   
+      $('#int-task-step3-v2').show()      
       $('#t-nocandy').hide()
       $('#t-showcandy').show()      
       $('#t-noclaim').hide()
       $('#t-showclaim').show()
     else
-      $('#int-task-step2').show()
+      $('#int-task-step2-v1').show()
       $('#int-task-step2-v2').hide()
-      $('#int-task-step3').show()
-      $('#int-task-step3-v2').hide()      
-      $('#int-task-step3-v3').hide()   
+      $('#int-task-step3-v1').show()      
+      $('#int-task-step3-v2').hide()   
       $('#t-nocandy').show()
       $('#t-showcandy').hide()      
       $('#t-noclaim').show()
@@ -361,54 +380,46 @@ class Tutorial extends Spine.Controller
       'z-index': '3'
       )
     
+    @changeTutorialPos show, '310px', '510px'
+    @showSelectedCustom show, "#box-onegame", '235px', '490px'
+    
+  uiFiveResult: (show) =>
     selector = "#interfaceTutorial"
     @showDiv show, selector, '0px', '0px'
     
-    @changeTutorialPos show, '300px', '510px'
-    @showSelectedCustom show, "#box-onegame", '180px', '490px'
-    
-  uiFiveResult: (show) =>
-    # @changeTaskPic show, 'tasknextgame', '51px', '6px'
     if show is true
-      $('#r-finishedround').show()
       $('#r-zero').hide()
-      $('#r-nextgame').show()
       $('#r-endgame').hide()
-      $('#r-1strow').hide()
-      $('#r-2ndrow').show()
-      $('#int-task-roundIndex').hide()
-      $('#int-task-roundIndex-v2').show()
+      $('#int-task-step3-v1').hide()
+      $('#int-task-step3-v2').hide()
+      $('#int-task-ruleTable').hide() 
     else
-      $('#r-finishedround').hide()
       $('#r-zero').show()
-      $('#r-nextgame').hide()
       $('#r-endgame').hide()
-      $('#r-1strow').show()
-      $('#r-2ndrow').hide()
-      $('#int-task-roundIndex').show()
-      $('#int-task-roundIndex-v2').hide()
+      $('#int-task-step3-v1').show()
+      $('#int-task-step3-v2').hide()
+      $('#int-task-ruleTable').show() 
       
     $('#box-onegame').css(
       'z-index': '3'
       )
 
-    selector = "#interfaceTutorial"
-    @showDiv show, selector, '0px', '0px'
-    
-    @changeTutorialPos show, '350px', '510px'
+    @changeTutorialPos show, '310px', '510px'
     @showSelectedCustom show, "#box-onegame", '175px', '490px'
     
   uiSixExpEnd: (show) =>
-    # @changeTaskPic show, 'taskexpend', @interfaceTop, '7px'
+    selector = "#interfaceTutorial"
+    @showDiv show, selector, '0px', '0px'
+    
     if show is true
       $('#int-task-title').hide()
       $('#int-task-roundIndex').hide()
       $('#int-task-step1').hide()
       $('#int-task-step1pic').hide()
-      $('#int-task-step2').hide()
-      $('#int-task-step3').hide()
+      $('#int-task-step2-v1').hide()
+      $('#int-task-step3-v1').hide()
       $('#int-task-ruleTable').hide()
-      $('#int-result-body').hide()
+      $('#int-result-body-v1').hide()
       $('#int-result-body-v2').show()
       $('#r-zero').hide()
       $('#r-nextgame').hide()
@@ -419,22 +430,19 @@ class Tutorial extends Spine.Controller
       $('#int-task-roundIndex').show()
       $('#int-task-step1').show()
       $('#int-task-step1pic').show()
-      $('#int-task-step2').show()
-      $('#int-task-step3').show()
+      $('#int-task-step2-v1').show()
+      $('#int-task-step3-v1').show()
       $('#int-task-ruleTable').show()
-      $('#int-result-body').show()
+      $('#int-result-body-v1').show()
       $('#int-result-body-v2').hide()
       $('#r-zero').show()
       $('#r-nextgame').hide()
       $('#r-endgame').hide()
       $('#int-finishmsg').hide()
     
-    selector = "#interfaceTutorial"
-    @showDiv show, selector, '0px', '0px'
-    
     $('div#int-result-body-v2').scrollTop($('div#int-result-body-v2').prop("scrollHeight"))
     
-    @changeTutorialPos(show, '300px', '100px')
+    @changeTutorialPos show, '300px', '100px'
     
  
     
