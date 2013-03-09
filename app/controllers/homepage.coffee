@@ -22,6 +22,7 @@ class Homepage extends Spine.Controller
     ev.preventDefault()
     
     if Network.fakeServer
+      alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
       @navigate '/tutorial'
     else if Network.showQuiz
       @navigate '/tutorial'

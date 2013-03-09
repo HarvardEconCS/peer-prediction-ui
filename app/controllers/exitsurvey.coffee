@@ -17,11 +17,78 @@ class Exitsurvey extends Spine.Controller
     
   render: ->
     @html require('views/exitsurvey')(@)
+    
+    @randomizeStrategyChoices()
+  
+  randomizeStrategyChoices: ->
+    inputList = []
+    labelList = []
+    $('input:checkbox[name=strategy]').each ->
+      inputList.push $(this)
+      id = $(this).attr('id')
+      labelList.push $('label[for='+id+']')
+    
+    newInputList = []
+    newLabelList = []
+    len = inputList.length
+    randList = @randomizeList(len - 1)
+    for index in randList
+      newInputList.push(inputList[index])
+      newLabelList.push(labelList[index])  
+      
+    # leave the last choice be, do not randomize
+    newInputList.push(inputList[4])
+    newLabelList.push(labelList[4])  
+      
+    $('td#strategyChoices').contents().remove()
+    for input, i in newInputList
+      $('td#strategyChoices').append(input)
+      $('td#strategyChoices').append(newLabelList[i])
+      $('td#strategyChoices').append("<br/>")
+      
+  randomizeList: (len) ->
+    oldList = (num for num in [0..(len-1)])
+    num = len
+    newList = []
+    
+    while num > 0
+      rand = Math.floor(Math.random() * num)
+      newList.push(oldList[rand])
+      oldList.splice(rand, 1)
+      num = num - 1
+    
+    newList 
   
   submitClicked: (ev) =>
     ev.preventDefault()
     
     # TODO: check if all required questions are answers.
+    radioNames = []
+    $('input:radio').each ->
+      n = $(this).attr('name')
+      if radioNames.indexOf(n) < 0
+        radioNames.push n
+    notCheckedRadioNames = []
+    for name in radioNames
+      if not $('input:radio[name='+name+']:checked').val()
+        notCheckedRadioNames.push name
+    # console.log "not answered check boxes #{JSON.stringify(notCheckedRadioNames)}"
+        
+    strategyChosen = false
+    $('input:checkbox[name=strategy]').each ->
+      if $(this).is(":checked")
+        strategyChosen = true
+    # console.log "strategy chosen #{strategyChosen}"
+      
+    strategyCommentFilled = $.trim($('textarea#strategyComments').val()).length > 0
+    # console.log "strategy comments #{strategyCommentFilled}"
+    
+    learnCommentFilled = $.trim($('textarea#learnComments').val()).length > 0
+    # console.log "learn comments #{learnCommentFilled}"
+    
+    if notCheckedRadioNames.length > 0 or strategyChosen is false or strategyCommentFilled is false or learnCommentFilled is false
+      alert "You haven't answered all the required questions.  Please check your answers and try again."
+      return
         
     # construct exit comments object
     exitComments = {}
@@ -42,7 +109,7 @@ class Exitsurvey extends Spine.Controller
       exitComments['strategy'][id]['checked'] = $('input:checkbox#'+id).is(':checked')     
     
     exitComments['strategy']['comments'] = $('textarea#strategyComments').val()
- 
+
     # console.log "exitComments is #{JSON.stringify(exitComments)}"
  
     if Network.fakeServer
