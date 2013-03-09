@@ -388,14 +388,10 @@ class Tutorial extends Spine.Controller
     @showDiv show, selector, '0px', '0px'
     
     if show is true
-      $('#r-zero').hide()
-      $('#r-endgame').hide()
       $('#int-task-step3-v1').hide()
       $('#int-task-step3-v2').hide()
       $('#int-task-ruleTable').hide() 
     else
-      $('#r-zero').show()
-      $('#r-endgame').hide()
       $('#int-task-step3-v1').show()
       $('#int-task-step3-v2').hide()
       $('#int-task-ruleTable').show() 
@@ -422,7 +418,6 @@ class Tutorial extends Spine.Controller
       $('#int-result-body-v1').hide()
       $('#int-result-body-v2').show()
       $('#r-zero').hide()
-      $('#r-nextgame').hide()
       $('#r-endgame').show()
       $('#int-finishmsg').show()
     else
@@ -436,7 +431,6 @@ class Tutorial extends Spine.Controller
       $('#int-result-body-v1').show()
       $('#int-result-body-v2').hide()
       $('#r-zero').show()
-      $('#r-nextgame').hide()
       $('#r-endgame').hide()
       $('#int-finishmsg').hide()
     
