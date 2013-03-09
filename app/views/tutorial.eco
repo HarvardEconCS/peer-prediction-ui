@@ -5,7 +5,9 @@
 
 <!-- Pictures for explaining steps of the game -->
 <img class="image" id="pic-prior"         src="images/pic-prior.png">
-<img class="image" id="step2"             src="images/step2.png">
+<img class="image" id="step1"             src="images/step1 copy.png">
+<img class="image" id="step2"             src="images/step2 copy.png">
+<img class="image" id="step3"             src="images/step3.png">
 <img class="image" id="step3-description" src="images/step3-description.png">
 <img class="image" id="step3-example"     src="images/step3-example.png">
 <img class="image" id="steps-recap"       src="images/steps-recap.png">
@@ -438,14 +440,9 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
-      This is a <span class="emphtext">tutorial</span> explaining the game you are going to play.  If you would like to skip the tutorial, click the button below.<br/><br/>
-      <a class="button" id="skipTutorial" href="#">Skip the tutorial</a><br/><br/>
+      This <span class="textBold">tutorial</span> has 2 main parts, explaining the <span class="textBold">3 steps</span> and <span class="textBold">the interface</span> of the game you are going to play. <br/><br/>
 
-      This tutorial has 2 main parts, covering the <span class="emphtext">3 steps</span> of the game and <span class="emphtext">the interface</span> of the game.<br/><br/>
-      
-      Let's get started!<br/><br/>
-
-      Imagine that it is Halloween night.  A group of kids are excited to go trick or treating.
+      Click Next to continue, or you can <br/><br/><a class="button" id="skipTutorial" href="#">Skip the Tutorial</a>
       
     </p>
   </div>
@@ -453,35 +450,40 @@
   <!-- (2) Show 2 types of jars -->
   <div class="step prior">
     <p>
-      <span class="emph">Step 1: Choose a random house</span>  <br/><br/>
+      It is Halloween night!  A group of kids are going trick or treating.<br/><br/>
       
-      The group of kids <span class="emphtext">randomly choose a house</span> to go trick or treating.<br/><br/>
+      <span class="textUnderline">Step 1: Choose a random house</span><br/><br/>
+
+      When the game starts, the kids <span class="textBold">randomly choose a house</span> to go trick or treating.<br/><br/>
       
-      The chosen house can be <span class="emphtext">1 of 2 types with equal chance</span>, but nobody knows which type of house it is.
+      The chosen house can be <span class="textBold">1 of 2 types with equal chance</span>, but nobody knows which type of house it is.  The 2 types of houses give out the 2 types of candies in different fractions.
     </p>
   </div>
 
   <div class="step takeCandy">
     <p>
-      <span class="emph">Step 2: Get a random candy</span><br/><br/>
+      <span class="textUnderline">Step 2: Get a random candy</span><br/><br/>
       
-      Each kid <span class="emphtext">gets a random candy, in secret, from the chosen house</span>, as described on the right.
+      Each kid <span class="textBold">gets a random candy, secretly, from the chosen house</span>.<br/><br/>
+      
+      Note: Each candy is only known by the kid who received it.<br/><br/>
+      
+      Note: The fraction of each type of candy in the house remains the same.<br/><br/>
     </p>
   </div>
 
   <div class="step gameRule">
     <p>
-      <span class="emph">Step 3: Make a claim and get a reward</span><br/><br/>
+      <span class="textUnderline">Step 3: Make a claim and get a reward</span><br/><br/>
       
-      The kids run into a clown.  He makes an interesting offer:<br/><br/>
+      The kids meet a clown, and the clown offers to give the kids <span class="textBold">rewards</span> if they kids <span class="textBold">tell him what candies they got</span>, explained on the right.
       
-      "If each kid tells me <span class="emphtext">what candy you just got</span>, then I will give each kid <span class="emphtext">a reward</span>." (explained on the right)
     </p>
   </div>
 
   <div class="step example">
     <p>
-      <span class="emph">Step 3: Make a claim and get rewarded</span><br/><br/>
+      <span class="textUnderline">Step 3: Make a claim and get rewarded</span><br/><br/>
             
       The rewards are determined in 2 steps.  First, the clown collects all claims.  Then he computes everyone's reward based on the table.
     </p>
@@ -489,7 +491,7 @@
 
   <div class="step recap">
     <p>
-      <span class="emph">Recap</span><br/><br/>
+      <span class="textUnderline">Recap</span><br/><br/>
       
       This is a recap of the 3 steps of the game.  In the actual task, you will be playing this game with a fixed group of players for a fixed number of rounds.<br/><br/>
       
@@ -501,32 +503,32 @@
     <p>
       This is the interface of the game.<br/><br/>
       
-      The <span class="emphtext">left side</span> describes the 3 steps of each round.<br/><br/>
+      The <span class="textBold">left side</span> describes the 3 steps of each round.<br/><br/>
       
-      The <span class="emphtext">right side</span> displays the results of previous rounds and the status of the current round. 
+      The <span class="textBold">right side</span> displays the results of previous rounds and the status of the current round. 
     </p>
   </div>
 
   <div class="step uiExperimentStart"> 
     <p>
-      <span class="emphtext">The title</span> displays <span class="emphtext">the total number of rounds</span>, and <span class="emphtext">the number of other players</span> in the games.
+      <span class="textBold">The title</span> displays <span class="textBold">the total number of rounds</span>, and <span class="textBold">the number of other players</span> in the games.
     
     </p>
   </div>
 
   <div class="step uiGameActions"> 
     <p>
-      The upper left corner shows <span class="emphtext">the current round number</span>.<br/><br/>  
+      The upper left corner shows <span class="textBold">the current round number</span>.<br/><br/>  
       
-      <span class="emphtext">Step 1:</span> a house is randomly chosen.<br/><br/>
+      <span class="textBold">Step 1:</span> a house is randomly chosen.<br/><br/>
       
-      For <span class="emphtext">Step 2:</span>, you can click on the button to get your candy from the chosen house.
+      For <span class="textBold">Step 2:</span>, you can click on the button to get your candy from the chosen house.
     </p>
   </div>
 
   <div class="step uiChooseClaim">
     <p>
-      Once you get your candy, for <span class="emphtext">step 3</span>, you can choose amd confirm your claim.<br/><br/>
+      Once you get your candy, for <span class="textBold">step 3</span>, you can choose amd confirm your claim.<br/><br/>
       
       The reward rule table is also shown for your information.
     </p>
@@ -534,11 +536,11 @@
 
   <div class="step uiOtherStatus">      
     <p>
-      During a round, <span class="emphtext">the dashed row in the result table</span> displays information about the current round, such as 
+      During a round, <span class="textBold">the dashed row in the result table</span> displays information about the current round, such as 
       <ul>
-        <li><span class="emphtext">your candy</span></li>
-        <li><span class="emphtext">your claim</span></li>
-        <li><span class="emphtext">number of other players</span> who have not confirmed their claims (or <span class="emphtext">"all confirmed"</span>)</li>
+        <li><span class="textBold">your candy</span></li>
+        <li><span class="textBold">your claim</span></li>
+        <li><span class="textBold">number of other players</span> who have not confirmed their claims (or <span class="textBold">"all confirmed"</span>)</li>
       </ul>
     </p>
   </div>
@@ -547,7 +549,7 @@
     <p>
     Once a round ends, the next round automatically starts.  <br/><br/>
     
-    For the game that just ended, the row in the result table shows <span class="emphtext">your claim and the number of other players who claim to have either type of candy</span>.  
+    For the game that just ended, the row in the result table shows <span class="textBold">your claim and the number of other players who claim to have either type of candy</span>.  
     </p>
   </div>
 

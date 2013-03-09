@@ -8,7 +8,7 @@
 
   <div id="finishmsg">
     <p>Thank you for playing!<br/>  
-      Your will be paid a total of $<%= (0.05 + @bonus).toFixed(2) %> (=$0.05 + $<%= @bonus.toFixed(2) %>).<br/>
+      You will be paid a total of $<%= (0.05 + @bonus).toFixed(2) %> (=$0.05 + $<%= @bonus.toFixed(2) %>).<br/>
     </p>
     <a class="button exit">Go to exit survey!</a>
   </div>
@@ -37,18 +37,23 @@
   
   <div id="task-step2">
     2. Get a random candy from the chosen house.<br/><br/> 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
+    
     <% if @revealSignal is true: %>
       <span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
         <img class="candy_image" src="images/<%= @game.currPlayerSignal %>.png">
       </span>
     <% else: %>
       <span>
-        <a class="button getsignal" href="#">Get your candy!</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="button getsignal textBold" href="#">Get your candy!</a>
       </span>
     <% end %>
   </div>
 
+  <% if @revealSignal is true: %>
   <div id="task-step3"> 
     3. Choose your claim.<br/><br/>
     <% if @reportChosen is true: %>
@@ -66,13 +71,14 @@
         <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= Network.signalList[1] %>.png"></label> 
       </div>
       <div id="claimbutton">
-        &nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm" href="#">Confirm your claim!</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm textBold" href="#">Confirm your claim!</a>
       </div>
     <% end %>
   </div>
+  <% end %>
 
 
-<% if Network.payAmounts and Network.signalList: %>
+<% if @revealSignal is true and Network.payAmounts and Network.signalList: %>
 
   <div id="task-ruleTable">
     <table>
@@ -171,10 +177,20 @@
                     <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
                     &nbsp;&nbsp;<%= Network.numPlayers - 1 - game.numSignalZero %>
                   <% else: %>
-                    All confirmed!
+                    <% if @revealSignal is false: %>
+                      Please get your candy!
+                    <% else if @revealSignal is true and not game.result?[Network.currPlayerName]?.report?: %>
+                      Please confirm your claim!
+                    <% end %>
                   <% end %>
                 <% else: %>
-                  Waiting for... <%= (Network.numPlayers - 1 - game.numOtherReportsConfirmed) %>
+                  <% if @revealSignal is false: %>
+                    Please get your candy!
+                  <% else if @revealSignal is true and not game.result?[Network.currPlayerName]?.report?: %>
+                    Please confirm your claim!
+                  <% else:%>
+                    Waiting for claims from <%= (Network.numPlayers - 1 - game.numOtherReportsConfirmed) %> other player(s)
+                  <% end %>
                 <% end %>
               </td>     
               <td class="leftb"><!-- Your reward -->

@@ -50,7 +50,7 @@ class Tutorial extends Spine.Controller
       ['prior',       @stepTwoDescribePrior]
       ['takeCandy',   @stepThreeChooseCandy]
       ['gameRule',    @stepFourDescribeRule]
-      ['example',     @stepFiveDescribeReward]
+      # ['example',     @stepFiveDescribeReward]
       ['recap',       @stepSixRecap]
       ['uiStart',           @uiOneStart]
       ['uiExperimentStart', @uiTwoExpStart]
@@ -197,22 +197,25 @@ class Tutorial extends Spine.Controller
        @div.hide() 
     
   stepTwoDescribePrior: (show) =>
+    selector = "#step1"
+    @showSelectedCustom show, selector, '50px', '320px' 
+    
     selector = "#pic-prior"
     $("img#{selector}").css(
-      'height' : 'auto'
+      'width' : '600px'
     )
-    @showSelected(show, selector)
+    @showSelectedCustom show, selector, '200px', '310px'
 
   stepThreeChooseCandy: (show) =>
     selector = "#step2"
     @showSelected(show, selector)
          
   stepFourDescribeRule: (show) =>
-    selector = "#step3-description"
+    selector = "#step3"
     @showSelected(show, selector)
 
     selector = "#ruleTableTutorial"
-    @showDiv(show, selector, '300px', '40px')
+    @showDiv(show, selector, '250px', '40px')
 
   stepFiveDescribeReward: (show) =>
     selector = "#step3-example"

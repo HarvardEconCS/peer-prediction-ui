@@ -19,14 +19,14 @@
     <td></td>
   </tr>  
   <tr>
-    <td class="question">Please describe the bugs you observed if any (optional).</td>
+    <td class="question">Please describe any bug you observed (optional).</td>
     <td colspan=5><textarea rows="3" cols="100" id="bugComments"></textarea></td>
   </tr>
   <tr>
     <td><br/></td><td colspan=5></td>
   </tr>
   <tr>
-    <td class="question">2. Is the payment rule clear? (required)</td>
+    <td class="question">2. Is the rule of the task clear? (required)</td>
     <td class="choices"><input type="radio" name="taskrule" id="taskrule1" value="1"><br/>Extremely unclear</td>
     <td class="choices"><input type="radio" name="taskrule" id="taskrule2" value="2"></td>
     <td class="choices"><input type="radio" name="taskrule" id="taskrule3" value="3"></td>
@@ -34,8 +34,8 @@
     <td class="choices"><input type="radio" name="taskrule" id="taskrule5" value="5"><br/>Extremely clear</td>
   </tr>
   <tr>
-    <td class="question">Please comment on the payment rule of the task (optional).</td>
-    <td colspan=5><textarea rows="3" cols="100" id="taskRuleComments"></textarea></td>
+    <td class="question">Please comment on the rule of the task (optional).</td>
+    <td colspan=5><textarea rows="3" cols="100" id="taskruleComments"></textarea></td>
   </tr>
   <tr>
     <td><br/></td><td colspan=5></td>
@@ -96,7 +96,7 @@
   </tr>
   <tr>
     <td class="question">Please comment on the rule of the game (optional).</td>
-    <td colspan=5><textarea rows="3" cols="100" id="gameRuleComments"></textarea></td>
+    <td colspan=5><textarea rows="3" cols="100" id="gameruleComments"></textarea></td>
   </tr>
   <tr>
     <td><br/></td><td colspan=5></td>
@@ -127,14 +127,22 @@
     </td>
   </tr>
   <tr>
-    <td class="question">4. Please comment on why you used any particular strategy to play this game. (required)</td>
+    <td class="question">4. Why did you use any particular strategy to play this game? (required)</td>
     <td colspan=5><textarea rows="3" cols="100" id="strategyComments"></textarea></td>
   </tr>  
   <tr>
     <td><br/></td><td colspan=5></td>
   </tr>
   <tr>
-    <td class="question">5. Did you feel like playing the game for multiple rounds allowed you to gradually learn to play the game better?  Please comment on your learning process throughout the game. (required)</td>
+    <td class="question">2. Were you able to gradually learn to play the game better? (required)</td>
+    <td class="choices"><input type="radio" name="learn" id="learn1" value="false"><label for="learn1">  No</label></td>
+    <td class="choices"><input type="radio" name="learn" id="learn2" value="true"><label for="learn2">  Yes</label></td>
+    <td></td>
+    <td></td>    
+    <td></td>
+  </tr>
+  <tr>
+    <td class="question">5. Were you able to gradually learn to play the game better?  Please comment on your learning process throughout the game. (required)</td>
     <td colspan=5><textarea rows="3" cols="100" id="learnComments"></textarea></td>
   </tr>
 </table>
