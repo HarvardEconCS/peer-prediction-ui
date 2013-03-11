@@ -8,7 +8,7 @@
 
   <div id="finishmsg">
     <p>Thank you for playing!<br/>  
-      You will be paid a total of $<%= (0.05 + @bonus).toFixed(2) %> (=$0.05 + $<%= @bonus.toFixed(2) %>).<br/>
+      You will be paid <span class="textBold">$<%= (0.05 + @bonus).toFixed(2) %></span> (=$0.05 + $<%= @bonus.toFixed(2) %>).<br/>
     </p>
     <a class="button exit">Go to exit survey!</a>
   </div>
@@ -21,11 +21,23 @@
   <!-- Inforation about the game has been loaded.  Display it. -->
   
   <div id="task-title">
-    You are playing <span class="textBold"><%= Network.numRounds %> rounds</span> of the game with <span class="textBold"><%= Network.numPlayers - 1 %> other players</span><br/> 
+    You are playing <span class="textBold"><%= Network.numRounds %> rounds</span> of the game with <span class="textBold"><%= Network.numPlayers - 1 %> other players</span>. 
+    Your bonus so far: <span class="textBold">$<% if @bonus: %><%= @bonus.toFixed(2) %><% else: %>0.00<% end %></span>.
   </div>
- 
+
+  <div id="task-status">
+    Current Status: ***
+    <% if @revealSignal is false: %>
+      <span class="textBold">Please get your candy!</span>
+    <% else if @revealSignal is true and not @game.result?[Network.currPlayerName]?.report?: %>
+      <span class="textBold">Please confirm your claim!</span>
+    <% else:%>
+      Waiting for <%= (Network.numPlayers - 1 - @game.numOtherReportsConfirmed) %> other player(s) to confirm claim(s).
+    <% end %>***
+  </div>
+  
   <div id="task-roundIndex">
-    This is <span class="textBold">Round #<%= @games.length %></span>:
+    Current Round is <span class="textBold">#<%= @games.length %></span>:
   </div>
 
   <div id="task-step1"> 
@@ -176,20 +188,10 @@
                     &nbsp;&nbsp;<%= game.numSignalZero %>
                     <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
                     &nbsp;&nbsp;<%= Network.numPlayers - 1 - game.numSignalZero %>
-                  <% else: %>
-                    <% if @revealSignal is false: %>
-                      Please get your candy!
-                    <% else if @revealSignal is true and not game.result?[Network.currPlayerName]?.report?: %>
-                      Please confirm your claim!
-                    <% end %>
                   <% end %>
                 <% else: %>
-                  <% if @revealSignal is false: %>
-                    Please get your candy!
-                  <% else if @revealSignal is true and not game.result?[Network.currPlayerName]?.report?: %>
-                    Please confirm your claim!
-                  <% else:%>
-                    Waiting for claims from <%= (Network.numPlayers - 1 - game.numOtherReportsConfirmed) %> other player(s)
+                  <% if game.numOtherReportsConfirmed < (Network.numPlayers - 1): %>
+                    <%= game.numOtherReportsConfirmed %> of <%= (Network.numPlayers - 1) %> other player(s) confirmed claims.
                   <% end %>
                 <% end %>
               </td>     
@@ -230,7 +232,7 @@
 
 <div id="avgreward">
   <p>
-    Average Reward: 
+    Your bonus: 
     <% if @bonus: %>
       $<%= @bonus.toFixed(2) %>
     <% else: %>

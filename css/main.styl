@@ -7,17 +7,25 @@ div.task
   width    1024px
   height   768px
 
-taskTitleTop = 50px
+taskTitleTop = 10px
 div#task-title 
   position   absolute
   top        taskTitleTop 
   left       0px
   width      1024px
   height     25px
-  text-align center
-  font-size 19px
+  font-size  17px
   
-roundIndexTop    = 80px
+taskStatusTop = 53px
+div#task-status 
+  position   absolute
+  top        taskStatusTop  
+  left       200px
+  width      1024px
+  height     25px
+  font-size  19px  
+  
+roundIndexTop    = 77px
 roundStepsLeft   = 0px
 roundStepsWidth  = 450px
 roundIndexHeight = 25px
@@ -42,7 +50,7 @@ div#task-step1
 div#task-step1pic
   z-index   0 
   position  absolute
-  top       step1Top + 20px
+  top       step1Top + 25px
   left      25px
   width     250px
 
@@ -87,6 +95,7 @@ div#finishmsg
   position absolute
   top      50px
   left     100px
+  font-size 19px
 
 
 resultTop  = 80px
@@ -111,7 +120,7 @@ div#result-body
 div#avgreward
   position    absolute
   top         resultBodyTop + resultBodyHeight
-  left        resultLeft + 255px
+  left        resultLeft + 303px
   height      50px
   font-size   20px
   font-weight bold

@@ -279,26 +279,26 @@ class Tutorial extends Spine.Controller
     @showDiv show, selector, '0px', '0px'
 
     if show is true
-      $('#status-getcandy').show()
-      $('#status-confirmclaim').hide()
-      $('#status-waitforclaims').hide()      
+      $('#int-task-status-getcandy').show()
+      $('#int-task-status-confirmclaim').hide()
+      $('#int-task-status-waitforclaims').hide()  
       $('#int-task-step3-v1').hide()
       $('#int-task-step3-v2').hide()     
       $('#int-task-ruleTable').hide() 
     else
-      $('#status-getcandy').hide()
-      $('#status-confirmclaim').hide()
-      $('#status-waitforclaims').show()   
+      $('#int-task-status-getcandy').hide()
+      $('#int-task-status-confirmclaim').hide()
+      $('#int-task-status-waitforclaims').show()
       $('#int-task-step3-v1').show()
       $('#int-task-step3-v2').hide()  
       $('#int-task-ruleTable').show() 
 
-    @showSelectedCustom show, "#box-title", '10px', '230px'
+    # @showSelectedCustom show, "#box-title", '10px', '230px'
 
     # change dialog position
     if show is true
       $('div.tutorial').animate
-        top:  "+=260px"
+        top:  "+=240px"
         left: "+=520px"
         1000
     else
@@ -313,22 +313,22 @@ class Tutorial extends Spine.Controller
     @showDiv show, selector, '0px', '0px'
     
     if show is true
-      $('#status-getcandy').show()
-      $('#status-confirmclaim').hide()
-      $('#status-waitforclaims').hide()  
+      $('#int-task-status-getcandy').show()
+      $('#int-task-status-confirmclaim').hide()
+      $('#int-task-status-waitforclaims').hide()
       $('#int-task-step3-v1').hide()
       $('#int-task-step3-v2').hide()    
       $('#int-task-ruleTable').hide() 
     else
-      $('#status-getcandy').hide()
-      $('#status-confirmclaim').hide()
-      $('#status-waitforclaims').show()   
+      $('#int-task-status-getcandy').hide()
+      $('#int-task-status-confirmclaim').hide()
+      $('#int-task-status-waitforclaims').show()
       $('#int-task-step3-v1').show()
       $('#int-task-step3-v2').hide()  
       $('#int-task-ruleTable').show() 
     
-    @changeTutorialPos show, '310px', '510px'
-    @showSelectedCustom show, "#box-stepsonetwo", "85px", "-20px"
+    @changeTutorialPos show, '290px', '510px'
+    @showSelectedCustom show, "#box-stepsonetwo", "65px", "-20px"
       
   uiThreeSignalShown: (show) =>
     selector = "#interfaceTutorial"
@@ -339,20 +339,21 @@ class Tutorial extends Spine.Controller
       $('#int-task-step2-v2').show()   
       $('#t-nocandy').hide()
       $('#t-showcandy').show()      
-      $('#status-getcandy').hide()
-      $('#status-confirmclaim').show()
-      $('#status-waitforclaims').hide()      
+      $('#int-task-status-getcandy').hide()
+      $('#int-task-status-confirmclaim').show()
+      $('#int-task-status-waitforclaims').hide()
+       
     else
       $('#int-task-step2-v1').show()
       $('#int-task-step2-v2').hide()
       $('#t-nocandy').show()
       $('#t-showcandy').hide()  
-      $('#status-getcandy').hide()
-      $('#status-confirmclaim').hide()
-      $('#status-waitforclaims').show()         
+      $('#int-task-status-getcandy').hide()
+      $('#int-task-status-confirmclaim').hide()
+      $('#int-task-status-waitforclaims').show()
   
-    @changeTutorialPos show, '310px', '510px'
-    @showSelectedCustom(show, "#box-stepthree", "335px", "-20px")
+    @changeTutorialPos show, '290px', '510px'
+    @showSelectedCustom(show, "#box-stepthree", "310px", "-20px")
     
   uiFourReportConfirmed: (show) =>
     selector = "#interfaceTutorial"
@@ -381,8 +382,8 @@ class Tutorial extends Spine.Controller
       'z-index': '3'
       )
     
-    @changeTutorialPos show, '310px', '510px'
-    @showSelectedCustom show, "#box-onegame", '235px', '490px'
+    @changeTutorialPos show, '290px', '510px'
+    @showSelectedCustom show, "#box-onegame", '215px', '490px'
     
   uiFiveResult: (show) =>
     selector = "#interfaceTutorial"
@@ -401,8 +402,8 @@ class Tutorial extends Spine.Controller
       'z-index': '3'
       )
 
-    @changeTutorialPos show, '310px', '510px'
-    @showSelectedCustom show, "#box-onegame", '175px', '490px'
+    @changeTutorialPos show, '290px', '510px'
+    @showSelectedCustom show, "#box-onegame", '155px', '490px'
     
   uiSixExpEnd: (show) =>
     selector = "#interfaceTutorial"
@@ -421,6 +422,7 @@ class Tutorial extends Spine.Controller
       $('#r-zero').hide()
       $('#r-endgame').show()
       $('#int-finishmsg').show()
+      $('#int-task-status-waitforclaims').hide()
     else
       $('#int-task-title').show()
       $('#int-task-roundIndex').show()
@@ -434,6 +436,7 @@ class Tutorial extends Spine.Controller
       $('#r-zero').show()
       $('#r-endgame').hide()
       $('#int-finishmsg').hide()
+      $('#int-task-status-waitforclaims').show()
     
     $('div#int-result-body-v2').scrollTop($('div#int-result-body-v2').prop("scrollHeight"))
     

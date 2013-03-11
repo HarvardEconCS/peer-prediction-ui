@@ -17,7 +17,8 @@ div#interfaceTutorial
 #int-result-body-v2
 #int-finishmsg
 #status-getcandy
-#status-confirmclaim
+#int-task-status-getcandy
+#int-task-status-confirmclaim
   display none
 
 div.tutorial
@@ -80,12 +81,12 @@ div#int-finishmsg
   position absolute
   top      50px
   left     100px
+  font-size 19px
 
+down  = 0px
+right = 0px
 
-down = 20px
-right = 10px
-
-intTaskTitleTop = 50px + down 
+intTaskTitleTop = 10px + down 
 intTaskTitleLeft = 0px + right
 div#int-task-title 
   position   absolute
@@ -93,10 +94,18 @@ div#int-task-title
   left       intTaskTitleLeft
   width      1024px
   height     25px
-  text-align center
-  font-size  19px    
-    
-intRoundIndexTop    = 80px + down
+  font-size  17px    
+   
+intTaskStatusTop = 53px + down
+div.statusmessage
+  position   absolute
+  top        intTaskStatusTop   
+  left       200px + right
+  width      1024px
+  height     25px
+  font-size  19px     
+        
+intRoundIndexTop    = 77px + down
 intRoundStepsLeft   = 0px + right
 intRoundStepsWidth  = 450px
 intRoundIndexHeight = 25px
@@ -121,7 +130,7 @@ div#int-task-step1
 div#int-task-step1pic
   z-index   0 
   position  absolute
-  top       intStep1Top + 20px
+  top       intStep1Top + 25px
   left      25px
   width     250px    
 
@@ -248,7 +257,7 @@ div.resultbody td.otherClaims img
 div#int-avgreward
   position    absolute
   top         intResultBodyTop + intResultBodyHeight
-  left        intResultLeft + 255px
+  left        intResultLeft + 303px
   height      50px
   font-size   20px
   font-weight bold

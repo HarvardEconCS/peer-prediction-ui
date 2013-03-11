@@ -34,16 +34,34 @@
   
   <div id="int-finishmsg">
     <p>Thank you for playing!<br/>  
-      Your will be paid a total of $0.36 (=$0.05 + $0.31).<br/>
+      Your will be paid <span class="textBold">$0.36</span> (=$0.05 + $0.31).<br/>
     </p>
     <a class="button fake">Go to exit survey!</a>
   </div>
   
   <div id="int-task-title">
-    You are playing <span class="textBold">10 rounds</span> of the game with <span class="textBold">2 other players</span><br/> 
+    You are playing <span class="textBold">10 rounds</span> of the game with <span class="textBold">2 other players</span>. 
+    Your bonus so far: <span class="textBold">$0.50</span>.
   </div>
+  
+  <div id="int-task-status-getcandy" class="statusmessage">
+    Current Status: ***
+    <span class="textBold">Please get your candy!</span>
+    ***
+  </div>
+  <div id="int-task-status-confirmclaim" class="statusmessage">
+    Current Status: ***
+    <span class="textBold">Please confirm your claim!</span>
+    ***
+  </div>
+  <div id="int-task-status-waitforclaims" class="statusmessage">
+    Current Status: ***
+    Waiting for 2 other player(s) to confirm claim(s).
+    ***
+  </div>     
+    
   <div id="int-task-roundIndex" class="roundnumber">
-    This is <span class="textBold">Round #2</span>:
+    Current Round is <span class="textBold">#2</span>:
   </div>
   
   <div id="int-task-step1"> 
@@ -174,13 +192,10 @@
             <img id="t-showclaim" class="candy_image" src="images/MM.png">
           </td>
           <td id="status-waitforclaims" class="otherClaims"><!-- Other Players' Claims-->
-            Waiting for claims from 2 other player(s)
+            0 of 2 other player(s) confirmed claims.
           </td>     
           <td id="status-getcandy" class="otherClaims">
-            Please get your candy!
-          </td>
-          <td id="status-confirmclaim" class="otherClaims">
-            Please confirm your claim!
+            <!-- Please get your candy! -->&nbsp;
           </td>
           <td class="leftb borderRightDashed"><!-- Your reward -->
           </td>  
@@ -377,8 +392,8 @@
   </div>   
    
   <div id="int-avgreward">
-    <p id="r-zero">Average Reward: $0.50</p>
-    <p id="r-endgame">Average Reward: $0.31</p>
+    <p id="r-zero">Your Bonus: $0.50</p>
+    <p id="r-endgame">Your Bonus: $0.31</p>
   </div>
 </div>
 
@@ -503,13 +518,9 @@
 
   <div class="step uiStart">
     <p>
-      This is the interface of the game.<br/><br/>
-      
-      <span class="textBold">The title</span> displays <span class="textBold">the total number of rounds</span>, and <span class="textBold">the number of other players</span>.<br/><br/>
-      
-      The <span class="textBold">left side</span> shows the 3 steps of the current round.<br/><br/>
-      
-      The <span class="textBold">right side</span> displays results of previous rounds and the status of the current round. 
+      This is the interface of the game.  The <span class="textBold">title</span> shows the number of rounds, the number of other players, your bonus so far, and <span class="textBold">the status of the current game</span>.<br/><br/>  
+      The <span class="textBold">left side</span> shows steps of the current round.
+      The <span class="textBold">right side</span> displays results of previous rounds and status of current round. 
     </p>
   </div>
 
