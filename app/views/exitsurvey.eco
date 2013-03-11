@@ -8,10 +8,9 @@
 
 <p>Thank you for playing!  You have finished all rounds of the game. We appreciate your comments to help us improve this task!<br/><br/></p>
 
-<p>We would like your feedback about whether the different components of the task were clear. </p>
 <table>
   <tr>
-    <td class="question">1. Did you observe any bugs in the task? (required)</td>
+    <td class="question">Did you observe any bugs in the task? Please describe any bug you observed.</td>
     <td class="choices"><input type="radio" name="bug" id="bug1" value="false"><label for="bug1">  No</label></td>
     <td class="choices"><input type="radio" name="bug" id="bug2" value="true"><label for="bug2">  Yes</label></td>
     <td></td>
@@ -19,13 +18,15 @@
     <td></td>
   </tr>  
   <tr>
-    <td class="question">Please describe any bug you observed (optional).</td>
+    <td class="question">
+      <!-- Please describe any bug you observed (optional). -->
+    </td>
     <td colspan=5><textarea rows="3" cols="100" id="bugComments"></textarea></td>
   </tr>
   <tr>
     <td><br/></td><td colspan=5></td>
   </tr>
-  <tr>
+  <!-- <tr>
     <td class="question">2. Is the rule of the task clear? (required)</td>
     <td class="choices"><input type="radio" name="taskrule" id="taskrule1" value="1"><br/>Extremely unclear</td>
     <td class="choices"><input type="radio" name="taskrule" id="taskrule2" value="2"></td>
@@ -69,9 +70,9 @@
   </tr>  
   <tr>
     <td><br/></td><td colspan=5></td>
-  </tr>
+  </tr> -->
   <tr>
-    <td class="question">5. How clear is the game interface? (required)</td>
+    <td class="question">What do you think of the game interface? Please comment on the game interface.</td>
     <td class="choices"><input type="radio" name="interface" id="interface1" value="1"><br/>Extremely unclear</td>
     <td class="choices"><input type="radio" name="interface" id="interface2" value="2"></td>
     <td class="choices"><input type="radio" name="interface" id="interface3" value="3"></td>
@@ -79,14 +80,15 @@
     <td class="choices"><input type="radio" name="interface" id="interface5" value="5"><br/>Extremely clear</td>
   </tr>
   <tr>
-    <td class="question">Please comment on the game interface (optional).</td>
+    <td class="question">
+      <!-- Please comment on the game interface (optional). -->
+    </td>
     <td colspan=5><textarea rows="3" cols="100" id="interfaceComments"></textarea></td>
   </tr> 
-</table>  
-
-<p><br/><br/><br/><br/>We are interested in knowing about how you learned to play the game.</p>
-<table>
   <tr>
+    <td><br/></td><td colspan=5></td>
+  </tr>
+  <!-- <tr>
     <td class="question">6. Did you understand the rules of the game? (required)</td>
     <td class="choices"><input type="radio" name="gamerule" id="gamerule1" value="false"><label for="gamerule1">  No</label></td>
     <td class="choices"><input type="radio" name="gamerule" id="gamerule2" value="true"><label for="gamerule2">  Yes</label></td>
@@ -115,26 +117,26 @@
   </tr>  
   <tr>
     <td><br/></td><td colspan=5></td>
-  </tr>
+  </tr> -->
   <tr>
-    <td class="question">8. Did you use one or more of these strategies to play this game? Check all of the strategies that you used. (required)</td>
+    <td class="question">Did you use any of these strategies to play this game? Check all of the strategies that you used.</td>
     <td colspan="5" class="choices" id="strategyChoices">
-      <input type="checkbox" name="strategy" id="strategy1" value="honest"><label for="strategy1">  Always reports the type of candy you received </label><br/>
-      <input type="checkbox" name="strategy" id="strategy2" value="opposite"><label for="strategy2">  Always reports the type of candy you did not receive</label><br/>
-      <input type="checkbox" name="strategy" id="strategy3" value="alwaysmm"><label for="strategy3">  Always reports <img class="candy_image" src="images/MM.png"> regardless of the type of your candy</label><br/>
-      <input type="checkbox" name="strategy" id="strategy4" value="alwaysgb"><label for="strategy4">  Always reports <img class="candy_image" src="images/GB.png"> regardless of the type of your candy</label><br/>
+      <input type="checkbox" name="strategy" id="strategy1" value="honest"><label for="strategy1">  Always report the type of candy you received </label><br/>
+      <input type="checkbox" name="strategy" id="strategy2" value="opposite"><label for="strategy2">  Always report the type of candy you did not receive</label><br/>
+      <input type="checkbox" name="strategy" id="strategy3" value="alwaysmm"><label for="strategy3">  Always report <img class="candy_image" src="images/MM.png"> regardless of the type of your candy</label><br/>
+      <input type="checkbox" name="strategy" id="strategy4" value="alwaysgb"><label for="strategy4">  Always report <img class="candy_image" src="images/GB.png"> regardless of the type of your candy</label><br/>
       <input type="checkbox" name="strategy" id="strategy5" value="other"><label for="strategy5">  Other, please describe below</label>
     </td>
   </tr>
   <tr>
-    <td class="question">9. Why did you use any particular strategy to play this game? (required)</td>
+    <td class="question">Describe how you played this game.</td>
     <td colspan=5><textarea rows="3" cols="100" id="strategyComments"></textarea></td>
   </tr>  
   <tr>
     <td><br/></td><td colspan=5></td>
   </tr>
   <tr>
-    <td class="question">10. Were you able to gradually learn to play the game better? (required)</td>
+    <td class="question">Were you able to gradually learn to play the game better?</td>
     <td class="choices"><input type="radio" name="learn" id="learn1" value="false"><label for="learn1">  No</label></td>
     <td class="choices"><input type="radio" name="learn" id="learn2" value="true"><label for="learn2">  Yes</label></td>
     <td></td>
@@ -142,7 +144,7 @@
     <td></td>
   </tr>
   <tr>
-    <td class="question">11. Please comment on how you learned to play the game. (required)</td>
+    <td class="question">Describe how you learned to play the game.</td>
     <td colspan=5><textarea rows="3" cols="100" id="learnComments"></textarea></td>
   </tr>
 </table>
