@@ -24,11 +24,16 @@ class Tutorial extends Spine.Controller
   # skip tutorial and go to quiz 
   skipTutorialClicked: (ev) =>
     ev.preventDefault()
+    if Network.fakeServer
+      alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
     @navigate '/quiz'
     
   # end tutorial and go to quiz
   endTutorialClicked: (ev) =>
     ev.preventDefault()
+    console.log "end tutorial"
+    if Network.fakeServer
+      alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
     @navigate '/quiz'
  
   # go back to beginning of tutorial
@@ -151,10 +156,6 @@ class Tutorial extends Spine.Controller
       # increment the step counter and show next step
       @stepIndex = @stepIndex + 1
       @stepShow()
-
-  endTutorialClicked: (ev) =>  
-    ev.preventDefault()
-    @navigate '/quiz'
   
   showSelected: (show, selector) ->
      @img = $("img#{selector}")

@@ -136,6 +136,8 @@ class Task extends Spine.Controller
   # go to the exit survey
   goToExitSurvey: (e) =>
     e.preventDefault()
+    if Network.fakeServer
+      alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
     @navigate '/exitsurvey'
 
 module.exports = Task

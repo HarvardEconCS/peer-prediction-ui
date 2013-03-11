@@ -54,13 +54,14 @@ class Quiz extends Spine.Controller
     @wrongAnswers = @listWrongQuestions()
 
     if Network.fakeServer
+      alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
       @navigate '/task'
     else
-      # console.log "sending quiz results to server"
-      
       # For testing convenience.  TAKE OUT
       # correct = 14
       # total = 14
+      
+      # console.log "sending quiz results to server"
       Network.sendQuizInfo(correct, total, quizAnsObj)
     
   getQuizAnsObj: ->
