@@ -114,7 +114,7 @@ class Exitsurvey extends Spine.Controller
       exitComments['strategy'][id]['checked'] = @checkboxes.filter('#'+id).is(':checked')     
     
     exitComments['strategy']['comments'] = @textareas.filter('#strategyComments').val()
-    console.log "comments: #{JSON.stringify(exitComments)}"
+    # console.log "comments: #{JSON.stringify(exitComments)}"
  
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"

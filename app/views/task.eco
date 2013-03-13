@@ -22,7 +22,7 @@
   
   <div id="task-title">
     You are playing <span class="textBold"><%= Network.numRounds %> rounds</span> of the game with <span class="textBold"><%= Network.numPlayers - 1 %> other player(s)</span>. 
-    Your bonus so far: <span class="textBold">$<% if @bonus: %><%= @bonus.toFixed(2) %><% else: %>0.00<% end %></span>.
+    Your bonus (= average reward) so far: <span class="textBold">$<% if @bonus: %><%= @bonus.toFixed(2) %><% else: %>0.00<% end %></span>.
   </div>
 
   <div id="task-status">
@@ -232,7 +232,7 @@
 
 <div id="avgreward">
   <p>
-    Your bonus: 
+    Average reward: 
     <% if @bonus: %>
       $<%= @bonus.toFixed(2) %>
     <% else: %>

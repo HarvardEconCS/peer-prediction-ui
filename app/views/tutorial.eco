@@ -41,7 +41,7 @@
   
   <div id="int-task-title">
     You are playing <span class="textBold">10 rounds</span> of the game with <span class="textBold">2 other players</span>. 
-    Your bonus so far: <span class="textBold">$0.50</span>.
+    Your bonus (=average reward) so far: <span class="textBold">$0.50</span>.
   </div>
   
   <div id="int-task-status-getcandy" class="statusmessage">
@@ -392,8 +392,8 @@
   </div>   
    
   <div id="int-avgreward">
-    <p id="r-zero">Your Bonus: $0.50</p>
-    <p id="r-endgame">Your Bonus: $0.31</p>
+    <p id="r-zero">Average reward: $0.50</p>
+    <p id="r-endgame">Average reward: $0.31</p>
   </div>
 </div>
 
