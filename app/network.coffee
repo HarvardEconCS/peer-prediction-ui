@@ -94,8 +94,8 @@ class Network
     msg = ""
     switch status
       when Codec.status_failsauce
-        msg = "Sorry!  You have failed the quiz too many times.  
-               You cannot work on this task anymore. Please return this HIT."
+        msg = "Sorry!  You have failed the quiz 3 times.  
+               You cannot work on our HITs anymore. Please return this HIT."
       when "status.killed"
         msg = "Sorry!  You disconnected from this task for too long.  
                You can no longer work on this task.  Please return this HIT."
@@ -112,6 +112,10 @@ class Network
       when Codec.status_expfinished
         @mainCont.navigate '/exitsurvey'
         return
+      when Codec.status_batchfinished
+        msg = "All games for this batch have been completed.  
+               We will notify you if we post more HITs in the future.
+               Please return this HIT."
     @mainCont.errormessage.setMessage msg
     @mainCont.navigate '/errormessage'
     @mainCont.errormessage.render()
