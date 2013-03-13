@@ -4,6 +4,11 @@ Network = require 'network'
 
 class Exitsurvey extends Spine.Controller
   className: 'exitsurvey'
+  
+  elements:
+    "input:radio" : "radiobuttons"
+    "input:checkbox" : "checkboxes"
+    "textarea"    : "textareas"
     
   events:
     "click a#submitTask" : "submitClicked"
@@ -23,7 +28,7 @@ class Exitsurvey extends Spine.Controller
   randomizeStrategyChoices: ->
     inputList = []
     labelList = []
-    $('input:checkbox[name=strategy]').each ->
+    @checkboxes.select('[name=strategy]').each ->
       inputList.push $(this)
       id = $(this).attr('id')
       labelList.push $('label[for='+id+']')
@@ -64,26 +69,26 @@ class Exitsurvey extends Spine.Controller
     
     # check if all required questions are answered
     radioNames = []
-    $('input:radio').each ->
+    @radiobuttons.each ->
       n = $(this).attr('name')
       if radioNames.indexOf(n) < 0
         radioNames.push n
     notCheckedRadioNames = []
     for name in radioNames
-      if not $('input:radio[name='+name+']:checked').val()
+      if not @radiobuttons.select('[name='+name+']:checked').val()
         notCheckedRadioNames.push name
     # console.log "not answered check boxes #{JSON.stringify(notCheckedRadioNames)}"
         
     strategyChosen = false
-    $('input:checkbox[name=strategy]').each ->
+    @checkboxes.select('[name=strategy]').each ->
       if $(this).is(":checked")
         strategyChosen = true
     # console.log "strategy chosen #{strategyChosen}"
       
-    strategyCommentFilled = $.trim($('textarea#strategyComments').val()).length > 0
+    strategyCommentFilled = $.trim(@textareas.select('#strategyComments').val()).length > 0
     # console.log "strategy comments #{strategyCommentFilled}"
     
-    learnCommentFilled = $.trim($('textarea#learnComments').val()).length > 0
+    learnCommentFilled = $.trim(@textareas.select('textarea#learnComments').val()).length > 0
     # console.log "learn comments #{learnCommentFilled}"
     
     if notCheckedRadioNames.length > 0 or strategyChosen is false or strategyCommentFilled is false or learnCommentFilled is false
@@ -93,23 +98,23 @@ class Exitsurvey extends Spine.Controller
     # construct exit comments object
     exitComments = {}
     
-    $('input:radio').each ->
+    @radiobuttons.each ->
       n = $(this).attr('name')
       exitComments[n] = {}
     for name in Object.keys(exitComments)
-      exitComments[name]['value'] = $('input:radio[name='+name+']:checked').val()
-      exitComments[name]['comments'] = $('textarea#'+name+'Comments').val()
+      exitComments[name]['value'] = @radiobuttons.select('[name='+name+']:checked').val()
+      exitComments[name]['comments'] = @textareas.select('#'+name+'Comments').val()
 
     exitComments['strategy'] = {}
-    $('input:checkbox[name=strategy]').each -> 
+    @checkboxes.select('[name=strategy]').each -> 
       i = $(this).attr('id')
       exitComments['strategy'][i] = {}
     for id in Object.keys(exitComments['strategy'])
-      exitComments['strategy'][id]["value"] = $('input:checkbox#'+id).val()
-      exitComments['strategy'][id]['checked'] = $('input:checkbox#'+id).is(':checked')     
+      exitComments['strategy'][id]["value"] = @checkboxes.select('#'+id).val()
+      exitComments['strategy'][id]['checked'] = @checkboxes.select('#'+id).is(':checked')     
     
-    exitComments['strategy']['comments'] = $('textarea#strategyComments').val()
-    # console.log "exitComments is #{JSON.stringify(exitComments)}"
+    exitComments['strategy']['comments'] = @textareas.select('#strategyComments').val()
+    console.log "exitComments is #{JSON.stringify(exitComments)}"
  
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"

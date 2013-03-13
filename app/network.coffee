@@ -33,6 +33,8 @@ class Network
     TSClient.EnterLobby   @enterLobby
     TSClient.ErrorMessage @rcvErrorMsg
     
+    TSClient.LobbyMessage @getLobbyUpdates
+    
     TSClient.StartExperiment  @startExperiment
     TSClient.StartRound (round) -> console.log("@StartRound" + round)
     TSClient.FinishExperiment @finishExperiment
@@ -46,6 +48,11 @@ class Network
   @setMainController: (cont) ->
     @mainCont = cont
 
+  @getLobbyUpdates: (data) =>
+    console.log "#{JSON.stringify(data)}"
+    @mainCont.lobby.setNum data.numneeded, data.numusers
+    @mainCont.lobby.render()
+
   @quizNeeded: =>
     console.log "@QuizRequired"
     @showQuiz = true
@@ -53,12 +60,17 @@ class Network
 
   @quizFail: =>
     console.log "@QuizFailed"
-    alert "Sorry!  You failed the quiz.  We encourage you to try again.  If you'd like to quit, feel free to return this HIT."
+    alert """
+          Sorry!  You failed the quiz.  We encourage you to try again.  
+          If you'd like to quit, feel free to return this HIT.
+          """
     @mainCont.navigate '/quiz'
     @mainCont.quiz.render()
       
   @enterLobby: =>
     console.log "@EnterLobby"
+    @showLobby = true
+    @showQuiz = false
     @mainCont.navigate '/lobby'
 
   @startExperiment: =>

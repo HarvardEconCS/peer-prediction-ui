@@ -11,6 +11,11 @@ class Lobby extends Spine.Controller
     @render()
     
   render: ->
+    # console.log "#{@totalRequired}"
     @html require('views/lobby')(@)  
+    
+  setNum: (totalRequired, numJoined) ->
+    @totalRequired = totalRequired
+    @numJoined = numJoined
     
 module.exports = Lobby

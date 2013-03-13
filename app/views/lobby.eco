@@ -1,2 +1,9 @@
-<h3>Please wait a moment for other players to join this game....</h3> 
+<% if not @totalRequired: %>
 
+<h3>Please wait a moment for other players to join this game.</h3> 
+
+<% else: %>
+
+<h3>Please wait for <%= @totalRequired - @numJoined %> more player(s) to join the game. (This game requires a total of <%= @totalRequired %> players.)</h3>
+
+<% end %>
