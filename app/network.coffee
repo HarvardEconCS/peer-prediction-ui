@@ -49,7 +49,10 @@ class Network
     @mainCont = cont
 
   @getLobbyUpdates: (data) =>
-    console.log "#{JSON.stringify(data)}"
+    console.log JSON.stringify(data)
+    # if we see a ready = true message, ignores it
+    if data.ready is true
+      return
     @mainCont.lobby.setNum data.numneeded, data.numusers
     @mainCont.lobby.render()
 
