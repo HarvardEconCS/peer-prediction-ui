@@ -28,7 +28,7 @@ class Exitsurvey extends Spine.Controller
   randomizeStrategyChoices: ->
     inputList = []
     labelList = []
-    @checkboxes.select('[name=strategy]').each ->
+    @checkboxes.filter('[name=strategy]').each ->
       inputList.push $(this)
       id = $(this).attr('id')
       labelList.push $('label[for='+id+']')
@@ -75,20 +75,20 @@ class Exitsurvey extends Spine.Controller
         radioNames.push n
     notCheckedRadioNames = []
     for name in radioNames
-      if not @radiobuttons.select('[name='+name+']:checked').val()
+      if not @radiobuttons.filter('[name='+name+']:checked').val()
         notCheckedRadioNames.push name
     # console.log "not answered check boxes #{JSON.stringify(notCheckedRadioNames)}"
         
     strategyChosen = false
-    @checkboxes.select('[name=strategy]').each ->
+    @checkboxes.filter('[name=strategy]').each ->
       if $(this).is(":checked")
         strategyChosen = true
     # console.log "strategy chosen #{strategyChosen}"
       
-    strategyCommentFilled = $.trim(@textareas.select('#strategyComments').val()).length > 0
+    strategyCommentFilled = $.trim(@textareas.filter('#strategyComments').val()).length > 0
     # console.log "strategy comments #{strategyCommentFilled}"
     
-    learnCommentFilled = $.trim(@textareas.select('textarea#learnComments').val()).length > 0
+    learnCommentFilled = $.trim(@textareas.filter('textarea#learnComments').val()).length > 0
     # console.log "learn comments #{learnCommentFilled}"
     
     if notCheckedRadioNames.length > 0 or strategyChosen is false or strategyCommentFilled is false or learnCommentFilled is false
@@ -102,19 +102,19 @@ class Exitsurvey extends Spine.Controller
       n = $(this).attr('name')
       exitComments[n] = {}
     for name in Object.keys(exitComments)
-      exitComments[name]['value'] = @radiobuttons.select('[name='+name+']:checked').val()
-      exitComments[name]['comments'] = @textareas.select('#'+name+'Comments').val()
+      exitComments[name]['value'] = @radiobuttons.filter('[name='+name+']:checked').val()
+      exitComments[name]['comments'] = @textareas.filter('#'+name+'Comments').val()
 
     exitComments['strategy'] = {}
-    @checkboxes.select('[name=strategy]').each -> 
+    @checkboxes.filter('[name=strategy]').each -> 
       i = $(this).attr('id')
       exitComments['strategy'][i] = {}
     for id in Object.keys(exitComments['strategy'])
-      exitComments['strategy'][id]["value"] = @checkboxes.select('#'+id).val()
-      exitComments['strategy'][id]['checked'] = @checkboxes.select('#'+id).is(':checked')     
+      exitComments['strategy'][id]["value"] = @checkboxes.filter('#'+id).val()
+      exitComments['strategy'][id]['checked'] = @checkboxes.filter('#'+id).is(':checked')     
     
-    exitComments['strategy']['comments'] = @textareas.select('#strategyComments').val()
-    console.log "exitComments is #{JSON.stringify(exitComments)}"
+    exitComments['strategy']['comments'] = @textareas.filter('#strategyComments').val()
+    console.log "comments: #{JSON.stringify(exitComments)}"
  
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
