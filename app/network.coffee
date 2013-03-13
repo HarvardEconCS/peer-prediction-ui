@@ -72,6 +72,7 @@ class Network
     @showLobby = true
     @showQuiz = false
     @mainCont.navigate '/lobby'
+    TSClient.updateLobbyStatus true
 
   @startExperiment: =>
     console.log "@StartExperiment"
