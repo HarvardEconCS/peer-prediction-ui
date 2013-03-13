@@ -47,14 +47,13 @@ class Network
 
   @setMainController: (cont) ->
     @mainCont = cont
+    
+  @getClientId: ->
+    TSClient.clientId
 
   @getLobbyUpdates: (data) =>
-    console.log JSON.stringify(data)
-    # if we see a ready = true message, ignores it
-    if data.ready is true
-      return
-    @mainCont.lobby.setNum data.numneeded, data.numusers
-    @mainCont.lobby.render()
+    return unless data.status is 'update'    # if we see a ready = true message, ignores it
+    @mainCont.lobby.updateInfo data
 
   @quizNeeded: =>
     console.log "@QuizRequired"
@@ -75,7 +74,9 @@ class Network
     @showLobby = true
     @showQuiz = false
     @mainCont.navigate '/lobby'
-    TSClient.updateLobbyStatus true
+  
+  @updateLobbyStatus: (status) ->
+    TSClient.updateLobbyStatus status
 
   @startExperiment: =>
     console.log "@StartExperiment"
