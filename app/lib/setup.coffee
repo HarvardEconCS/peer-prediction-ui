@@ -8,6 +8,11 @@ require('spine/lib/ajax')
 require('spine/lib/manager')
 require('spine/lib/route')
 
-window.console = {} unless window.console
-if !window.console.log
-  window.console.log = -> 
+# Fix IE logging issues
+if not window.console
+  window.console = 
+    log: ->
+
+# window.console = {} unless window.console
+# if !window.console.log
+#   window.console.log = -> 

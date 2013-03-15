@@ -4,6 +4,8 @@
 
 <h3>Please wait for <%= @data.numneeded - @data.numusers %> more player(s) to join the game. (This game requires a total of <%= @data.numneeded %> players.)</h3>
 
+<p> When the "I am ready to play" button appears, click on the button to show that you are ready to start playing the game.</p>
+
 <table>
   <tr>
     <td>Worker</td>
@@ -21,11 +23,6 @@
       </td>
     </tr>  
   <% end %>
-  
-  <tr>
-    <td></td>
-    <td></td>
-  </tr>
   
 </table>
 
