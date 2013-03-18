@@ -102,8 +102,8 @@ class Network
         msg = "Sorry!  You have failed the quiz 3 times.  
                You cannot work on our HITs anymore. Please return this HIT."
       when "status.killed"
-        msg = "Sorry!  You disconnected from this task for too long.  
-               You can no longer work on this task.  Please return this HIT."
+        msg = "Sorry!  You disconnected from this HiT for too long.  
+               You cannot work on this HIT anymore.  Please return this HIT."
       when Codec.status_simultaneoussessions
         msg = "It appears that you have already accepted another HIT for this game. 
                Please return this HIT and submit your other HIT. 
@@ -112,7 +112,7 @@ class Network
         msg = "This HIT was returned by another worker who has already started playing the game, 
                so it cannot be reused. Please return the HIT and accept another HIT from the group. "        
       when Codec.status_toomanysessions
-        msg = "It appears that you have reached the limit for the number of HITs allowed for each worker.  
+        msg = "You can do at most 1 of our HITs.  It appears that you have reached this limit.  
                Please return this HIT."
       when Codec.status_expfinished
         @mainCont.navigate '/exitsurvey'
