@@ -2,11 +2,11 @@
 
 <% if @data: %>
 
-  <h2>Feel free to leave this page open and check back once in a while.</h2>
+  <h3>Please wait a moment for other players.  This game requires <%= @data.numneeded %> players.</h3>
 
-  <h3>All players who passed the quiz wait in this lobby to join a game. Each game requires a total of <%= @data.numneeded %> players.</h3>
+  <h2>Please leave this page open and turn on your speaker.  When there are enough players for a game, a sound will be played to remind you to check back and start playing.</h2>
 
-  <p>When there are at least <%= @data.numneeded %> players in the lobby, a green "I am ready to play" button will appear.  <span style="font-weight: bold;">Click the button to indicate that you are ready to start playing.</span>  Once any <%= @data.numneeded %> players are ready to play, they will immediately start a new game.</p>
+  <p>When the green "I am ready to play" appears, <span style="font-weight: bold;">click the button to indicate that you are ready to start playing.</span>  Once <%= @data.numneeded %> players are ready, they immediately start a new game.</p>
 
   <br/><br/>
 
