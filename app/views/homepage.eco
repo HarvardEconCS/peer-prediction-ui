@@ -6,15 +6,17 @@
 <h1>Welcome!</h1> 
 
 <p>
-  You will be playing a fun game with other Mechanical Turk workers in real time for a number of rounds.<br/><br/> 
+  You will be playing a fun game with other Mechanical Turk workers in real time for a number of rounds.  You will get <span class="textBold">up to $0.50 bonus</span> (with <span class="textBold">a minimum of $0.10 bonus</span>) <br/><br/> 
 
-  You can work on <span class="textBold">only 1 of our HITs</span>. In the HIT, there is a <span class="textBold">tutorial</span> to teach you the game rules and a <span class="textBold">quiz</span> to test your understanding of the game rules.  To play the game, you must get at least <span class="textBold">80%</span> in the quiz with at most <span class="textBold">3 attempts</span>.  If you fail the quiz 3 times, you will have to return the HIT and you will not be paid.<br/><br/>
-
-  For this HIT, your base payment is <span class="textBold">$0.05</span>, and your bonus payment is <span class="textBold">your average reward</span> for the multiple rounds of the game.<br/><br/>
+  You may only complete <span class="textBold">1 HIT</span>.  You need to go through a <span class="textBold">tutorial</span> and pass a <span class="textBold">quiz</span> with at least 80% score (3 attempts).  If you fail the quiz 3 times or quit without submitting the HIT, you will not be paid.<br/><br/>
   
-  Your participation in this HIT is voluntary.  If you return the HIT before submitting it, you will not be paid.  Please send your questions and comments to alice.gao11@gmail.com.<br/><br/>
+  Once you pass the quiz, you may need to wait a few minutes in a <span class="textBold">lobby</span> for other players to join your game.<br/><br/>
+  
+  After the game, you will need to complete a short <span class="textBold">exit survey</span> about your experience.<br/><br/>
+  
+  Your participation in this HIT is voluntary.  Please send your questions and comments to alice.gao11@gmail.com.<br/><br/>
 
-Please click next to continue.<br/><br/>
+  Click next to continue.<br/><br/>
 </p>
 
 <a class="button" id="startExperiment" href="#">Next</a>

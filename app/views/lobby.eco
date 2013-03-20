@@ -2,15 +2,17 @@
 
 <% if @data: %>
 
-  <h3>This is a lobby where players who passed the quiz wait to join a game.  Each game requires a total of <%= @data.numneeded %> players.</h3>
+  <h2>Feel free to leave this page open and check back once in a while.</h2>
 
-  <p>When there are at least <%= @data.numneeded %> players in the lobby, a green "I am ready to play" button will appear for each player.<br/>
-    <span style="font-weight: bold;">Click on the "I am ready to play" button to indicate that you are ready to start playing.</span><br/>
-    Once any <%= @data.numneeded %> players are ready to play, they will immediately start a new game.</p>
+  <h3>All players who passed the quiz wait in this lobby to join a game. Each game requires a total of <%= @data.numneeded %> players.</h3>
+
+  <p>When there are at least <%= @data.numneeded %> players in the lobby, a green "I am ready to play" button will appear.  <span style="font-weight: bold;">Click the button to indicate that you are ready to start playing.</span>  Once any <%= @data.numneeded %> players are ready to play, they will immediately start a new game.</p>
+
+  <br/><br/>
 
 <table>
   <tr>
-    <td>Worker</td>
+    <td>Worker ID</td>
     <td>Status</td>
   </tr>
     
