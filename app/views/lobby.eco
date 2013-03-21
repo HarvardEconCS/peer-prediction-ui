@@ -4,9 +4,9 @@
 
   <h3>Please wait a moment for other players.  This game requires <%= @data.numneeded %> players.</h3>
 
-  <h2>Please leave this page open and turn on your speaker.  When there are enough players for a game, a sound will be played to remind you to check back and start playing.</h2>
+  <h2>Please leave this page open and turn on your speaker.  When there are enough players for a game, a sound "you ready? here we go!" will be played to remind you to check back and start playing.</h2>
 
-  <p>When the green "I am ready to play" appears, <span style="font-weight: bold;">click the button to indicate that you are ready to start playing.</span>  Once <%= @data.numneeded %> players are ready, they immediately start a new game.</p>
+  <p>When the green "I am ready to play" button appears, <span style="font-weight: bold;">click the button to indicate that you are ready to start playing.</span>  Once <%= @data.numneeded %> players are ready, they immediately start a new game.</p>
 
   <br/><br/>
 
