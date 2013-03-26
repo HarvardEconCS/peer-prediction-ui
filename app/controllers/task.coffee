@@ -76,7 +76,7 @@ class Task extends Spine.Controller
           num = num + 1
           
     if num > 0
-      @bonus =  Math.round(totalReward / num * 100)/100
+      @bonus =  Math.round(totalReward / num * 100) / 100
     else
       @bonus = 0
 
