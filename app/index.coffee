@@ -37,8 +37,9 @@ class App extends Spine.Controller
     
   isBrowserCompatible: ->
     ua = $.browser
-    version = parseInt(ua.version)
-    if ua.msie && version < 9
+    version = parseInt(ua.version)    
+    # if ua.msie && version < 9
+    if ua.msie
       return false
     else 
       return true
