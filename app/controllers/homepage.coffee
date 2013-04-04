@@ -23,10 +23,13 @@ class Homepage extends Spine.Controller
     
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
+      @navigate '/notice'
+    else if Network.showTutorial
       @navigate '/tutorial'
+    else if Network.showRecap
+      @navigate '/notice'
     else if Network.showLobby
       @navigate '/lobby'
-    else if Network.showQuiz
-      @navigate '/tutorial'
+
 
 module.exports = Homepage

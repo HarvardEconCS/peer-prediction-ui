@@ -1,0 +1,38 @@
+<div id="gameRuleReview">
+
+  <h3>No tutorial/quiz this time! <br/>
+    Instead, please take 15 seconds to review the rule of the game below.</h3>
+  <p>(A button will appear in 15 seconds.  Click the button when you are done.)</p>
+
+  <p>
+    <a class="button" id="finishRuleReview" href="#">I am done reviewing!</a>
+    <br/>
+  </p>
+
+  <p>
+    <img class="image" id="redisplay-rules" src="images/recap-static.png">
+  </p>
+
+
+</div>
+
+<div id="treatmentNotice">
+
+  <h3>Important Note: 6 other players are computer programs!</h3>
+
+  <p>
+    <br/><br/>
+    You will be playing this game with <span class="textBold">8 other players</span>. 
+    <br/><br/>
+    <span class="textBold">2</span> of them are <span class="textBold">real MTurk workers</span>.
+    <br/><br/>
+    <span class="textBold">The other 6 players</span> are controlled by <span class="textBold">computer programs</span>.<br/> They always <span class="textBold">report the type of candy they received</span>.
+    <br/><br/><br/>
+  </p>
+  
+  <p>
+    Click "Next" to continue. <a class="button" id="finishNotice" href="#">Next</a>
+    <br/>
+  </p>
+
+</div>

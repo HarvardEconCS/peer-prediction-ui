@@ -3,6 +3,7 @@ Spine = require('spine')
 Network   = require 'network'
 
 Homepage      = require 'controllers/homepage'
+Notice        = require 'controllers/notice'
 Tutorial      = require 'controllers/tutorial'
 Quiz          = require 'controllers/quiz'
 Lobby         = require 'controllers/lobby'
@@ -18,6 +19,7 @@ class Main extends Spine.Stack
 
   controllers:
     homepage: Homepage
+    notice : Notice
     tutorial: Tutorial
     quiz: Quiz
     lobby: Lobby
@@ -29,11 +31,12 @@ class Main extends Spine.Stack
   
   routes: 
     '/': 'homepage'
+    '/notice'   : 'notice' 
     '/tutorial' : 'tutorial'
     '/quiz'     : 'quiz'
     '/lobby'    : 'lobby'
-    '/task'     : 'task'
-    '/exitsurvey': 'exitsurvey'
+    '/task'         : 'task'
+    '/exitsurvey'   : 'exitsurvey'
     '/errormessage' : 'errormessage'
 
 

@@ -22,9 +22,10 @@ class Network
   @numRounds       = undefined
   @playerNames     = undefined
   
-  @showQuiz   = false
+  @showTutorial = false
+  @showRecap = false
   @showLobby  = false
-  
+
   @experimentStarted = false
 
   @init: ->
@@ -55,9 +56,13 @@ class Network
     return unless data.status is 'update'    # if we see a ready = true message, ignores it
     @mainCont.lobby.updateInfo data
 
-  @quizNeeded: =>
+  @quizNeeded: (quizType) =>
+    # Do different stuff depending on type of quiz
     console.log "@QuizRequired"
-    @showQuiz = true
+    if quizType is "tutorial"
+      @showTutorial = true
+    else if quizType is "recap"
+      @showRecap = true
     @mainCont.navigate '/'
 
   @quizFail: =>
@@ -72,7 +77,6 @@ class Network
   @enterLobby: =>
     console.log "@EnterLobby"
     @showLobby = true
-    @showQuiz = false
     @mainCont.navigate '/lobby'
   
   @updateLobbyStatus: (status) ->

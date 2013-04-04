@@ -8,18 +8,12 @@
 <img class="image" id="step1"             src="images/step1 copy.png">
 <img class="image" id="step2"             src="images/step2 copy.png">
 <img class="image" id="step3"             src="images/step3.png">
-<!-- <img class="image" id="step3-description" src="images/step3-description.png">
-<img class="image" id="step3-example"     src="images/step3-example.png"> -->
 <img class="image" id="steps-recap"       src="images/steps-recap.png">
 <img class="image" id="eg-MM-MM" src="images/eg-MM-MM.png">
 <img class="image" id="eg-MM-GB" src="images/eg-MM-GB.png">
 <img class="image" id="eg-GB-MM" src="images/eg-GB-MM.png">
   
 <!-- Pictures for explaining interface of the game -->
-<!-- <img class="image" id="taskstart"           src="images/task-start.png"> -->
-<!-- <img class="image" id="tasksignalshown"     src="images/task-signalshown.png"> -->
-<!-- <img class="image" id="taskreportconfirmed" src="images/task-reportconfirmed.png"> -->
-<!-- <img class="image" id="tasknextgame"        src="images/task-nextgame.png"> -->
 <img class="image" id="taskexpend"          src="images/task-expend.png">
 <img class="image" id="box-table"       src="images/box-table.png">
 <img class="image" id="box-onegame"     src="images/box-onegame.png">
@@ -580,7 +574,7 @@
       When all rounds are finished, you can see your total payment and go to the exit survey.<br/><br/>
       
       This is the end of the tutorial.<br/><br/>
-      <a class="button" id="backToPageOne">Go back to page one</a>
+      <a class="button" id="backToPageOne" href="#">Go back to page one</a>
       <a class="button" id="endTutorial" href="#">Go to the quiz</a>
     </p>
   </div>

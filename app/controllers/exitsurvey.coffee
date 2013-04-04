@@ -6,9 +6,10 @@ class Exitsurvey extends Spine.Controller
   className: 'exitsurvey'
   
   elements:
-    "input:radio" : "radiobuttons"
-    "input:checkbox" : "checkboxes"
-    "textarea"    : "textareas"
+    "input:radio"     : "radiobuttons"
+    "input:checkbox"  : "checkboxes"
+    "textarea"        : "textareas"
+    "input:checkbox#shouldContact" : "contactCheckbox"
     
   events:
     "click a#submitTask" : "submitClicked"
@@ -115,6 +116,9 @@ class Exitsurvey extends Spine.Controller
     
     exitComments['strategy']['comments'] = @textareas.filter('#strategyComments').val()
     # console.log "comments: #{JSON.stringify(exitComments)}"
+ 
+    # record if a worker wants to be contacted or not
+    exitComments['shouldContact'] = not @contactCheckbox.is(":checked")
  
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
