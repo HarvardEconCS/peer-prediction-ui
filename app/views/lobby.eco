@@ -2,32 +2,39 @@
 
 <% if @data: %>
 
-  <h3>Please wait a moment for other players.  This game requires <%= @data.numneeded %> players.</h3>
+  <p>
+    This is a lobby where you wait for enough players to start a game.  Your game will start once <%= @data.numneeded %> other players and you have status "READY".
+  </p>    
+  
+  <h2>
+    Please <span class="textUnderline">work on other HITs</span> while waiting for this HIT.  <span class="textUnderline">Leave this page open</span> and <span class="textUnderline">turn on your speaker</span>.  You will hear a sound "you ready? here we go!" once enough players are in the lobby.
+  </h2>
 
-  <h2>Please leave this page open and turn on your speaker.  When there are enough players for a game, a sound "you ready? here we go!" will be played to remind you to check back and start playing.</h2>
-
-  <p>When the green "I am ready to play" button appears, <span style="font-weight: bold;">click the button to indicate that you are ready to start playing.</span>  Once <%= @data.numneeded %> players are ready, they immediately start a new game.</p>
+  <p>
+    When the green "I am ready to play" button appears, <span style="font-weight: bold;">click the button to change your status to "READY".</span>  Once <%= @data.numneeded %> players and you are ready, you can immediately start playing.
+  </p>
 
   <br/><br/>
+  <h3>The table below displays the status of each worker (including you) currently in the lobby.</h3>
 
-<table>
-  <tr>
-    <td>Worker ID</td>
-    <td>Status</td>
-  </tr>
-    
-  <% for i in [0..(@data.users.length-1)]: %>
+  <table>
     <tr>
-      <td><%= @data.users[i].id %></td>
-      <td> 
-        <%= if @data.users[i].ready then "READY" else "NOT READY" %>
-        <% if @data.joinenabled and not @data.users[i].ready and @data.users[i].id is Network.getClientId(): %>
-          <a class="button" id="readyButton" href="#">I am ready to play!</a>
-        <% end %>
-      </td>
-    </tr>  
-  <% end %>
+      <td>Worker ID</td>
+      <td>Status</td>
+    </tr>
+    
+    <% for i in [0..(@data.users.length-1)]: %>
+      <tr>
+        <td><%= @data.users[i].id %></td>
+        <td> 
+          <%= if @data.users[i].ready then "READY" else "NOT READY" %>
+          <% if @data.joinenabled and not @data.users[i].ready and @data.users[i].id is Network.getClientId(): %>
+            <a class="button" id="readyButton" href="#">I am ready to play!</a>
+          <% end %>
+        </td>
+      </tr>  
+    <% end %>
   
-</table>
+  </table>
 
 <% end %>
