@@ -39,10 +39,34 @@ class Task extends Spine.Controller
     
     @html require('views/task')(@)
 
+    @randomizeRuleTable('task-ruleTable')
+
     @addDashedBorder()
     @randomizeRadioButtons()
     @scrollTableToBottom()
 
+  randomizeRuleTable: (divId) ->
+    trList = []
+    tbody= $('div#' + divId).find('tbody')
+    if tbody.length is 0
+      return
+    firstRow = tbody.children()[0]
+    len = tbody.children().length
+    for num in [1..len]
+      trList.push tbody.children()[num]
+      
+    if Network.payRandList is undefined
+      Network.randomizePayList()
+      
+    newTrList = []
+    for index in Network.payRandList
+      newTrList.push(trList[index])
+    
+    tbody.contents().remove()
+    tbody.append(firstRow)
+    for tr in newTrList
+      tbody.append(tr)
+      
   scrollTableToBottom: ->
     # make the table always scroll to the bottom
     $('div #result-body').scrollTop($('div #result-body').prop("scrollHeight"))

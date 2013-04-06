@@ -27,6 +27,8 @@ class Network
   @showLobby  = false
 
   @experimentStarted = false
+  
+  @payRandList = undefined
 
   @init: ->
     TSClient.QuizRequired @quizNeeded
@@ -42,6 +44,26 @@ class Network
     TSClient.ServiceMessage   @getMessage 
     
     TSClient.init(@cookieName, "")
+    
+  @randomizePayList: ->
+    if @payAmounts
+      @payRandList = @randomizeList(@payAmounts.length)
+    else 
+      @payRandList = @randomizeList(@mainCont.tutorial.payRule.length)
+    # console.log @payRandList
+    
+  @randomizeList: (len) ->
+    oldList = (num for num in [0..(len-1)])
+    num = len
+    newList = []
+    
+    while num > 0
+      rand = Math.floor(Math.random() * num)
+      newList.push(oldList[rand])
+      oldList.splice(rand, 1)
+      num = num - 1
+    
+    newList
     
   @setTaskController: (cont) ->
     @taskCont = cont

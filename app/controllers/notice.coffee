@@ -22,8 +22,8 @@ class Notice extends Spine.Controller
     super
     @render()  
     
-    # change to 15 seconds
-    setTimeout ( => @showRuleButton()), 1000
+    # change to 15 seconds for actual experiment
+    setTimeout ( => @showRuleButton()), 15000
     
   render: ->
     @html require('views/notice')(@)  

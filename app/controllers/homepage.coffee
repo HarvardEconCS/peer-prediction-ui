@@ -23,6 +23,8 @@ class Homepage extends Spine.Controller
     
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
+      
+      # Change this based on the type of quiz
       @navigate '/tutorial'
     else if Network.showTutorial
       @navigate '/tutorial'

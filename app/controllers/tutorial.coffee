@@ -1,6 +1,7 @@
 Spine = require('spine')
 
 Network = require 'network'
+Main  = require('controllers/main')
 
 class Tutorial extends Spine.Controller
   className: 'tutorialCont'
@@ -31,7 +32,6 @@ class Tutorial extends Spine.Controller
   # end tutorial and go to quiz
   endTutorialClicked: (ev) =>
     ev.preventDefault()
-    console.log "end tutorial"
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"
     @navigate '/quiz'
@@ -44,6 +44,7 @@ class Tutorial extends Spine.Controller
  
   constructor: ->
     super
+    
     # needs to be changed if actual payment rule changes.
     @payRule = [0.50, 0.10, 0.23, 0.43]
     @signals = ['MM', 'GB']
@@ -193,6 +194,14 @@ class Tutorial extends Spine.Controller
        @div.hide() 
     
   stepTwoDescribePrior: (show) =>
+    
+    # randomize row order of rule table, 
+    # there might be a better place to put this
+    if not @ruleTableRandomized
+      @randomizeRuleTable('ruleTableTutorial')
+      @randomizeRuleTable('int-task-ruleTable')
+      @ruleTableRandomized = true
+    
     selector = "#step1"
     @showSelectedCustom show, selector, '50px', '320px' 
     
@@ -212,22 +221,43 @@ class Tutorial extends Spine.Controller
 
     selector = "#ruleTableTutorial"
     @showDiv(show, selector, '250px', '40px')
-
-  stepFiveDescribeReward: (show) =>
-    selector = "#step3-example"
-    @showSelected(show, selector)
     
-    selector = "#ruleTableTutorial"
-    @showDiv(show, selector, '270px', '40px')
+  randomizeRuleTable: (divId) ->
+    trList = []
+    tbody= $('div#' + divId).find('tbody')
+    firstRow = tbody.children()[0]
+    len = tbody.children().length
+    for num in [1..len]
+      trList.push tbody.children()[num]
+      
+    if Network.payRandList is undefined
+      Network.randomizePayList()
+      
+    newTrList = []
+    for index in Network.payRandList
+      newTrList.push(trList[index])
+    
+    tbody.contents().remove()
+    tbody.append(firstRow)
+    for tr in newTrList
+      tbody.append(tr)
 
-    selector = "#eg-MM-GB"
-    @showSelectedCustom(show, selector, '440px', '320px')
-
-    selector = "#eg-MM-MM"
-    @showSelectedCustom(show, selector, '440px', '557px')
-
-    selector = "#eg-GB-MM"
-    @showSelectedCustom(show, selector, '440px', '782px')
+  # stepFiveDescribeReward: (show) =>
+  #   console.log "called step 5"
+  #   selector = "#step3-example"
+  #   @showSelected(show, selector)
+  #   
+  #   selector = "#ruleTableTutorial"
+  #   @showDiv(show, selector, '270px', '40px')
+  # 
+  #   selector = "#eg-MM-GB"
+  #   @showSelectedCustom(show, selector, '440px', '320px')
+  # 
+  #   selector = "#eg-MM-MM"
+  #   @showSelectedCustom(show, selector, '440px', '557px')
+  # 
+  #   selector = "#eg-GB-MM"
+  #   @showSelectedCustom(show, selector, '440px', '782px')
 
   stepSixRecap: (show) =>
     selector = "#steps-recap"
