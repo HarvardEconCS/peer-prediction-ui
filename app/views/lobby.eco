@@ -3,7 +3,7 @@
 <% if @data: %>
 
   <p>
-    This is a lobby where you wait for enough players to start a game.  Your game will start once <%= @data.numneeded %> other players and you have status "READY".
+    This is a lobby where you wait for enough players to start a game.  Your game will start once <%= @data.numneeded - 1 %> other players and you have status "READY".
   </p>    
   
   <h2>
@@ -11,7 +11,7 @@
   </h2>
 
   <p>
-    When the green "I am ready to play" button appears, <span style="font-weight: bold;">click the button to change your status to "READY".</span>  Once <%= @data.numneeded %> players and you are ready, you can immediately start playing.
+    When the green "I am ready to play" button appears, <span style="font-weight: bold;">click the button to change your status to "READY".</span>  Once <%= @data.numneeded - 1 %> other players and you are ready, you can immediately start playing.
   </p>
 
   <br/><br/>
