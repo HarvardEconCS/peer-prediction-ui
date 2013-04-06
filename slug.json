@@ -9,7 +9,6 @@
     "spine/lib/route",
     "spine/lib/manager",
     "jquery.effects.core",
-    "jquery.effects.pulsate",
     "turkserver-js-client/index.coffee"
   ],
   "libs": []
