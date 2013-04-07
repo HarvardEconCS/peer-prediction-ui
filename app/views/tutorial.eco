@@ -103,7 +103,7 @@
     </div>
   </div>
   
-  <div id="int-task-ruleTable">
+  <div id="int-task-ruleTable" class="ruleTable">
     <table>
       <caption>Reward Rule</caption>
       <colgroup>
@@ -393,7 +393,7 @@
 
 
 
-<div id="ruleTableTutorial">
+<div id="ruleTableTutorial" class="ruleTable">
   <table>
     <caption>Reward Rule</caption>
     <colgroup>
@@ -485,7 +485,7 @@
     <p>
       <span class="textUnderline">Step 3: Report a claim and get a reward</span><br/><br/>
       
-      The kids meet a clown, and the clown offers to give the kids <span class="textBold">rewards</span> if they kids <span class="textBold">tell him what candies they got</span>, explained on the right.
+      The kids meet a clown, and the clown offers to give the kids <span class="textBold">rewards</span> if the kids <span class="textBold">tell him what candies they got</span>.
       
     </p>
   </div>
@@ -552,7 +552,7 @@
       <li><span class="textBold">whether other players' claims are confirmed</span></li>
       </ul>
       
-      Other player's claims are not displayed until the round ends. 
+      Other players' claims are not displayed until the round ends. 
     </p>
   </div>
   
@@ -560,7 +560,7 @@
     <p>
     Once a round ends, the next round automatically starts.  <br/><br/>
     
-    For an ended round, the row shows 
+    For a finished round, the row shows 
     <ul>
     <li><span class="textBold">your candy</span></li>
     <li><span class="textBold">your claim</span></li>

@@ -5,14 +5,21 @@ Network = require 'network'
 class Quiz extends Spine.Controller
   className: 'quiz'
 
+  elements:
+    "img#screenshot" : "imgScreenshot"
+    "div#quiz-int-ruleTable" : "ruleTableScreenshot"
+
   events:
     "click a#quizSubmit"        : "submitClicked"
     "click a#goBackToTutorial"  : "goBackToTutorialClicked" 
+    "click a#toggleScreenshot"  : "toggleScreenshotClicked"
 
   constructor: ->
     super
     
-    @signalList = ["MM", "GB"]
+    @signals = ['MM', 'GB']
+    @payRule = [0.50, 0.10, 0.23, 0.43]
+    
     @wrongAnswers   = undefined
     @checkedValues  = undefined
     
@@ -26,6 +33,38 @@ class Quiz extends Spine.Controller
     if not @checkedValues
       for i in [1..4]
         @randomizeChoices(i)
+
+    # randomize order of rows in reward rule table
+    @randomizeRuleTable('quiz-step3-ruleTable')
+    @randomizeRuleTable('quiz-int-ruleTable')
+  
+  randomizeRuleTable: (divId) ->
+    trList = []
+    tbody= $('div#' + divId).find('tbody')
+    if tbody.length is 0
+      return
+    firstRow = tbody.children()[0]
+    len = tbody.children().length
+    for num in [1..len]
+      trList.push tbody.children()[num]
+      
+    if Network.payRandList is undefined
+      Network.randomizePayList()
+      
+    newTrList = []
+    for index in Network.payRandList
+      newTrList.push(trList[index])
+    
+    tbody.contents().remove()
+    tbody.append(firstRow)
+    for tr in newTrList
+      tbody.append(tr)
+  
+  
+  toggleScreenshotClicked: (ev) =>
+    ev.preventDefault()
+    @imgScreenshot.slideToggle("slow")
+    @ruleTableScreenshot.toggle()
   
   goBackToTutorialClicked: (ev) =>
     ev.preventDefault()

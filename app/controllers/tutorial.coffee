@@ -83,7 +83,13 @@ class Tutorial extends Spine.Controller
 
   render: ->
     @html require('views/tutorial')(@)
+    
+    # switch to current step
     @stepShow()
+
+    # randomize order of rows in reward rule table
+    @randomizeRuleTable('ruleTableTutorial')
+    @randomizeRuleTable('int-task-ruleTable')
 
   # navigate the tutorial using arrows
   # keyPressed: (ev) =>
@@ -194,14 +200,7 @@ class Tutorial extends Spine.Controller
        @div.hide() 
     
   stepTwoDescribePrior: (show) =>
-    
-    # randomize row order of rule table, 
-    # there might be a better place to put this
-    if not @ruleTableRandomized
-      @randomizeRuleTable('ruleTableTutorial')
-      @randomizeRuleTable('int-task-ruleTable')
-      @ruleTableRandomized = true
-    
+        
     selector = "#step1"
     @showSelectedCustom show, selector, '50px', '320px' 
     

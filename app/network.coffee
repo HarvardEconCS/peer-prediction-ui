@@ -46,11 +46,7 @@ class Network
     TSClient.init(@cookieName, "")
     
   @randomizePayList: ->
-    if @payAmounts
-      @payRandList = @randomizeList(@payAmounts.length)
-    else 
-      @payRandList = @randomizeList(@mainCont.tutorial.payRule.length)
-    # console.log @payRandList
+    @payRandList = @randomizeList(4)
     
   @randomizeList: (len) ->
     oldList = (num for num in [0..(len-1)])

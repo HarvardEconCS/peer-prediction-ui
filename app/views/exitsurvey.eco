@@ -150,7 +150,7 @@
   </tr>
 </table>
 
-<p><input type="checkbox" name="contact" id="shouldContact" value="no"><label for="contactCheck">  Check this box if you DO NOT want us to notify you of new batches of HITs in the future.</label></p>
+<p><input type="checkbox" name="contact" id="shouldContact" value="no"><label for="shouldContact"> Check this box if you DO NOT want us to notify you of new batches of HITs in the future.</label></p>
 
 <p>
   <a class="button" id="submitTask" href="#">Submit the task</a>
