@@ -14,14 +14,9 @@
 <img class="image" id="eg-GB-MM" src="images/eg-GB-MM.png">
   
 <!-- Pictures for explaining interface of the game -->
-<img class="image" id="taskexpend"          src="images/task-expend.png">
-<img class="image" id="box-table"       src="images/box-table.png">
 <img class="image" id="box-onegame"     src="images/box-onegame.png">
 <img class="image" id="box-stepsonetwo" src="images/box-stepsonetwo.png">
 <img class="image" id="box-stepthree"   src="images/box-stepthree.png">
-<img class="image" id="box-title"       src="images/box-title.png">
-<img class="image" id="box-rewardrule"  src="images/box-rewardrule.png">
-<img class="image" id="box-tablenew"    src="images/box-tablenew.png">
   
 
 <div id="interfaceTutorial">
