@@ -108,7 +108,7 @@
       </colgroup>
       <tr>
         <th>Your claim</th>
-        <th>Your friend's claim</th>
+        <th>Other player's claim</th>
         <th class="leftb">Your<br/>reward</th>
       </tr>
       <tr>
@@ -398,7 +398,7 @@
     </colgroup>
     <tr>
       <th>Your claim</th>
-      <th>Your friend's claim</th>
+      <th>Other player's claim</th>
       <th class="leftb">Your<br/>reward</th>
     </tr>
     <tr>
@@ -442,9 +442,11 @@
   <!-- (1) Welcome message   -->
   <div class="step welcome">
     <p>
+      In the task, you will be playing a game with a group of players for a number of rounds.<br/><br/>
+      
       This <span class="textBold">tutorial</span> explains the game you are going to play.<br/><br/>  
       
-      It has 2 main parts.  The first part (pages 1-5) explains the <span class="textBold">3 steps</span> of the game.  The second part (pages 6-11) explains <span class="textBold">the interface</span> of the game. <br/><br/>
+      Pages 1-5 explain the <span class="textBold">3 steps</span> of each round.  Pages 6-11 explain <span class="textBold">the game interface</span>. <br/><br/>
 
       Click Next to continue, or you can <br/><br/><a class="button" id="skipTutorial" href="#">Skip the Tutorial</a>
       
@@ -454,13 +456,12 @@
   <!-- (2) Show 2 types of jars -->
   <div class="step prior">
     <p>
-      It is Halloween night!  A group of kids are going trick or treating.<br/><br/>
+      It is Halloween night!  A group of kids (i.e. the players) are going trick or treating.<br/><br/>
       
       <span class="textUnderline">Step 1: Choose a random house</span><br/><br/>
 
-      When the game starts, the kids <span class="textBold">randomly choose a house</span> to go trick or treating.<br/><br/>
-      
-      The chosen house can be <span class="textBold">1 of 2 types with equal chance</span>, but nobody knows which type of house it is.  The 2 types of houses give out the 2 types of candies in different fractions.
+      At the start of each round, the kids <span class="textBold">randomly choose a house</span> to go trick or treating.<br/><br/>
+      Note: The kids <span class="textBold">do not know</span> which type of house is chosen.
     </p>
   </div>
 
@@ -468,19 +469,16 @@
     <p>
       <span class="textUnderline">Step 2: Get a random candy</span><br/><br/>
       
-      Each kid <span class="textBold">gets a random candy, secretly, from the chosen house</span>.<br/><br/>
+      From the randomly chosen house, each kid <span class="textBold">secretly gets a randomly selected candy.</span>
       
-      Note: Each candy is only known by the kid who received it.<br/><br/>
-      
-      Note: The fraction of each type of candy in the house remains the same.
     </p>
   </div>
 
   <div class="step gameRule">
     <p>
-      <span class="textUnderline">Step 3: Report a claim and get a reward</span><br/><br/>
+      <span class="textUnderline">Step 3: Make a claim and get a reward</span><br/><br/>
       
-      The kids meet a clown, and the clown offers to give the kids <span class="textBold">rewards</span> if the kids <span class="textBold">tell him what candies they got</span>.
+      The kids meet a clown, and the clown offers to give the kids <span class="textBold">rewards</span> if the kids <span class="textBold">tell him what types of candies they received from the house</span>.
       
     </p>
   </div>
@@ -495,21 +493,20 @@
 
   <div class="step recap">
     <p>
-      <span class="textUnderline">Recap</span><br/><br/>
+      This is a <span class="textBold">recap</span> of the <span class="textBold">3 steps of each round</span>.<br/><br/>
       
-      This is a recap of <span class="textBold">the 3 steps of the game</span>.<br/><br/>
       
-      In the task, you will be playing this game with a group of players for a number of rounds.<br/><br/>
-      
-      Next, let's take a look at <span class="textBold">the interface of the game</span>.  
+      Next, let's take a look at <span class="textBold">the game interface</span>.  
     </p>
   </div>
 
   <div class="step uiStart">
     <p>
-      This is the interface of the game.  The <span class="textBold">title</span> shows the number of rounds, the number of other players, your bonus so far, and <span class="textBold">the status of the current game</span>.<br/><br/>  
-      The <span class="textBold">left side</span> shows steps of the current round.
-      The <span class="textBold">right side</span> displays results of previous rounds and status of current round. 
+      This is the game interface.<br/><br/>
+      
+      <span class="textBold">Title</span> shows:  # of rounds, # of other players, your bonus so far, and <span class="textBold">status message for current round</span>.<br/><br/>  
+      <span class="textBold">Left side</span> shows steps of the current round.<br/><br/>
+      <span class="textBold">Right side</span> displays results of previous rounds and status of current round. 
     </p>
   </div>
 
@@ -522,7 +519,7 @@
 
   <div class="step uiGameActions"> 
     <p>
-      The upper left corner shows <span class="textBold">the current round number</span>.<br/><br/>  
+      Upper left corner shows <span class="textBold">the current round number</span>.<br/><br/>  
       
       <span class="textBold">Step 1</span> shows the 2 types of houses.<br/><br/>
       
@@ -547,7 +544,7 @@
       <li><span class="textBold">whether other players' claims are confirmed</span></li>
       </ul>
       
-      Other players' claims are not displayed until the round ends. 
+      Other players' claims are not displayed until the round is finished. 
     </p>
   </div>
   

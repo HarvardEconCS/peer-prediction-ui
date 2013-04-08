@@ -207,8 +207,9 @@ class Tutorial extends Spine.Controller
     selector = "#pic-prior"
     $("img#{selector}").css(
       'width' : '600px'
+      'z-index' : '5'
     )
-    @showSelectedCustom show, selector, '200px', '310px'
+    @showSelectedCustom show, selector, '150px', '310px'
 
   stepThreeChooseCandy: (show) =>
     selector = "#step2"

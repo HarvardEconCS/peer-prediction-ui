@@ -14,7 +14,7 @@
 
 <ol>
   <li>
-    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(1) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 1 of a round of the game.<br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(1) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 1 of each round.<br/>
     </span>  
     <br/>
     <span id="quiz-step1"></span>
@@ -23,7 +23,7 @@
     
     <span id='q1choices'>
       <input type="checkbox" name="step1" id="q11" value="dont_know_fraction" <% if @checkedValues and @checkedValues.indexOf("dont_know_fraction") >= 0: %>checked<% end %>>
-      <label for="q11" id="l11">&nbsp;&nbsp;At the start of each round, no player knows the fraction of <img class="candy_image" src="images/<%= @signals[0] %>.png"> the randomly chosen house gives out.<br/></label>
+      <label for="q11" id="l11">&nbsp;&nbsp;At the start of each round, no player knows the fraction of <img class="candy_image" src="images/<%= @signals[0] %>.png"> that the randomly chosen house gives out.<br/></label>
 
       <input type="checkbox" name="step1" id="q12" value="choose_random_house_each_round" <% if @checkedValues and @checkedValues.indexOf("choose_random_house_each_round") >= 0: %>checked<% end %>>
       <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the start of each round.<br/></label>
@@ -43,7 +43,7 @@
   
   
   <li>
-    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(2) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 2 of a round of the game.<br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(2) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 2 of each round.<br/>
     </span> 
     <br/>
     <span id="quiz-step2"></span>
@@ -103,7 +103,7 @@
    -->
   
   <li>
-    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(3) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 3 of a round of the game.<br/>
+    <span class="question"><% if @wrongAnswers and @wrongAnswers.indexOf(3) >= 0: %>(Incorrect) <% end %>Select all correct statements about step 3 of each round.<br/>
     </span>
     <br/>
     <span id="quiz-step3"></span>
@@ -118,7 +118,7 @@
         </colgroup>
         <tr>
           <th>Your claim</th>
-          <th>Your friend's claim</th>
+          <th>Other player's claim</th>
           <th class="leftb">Your<br/>reward</th>
         </tr>
         <tr>
@@ -153,10 +153,10 @@
       <label for="q32" id="l32">&nbsp;&nbsp;The clown cannot verify whether your claim matches your candy.<br/></label>
       
       <input type="checkbox" name="step3" id="q33" value="read_reward_MG_036" <% if @checkedValues and @checkedValues.indexOf("read_reward_MG_036") >= 0: %>checked<% end %>>
-      <label for="q33" id="l33">&nbsp;&nbsp;If your candy is <img class="candy_image" src="images/<%= @signals[1] %>.png">, your claim is <img class="candy_image" src="images/<%= @signals[0] %>.png"> and your random friend's claim is <img class="candy_image" src="images/<%= @signals[1] %>.png">, then you get $0.10.<br/></label>
+      <label for="q33" id="l33">&nbsp;&nbsp;If your candy is <img class="candy_image" src="images/<%= @signals[1] %>.png">, your claim is <img class="candy_image" src="images/<%= @signals[0] %>.png"> and the other random player's claim is <img class="candy_image" src="images/<%= @signals[1] %>.png">, then you get $0.10.<br/></label>
       
       <input type="checkbox" name="step3" id="q34" value="read_reward_GM_043" <% if @checkedValues and @checkedValues.indexOf("read_reward_GM_043") >= 0: %>checked<% end %>>
-      <label for="q34" id="l34">&nbsp;&nbsp;If your candy is <img class="candy_image" src="images/<%= @signals[0] %>.png">, your claim is <img class="candy_image" src="images/<%= @signals[1] %>.png">, and your random friend's claim is <img class="candy_image" src="images/<%= @signals[0] %>.png">, then you get $0.50.<br/></label>
+      <label for="q34" id="l34">&nbsp;&nbsp;If your candy is <img class="candy_image" src="images/<%= @signals[0] %>.png">, your claim is <img class="candy_image" src="images/<%= @signals[1] %>.png">, and the other random player's claim is <img class="candy_image" src="images/<%= @signals[0] %>.png">, then you get $0.50.<br/></label>
     
     </span>
     
@@ -204,7 +204,7 @@
           </colgroup>
           <tr>
             <th>Your claim</th>
-            <th>Your friend's claim</th>
+            <th>Other player's claim</th>
             <th class="leftb">Your<br/>reward</th>
           </tr>
           <tr>
@@ -234,13 +234,13 @@
     <span id="q4choices">
       
       <input type="checkbox" name="interface1" id="q41" value="claim_display_at_end" <% if @checkedValues and @checkedValues.indexOf("claim_display_at_end") >= 0: %>checked<% end %>>
-      <label for="q41" id="l41">&nbsp;&nbsp;You do not know the other players' claims until the round ends.<br/></label>
+      <label for="q41" id="l41">&nbsp;&nbsp;You do not know the other players' claims until the round is finished.<br/></label>
     
       <input type="checkbox" name="interface1" id="q42" value="claim_summary" <% if @checkedValues and @checkedValues.indexOf("claim_summary") >= 0: %>checked<% end %>>
       <label for="q42" id="l42">&nbsp;&nbsp;For a finished round, the table displays the number of the other players who claimed to<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; have either type of candy.<br/></label>
     
       <input type="checkbox" name="interface1" id="q43" value="infer_reference_candy" <% if @checkedValues and @checkedValues.indexOf("infer_reference_candy") >= 0: %>checked<% end %>>
-      <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signals[1] %>.png"> and your reward is $0.23, then your random friend's claim is <img class="candy_image" src="images/<%= @signals[0] %>.png">.<br/></label>
+      <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signals[1] %>.png"> and your reward is $0.23, then you were matched with a player<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  who claimed to have <img class="candy_image" src="images/<%= @signals[0] %>.png">.<br/></label>
       
     </span>
     
