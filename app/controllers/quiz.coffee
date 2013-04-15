@@ -8,6 +8,7 @@ class Quiz extends Spine.Controller
   elements:
     "img#screenshot" : "imgScreenshot"
     "div#quiz-int-ruleTable" : "ruleTableScreenshot"
+    "img#quiz-int-prior" : "priorScreenshot"
 
   events:
     "click a#quizSubmit"        : "submitClicked"
@@ -18,7 +19,8 @@ class Quiz extends Spine.Controller
     super
     
     @signals = ['MM', 'GB']
-    @payRule = [0.50, 0.10, 0.23, 0.43]
+    # needs to be changed if actual payment rule changes.
+    @payRule = [1.50, 0.10, 0.30, 1.20]
     
     @wrongAnswers   = undefined
     @checkedValues  = undefined
@@ -60,11 +62,11 @@ class Quiz extends Spine.Controller
     for tr in newTrList
       tbody.append(tr)
   
-  
   toggleScreenshotClicked: (ev) =>
     ev.preventDefault()
     @imgScreenshot.slideToggle("slow")
-    @ruleTableScreenshot.toggle()
+    @ruleTableScreenshot.toggle("slow")
+    @priorScreenshot.toggle("slow")
   
   goBackToTutorialClicked: (ev) =>
     ev.preventDefault()

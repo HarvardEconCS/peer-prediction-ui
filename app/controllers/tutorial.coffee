@@ -44,10 +44,10 @@ class Tutorial extends Spine.Controller
  
   constructor: ->
     super
-    
+
+    @signals = ['MM', 'GB']    
     # needs to be changed if actual payment rule changes.
-    @payRule = [0.50, 0.10, 0.23, 0.43]
-    @signals = ['MM', 'GB']
+    @payRule = [1.50, 0.10, 0.30, 1.20]
 
     @stepIndex = 0
     @steps = [
