@@ -220,7 +220,7 @@ class Tutorial extends Spine.Controller
     @showSelected(show, selector)
 
     selector = "#ruleTableTutorial"
-    @showDiv(show, selector, '250px', '40px')
+    @showDiv(show, selector, '270px', '40px')
     
   randomizeRuleTable: (divId) ->
     trList = []

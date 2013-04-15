@@ -445,29 +445,27 @@
       In the task, you will be playing a game with a group of players for a number of rounds.<br/><br/>
       
       This <span class="textBold">tutorial</span> explains the game you are going to play.<br/><br/>  
-      
       Pages 1-5 explain the <span class="textBold">3 steps</span> of each round.  Pages 6-11 explain <span class="textBold">the game interface</span>. <br/><br/>
 
-      Click Next to continue, or you can <br/><br/><a class="button" id="skipTutorial" href="#">Skip the Tutorial</a>
-      
+      Click Next to continue.
+      <!-- , or you can <br/><br/><a class="button" id="skipTutorial" href="#">Skip the Tutorial</a> -->
     </p>
   </div>
 
   <!-- (2) Show 2 types of jars -->
   <div class="step prior">
     <p>
-      It is Halloween night!  A group of kids (i.e. the players) are going trick or treating.<br/><br/>
+      <span class="textUnderline">Step 1 of each round: Choose a random house</span><br/><br/>
       
-      <span class="textUnderline">Step 1: Choose a random house</span><br/><br/>
+      It is Halloween night!  A group of kids (i.e. the players) are going trick or treating.<br/><br/>
 
-      At the start of each round, the kids <span class="textBold">randomly choose a house</span> to go trick or treating.<br/><br/>
-      Note: The kids <span class="textBold">do not know</span> which type of house is chosen.
+      At the start of each round, <span class="textBold">a house is randomly chosen</span> and the kids go to this house for trick or treating.
     </p>
   </div>
 
   <div class="step takeCandy">
     <p>
-      <span class="textUnderline">Step 2: Get a random candy</span><br/><br/>
+      <span class="textUnderline">Step 2 of each round: Get a random candy</span><br/><br/>
       
       From the randomly chosen house, each kid <span class="textBold">secretly gets a randomly selected candy.</span>
       
@@ -476,18 +474,10 @@
 
   <div class="step gameRule">
     <p>
-      <span class="textUnderline">Step 3: Make a claim and get a reward</span><br/><br/>
+      <span class="textUnderline">Step 3 of each round: Make a claim and get a reward</span><br/><br/>
       
       The kids meet a clown, and the clown offers to give the kids <span class="textBold">rewards</span> if the kids <span class="textBold">tell him what types of candies they received from the house</span>.
       
-    </p>
-  </div>
-
-  <div class="step example">
-    <p>
-      <span class="textUnderline">Step 3: Make a claim and get rewarded</span><br/><br/>
-            
-      The rewards are determined in 2 steps.  First, the clown collects all claims.  Then he computes everyone's reward based on the table.
     </p>
   </div>
 

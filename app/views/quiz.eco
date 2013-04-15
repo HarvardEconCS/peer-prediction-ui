@@ -5,6 +5,8 @@
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click this button to go back to the tutorial  <a class="button" id="goBackToTutorial" href="#">Go back to tutorial</a></p>
 
+<!-- <p>You have 3 attempts to pass the quiz. If you fail 3 times, you must return the HIT.</p> -->
+
 <% if @wrongAnswers: %>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To help you pass the quiz, we have indicated below the questions you answered incorrectly (<% for ansIndex, i in @wrongAnswers: %>#<%= ansIndex %><% if i < @wrongAnswers.length - 1: %>,<% end %><% end %>).
 </p>
@@ -23,10 +25,10 @@
     
     <span id='q1choices'>
       <input type="checkbox" name="step1" id="q11" value="dont_know_fraction" <% if @checkedValues and @checkedValues.indexOf("dont_know_fraction") >= 0: %>checked<% end %>>
-      <label for="q11" id="l11">&nbsp;&nbsp;At the start of each round, no player knows the fraction of <img class="candy_image" src="images/<%= @signals[0] %>.png"> that the randomly chosen house gives out.<br/></label>
+      <label for="q11" id="l11">&nbsp;&nbsp;None of the players knows the fraction of <img class="candy_image" src="images/<%= @signals[0] %>.png"> that the randomly chosen house gives out.<br/></label>
 
       <input type="checkbox" name="step1" id="q12" value="choose_random_house_each_round" <% if @checkedValues and @checkedValues.indexOf("choose_random_house_each_round") >= 0: %>checked<% end %>>
-      <label for="q12" id="l12">&nbsp;&nbsp;A house is randomly chosen at the start of each round.<br/></label>
+      <label for="q12" id="l12">&nbsp;&nbsp;The house chosen for each round may be different!<br/></label>
         
       <input type="checkbox" name="step1" id="q13" value="half_chance_60percent_mm" <% if @checkedValues and @checkedValues.indexOf("half_chance_60percent_mm") >= 0: %>checked<% end %>>
       <label for="q13" id="l13">&nbsp;&nbsp;With 50% chance, the randomly chosen house gives out 30% <img class="candy_image" src="images/<%= @signals[0] %>.png"> and 70% <img class="candy_image" src="images/<%= @signals[1] %>.png">.<br/></label>
@@ -60,7 +62,7 @@
       <label for="q23" id="l23">&nbsp;&nbsp; As the house gives out candies, the fraction of <img class="candy_image" src="images/<%= @signals[0] %>.png"> at the house decreases.<br/></label>   
 
       <input type="checkbox" name="step2" id="q24" value="fraction_remains_same" <% if @checkedValues and @checkedValues.indexOf("fraction_remains_same") >= 0: %>checked<% end %>>
-      <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house gives out 85% <img class="candy_image" src="images/<%= @signals[0] %>.png"> and 15% <img class="candy_image" src="images/<%= @signals[1] %>.png">, then every kid gets <img class="candy_image" src="images/<%= @signals[1] %>.png"> with 15% chance.<br/></label>   
+      <label for="q24" id="l24">&nbsp;&nbsp; If the chosen house gives out 85% <img class="candy_image" src="images/<%= @signals[0] %>.png"> and 15% <img class="candy_image" src="images/<%= @signals[1] %>.png">, then every player gets <img class="candy_image" src="images/<%= @signals[1] %>.png"> with 15% chance.<br/></label>   
     
     </span>
     

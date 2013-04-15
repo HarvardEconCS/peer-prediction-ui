@@ -122,10 +122,10 @@
   <tr>
     <td class="question">Did you use any of these strategies to play this game? Check all of the strategies that you used.</td>
     <td colspan="5" class="choices" id="strategyChoices">
-      <input type="checkbox" name="strategy" id="strategy1" value="honest"><label for="strategy1">  Always report the type of candy you received </label><br/>
-      <input type="checkbox" name="strategy" id="strategy2" value="opposite"><label for="strategy2">  Always report the type of candy you did not receive</label><br/>
-      <input type="checkbox" name="strategy" id="strategy3" value="alwaysmm"><label for="strategy3">  Always report <img class="candy_image" src="images/MM.png"> regardless of the type of your candy</label><br/>
-      <input type="checkbox" name="strategy" id="strategy4" value="alwaysgb"><label for="strategy4">  Always report <img class="candy_image" src="images/GB.png"> regardless of the type of your candy</label><br/>
+      <input type="checkbox" name="strategy" id="strategy1" value="honest"><label for="strategy1">  Always claim the type of candy you received </label><br/>
+      <input type="checkbox" name="strategy" id="strategy2" value="opposite"><label for="strategy2">  Always claim the type of candy you did not receive</label><br/>
+      <input type="checkbox" name="strategy" id="strategy3" value="alwaysmm"><label for="strategy3">  Always claim <img class="candy_image" src="images/MM.png"> regardless of the type of your candy</label><br/>
+      <input type="checkbox" name="strategy" id="strategy4" value="alwaysgb"><label for="strategy4">  Always claim <img class="candy_image" src="images/GB.png"> regardless of the type of your candy</label><br/>
       <input type="checkbox" name="strategy" id="strategy5" value="other"><label for="strategy5">  Other, please describe below</label>
     </td>
   </tr>
