@@ -28,7 +28,7 @@ class Lobby extends Spine.Controller
     @render()
     
   updateInfo: (data) ->
-    console.log JSON.stringify(data)
+    # console.log JSON.stringify(data)
     
     @data = data
     @render()

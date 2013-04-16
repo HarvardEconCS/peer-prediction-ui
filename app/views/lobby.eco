@@ -2,20 +2,22 @@
 
 <% if @data: %>
 
-  <p>
-    This is a lobby where you wait for enough players to start a game.  Your game will start once <%= @data.numneeded - 1 %> other players and you have status "READY".
-  </p>    
-  
-  <h2>
-    Please <span class="textUnderline">work on other HITs</span> while waiting for this HIT.  <span class="textUnderline">Leave this page open</span> and <span class="textUnderline">turn on your speaker</span>.  You will hear a sound "you ready? here we go!" once enough players are in the lobby.
-  </h2>
+  <h2>Lobby</h2>
 
   <p>
-    When the green "I am ready to play" button appears, <span style="font-weight: bold;">click the button to change your status to "READY".</span>  Once <%= @data.numneeded - 1 %> other players and you are ready, you can immediately start playing.
+    Congrats on passing the quiz!  Workers who passed the quiz wait in this lobby for enough players to start a game.  Each game requires a total of <%= @data.numneeded %> players.  
+  </p>    
+  
+  <p>
+    When at least <%= @data.numneeded %> players are in the lobby, a green "I am ready to play" button appears.  <span style="font-weight: bold;">Click the button to change your status to "READY".</span>
+  </p>  
+    
+  <p>
+    Once <%= @data.numneeded %> players are all "READY", they immediately start playing the game.
   </p>
 
   <br/><br/>
-  <h3>The table below displays the status of each worker (including you) currently in the lobby.</h3>
+  <h3>The table shows the status of each worker (including you) currently in the lobby.</h3>
 
   <table>
     <tr>
@@ -25,7 +27,12 @@
     
     <% for i in [0..(@data.users.length-1)]: %>
       <tr>
-        <td><%= @data.users[i].id %></td>
+        <td>
+          <%= @data.users[i].id %> 
+          <% if @data.users[i].id is Network.getClientId(): %>
+            (YOU)
+          <% end %>
+        </td>
         <td> 
           <%= if @data.users[i].ready then "READY" else "NOT READY" %>
           <% if @data.joinenabled and not @data.users[i].ready and @data.users[i].id is Network.getClientId(): %>

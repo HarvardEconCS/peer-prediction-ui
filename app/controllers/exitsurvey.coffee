@@ -131,9 +131,9 @@ class Exitsurvey extends Spine.Controller
       exitComments['strategy'][id]["value"] = @checkboxes.filter('#'+id).val()
       exitComments['strategy'][id]['checked'] = @checkboxes.filter('#'+id).is(':checked')     
     
-    exitComments['strategy']['otherStrategy'] = @textareas.filter('#otherStrategy').val()
-    exitComments['strategy']['strategyReason'] = @textareas.filter('#strategyReason').val()
-    exitComments['strategy']['strategyChange'] = @textareas.filter('#strategyChange').val()
+    exitComments['otherStrategy'] = @textareas.filter('#otherStrategy').val()
+    exitComments['strategyReason'] = @textareas.filter('#strategyReason').val()
+    exitComments['strategyChange'] = @textareas.filter('#strategyChange').val()
 
     exitComments['comments'] = @textareas.filter('#comments').val()
  
