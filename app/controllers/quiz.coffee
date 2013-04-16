@@ -7,13 +7,20 @@ class Quiz extends Spine.Controller
 
   elements:
     "img#screenshot" : "imgScreenshot"
-    "div#quiz-int-ruleTable" : "ruleTableScreenshot"
-    "img#quiz-int-prior" : "priorScreenshot"
+    "span#quiz-step1"       : "spanStep1"
+    "img#quiz-step1-prior"  : "imgStep1"
+    "img#quiz-step3-example"    : "imgStep3"
+    "div#quiz-step3-ruleTable"  : "divStep3RuleTable"
+    "img#quiz-int-prior"      : "imgIntPrior"
+    "div#quiz-int-ruleTable"  : "divIntRuleTable"
+    "div#quizErrorMsg" : "quizErrorMsg"
+    
 
   events:
     "click a#quizSubmit"        : "submitClicked"
     "click a#goBackToTutorial"  : "goBackToTutorialClicked" 
     "click a#toggleScreenshot"  : "toggleScreenshotClicked"
+    "click a#returnToQuiz"      : "returnToQuizClicked"
 
   constructor: ->
     super
@@ -39,6 +46,40 @@ class Quiz extends Spine.Controller
     # randomize order of rows in reward rule table
     @randomizeRuleTable('quiz-step3-ruleTable')
     @randomizeRuleTable('quiz-int-ruleTable')
+
+    refTop = @spanStep1.position().top
+    imgStep1Top = refTop + 29
+    @imgStep1.css(
+      'top'   : "#{imgStep1Top}px"
+    )
+
+    imgStep3Top = refTop + 994
+    @imgStep3.css(
+      'top'  : "#{imgStep3Top}px"
+    )
+    
+    divStep3Top = refTop + 844
+    @divStep3RuleTable.css(
+      'top'  : "#{divStep3Top}px"
+    )
+
+    imgIntPriorTop = refTop + 1564
+    @imgIntPrior.css(
+      'top'  : "#{imgIntPriorTop}px"
+    )
+
+    divIntRuleTableTop = refTop + 1796
+    @divIntRuleTable.css(
+      'top'  : "#{divIntRuleTableTop}px"
+    )
+    
+  showQuizFailedMsg: ->
+    @quizErrorMsg.show()
+  
+  returnToQuizClicked: (ev) =>
+    ev.preventDefault()
+    @quizErrorMsg.hide()
+    @render()
   
   randomizeRuleTable: (divId) ->
     trList = []
@@ -65,8 +106,8 @@ class Quiz extends Spine.Controller
   toggleScreenshotClicked: (ev) =>
     ev.preventDefault()
     @imgScreenshot.slideToggle("slow")
-    @ruleTableScreenshot.toggle("slow")
-    @priorScreenshot.toggle("slow")
+    @divIntRuleTable.toggle("slow")
+    @imgIntPrior.toggle("slow")
   
   goBackToTutorialClicked: (ev) =>
     ev.preventDefault()

@@ -6,13 +6,14 @@ class Exitsurvey extends Spine.Controller
   className: 'exitsurvey'
   
   elements:
-    "input:radio"     : "radiobuttons"
     "input:checkbox"  : "checkboxes"
     "textarea"        : "textareas"
-    "input:checkbox#shouldContact" : "contactCheckbox"
+    "div#exitErrorMsg" : "divErrorMsg"
     
   events:
     "click a#submitTask" : "submitClicked"
+    "click a#returnToSurvey" : "returnToSurveyClicked"
+    "click input:checkbox#strategy5" : "changedOtherStrategy"
     
   constructor: ->
     super
@@ -46,11 +47,11 @@ class Exitsurvey extends Spine.Controller
     newInputList.push(inputList[4])
     newLabelList.push(labelList[4])  
       
-    $('td#strategyChoices').contents().remove()
+    $('span#strategyChoices').contents().remove()
     for input, i in newInputList
-      $('td#strategyChoices').append(input)
-      $('td#strategyChoices').append(newLabelList[i])
-      $('td#strategyChoices').append("<br/>")
+      $('span#strategyChoices').append(input)
+      $('span#strategyChoices').append(newLabelList[i])
+      $('span#strategyChoices').append("<br/>")
       
   randomizeList: (len) ->
     oldList = (num for num in [0..(len-1)])
@@ -65,47 +66,63 @@ class Exitsurvey extends Spine.Controller
     
     newList 
   
+  changedOtherStrategy: (ev) =>
+    if @checkboxes.filter("#strategy5").is(":checked")
+      @textareas.filter("#otherStrategy").removeAttr("disabled")
+    else 
+      @textareas.filter("#otherStrategy").attr("disabled", "disabled")
+  
+  returnToSurveyClicked: (ev) =>
+    ev.preventDefault()
+    @divErrorMsg.hide()
+  
   submitClicked: (ev) =>
     ev.preventDefault()
     
-    # check if all required questions are answered
-    radioNames = []
-    @radiobuttons.each ->
-      n = $(this).attr('name')
-      if radioNames.indexOf(n) < 0
-        radioNames.push n
-    notCheckedRadioNames = []
-    for name in radioNames
-      if not @radiobuttons.filter('[name='+name+']:checked').val()
-        notCheckedRadioNames.push name
-    # console.log "not answered check boxes #{JSON.stringify(notCheckedRadioNames)}"
+    @divErrorMsg.contents().remove()
+    @divErrorMsg.append "ERROR: You have not answered all required questions!"
+
+    valid = true
         
     strategyChosen = false
+    count = 0
     @checkboxes.filter('[name=strategy]').each ->
       if $(this).is(":checked")
         strategyChosen = true
-    # console.log "strategy chosen #{strategyChosen}"
-      
-    strategyCommentFilled = $.trim(@textareas.filter('#strategyComments').val()).length > 0
-    # console.log "strategy comments #{strategyCommentFilled}"
+        count++
+        
+    if strategyChosen is false
+      valid = false
+      @divErrorMsg.append "<p>Please choose at least 1 stategy for question 1.</p>"
+
+    otherStrategyChecked = @checkboxes.filter('#strategy5').is(":checked")
+    if otherStrategyChecked is true  and count > 1
+      valid = false
+      @divErrorMsg.append "<p>If you checked the last option for question 1, you should not check any other option in question 1.</p>"
     
-    learnCommentFilled = $.trim(@textareas.filter('textarea#learnComments').val()).length > 0
-    # console.log "learn comments #{learnCommentFilled}"
+    otherStrategyFilled = $.trim(@textareas.filter('#otherStrategy').val()).length > 0
+    if otherStrategyChecked is true and otherStrategyFilled is false
+      valid = false
+      @divErrorMsg.append "<p>Please answer question 2 since you checked the last option for question 1.</p>"
+
+    strategyReasonFilled = $.trim(@textareas.filter('#strategyReason').val()).length > 0
+    if strategyReasonFilled is false
+      valid = false
+      @divErrorMsg.append "<p>Please answer question 3.</p>"
+
+    strategyChangeFilled = $.trim(@textareas.filter('#strategyChange').val()).length > 0
+    if strategyChangeFilled is false
+      valid = false
+      @divErrorMsg.append "<p>Please answer question 4.</p>"
     
-    if notCheckedRadioNames.length > 0 or strategyChosen is false or strategyCommentFilled is false or learnCommentFilled is false
-      alert "You haven't answered all the required questions.  Please check your answers and try again."
+    if valid is false
+      @divErrorMsg.append "<a class=\"button\" id=\"returnToSurvey\" href=\"#\">Return to survey</a><br/><br/>"
+      @divErrorMsg.show()
       return
         
     # construct exit comments object
     exitComments = {}
     
-    @radiobuttons.each ->
-      n = $(this).attr('name')
-      exitComments[n] = {}
-    for name in Object.keys(exitComments)
-      exitComments[name]['value'] = @radiobuttons.filter('[name='+name+']:checked').val()
-      exitComments[name]['comments'] = @textareas.filter('#'+name+'Comments').val()
-
     exitComments['strategy'] = {}
     @checkboxes.filter('[name=strategy]').each -> 
       i = $(this).attr('id')
@@ -114,11 +131,11 @@ class Exitsurvey extends Spine.Controller
       exitComments['strategy'][id]["value"] = @checkboxes.filter('#'+id).val()
       exitComments['strategy'][id]['checked'] = @checkboxes.filter('#'+id).is(':checked')     
     
-    exitComments['strategy']['comments'] = @textareas.filter('#strategyComments').val()
-    # console.log "comments: #{JSON.stringify(exitComments)}"
- 
-    # record if a worker wants to be contacted or not
-    exitComments['shouldContact'] = not @contactCheckbox.is(":checked")
+    exitComments['strategy']['otherStrategy'] = @textareas.filter('#otherStrategy').val()
+    exitComments['strategy']['strategyReason'] = @textareas.filter('#strategyReason').val()
+    exitComments['strategy']['strategyChange'] = @textareas.filter('#strategyChange').val()
+
+    exitComments['comments'] = @textareas.filter('#comments').val()
  
     if Network.fakeServer
       alert "This is only a preview!  Please ACCEPT the HIT to start working on this task!"

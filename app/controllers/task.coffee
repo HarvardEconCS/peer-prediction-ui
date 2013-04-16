@@ -6,11 +6,15 @@ Game    = require 'models/game'
 class Task extends Spine.Controller
   className: "task"
 
+  elements: 
+    "div#taskErrorMsg" : "taskErrorMsg"
+
   events:
     'change input:radio:checked' : 'radioChanged'    
     'click .getsignal': 'revealSignalFunc'  # button to reveal signal
     'click .confirm'  : 'confirmReport'     # button to confirm report
     'click .exit'     : 'goToExitSurvey'    # button to go to exit survey 
+    "click a#returnToTask" : "returnToTaskClicked"
 
   constructor: ->
     super
@@ -19,6 +23,7 @@ class Task extends Spine.Controller
     @selected       = @defaultReport
     @randomRadio    = Math.floor(Math.random() * 2)
     @bonus          = 0
+    @errorShown = false
     
     Network.setTaskController @
 
@@ -45,6 +50,11 @@ class Task extends Spine.Controller
     @addDashedBorder()
     @randomizeRadioButtons()
     @scrollTableToBottom()
+    
+    if @errorShown
+      @taskErrorMsg.show()
+    else
+      @taskErrorMsg.hide()
 
   randomizeRuleTable: (divId) ->
     trList = []
@@ -136,20 +146,29 @@ class Task extends Spine.Controller
   radioChanged: =>
     @selected = $('input:radio:checked').val()
 
+  returnToTaskClicked: (ev) =>
+    ev.preventDefault()
+    @errorShown = false
+    @taskErrorMsg.hide()
+
   # player confirms report
   confirmReport: (e) =>
     e.preventDefault()
     
     # if the player hasn't revealed the candy yet, 
-    if @revealSignal is false
-      alert("Please get a candy first before choosing your report!")
-      @selected = @defaultReport # reset selected report
-      @render()
-      return
+    # since the choose claim button is not displayed before revealing candy,
+    # we don't need to check for this anymore.
+    # 
+    # if @revealSignal is false
+    #   alert("Please get a candy first before choosing your report!")
+    #   @selected = @defaultReport # reset selected report
+    #   @render()
+    #   return
     
     # the player hasn't selected a report yet
     if @selected is @defaultReport
-      alert("Please choose a candy to report!")
+      @errorShown = true
+      @taskErrorMsg.show()
       return
 
     Network.sendReport(@selected)

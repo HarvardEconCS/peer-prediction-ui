@@ -85,12 +85,7 @@ class Network
 
   @quizFail: =>
     console.log "@QuizFailed"
-    alert """
-          Sorry!  You failed the quiz.  We encourage you to try again.  
-          If you'd like to quit, feel free to return this HIT.
-          """
-    @mainCont.navigate '/quiz'
-    @mainCont.quiz.render()
+    @mainCont.quiz.showQuizFailedMsg()
       
   @enterLobby: =>
     console.log "@EnterLobby"
@@ -124,7 +119,7 @@ class Network
         msg = "Sorry!  You have failed the quiz 3 times.  
                You cannot work on our HITs anymore. Please return this HIT."
       when "status.killed"
-        msg = "Sorry!  You disconnected from this HiT for too long.  
+        msg = "Sorry!  You disconnected from this HIT for too long.  
                You cannot work on this HIT anymore.  Please return this HIT."
       when Codec.status_simultaneoussessions
         msg = "It appears that you have already accepted another HIT for this game. 

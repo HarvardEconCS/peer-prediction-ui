@@ -3,12 +3,12 @@
   <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click this button to go back to the tutorial  <a class="button" id="goBackToTutorial" href="#">Go back to tutorial</a></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you'd like, you can <a class="button" id="goBackToTutorial" href="#">Go back to tutorial</a></p>
 
 <!-- <p>You have 3 attempts to pass the quiz. If you fail 3 times, you must return the HIT.</p> -->
 
 <% if @wrongAnswers: %>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To help you pass the quiz, we have indicated below the questions you answered incorrectly (<% for ansIndex, i in @wrongAnswers: %>#<%= ansIndex %><% if i < @wrongAnswers.length - 1: %>,<% end %><% end %>).
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See below for the questions you answered incorrectly (<% for ansIndex, i in @wrongAnswers: %>#<%= ansIndex %><% if i < @wrongAnswers.length - 1: %>,<% end %><% end %>).
 </p>
 <% end %>
 
@@ -249,6 +249,15 @@
     
   </li> 
 </ol>
+
+<div id="quizErrorMsg">
+  <br/>
+  <p>Sorry!  You failed the quiz.  Please try again.
+  If you'd like to quit, feel free to return this HIT.</p>
+  <br/>
+  <a class="button" id="returnToQuiz" href="#">Return to quiz</a><br/><br/>
+</div>
+
 <p class="centered">
   <a class="button" id="quizSubmit" href="#">Submit answers</a>
   <br/><br/><br/>

@@ -65,6 +65,12 @@
     <% end %>
   </div>
 
+  <div id="taskErrorMsg">
+    <p>Please choose a candy to report!</p>
+    <br/>
+    <a class="button" id="returnToTask" href="#">Return to task</a><br/><br/>
+  </div>
+
   <% if @revealSignal is true: %>
   <div id="task-step3"> 
     3. Choose your claim.<br/><br/>

@@ -4,154 +4,46 @@
 <% end %>
 
 
-<h2>Exit Survey</h2>
+<h3>Exit Survey</h3>
 
-<p>Thank you for playing!  We appreciate your comments to help us improve this task!<br/>
-  <p style="font-weight: bold;">You must fill out and submit this survey in order to be paid for this HIT.</p><br/></p>
 
-<table>
-  <tr>
-    <td class="question">Did you observe any bugs in the task? Please describe any bug you observed.</td>
-    <td class="choices"><input type="radio" name="bug" id="bug1" value="false"><label for="bug1">  No</label></td>
-    <td class="choices"><input type="radio" name="bug" id="bug2" value="true"><label for="bug2">  Yes</label></td>
-    <td></td>
-    <td></td>    
-    <td></td>
-  </tr>  
-  <tr>
-    <td class="question">
-      <!-- Please describe any bug you observed (optional). -->
-    </td>
-    <td colspan=5><textarea rows="3" cols="100" id="bugComments"></textarea></td>
-  </tr>
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr>
-  <!-- <tr>
-    <td class="question">2. Is the rule of the task clear? (required)</td>
-    <td class="choices"><input type="radio" name="taskrule" id="taskrule1" value="1"><br/>Extremely unclear</td>
-    <td class="choices"><input type="radio" name="taskrule" id="taskrule2" value="2"></td>
-    <td class="choices"><input type="radio" name="taskrule" id="taskrule3" value="3"></td>
-    <td class="choices"><input type="radio" name="taskrule" id="taskrule4" value="4"></td>
-    <td class="choices"><input type="radio" name="taskrule" id="taskrule5" value="5"><br/>Extremely clear</td>
-  </tr>
-  <tr>
-    <td class="question">Please comment on the rule of the task (optional).</td>
-    <td colspan=5><textarea rows="3" cols="100" id="taskruleComments"></textarea></td>
-  </tr>
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr>
-  <tr>
-    <td class="question">3. How clear is the tutorial? (required)</td>
-    <td class="choices"><input type="radio" name="tutorial" id="tutorial1" value="1"><br/>Extremely unclear</td>
-    <td class="choices"><input type="radio" name="tutorial" id="tutorial2" value="2"></td>
-    <td class="choices"><input type="radio" name="tutorial" id="tutorial3" value="3"></td>
-    <td class="choices"><input type="radio" name="tutorial" id="tutorial4" value="4"></td>
-    <td class="choices"><input type="radio" name="tutorial" id="tutorial5" value="5"><br/>Extremely clear</td>
-  </tr>
-  <tr>
-    <td class="question">Please comment on the tutorial (optional).</td>
-    <td colspan=5><textarea rows="3" cols="100" id="tutorialComments"></textarea></td>
-  </tr>  
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr>
-  <tr>
-    <td class="question">4. How difficult is the quiz? (required)</td>
-    <td class="choices"><input type="radio" name="quiz" id="quiz1" value="1"><br/>Extremely easy</td>
-    <td class="choices"><input type="radio" name="quiz" id="quiz2" value="2"></td>
-    <td class="choices"><input type="radio" name="quiz" id="quiz3" value="3"></td>
-    <td class="choices"><input type="radio" name="quiz" id="quiz4" value="4"></td>
-    <td class="choices"><input type="radio" name="quiz" id="quiz5" value="5"><br/>Extremely difficult</td>
-  </tr>
-  <tr>
-    <td class="question">Please comment on the quiz (optional).</td>
-    <td colspan=5><textarea rows="3" cols="100" id="quizComments"></textarea></td>
-  </tr>  
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr> -->
-  <tr>
-    <td class="question">What do you think of the game interface? Please comment on the game interface.</td>
-    <td class="choices"><input type="radio" name="interface" id="interface1" value="1"><br/>Extremely unclear</td>
-    <td class="choices"><input type="radio" name="interface" id="interface2" value="2"></td>
-    <td class="choices"><input type="radio" name="interface" id="interface3" value="3"></td>
-    <td class="choices"><input type="radio" name="interface" id="interface4" value="4"></td>
-    <td class="choices"><input type="radio" name="interface" id="interface5" value="5"><br/>Extremely clear</td>
-  </tr>
-  <tr>
-    <td class="question">
-      <!-- Please comment on the game interface (optional). -->
-    </td>
-    <td colspan=5><textarea rows="3" cols="100" id="interfaceComments"></textarea></td>
-  </tr> 
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr>
-  <!-- <tr>
-    <td class="question">6. Did you understand the rules of the game? (required)</td>
-    <td class="choices"><input type="radio" name="gamerule" id="gamerule1" value="false"><label for="gamerule1">  No</label></td>
-    <td class="choices"><input type="radio" name="gamerule" id="gamerule2" value="true"><label for="gamerule2">  Yes</label></td>
-    <td></td>
-    <td></td>    
-    <td></td>
-  </tr>
-  <tr>
-    <td class="question">Please comment on the rule of the game (optional).</td>
-    <td colspan=5><textarea rows="3" cols="100" id="gameruleComments"></textarea></td>
-  </tr>
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr>
-  <tr>
-    <td class="question">7. Did you enjoy playing this game? (required)</td>
-    <td class="choices"><input type="radio" name="enjoy" id="enjoy1" value="false"><label for="enjoy1">  No</label></td>
-    <td class="choices"><input type="radio" name="enjoy" id="enjoy2" value="true"><label for="enjoy2">  Yes</label></td>
-    <td></td>
-    <td></td>    
-    <td></td>
-  </tr>
-  <tr>
-    <td class="question">Why did or didn't you enjoy playing the game? (optional).</td>
-    <td colspan=5><textarea rows="3" cols="100" id="enjoyComments"></textarea></td>
-  </tr>  
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr> -->
-  <tr>
-    <td class="question">Did you use any of these strategies to play this game? Check all of the strategies that you used.</td>
-    <td colspan="5" class="choices" id="strategyChoices">
-      <input type="checkbox" name="strategy" id="strategy1" value="honest"><label for="strategy1">  Always claim the type of candy you received </label><br/>
-      <input type="checkbox" name="strategy" id="strategy2" value="opposite"><label for="strategy2">  Always claim the type of candy you did not receive</label><br/>
-      <input type="checkbox" name="strategy" id="strategy3" value="alwaysmm"><label for="strategy3">  Always claim <img class="candy_image" src="images/MM.png"> regardless of the type of your candy</label><br/>
-      <input type="checkbox" name="strategy" id="strategy4" value="alwaysgb"><label for="strategy4">  Always claim <img class="candy_image" src="images/GB.png"> regardless of the type of your candy</label><br/>
-      <input type="checkbox" name="strategy" id="strategy5" value="other"><label for="strategy5">  Other, please describe below</label>
-    </td>
-  </tr>
-  <tr>
-    <td class="question">Describe how you played this game.</td>
-    <td colspan=5><textarea rows="3" cols="100" id="strategyComments"></textarea></td>
-  </tr>  
-  <tr>
-    <td><br/></td><td colspan=5></td>
-  </tr>
-  <tr>
-    <td class="question">Were you able to gradually learn to play the game better?</td>
-    <td class="choices"><input type="radio" name="learn" id="learn1" value="false"><label for="learn1">  No</label></td>
-    <td class="choices"><input type="radio" name="learn" id="learn2" value="true"><label for="learn2">  Yes</label></td>
-    <td></td>
-    <td></td>    
-    <td></td>
-  </tr>
-  <tr>
-    <td class="question">Describe how you learned to play the game.</td>
-    <td colspan=5><textarea rows="3" cols="100" id="learnComments"></textarea></td>
-  </tr>
-</table>
+<p><span class="textBold">Thank you for playing! Please fill out and submit this survey in order to be paid for this HIT.</span><br/></p>
 
-<p><input type="checkbox" name="contact" id="shouldContact" value="no"><label for="shouldContact"> Check this box if you DO NOT want us to notify you of new batches of HITs in the future.</label></p>
+<p><span class="textBold">1. Did you use one of the following strategies to play this game?  Check all of the strategies you used.</span></p>
+<span id="strategyChoices">
+<input type="checkbox" name="strategy" id="strategy1" value="honest">
+<label for="strategy1">I always claimed the type of candy I received.</label><br/>
+<input type="checkbox" name="strategy" id="strategy2" value="opposite">
+<label for="strategy2">I always claimed the type of candy I did not receive.</label><br/>
+<input type="checkbox" name="strategy" id="strategy3" value="alwaysmm">
+<label for="strategy3">I always claimed <img class="candy_image" src="images/MM.png"> regardless of the type of my candy.</label><br/>
+<input type="checkbox" name="strategy" id="strategy4" value="alwaysgb">
+<label for="strategy4">I always claimed <img class="candy_image" src="images/GB.png"> regardless of the type of my candy</label><br/>
+<input type="checkbox" name="strategy" id="strategy5" value="other">
+<label for="strategy5">I didn't use any of the above strategies.</label>
+</span>
+
+<br/>
+<p><span class="textBold">2. If checked the last option for question 1, please describe the strategy you used to play this game.</span></p>
+<textarea rows="2" cols="100" id="otherStrategy" disabled></textarea>
+
+<br/>
+<p><span class="textBold">3. Why did you choose this particular strategy to play this game?</span></p>
+<textarea rows="2" cols="100" id="strategyReason"></textarea>
+
+<br/>
+<p><span class="textBold">4. Did you stick to the same strategy during the entire game, or did you try to use different strategies?  Please describe your reason for either choice.</span></p>
+<textarea rows="2" cols="100" id="strategyChange"></textarea>
+
+<br/>
+<p><span class="textBold">5. Please comment on any bugs you observed or any suggestions you have to improve the tutorial, the quiz, and the game interface. (optional)</span></p>
+<textarea rows="2" cols="100" id="comments"></textarea>
+
+<div id="exitErrorMsg">
+</div>
 
 <p>
   <a class="button" id="submitTask" href="#">Submit the task</a>
 </p>
+<br/>
+<br/>
