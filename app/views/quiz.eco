@@ -243,7 +243,7 @@
       <label for="q42" id="l42">&nbsp;&nbsp;For a finished round, the table displays the number of the other players who claimed to<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; have either type of candy.<br/></label>
     
       <input type="checkbox" name="interface1" id="q43" value="infer_reference_candy" <% if @checkedValues and @checkedValues.indexOf("infer_reference_candy") >= 0: %>checked<% end %>>
-      <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signals[1] %>.png"> and your reward is $0.30, then you were matched with a player<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  who claimed to have <img class="candy_image" src="images/<%= @signals[0] %>.png">.<br/></label>
+      <label for="q43" id="l43">&nbsp;&nbsp;If your claim is <img class="candy_image" src="images/<%= @signals[1] %>.png"> and your reward is $0.10, then you were matched with a player<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  who claimed to have <img class="candy_image" src="images/<%= @signals[0] %>.png">.<br/></label>
       
     </span>
     

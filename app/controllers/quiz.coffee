@@ -14,8 +14,8 @@ class Quiz extends Spine.Controller
     "img#quiz-int-prior"      : "imgIntPrior"
     "div#quiz-int-ruleTable"  : "divIntRuleTable"
     "div#quizErrorMsg" : "quizErrorMsg"
+    "a#quizSubmit" : "buttonSubmit"
     
-
   events:
     "click a#quizSubmit"        : "submitClicked"
     "click a#goBackToTutorial"  : "goBackToTutorialClicked" 
@@ -27,7 +27,7 @@ class Quiz extends Spine.Controller
     
     @signals = ['MM', 'GB']
     # needs to be changed if actual payment rule changes.
-    @payRule = [1.50, 0.10, 0.30, 1.20]
+    @payRule = [1.50, 0.10, 0.10, 1.50]
     
     @wrongAnswers   = undefined
     @checkedValues  = undefined
@@ -73,6 +73,11 @@ class Quiz extends Spine.Controller
       'top'  : "#{divIntRuleTableTop}px"
     )
     
+    failMsgTop = @buttonSubmit.position().top - 200
+    @quizErrorMsg.css(
+      'top'  : "#{failMsgTop}px"
+    )
+    
   showQuizFailedMsg: ->
     @quizErrorMsg.show()
   
@@ -107,8 +112,14 @@ class Quiz extends Spine.Controller
     ev.preventDefault()
     @imgScreenshot.slideToggle("slow")
     @divIntRuleTable.toggle("slow")
-    @imgIntPrior.toggle("slow")
-  
+    @imgIntPrior.toggle("slow", =>
+      # update position of fail message box
+      failMsgTop = @buttonSubmit.position().top - 200
+      @quizErrorMsg.css(
+        'top' : "#{failMsgTop}px"
+      )
+    )
+      
   goBackToTutorialClicked: (ev) =>
     ev.preventDefault()
     @navigate "/tutorial"

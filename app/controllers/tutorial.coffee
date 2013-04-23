@@ -47,7 +47,7 @@ class Tutorial extends Spine.Controller
 
     @signals = ['MM', 'GB']    
     # needs to be changed if actual payment rule changes.
-    @payRule = [1.50, 0.10, 0.30, 1.20]
+    @payRule = [1.50, 0.10, 0.10, 1.50]
 
     @stepIndex = 0
     @steps = [

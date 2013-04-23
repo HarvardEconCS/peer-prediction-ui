@@ -5,7 +5,7 @@ class MockServer
   @signalH    = "MM"
   @signalL    = "GB"
   @signalList = [@signalH, @signalL]
-  @payAmounts = [1.50, 0.10, 0.30, 1.20]
+  @payAmounts = [1.50, 0.10, 0.10, 1.50]
   @nPlayers   = 3
   @nRounds    = 20
   

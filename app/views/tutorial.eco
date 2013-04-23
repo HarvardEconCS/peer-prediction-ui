@@ -23,7 +23,7 @@
   
   <div id="int-finishmsg">
     <p>Thank you for playing!<br/>  
-      Your will be paid <span class="textBold">$1.78</span> (=$1.00 + $0.78).<br/>
+      Your will be paid <span class="textBold">$1.80</span> (=$1.00 + $0.80).<br/>
     </p>
     <a class="button fake">Go to exit survey!</a>
   </div>
@@ -247,7 +247,7 @@
             &nbsp;&nbsp;1
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$1.20</span>
+            <span>$1.50</span>
           </td>  
         </tr>
         <tr>
@@ -265,7 +265,7 @@
             &nbsp;&nbsp;2
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$1.20</span>
+            <span>$1.50</span>
           </td>  
         </tr>
         <tr>
@@ -319,7 +319,7 @@
             &nbsp;&nbsp;1
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$0.30</span>
+            <span>$0.10</span>
           </td>  
         </tr>
         <tr>
@@ -373,7 +373,7 @@
             &nbsp;&nbsp;0
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$0.30</span>
+            <span>$0.10</span>
           </td>  
         </tr>
         <tr>
@@ -427,7 +427,7 @@
             &nbsp;&nbsp;1
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$1.20</span>
+            <span>$1.50</span>
           </td>  
         </tr>
         <tr>
@@ -445,7 +445,7 @@
             &nbsp;&nbsp;2
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$1.20</span>
+            <span>$1.50</span>
           </td>  
         </tr>
         <tr>
@@ -499,7 +499,7 @@
             &nbsp;&nbsp;1
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$0.30</span>
+            <span>$0.10</span>
           </td>  
         </tr>
         <tr>
@@ -553,7 +553,7 @@
             &nbsp;&nbsp;0
           </td>     
           <td class="leftb"><!-- Your reward -->
-            <span>$0.30</span>
+            <span>$0.10</span>
           </td>  
         </tr>
       </tbody>
@@ -562,7 +562,7 @@
    
   <div id="int-avgreward">
     <p id="r-zero">Average reward: $1.50</p>
-    <p id="r-endgame">Average reward: $0.78</p>
+    <p id="r-endgame">Average reward: $0.80</p>
   </div>
 </div>
 

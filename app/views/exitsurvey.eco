@@ -24,7 +24,7 @@
 </span>
 
 <br/>
-<p><span class="textBold">2. If checked the last option for question 1, please describe the strategy you used to play this game.</span></p>
+<p><span class="textBold">2. If you checked the last option for question 1, please describe the strategy you used to play this game.</span></p>
 <textarea rows="2" cols="100" id="otherStrategy" disabled></textarea>
 
 <br/>
