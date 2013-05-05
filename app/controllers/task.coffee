@@ -45,7 +45,7 @@ class Task extends Spine.Controller
     @html require('views/task')(@)
 
     # randomize order of rows in reward rule table
-    @randomizeRuleTable('task-ruleTable')
+    # @randomizeRuleTable('task-ruleTable')
 
     @addDashedBorder()
     @randomizeRadioButtons()

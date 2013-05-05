@@ -9,6 +9,9 @@
 @import 'task'
 @import 'exitsurvey'
 
+@import 'ruleTable'
+
+@import 'button'
 
 .stack > *:not(.active)
   display: none !important
@@ -16,84 +19,25 @@
 .candy_image
   height 40px
   
-.player_image
-  height  55px
-  
 p,td,div
   font-family "Georgia", sans-serif
   
-.refReport
-.refPlayer
-  display none
-  
+.textBold
+  font-weight bold
+
+img
+  vertical-align middle
 
 
-div.ruleTable
-  position absolute
-  top 970px
-  left 490px
-  
-///////////////////////////////////////       
-// Payment rule table
-div.ruleTable
-  border-collapse collapse
-  table-layout fixed
-  
-div.ruleTable caption
-  font-size       17px
-  padding-bottom  10px
-  font-weight     bold
+// div#int-claimresult
+// div#int-claimchoices
+// div#int-claimbutton
 
-div.ruleTable th   
-  font-size     16px
-  text-align    center
-  border-bottom 2px solid #6678b1
-
-div.ruleTable td
-  font-size     19px
-  text-align    center
-  border-bottom 1px solid #6678b1
-
-div.ruleTable th.leftb, td.leftb
-  border-left 2px solid #6678b1
-
-div.ruleTable col.colRuleYourReport
-div.ruleTable col.colRuleOtherReport
-div.ruleTable col.colRuleYourReward
-  width 75px    
-
-
-
-
-// Style the hyperlinks as buttons
-a.button
-  padding 4px 4px
-  background #35A640
-  color #FFF
-  -webkit-border-radius 4px
-  -moz-border-radius 4px
-  border-radius 4px
-  border solid 1px #1F912A
-  text-shadow 0 -1px 0 rgba(0, 0, 0, 0.4)
-  -webkit-box-shadow inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2)
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-  -webkit-transition-duration 0.2s
-  -moz-transition-duration 0.2s
-  transition-duration 0.2s
-  -webkit-user-select none
-  -moz-user-select none
-  -ms-user-select none
-  user-select none
-
-a.button:hover, a.button:focus
-  background: #35903E;
-  border: solid 1px #1E6F26;
-  text-decoration: none;  
-  
-a.button:active
-  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-  background: #35903E;
-  border: solid 1px #1E6F26;
+div#claimresult
+div#claimchoices
+div#claimbutton
+div.quiz label
+div.exitsurvey label
+div.tutorialCont div.step2 span
+div#task-step2 span
+  line-height 40px

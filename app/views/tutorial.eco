@@ -79,7 +79,7 @@
   
   <div id="int-task-step3-v1" class="step3"> 
     3. Choose your claim.<br/><br/>
-    <div id="int-claimchoices">
+    <div id="claimchoices">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <br/>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="radio" name="reportChoices" value="<%= @signals[0] %>" disabled>
@@ -87,13 +87,13 @@
       <input type="radio" name="reportChoices" value="<%= @signals[1] %>" disabled>
       <label><img class="candy_image" id="imgSecondRadio" src="images/<%= @signals[1] %>.png"></label> 
     </div>
-    <div id="int-claimbutton">
+    <div id="claimbutton">
       &nbsp;&nbsp;&nbsp;&nbsp;<a class="button textBold fake" href="#">Confirm your claim!</a>
     </div>
   </div>  
   <div id="int-task-step3-v2" class="step3"> 
     3. Choose your claim.<br/><br/>
-    <div id="int-claimresult">
+    <div id="claimresult">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <img class="candy_image" src="images/MM.png">
     </div>
   </div>

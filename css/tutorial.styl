@@ -34,47 +34,12 @@ div.tutorial .step
   background-color #E4F7E4
   
 div#ruleTableTutorial
-  z-index 5
   position absolute
   width 250px
- 
-    
-///////////////////////////////////////       
-// Payment rule table
-// div#ruleTableTutorial
-//   border-collapse collapse
-//   table-layout fixed
-//   
-// div#ruleTableTutorial caption
-//   font-size       17px
-//   padding-bottom  10px
-//   font-weight     bold
-// 
-// div#ruleTableTutorial th   
-//   font-size     16px
-//   text-align    center
-//   border-bottom 2px solid #6678b1
-// 
-// div#ruleTableTutorial td
-//   font-size     19px
-//   text-align    center
-//   border-bottom 1px solid #6678b1
-// 
-// div#ruleTableTutorial th.leftb, td.leftb
-//   border-left 2px solid #6678b1
-// 
-// div#ruleTableTutorial col.colRuleYourReport
-// div#ruleTableTutorial col.colRuleOtherReport
-// div#ruleTableTutorial col.colRuleYourReward
-//   width 75px    
-    
+  z-index 5 
     
 ///////////////////////////////////////    
 // Interface of game    
-div#int-claimresult
-div#int-claimchoices
-div#int-claimbutton
-  line-height 35px
 
 div#int-finishmsg
   position absolute
@@ -143,10 +108,6 @@ div.step2
   height     intStep2Height 
   border-top 2px solid #6678b1
   font-size  18px
-div.step2 img
-  vertical-align middle
-div.step2 span
-  line-height 40px    
 
 intStep3Height = 110px  
 intStep3Top = intStep2Top + intStep2Height 
@@ -158,8 +119,6 @@ div.step3
   height     intStep3Height  
   border-top 2px solid #6678b1
   font-size  18px
-div.step3 img
-  vertical-align middle    
     
 intRuleTableTop = 300px + down
 intRuleTableLeft = 230px + right
@@ -169,27 +128,7 @@ div#int-task-ruleTable
   top       intStep3Top + 20px
   left      intRuleTableLeft 
   width     250px
-// div#int-task-ruleTable
-//   border-collapse collapse
-//   table-layout fixed
-// div#int-task-ruleTable caption
-//   font-size       17px
-//   padding-bottom  10px
-//   font-weight     bold
-// div#int-task-ruleTable th   
-//   font-size     16px
-//   text-align    center
-//   border-bottom 2px solid #6678b1
-// div#int-task-ruleTable td
-//   font-size     19px
-//   text-align    center
-//   border-bottom 1px solid #6678b1
-// div#int-task-ruleTable th.leftb, td.leftb
-//   border-left 2px solid #6678b1
-// div#int-task-ruleTable col.colRuleYourReport
-// div#int-task-ruleTable col.colRuleOtherReport
-// div#int-task-ruleTable col.colRuleYourReward
-//   width 75px
+
     
 intResultTop  = 80px + down
 intResultLeft = 500px + right
@@ -210,8 +149,6 @@ div#int-result-header th
   border-bottom 2px solid #6678b1
   border-left   2px white solid
   border-right  2px white solid
-div#int-result-header th img
-  vertical-align middle
 div#int-result-header th.leftb
   border-left 2px solid #6678b1
 div#int-result-header th.otherClaims
@@ -249,9 +186,6 @@ div.resultbody td.borderRightDashed
 div.resultbody td.otherClaims
   font-size 20px
   width     200px
-  vertical-align middle
-div.resultbody td.otherClaims img
-  vertical-align middle    
 
 div#int-avgreward
   position    absolute
@@ -262,10 +196,9 @@ div#int-avgreward
   font-weight bold
 
     
-        
 img#eg-MM-MM
 img#eg-MM-GB
-img@eg-GB-MM
+img#eg-GB-MM
   z-index 5
   position absolute
     
@@ -276,17 +209,9 @@ a.help:link,a.help:visited,a.help:hover
 a.help
   cursor help
 
-div.step img
-  vertical-align middle  
-
 span.textUnderline  
   text-decoration underline 
-  // font-weight bold
-   
-span.textBold
-  // font-style italic
-  font-weight bold
-   
+
 li
   text-align left
   

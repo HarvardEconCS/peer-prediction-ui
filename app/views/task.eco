@@ -98,7 +98,7 @@
 
 <% if @revealSignal is true and Network.payAmounts and Network.signalList: %>
 
-  <div id="task-ruleTable">
+  <div id="task-ruleTable" class="ruleTable">
     <table>
       <caption>Reward Rule</caption>
       
@@ -140,6 +140,64 @@
       
     </table> 
   </div>
+  
+  <!-- <div id="task-ruleTable" class="ruleTable">
+    <table>
+      <caption>Reward Rule</caption>
+      <tr>
+        <th colspan="2">Your claim</th>
+        <th class="leftb"></th>
+      </tr>
+      
+      <tr>
+        <td><img class="candy_image" src="images/<%= Network.signalList[0] %>.png"></td>
+        <td class="leftb"><img class="candy_image" src="images/<%= Network.signalList[1] %>.png"></td>
+        <td class="leftb">Other players' claims</td>
+      </tr>    
+      
+      <tr>
+        <td>$0.20</td>
+        <td class="leftb">$0.10</td>
+        <td class="leftb">
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+        </td>
+        
+      </tr>
+      
+      <tr>
+        <td>$0.10</td>
+        <td class="leftb">$1.50</td>
+        <td class="leftb">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>$1.50</td>
+        <td class="leftb">$0.10</td>
+        <td class="leftb">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>$0.10</td>
+        <td class="leftb">$0.20</td>
+        <td class="leftb">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+        </td>
+      </tr>
+      
+    </table>
+  </div> -->
 
 <% end %>
 
