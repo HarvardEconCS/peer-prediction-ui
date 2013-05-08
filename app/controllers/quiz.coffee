@@ -3,11 +3,13 @@ Spine = require('spine')
 Network = require 'network'
  
 class Quiz extends Spine.Controller
-  className: 'quiz'
+  className: 'quizCont'
 
   elements:
     "img#screenshot" : "imgScreenshot"
     "span#quiz-step1"       : "spanStep1"
+    "span#quiz-step3"       : "spanStep3"
+    "span#quiz-step4"       : "spanStep4"
     "img#quiz-step1-prior"  : "imgStep1"
     "img#quiz-step3-example"    : "imgStep3"
     "div#quiz-step3-ruleTable"  : "divStep3RuleTable"
@@ -27,7 +29,7 @@ class Quiz extends Spine.Controller
     
     @signals = ['MM', 'GB']
     # needs to be changed if actual payment rule changes.
-    @payRule = [1.50, 0.10, 0.10, 1.50]
+    @payRule = [[0.90, 0.10, 1.50, 0.80],[0.80, 1.50, 0.10, 0.90]]
     
     @wrongAnswers   = undefined
     @checkedValues  = undefined
@@ -53,26 +55,27 @@ class Quiz extends Spine.Controller
       'top'   : "#{imgStep1Top}px"
     )
 
-    imgStep3Top = refTop + 994
+    # step 3 elements
+    imgStep3Top = @spanStep3.position().top + 200
     @imgStep3.css(
       'top'  : "#{imgStep3Top}px"
     )
-    
-    divStep3Top = refTop + 844
+    divStep3Top = @spanStep3.position().top + 40
     @divStep3RuleTable.css(
       'top'  : "#{divStep3Top}px"
     )
 
-    imgIntPriorTop = refTop + 1564
+    # step 4 elements
+    imgIntPriorTop = @spanStep4.position().top + 147
     @imgIntPrior.css(
       'top'  : "#{imgIntPriorTop}px"
     )
-
-    divIntRuleTableTop = refTop + 1796
+    divIntRuleTableTop = @spanStep4.position().top + 370
     @divIntRuleTable.css(
       'top'  : "#{divIntRuleTableTop}px"
     )
     
+    # fail message position
     failMsgTop = @buttonSubmit.position().top - 200
     @quizErrorMsg.css(
       'top'  : "#{failMsgTop}px"
@@ -87,26 +90,52 @@ class Quiz extends Spine.Controller
     @render()
   
   randomizeRuleTable: (divId) ->
+    if Network.payRandList is undefined
+      Network.randomizePayList()
+    
     trList = []
     tbody= $('div#' + divId).find('tbody')
     if tbody.length is 0
       return
-    firstRow = tbody.children()[0]
-    len = tbody.children().length
-    for num in [1..len]
-      trList.push tbody.children()[num]
-      
-    if Network.payRandList is undefined
-      Network.randomizePayList()
-      
+    
+    rows = tbody.children()
+    firstRow = rows[0]
+    secondRow = rows[1]
+
+    # take out rows for randomization
+    len = rows.length
+    for num in [2..len]
+      trList.push rows[num]
+    
+    # randomize row order
     newTrList = []
-    for index in Network.payRandList
+    for index in Network.payRandList[1]
       newTrList.push(trList[index])
     
+    # randomize column order
+    newTrList3 = [secondRow].concat newTrList
+    
+    for row in newTrList3
+      tdList = $(row).children()
+      
+      newTdList = []
+      for index in Network.payRandList[0]
+        newTdList.push(tdList[index])
+        
+      tdLen = tdList.length
+      for num in [(Network.payRandList[0].length)..tdLen]
+        newTdList.push(tdList[num])
+        
+      $(row).contents().remove()
+      for td in newTdList
+        $(row).append(td)
+        
+    # put back randomized rows
     tbody.contents().remove()
     tbody.append(firstRow)
-    for tr in newTrList
+    for tr in newTrList3
       tbody.append(tr)
+
   
   toggleScreenshotClicked: (ev) =>
     ev.preventDefault()
@@ -247,7 +276,7 @@ class Quiz extends Spine.Controller
   randomizeChoices: (qNum) ->
     inputList = []
     labelList = []
-    choices = $('span#q'+qNum+'choices')
+    choices = $('div#q'+qNum+'choices')
     len = choices.contents().length / 2
     for num in [1..len]
       inputList.push($('input:checkbox#q'+qNum+num))

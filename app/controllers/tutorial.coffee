@@ -47,7 +47,7 @@ class Tutorial extends Spine.Controller
 
     @signals = ['MM', 'GB']    
     # needs to be changed if actual payment rule changes.
-    @payRule = [1.50, 0.10, 0.10, 1.50]
+    @payRule = [[0.90, 0.10, 1.50, 0.80],[0.80, 1.50, 0.10, 0.90]]
 
     @stepIndex = 0
     @steps = [
@@ -55,7 +55,7 @@ class Tutorial extends Spine.Controller
       ['prior',       @stepTwoDescribePrior]
       ['takeCandy',   @stepThreeChooseCandy]
       ['gameRule',    @stepFourDescribeRule]
-      ['recap',       @stepSixRecap]
+      ['recap',       @stepFiveRecap]
       ['uiStart',         @uiOneStart]
       ['uiGameActions',   @uiTwoGetCandy]
       ['uiChooseClaim',   @uiThreeSignalShown]
@@ -223,23 +223,47 @@ class Tutorial extends Spine.Controller
     @showDiv(show, selector, '270px', '40px')
     
   randomizeRuleTable: (divId) ->
-    trList = []
-    tbody= $('div#' + divId).find('tbody')
-    firstRow = tbody.children()[0]
-    len = tbody.children().length
-    for num in [1..len]
-      trList.push tbody.children()[num]
-      
     if Network.payRandList is undefined
       Network.randomizePayList()
-      
+    
+    trList = []
+    tbody= $('div#' + divId).find('tbody')
+    rows = tbody.children()
+    firstRow = rows[0]
+    secondRow = rows[1]
+
+    # take out rows for randomization
+    len = rows.length
+    for num in [2..len]
+      trList.push rows[num]
+    
+    # randomize row order
     newTrList = []
-    for index in Network.payRandList
+    for index in Network.payRandList[1]
       newTrList.push(trList[index])
     
+    # randomize column order
+    newTrList3 = [secondRow].concat newTrList
+    
+    for row in newTrList3
+      tdList = $(row).children()
+      
+      newTdList = []
+      for index in Network.payRandList[0]
+        newTdList.push(tdList[index])
+        
+      tdLen = tdList.length
+      for num in [(Network.payRandList[0].length)..tdLen]
+        newTdList.push(tdList[num])
+        
+      $(row).contents().remove()
+      for td in newTdList
+        $(row).append(td)
+        
+    # put back randomized rows
     tbody.contents().remove()
     tbody.append(firstRow)
-    for tr in newTrList
+    for tr in newTrList3
       tbody.append(tr)
 
   # stepFiveDescribeReward: (show) =>
@@ -259,7 +283,7 @@ class Tutorial extends Spine.Controller
   #   selector = "#eg-GB-MM"
   #   @showSelectedCustom(show, selector, '440px', '782px')
 
-  stepSixRecap: (show) =>
+  stepFiveRecap: (show) =>
     selector = "#steps-recap"
     @showSelected(show, selector)
 
@@ -274,8 +298,8 @@ class Tutorial extends Spine.Controller
     selector = "#ruleTableTutorial"
     @showDiv(show, selector, '450px', '750px')
 
-    selector = "#eg-MM-GB"
-    @showSelectedCustom(show, selector, '600px', '450px')
+    # selector = "#eg-MM-GB"
+    # @showSelectedCustom(show, selector, '600px', '450px')
 
 
   changeTaskPic: (show, picId, taskPicTop, taskPicLeft) =>

@@ -2,12 +2,14 @@ Game    = require 'models/game'
 
 class MockServer
   
-  @signalH    = "MM"
-  @signalL    = "GB"
-  @signalList = [@signalH, @signalL]
-  @payAmounts = [1.50, 0.10, 0.10, 1.50]
-  @nPlayers   = 3
+  # @signalH    = "MM"
+  # @signalL    = "GB"
+  @signalList = ["MM", "GB"]
+  @payAmounts = [[0.90, 0.10, 1.50, 0.80],[0.80, 1.50, 0.10, 0.90]]
+  @nPlayers   = 4
   @nRounds    = 20
+  @houses     = [0.2, 0.7]
+  
   
   @playerNames  = []
   @results      = []
@@ -20,6 +22,20 @@ class MockServer
     list[i]  
   
   @getGeneralInfo: -> 
+
+    # choose house
+    @chosenHouse = 0
+    numHouse = Math.random()
+    if numHouse > 0.49
+      @chosenHouse = 1
+
+
+    for i in [0..(@nPlayers - 1)]
+      @playerNames.push "Player #{i}"
+    
+    rndIndex = Math.floor(Math.random() * @playerNames.length)
+    @currName = @playerNames[rndIndex]
+
     # Message received from server
     # format: --------------------
     #       status:     startRound
@@ -30,12 +46,6 @@ class MockServer
     #       payments:
     #       signalList: 
     # -------------------------
-    for i in [0..(@nPlayers - 1)]
-      @playerNames.push "Player #{i}"
-    
-    rndIndex = Math.floor(Math.random() * @playerNames.length)
-    @currName = @playerNames[rndIndex]
-
     msg = 
       "status"      : "startRound"
       "numPlayers"  : @nPlayers
@@ -44,18 +54,19 @@ class MockServer
       "yourName"    : @currName 
       "payments"    : @payAmounts
       "signalList"  : @signalList
-    
+
+
   @getRoundSignal: ->
+
     @currSignal = null
     @currReport = null
 
-    # Message received from server
-    # format: -----------------
-    #     status: signal
-    #     signal: 
-    # -------------------------
-    @currSignal = @chooseRandomly(@signalList)
-    
+    # choose signal
+    @currSignal= "MM"
+    numCandy = Math.random()
+    if numCandy > @houses[@chosenHouse]
+      @currSignal= "GB"
+
     # create result object
     game = 
       'signal': @currSignal
@@ -66,7 +77,11 @@ class MockServer
     @results.push game
     # console.log "results are #{JSON.stringify(@results)}}"
     
-    
+    # Message received from server
+    # format: -----------------
+    #     status: signal
+    #     signal: 
+    # -------------------------    
     msg = 
       "status:" : "signal"
       "signal"  : @currSignal
@@ -87,22 +102,33 @@ class MockServer
       if name is @currName
         msg.result[@currName].report = @currReport
       else 
-        msg.result[name].report = @chooseRandomly(@signalList)
+        @otherReport= "MM"
+        numCandy = Math.random()
+        if numCandy > @houses[@chosenHouse]
+          @otherReport= "GB"
+        msg.result[name].report = @otherReport
       
     # this is getting the reference players
-    for name, i in @playerNames
-      refIndex = Math.floor(Math.random() * (@nPlayers - 1))
-      if i <= refIndex
-        refIndex = refIndex  + 1
-      msg.result[name].refPlayer = @playerNames[refIndex]
+    # for name, i in @playerNames
+    #   refIndex = Math.floor(Math.random() * (@nPlayers - 1))
+    #   if i <= refIndex
+    #     refIndex = refIndex  + 1
+    #   msg.result[name].refPlayer = @playerNames[refIndex]
 
     # determine the rewards
     for name in @playerNames
       theReport     = msg.result[name].report
-      theRefPlayer  = msg.result[name].refPlayer
-      theRefReport  = msg.result[theRefPlayer].report
-      msg.result[name].reward = @getPayment(theReport, theRefReport)
+      # theRefPlayer  = msg.result[name].refPlayer
+      # theRefReport  = msg.result[theRefPlayer].report
+
+      numOtherMMReports = 0
+      for playerName in @playerNames
+        if playerName isnt name and msg.result[playerName].report is "MM"
+          numOtherMMReports++
       
+      msg.result[name].reward = @getPayment(theReport, numOtherMMReports)
+
+    # console.log msg
     msg
   
   # send report by current player to server
@@ -145,10 +171,8 @@ class MockServer
       "playerName"  : reporter 
 
 
-  @getPayment: (report, refReport) ->
-    left  = @signalList.indexOf(report)
-    right = @signalList.indexOf(refReport)
-    index = left * 2 + right
-    return @payAmounts[index]    
+  @getPayment: (report, numOtherMMReports) ->
+    reportIndex  = @signalList.indexOf(report)
+    return @payAmounts[reportIndex][numOtherMMReports]    
   
 module.exports = MockServer

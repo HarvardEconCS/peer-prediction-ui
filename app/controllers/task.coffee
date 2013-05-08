@@ -45,7 +45,7 @@ class Task extends Spine.Controller
     @html require('views/task')(@)
 
     # randomize order of rows in reward rule table
-    # @randomizeRuleTable('task-ruleTable')
+    @randomizeRuleTable('task-ruleTable')
 
     @addDashedBorder()
     @randomizeRadioButtons()
@@ -55,28 +55,53 @@ class Task extends Spine.Controller
       @taskErrorMsg.show()
     else
       @taskErrorMsg.hide()
-
+ 
   randomizeRuleTable: (divId) ->
+    if Network.payRandList is undefined
+      Network.randomizePayList()
+   
     trList = []
     tbody= $('div#' + divId).find('tbody')
     if tbody.length is 0
       return
-    firstRow = tbody.children()[0]
-    len = tbody.children().length
-    for num in [1..len]
-      trList.push tbody.children()[num]
-      
-    if Network.payRandList is undefined
-      Network.randomizePayList()
-      
+   
+    rows = tbody.children()
+    firstRow = rows[0]
+    secondRow = rows[1]
+
+    # take out rows for randomization
+    len = rows.length
+    for num in [2..len]
+      trList.push rows[num]
+   
+    # randomize row order
     newTrList = []
-    for index in Network.payRandList
+    for index in Network.payRandList[1]
       newTrList.push(trList[index])
-    
-    tbody.contents().remove()
-    tbody.append(firstRow)
-    for tr in newTrList
-      tbody.append(tr)
+   
+    # randomize column order
+    newTrList3 = [secondRow].concat newTrList
+   
+    for row in newTrList3
+      tdList = $(row).children()
+     
+      newTdList = []
+      for index in Network.payRandList[0]
+        newTdList.push(tdList[index])
+       
+      tdLen = tdList.length
+      for num in [(Network.payRandList[0].length)..tdLen]
+        newTdList.push(tdList[num])
+       
+      $(row).contents().remove()
+      for td in newTdList
+        $(row).append(td)
+       
+      # put back randomized rows
+      tbody.contents().remove()
+      tbody.append(firstRow)
+      for tr in newTrList3
+        tbody.append(tr)
       
   scrollTableToBottom: ->
     # make the table always scroll to the bottom

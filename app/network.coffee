@@ -46,7 +46,22 @@ class Network
     TSClient.init(@cookieName, "")
     
   @randomizePayList: ->
-    @payRandList = @randomizeList(4)
+    # @payRandList = @randomizeList(4)
+    @payRandList = [@randomizeCol(), @randomizeRow()]
+    
+  @randomizeCol: ->
+    rand = Math.floor(Math.random() * 2)
+    if rand is 0
+      return [0,1]
+    else 
+      return [1,0]
+      
+  @randomizeRow: ->
+    rand = Math.floor(Math.random() * 2)
+    if rand is 0
+      return [0,1,2,3]
+    else 
+      return [3,2,1,0]
     
   @randomizeList: (len) ->
     oldList = (num for num in [0..(len-1)])
@@ -292,9 +307,9 @@ class Network
     for name in @playerNames
       @game.result[name] ?= {}
       @game.result[name].report     = receivedMsg.result[name].report
-      theRefPlayer = receivedMsg.result[name].refPlayer
-      @game.result[name].refPlayer  = theRefPlayer 
-      @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
+      # theRefPlayer = receivedMsg.result[name].refPlayer
+      # @game.result[name].refPlayer  = theRefPlayer 
+      # @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
       @game.result[name].reward     = parseFloat(receivedMsg.result[name].reward)
     signalZeroCount = 0 # count number of people who reported signalList[0]
     for name in @playerNames

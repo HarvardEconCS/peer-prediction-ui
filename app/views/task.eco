@@ -101,103 +101,63 @@
   <div id="task-ruleTable" class="ruleTable">
     <table>
       <caption>Reward Rule</caption>
-      
-      <colgroup>
-        <col class="colRuleYourReport">
-        <col class="colRuleOtherReport">
-        <col class="colRuleYourReward">
-      </colgroup>
-      
       <tr>
-        <th>Your claim</th>
-        <th>Other player's claim</th>
-        <th class="leftb">Your<br/>reward</th>
+        <th colspan="2" class="nobottomb">Your claim<br/>
+        </th>
+        <th class="leftb" rowspan="2">Other players' claims</th>
+      </tr>
+
+      <tr>
+        <td class="leftb bottomb">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+        </td>
+        <td class="leftb bottomb">
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+        </td>
       </tr>
       
       <tr>
-        <td><img class="candy_image" src="images/<%= Network.signalList[0] %>.png"></td>
-        <td><img class="candy_image" src="images/<%= Network.signalList[0] %>.png"></td>
-        <td class="leftb">$<%= Network.payAmounts[0].toFixed(2) %></td>
-      </tr>
-      
-      <tr>
-        <td><img class="candy_image" src="images/<%= Network.signalList[0] %>.png"></td>
-        <td><img class="candy_image" src="images/<%= Network.signalList[1] %>.png"></td>
-        <td class="leftb">$<%= Network.payAmounts[1].toFixed(2) %></td>
-      </tr>
-      
-      <tr>
-        <td><img class="candy_image" src="images/<%= Network.signalList[1] %>.png"></td>
-        <td><img class="candy_image" src="images/<%= Network.signalList[0] %>.png"></td>
-        <td class="leftb">$<%= Network.payAmounts[2].toFixed(2) %></td>
-      </tr>
-      
-      <tr>
-        <td><img class="candy_image" src="images/<%= Network.signalList[1] %>.png"></td>
-        <td><img class="candy_image" src="images/<%= Network.signalList[1] %>.png"></td>
-        <td class="leftb">$<%= Network.payAmounts[3].toFixed(2) %></td>
-      </tr>
-      
-    </table> 
-  </div>
-  
-  <!-- <div id="task-ruleTable" class="ruleTable">
-    <table>
-      <caption>Reward Rule</caption>
-      <tr>
-        <th colspan="2">Your claim</th>
-        <th class="leftb"></th>
-      </tr>
-      
-      <tr>
-        <td><img class="candy_image" src="images/<%= Network.signalList[0] %>.png"></td>
-        <td class="leftb"><img class="candy_image" src="images/<%= Network.signalList[1] %>.png"></td>
-        <td class="leftb">Other players' claims</td>
-      </tr>    
-      
-      <tr>
-        <td>$0.20</td>
-        <td class="leftb">$0.10</td>
+        <td class="leftb">$<%= Network.payAmounts[0][0].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][0].toFixed(2) %></td>
         <td class="leftb">
-          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
-          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
-          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 0
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 3
         </td>
         
       </tr>
       
       <tr>
-        <td>$0.10</td>
-        <td class="leftb">$1.50</td>
+        <td class="leftb">$<%= Network.payAmounts[0][1].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][1].toFixed(2) %></td>
         <td class="leftb">
-          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
-          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 
-          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 1
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 2
         </td>
       </tr>
       
       <tr>
-        <td>$1.50</td>
-        <td class="leftb">$0.10</td>
+        <td class="leftb">$<%= Network.payAmounts[0][2].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][2].toFixed(2) %></td>
         <td class="leftb">
-          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
-          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
-          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+          <!-- <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> -->
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 2
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 1
         </td>
       </tr>
       
       <tr>
-        <td>$0.10</td>
-        <td class="leftb">$0.20</td>
+        <td class="leftb">$<%= Network.payAmounts[0][3].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][3].toFixed(2) %></td>
         <td class="leftb">
-          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
-          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
-          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <!-- <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> -->
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 3
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 0
         </td>
       </tr>
       
     </table>
-  </div> -->
+  </div>
 
 <% end %>
 
