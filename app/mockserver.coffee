@@ -6,7 +6,8 @@ class MockServer
   # @signalL    = "GB"
   @signalList = ["MM", "GB"]
   @payAmounts = [[0.90, 0.10, 1.50, 0.80],[0.80, 1.50, 0.10, 0.90]]
-  @nPlayers   = 4
+  # @nPlayers   = 4
+  @nPlayers   = 1
   @nRounds    = 20
   @houses     = [0.2, 0.7]
   
@@ -28,7 +29,6 @@ class MockServer
     numHouse = Math.random()
     if numHouse > 0.49
       @chosenHouse = 1
-
 
     for i in [0..(@nPlayers - 1)]
       @playerNames.push "Player #{i}"
@@ -107,19 +107,10 @@ class MockServer
         if numCandy > @houses[@chosenHouse]
           @otherReport= "GB"
         msg.result[name].report = @otherReport
-      
-    # this is getting the reference players
-    # for name, i in @playerNames
-    #   refIndex = Math.floor(Math.random() * (@nPlayers - 1))
-    #   if i <= refIndex
-    #     refIndex = refIndex  + 1
-    #   msg.result[name].refPlayer = @playerNames[refIndex]
 
     # determine the rewards
     for name in @playerNames
       theReport     = msg.result[name].report
-      # theRefPlayer  = msg.result[name].refPlayer
-      # theRefReport  = msg.result[theRefPlayer].report
 
       numOtherMMReports = 0
       for playerName in @playerNames

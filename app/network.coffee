@@ -307,9 +307,6 @@ class Network
     for name in @playerNames
       @game.result[name] ?= {}
       @game.result[name].report     = receivedMsg.result[name].report
-      # theRefPlayer = receivedMsg.result[name].refPlayer
-      # @game.result[name].refPlayer  = theRefPlayer 
-      # @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
       @game.result[name].reward     = parseFloat(receivedMsg.result[name].reward)
     signalZeroCount = 0 # count number of people who reported signalList[0]
     for name in @playerNames

@@ -60,7 +60,6 @@ class Tutorial extends Spine.Controller
       ['uiGameActions',   @uiTwoGetCandy]
       ['uiChooseClaim',   @uiThreeSignalShown]
       ['uiOtherStatus',   @uiFourReportConfirmed]
-      ['uiGameResult',    @uiFiveResult]
       ['uiExperimentEnd', @uiSixExpEnd]
     ] 
     
@@ -219,8 +218,9 @@ class Tutorial extends Spine.Controller
     selector = "#step3"
     @showSelected(show, selector)
 
-    selector = "#ruleTableTutorial"
-    @showDiv(show, selector, '270px', '40px')
+    # do not display payment rule table for constant payment
+    # selector = "#ruleTableTutorial"
+    # @showDiv(show, selector, '270px', '40px')
     
   randomizeRuleTable: (divId) ->
     if Network.payRandList is undefined
@@ -266,22 +266,6 @@ class Tutorial extends Spine.Controller
     for tr in newTrList3
       tbody.append(tr)
 
-  # stepFiveDescribeReward: (show) =>
-  #   console.log "called step 5"
-  #   selector = "#step3-example"
-  #   @showSelected(show, selector)
-  #   
-  #   selector = "#ruleTableTutorial"
-  #   @showDiv(show, selector, '270px', '40px')
-  # 
-  #   selector = "#eg-MM-GB"
-  #   @showSelectedCustom(show, selector, '440px', '320px')
-  # 
-  #   selector = "#eg-MM-MM"
-  #   @showSelectedCustom(show, selector, '440px', '557px')
-  # 
-  #   selector = "#eg-GB-MM"
-  #   @showSelectedCustom(show, selector, '440px', '782px')
 
   stepFiveRecap: (show) =>
     selector = "#steps-recap"
@@ -294,9 +278,10 @@ class Tutorial extends Spine.Controller
       'width':  '50%'
     )
     @showSelectedCustom(show, selector, '100px', '360px')
-    
-    selector = "#ruleTableTutorial"
-    @showDiv(show, selector, '450px', '750px')
+
+    # do not show payment rule table for constant payment
+    # selector = "#ruleTableTutorial"
+    # @showDiv(show, selector, '450px', '750px')
 
     # selector = "#eg-MM-GB"
     # @showSelectedCustom(show, selector, '600px', '450px')
@@ -420,8 +405,12 @@ class Tutorial extends Spine.Controller
       $('#int-task-step3-v2').show()      
       $('#t-nocandy').hide()
       $('#t-showcandy').show()      
-      $('#t-noclaim').hide()
-      $('#t-showclaim').show()
+      # $('#t-noclaim').hide()
+      # $('#t-showclaim').show()
+      $('#int-task-status-getcandy').hide()
+      $('#int-task-status-confirmclaim').show()
+      $('#int-task-status-waitforclaims').hide()
+      
     else
       $('#int-task-step2-v1').show()
       $('#int-task-step2-v2').hide()
@@ -429,8 +418,11 @@ class Tutorial extends Spine.Controller
       $('#int-task-step3-v2').hide()   
       $('#t-nocandy').show()
       $('#t-showcandy').hide()      
-      $('#t-noclaim').show()
-      $('#t-showclaim').hide()
+      # $('#t-noclaim').show()
+      # $('#t-showclaim').hide()
+      $('#int-task-status-getcandy').hide()
+      $('#int-task-status-confirmclaim').hide()
+      $('#int-task-status-waitforclaims').show()
 
     $('#box-onegame').css(
       'z-index': '3'
