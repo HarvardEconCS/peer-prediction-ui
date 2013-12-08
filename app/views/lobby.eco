@@ -9,7 +9,7 @@
   <p>
     Congrats on passing the quiz!
 
-    Please press the green I am ready to play! button below to start playing.
+    Please press the green "I am ready to play!" button below to start playing.
 
     <!--Workers who passed the quiz wait in this lobby for enough players to start a game.  Each game requires a total of <%= @data.numneeded %> players.  -->
   </p>    
