@@ -17,7 +17,7 @@
 <img class="image" id="eg-GB-MM" src="images/eg-GB-MM.png">
   
 <!-- Pictures for explaining interface of the game -->
-<img class="image" id="box-onegame"     src="images/box-onegame.png">
+<img class="image" id="box-onegame"     src="images/box-onegame_constant.png">
 <img class="image" id="box-stepsonetwo" src="images/box-stepsonetwo.png">
 <img class="image" id="box-stepthree"   src="images/box-stepthree.png">
 
@@ -36,7 +36,7 @@
     You are playing <span class="textBold">20 rounds</span> of the game.
     <!-- Commented out for constant payment -->
      <!-- with <span class="textBold">3 other players</span>.  -->
-    <!-- Your bonus (=average reward) so far: <span class="textBold">$0.10</span>. -->
+    Your bonus (=average reward) so far: <span class="textBold">$0.90</span>.
   </div>
   
   <div id="int-task-status-getcandy" class="statusmessage">
@@ -169,9 +169,7 @@
           <th>Round</th>
           <th class="leftb">Your candy</th>
           <th class="leftb">Your claim</th>
-          <!-- Commented out for constant payment -->
-          <!-- <th class="otherClaims">Other players' claims</th> -->
-          <!-- <th class="leftb">Your reward</th> -->
+          <th class="leftb">Your reward</th>
         </tr>
       </thead>
     </table>
@@ -188,16 +186,9 @@
           <td class="leftb"><!-- Your claim -->
             <img class="candy_image" src="images/MM.png">
           </td>
-          <!-- Commented out for constant payment -->
-          <!-- <td class="otherClaims">
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">                       
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-          </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            $0.90
+          </td>
         </tr>
         <tr class="borderAroundDashed">
           <td class="borderLeftDashed">2</td><!-- Round number -->
@@ -209,15 +200,9 @@
             <img id="t-noclaim"   class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
             <img id="t-showclaim" class="candy_image" src="images/MM.png">
           </td>
-          <!-- Commented out for constant payment -->
-          <!-- <td id="status-waitforclaims" class="otherClaims">
-            0 of 3 other player(s) confirmed claims.
-          </td>      -->
-          <!-- <td id="status-getcandy" class="otherClaims">
-            &nbsp;
-          </td> -->
-          <!-- <td class="leftb borderRightDashed">
-          </td>   -->
+          <td class="leftb">
+
+          </td>
         </tr>
       </tbody>
     </table>
@@ -234,16 +219,9 @@
           <td class="leftb"><!-- Your claim -->
             <img class="candy_image" src="images/<%= @signals[0] %>.png">
           </td>
-          <!-- Commented out for constant payment -->          
-          <!-- <td class="otherClaims">
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">                       
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-          </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+            <td class="leftb">
+                <span>$0.90</span>
+            </td>
         </tr>
         <tr>
           <td>2</td><!-- Round number -->
@@ -253,16 +231,16 @@
           <td class="leftb"><!-- Your claim -->
             <img class="candy_image" src="images/<%= @signals[0] %>.png">
           </td>
-          <!-- Commented out for constant payment -->        
+          <!-- Commented out for constant payment -->
           <!-- <td class="otherClaims">
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">                       
+            <img class="candy_image" src="images/<%= @signals[0] %>.png">
             &nbsp;&nbsp;2
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;1
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+           <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>3</td><!-- Round number -->
@@ -278,9 +256,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>4</td><!-- Round number -->
@@ -296,9 +274,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;3
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.80</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>5</td><!-- Round number -->
@@ -314,9 +292,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>6</td><!-- Round number -->
@@ -332,9 +310,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;1
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>7</td><!-- Round number -->
@@ -350,9 +328,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>8</td><!-- Round number -->
@@ -368,9 +346,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;3
           </td>      -->
-          <!-- <td class="leftb">
+          <td class="leftb">
             <span>$0.90</span>
-          </td>   -->
+          </td>
         </tr>
         <tr>
           <td>9</td><!-- Round number -->
@@ -386,9 +364,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>10</td><!-- Round number -->
@@ -404,9 +382,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;1
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>11</td><!-- Round number -->
@@ -422,9 +400,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>12</td><!-- Round number -->
@@ -440,9 +418,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;1
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>13</td><!-- Round number -->
@@ -458,9 +436,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>14</td><!-- Round number -->
@@ -476,9 +454,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;3
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.80</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>15</td><!-- Round number -->
@@ -494,9 +472,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>16</td><!-- Round number -->
@@ -512,9 +490,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;1
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>17</td><!-- Round number -->
@@ -530,9 +508,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$1.50</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>18</td><!-- Round number -->
@@ -548,9 +526,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;3
           </td>      -->
-          <!-- <td class="leftb">
+          <td class="leftb">
             <span>$0.90</span>
-          </td>   -->
+          </td>
         </tr>
         <tr>
           <td>19</td><!-- Round number -->
@@ -566,9 +544,9 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;2
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
         <tr>
           <td>20</td><!-- Round number -->
@@ -584,19 +562,19 @@
             <img class="candy_image" src="images/<%= @signals[1] %>.png">
             &nbsp;&nbsp;1
           </td>      -->
-          <!-- <td class="leftb">
-            <span>$0.10</span>
-          </td>   -->
+          <td class="leftb">
+            <span>$0.90</span>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>   
    
-  <!-- Commented out for constant payment -->
-  <!-- <div id="int-avgreward">
-    <p id="r-zero">Average reward: $0.10</p>
-    <p id="r-endgame">Average reward: $0.81</p>
-  </div> -->
+
+  <div id="int-avgreward">
+    <p id="r-zero">Average reward: $0.90</p>
+    <p id="r-endgame">Average reward: $0.90</p>
+  </div>
 </div>
 
 

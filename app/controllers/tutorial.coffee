@@ -328,8 +328,8 @@ class Tutorial extends Spine.Controller
     # change dialog position
     if show is true
       $('div.tutorial').animate
-        top:  "+=240px"
-        left: "+=520px"
+        top:  "+=50px"
+        left: "+=820px"
         1000
     else
       $('div.tutorial').css(
@@ -357,7 +357,7 @@ class Tutorial extends Spine.Controller
       $('#int-task-step3-v2').hide()  
       $('#int-task-ruleTable').show() 
     
-    @changeTutorialPos show, '290px', '510px'
+    @changeTutorialPos show, '100px', '810px'
     @showSelectedCustom show, "#box-stepsonetwo", "65px", "-20px"
       
   uiThreeSignalShown: (show) =>
@@ -382,7 +382,7 @@ class Tutorial extends Spine.Controller
       $('#int-task-status-confirmclaim').hide()
       $('#int-task-status-waitforclaims').show()
   
-    @changeTutorialPos show, '290px', '510px'
+    @changeTutorialPos show, '100px', '810px'
     @showSelectedCustom(show, "#box-stepthree", "310px", "-20px")
     
   uiFourReportConfirmed: (show) =>
@@ -419,7 +419,7 @@ class Tutorial extends Spine.Controller
       'z-index': '3'
       )
     
-    @changeTutorialPos show, '290px', '510px'
+    @changeTutorialPos show, '100px', '810px'
     @showSelectedCustom show, "#box-onegame", '215px', '490px'
     
   uiFiveResult: (show) =>
@@ -439,7 +439,7 @@ class Tutorial extends Spine.Controller
       'z-index': '3'
       )
 
-    @changeTutorialPos show, '290px', '510px'
+    @changeTutorialPos show, '100px', '810px'
     @showSelectedCustom show, "#box-onegame", '155px', '490px'
     
   uiSixExpEnd: (show) =>
