@@ -157,10 +157,9 @@ class Quiz extends Spine.Controller
     ev.preventDefault()
 
     # for rendering
-    checkedValues = []
+    @checkedValues = []
     $('input:checkbox:checked').each ->
-      checkedValues.push $(this).val()
-    @checkedValues = checkedValues
+      @checkedValues.push $(this).val()
 
     # get total num of questions
     total= $('input:checkbox').length    
@@ -210,7 +209,7 @@ class Quiz extends Spine.Controller
       checkedIds.push $(this).attr('id')
     checkedIds.sort()
     
-    key = ['q14', 'q23', 'q34']
+    key = ['q14', 'q23']
     key.sort()
     
     correct = 0
@@ -243,13 +242,7 @@ class Quiz extends Spine.Controller
     else if qNum is 2
       qName = 'step2'
       key = ['q23']
-    else if qNum is 3
-      qName = 'step3'
-      key = ['q34']
-    else if qNum is 4
-      qName = 'interface1'
-      key = []
-      
+
     key.sort()      
     checkedIds = []
     $('input:checkbox[name=' + qName + ']:checked').each ->

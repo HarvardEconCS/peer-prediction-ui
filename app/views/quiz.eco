@@ -72,7 +72,7 @@
       <input type="checkbox" name="step3" id="q32" value="cannot_verify_claim" <% if @checkedValues and @checkedValues.indexOf("cannot_verify_claim") >= 0: %>checked<% end %>>
       <label for="q32" id="l32">&nbsp;&nbsp;The clown cannot verify whether your claim matches your candy.<br/></label>
 
-      <input type="checkbox" name="step3" id="q33" value="constant_payment" <% if @checkedValues and @checkedValues.indexOf("constant_payment") >= 0: %>checked<% end %>>
+      <input type="checkbox" name="step3" id="q33" value="claim_does_not_matter" <% if @checkedValues and @checkedValues.indexOf("claim_does_not_matter") >= 0: %>checked<% end %>>
       <label for="q33" id="l33">&nbsp;&nbsp;Regardless of your claim, your reward in each round is $0.90.<br/></label>
     </div>
     
