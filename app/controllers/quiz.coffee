@@ -157,9 +157,10 @@ class Quiz extends Spine.Controller
     ev.preventDefault()
 
     # for rendering
-    @checkedValues = []
+    checkedValues = []
     $('input:checkbox:checked').each ->
-      @checkedValues.push $(this).val()
+      checkedValues.push $(this).val()
+    @checkedValues = checkedValues
 
     # get total num of questions
     total= $('input:checkbox').length    
