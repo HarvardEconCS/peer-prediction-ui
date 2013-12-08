@@ -237,6 +237,7 @@ class Quiz extends Spine.Controller
   # for rendering quiz after fail    
   # check if a question is answered incorrectly
   isQuestionWrong: (qNum) ->
+    key = []
     if qNum is 1
       qName = 'step1'
       key = ['q14']
