@@ -33,9 +33,9 @@ class Lobby extends Spine.Controller
     @data = data
     @render()
     
-    if @data.joinenabled
-      audio = new Audio("sounds/44704__sandyrb__you-ready-here-we-go-01.wav")
-      audio.load()
-      audio.play()
+#    if @data.joinenabled
+#      audio = new Audio("sounds/44704__sandyrb__you-ready-here-we-go-01.wav")
+#      audio.load()
+#      audio.play()
     
 module.exports = Lobby
