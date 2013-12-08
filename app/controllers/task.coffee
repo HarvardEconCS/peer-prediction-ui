@@ -179,24 +179,14 @@ class Task extends Spine.Controller
   # player confirms report
   confirmReport: (e) =>
     e.preventDefault()
-    
-    # if the player hasn't revealed the candy yet, 
-    # since the choose claim button is not displayed before revealing candy,
-    # we don't need to check for this anymore.
-    # 
-    # if @revealSignal is false
-    #   alert("Please get a candy first before choosing your report!")
-    #   @selected = @defaultReport # reset selected report
-    #   @render()
-    #   return
-    
+
     # the player hasn't selected a report yet
     if @selected is @defaultReport
       @errorShown = true
       @taskErrorMsg.show()
       return
 
-    Network.sendReport(@selected)
+    Network.sendReport(@selected, @randomRadio)
 
     # set flag for rendering
     @reportChosen = true    

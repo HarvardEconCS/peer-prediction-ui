@@ -110,21 +110,24 @@ class MockServer
 
     # determine the rewards
     for name in @playerNames
-      theReport     = msg.result[name].report
+      msg.result[name].reward = 0.90
 
-      numOtherMMReports = 0
-      for playerName in @playerNames
-        if playerName isnt name and msg.result[playerName].report is "MM"
-          numOtherMMReports++
+#      theReport     = msg.result[name].report
+
+#      numOtherMMReports = 0
+#      for playerName in @playerNames
+#        if playerName isnt name and msg.result[playerName].report is "MM"
+#          numOtherMMReports++
       
-      msg.result[name].reward = @getPayment(theReport, numOtherMMReports)
+#      msg.result[name].reward = @getPayment(theReport, numOtherMMReports)
 
     # console.log msg
     msg
   
   # send report by current player to server
-  @sendReportToServer: (report) ->
+  @sendReportToServer: (report, randomRadio) ->
     @currReport = report
+#    console.log "server: random radio is #{randomRadio}"
     
     # update result object
     @results[@results.length - 1].result[@currName] = {}

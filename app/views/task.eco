@@ -17,6 +17,7 @@
 <% else: %>
   <div id="task-title">
     You are playing <span class="textBold"><%= Network.numRounds %> rounds</span> of the game.
+    Your bonus (= average reward) so far: <span class="textBold">$<% if @bonus: %><%= @bonus.toFixed(2) %><% else: %>0.00<% end %></span>.
   </div>
 
   <div id="task-status">
@@ -101,6 +102,7 @@
           <th>Round</th>
           <th class="leftb">Your candy</th>
           <th class="leftb">Your claim</th>
+          <th class="leftb">Your reward</th>
         </tr>
       </thead>
     </table>
@@ -130,6 +132,11 @@
                   <img class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
                 <% end %>
               </td>
+              <td class="leftb">
+                <% if game.result?[Network.currPlayerName]?.report?: %>
+                    $0.90
+                <% end %>
+              </td>
             </tr>
 
           <% else: %><!-- display previous records -->
@@ -142,6 +149,9 @@
               <td class="leftb"><!-- Your report -->
                 <img class="candy_image" src="images/<%= game.result[Network.currPlayerName].report %>.png">
               </td>
+              <td class="leftb">
+                $0.90
+              </td>
             </tr>
       
           <% end %>
@@ -149,6 +159,17 @@
       <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div id="avgreward">
+    <p>
+      Average reward:
+      <% if @bonus: %>
+        $<%= @bonus.toFixed(2) %>
+      <% else: %>
+        $0.00
+      <% end %>
+    </p>
   </div>
 
 <% end %>

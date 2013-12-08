@@ -6,17 +6,17 @@ class Quiz extends Spine.Controller
   className: 'quizCont'
 
   elements:
-    "img#screenshot" : "imgScreenshot"
+    "img#screenshot"        : "imgScreenshot"
     "span#quiz-step1"       : "spanStep1"
     "span#quiz-step3"       : "spanStep3"
-    "span#quiz-step4"       : "spanStep4"
+#    "span#quiz-step4"       : "spanStep4"
     "img#quiz-step1-prior"  : "imgStep1"
     "img#quiz-step3-example"    : "imgStep3"
     "div#quiz-step3-ruleTable"  : "divStep3RuleTable"
-    "img#quiz-int-prior"      : "imgIntPrior"
-    "div#quiz-int-ruleTable"  : "divIntRuleTable"
-    "div#quizErrorMsg" : "quizErrorMsg"
-    "a#quizSubmit" : "buttonSubmit"
+    "img#quiz-int-prior"        : "imgIntPrior"
+    "div#quiz-int-ruleTable"    : "divIntRuleTable"
+    "div#quizErrorMsg"  : "quizErrorMsg"
+    "a#quizSubmit"      : "buttonSubmit"
     
   events:
     "click a#quizSubmit"        : "submitClicked"
@@ -66,14 +66,14 @@ class Quiz extends Spine.Controller
     )
 
     # step 4 elements
-    imgIntPriorTop = @spanStep4.position().top + 147
-    @imgIntPrior.css(
-      'top'  : "#{imgIntPriorTop}px"
-    )
-    divIntRuleTableTop = @spanStep4.position().top + 370
-    @divIntRuleTable.css(
-      'top'  : "#{divIntRuleTableTop}px"
-    )
+#    imgIntPriorTop = @spanStep4.position().top + 147
+#    @imgIntPrior.css(
+#      'top'  : "#{imgIntPriorTop}px"
+#    )
+#    divIntRuleTableTop = @spanStep4.position().top + 370
+#    @divIntRuleTable.css(
+#      'top'  : "#{divIntRuleTableTop}px"
+#    )
     
     # fail message position
     failMsgTop = @buttonSubmit.position().top - 200

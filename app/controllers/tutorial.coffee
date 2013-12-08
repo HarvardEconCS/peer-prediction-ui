@@ -90,15 +90,6 @@ class Tutorial extends Spine.Controller
     @randomizeRuleTable('ruleTableTutorial')
     @randomizeRuleTable('int-task-ruleTable')
 
-  # navigate the tutorial using arrows
-  # keyPressed: (ev) =>
-  #   ev.preventDefault()
-  #   
-  #   if ev.which is 102
-  #     $(".tutorial .button.next:visible").click()
-  #   else if ev.which is 100
-  #     $(".tutorial .button.prev:visible").click()
-
   stepShow: ->
     @ele = $(".tutorial .#{@steps[@stepIndex][0]}")
     @ele.fadeIn()
