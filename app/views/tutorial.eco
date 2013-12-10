@@ -708,7 +708,7 @@
     <p>
       This is the game interface.<br/><br/>
       
-      <span class="textBold">Title</span> shows:  # of rounds, # of other players, your bonus so far, and <span class="textBold">status message for current round</span>.<br/><br/>  
+      <span class="textBold">Title</span> shows:  # of rounds, your bonus so far, and <span class="textBold">status message for current round</span>.<br/><br/>  
       <span class="textBold">Left side</span> shows steps of the current round.<br/><br/>
       <span class="textBold">Right side</span> displays results of previous rounds and status of current round. 
     </p>

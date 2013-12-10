@@ -21,6 +21,9 @@ class Lobby extends Spine.Controller
     
   render: ->
     @html require('views/lobby')(@)  
+
+    # cannot make scrolling to top work for some reason
+    $('html body').scrollTop = 0
     
   readyButtonClicked: (ev) =>
     ev.preventDefault()
