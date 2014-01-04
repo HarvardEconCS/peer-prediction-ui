@@ -3,18 +3,23 @@
 <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
 
-<h1>Welcome!</h1> 
+<h1>Welcome!</h1>
 
 <p>
-  This is part of a behavioral experiment, where you will play a game with other MTurk workers in real time for a number of rounds.<br/><br/>
-  
-  Before the game, you need to go through a tutorial and pass a quiz with at least 80% score.  You have 3 attempts to pass the quiz.  If you fail all 3 attempts, you must return the HIT.  After the game, you need to complete a short exit survey.<br/><br/>
-  
-  The base payment of this HIT is $1.00.  Your bonus will be the average reward you get during the multiple rounds of the game.<br/><br/>
-  
-  Your participation in this HIT is voluntary and you can quit at any time.  Please send your questions and comments to alice.gao11@gmail.com.<br/><br/>
+    This is part of a behavioral experiment.  In this task, you will play a game with other MTurk workers for 30 rounds.<br/><br/>
 
-  Click NEXT to continue.<br/><br/>
+    Before the game, you need to go through a tutorial and pass a quiz with at least 80% score. You have 3 attempts to
+    pass the quiz. If you fail all 3 attempts, you must return the HIT. After the game, you need to complete a short
+    exit survey.<br/><br/>
+
+    By completing this HIT, <span class="textBold">your base payment</span> will be <span class="textBold">$1.00</span>.
+    <span class="textBold">Your bonus payment</span> will be
+    <span class="textBold">your average reward during the 30 rounds of the game</span>.<br/><br/>
+
+    Your participation in this HIT is voluntary and you may quit at any time. Please send your questions and comments
+    to Alice Gao at alice.gao11@gmail.com.<br/><br/>
+
+    Click NEXT to continue.<br/><br/>
 </p>
 
 <a class="button" id="startExperiment" href="#">Next</a>
