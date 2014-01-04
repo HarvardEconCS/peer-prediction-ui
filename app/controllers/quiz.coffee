@@ -1,43 +1,43 @@
 Spine = require('spine')
- 
+
 Network = require 'network'
- 
+
 class Quiz extends Spine.Controller
   className: 'quizCont'
 
   elements:
-    "img#screenshot"        : "imgScreenshot"
+    "img#screenshot" : "imgScreenshot"
     "span#quiz-step1"       : "spanStep1"
     "span#quiz-step3"       : "spanStep3"
-#    "span#quiz-step4"       : "spanStep4"
+    "span#quiz-step4"       : "spanStep4"
     "img#quiz-step1-prior"  : "imgStep1"
     "img#quiz-step3-example"    : "imgStep3"
     "div#quiz-step3-ruleTable"  : "divStep3RuleTable"
-    "img#quiz-int-prior"        : "imgIntPrior"
-    "div#quiz-int-ruleTable"    : "divIntRuleTable"
-    "div#quizErrorMsg"  : "quizErrorMsg"
-    "a#quizSubmit"      : "buttonSubmit"
-    
+    "img#quiz-int-prior"      : "imgIntPrior"
+    "div#quiz-int-ruleTable"  : "divIntRuleTable"
+    "div#quizErrorMsg" : "quizErrorMsg"
+    "a#quizSubmit" : "buttonSubmit"
+
   events:
     "click a#quizSubmit"        : "submitClicked"
-    "click a#goBackToTutorial"  : "goBackToTutorialClicked" 
+    "click a#goBackToTutorial"  : "goBackToTutorialClicked"
     "click a#toggleScreenshot"  : "toggleScreenshotClicked"
     "click a#returnToQuiz"      : "returnToQuizClicked"
 
   constructor: ->
     super
-    
+
     @signals = ['MM', 'GB']
     # needs to be changed if actual payment rule changes.
-    @payRule = [[0.90, 0.10, 1.50, 0.80],[0.80, 1.50, 0.10, 0.90]]
-    
+    @payRule = [[0.10, 0.10, 1.50, 0.15],[0.15, 0.90, 0.15, 0.10]]
+
     @wrongAnswers   = undefined
     @checkedValues  = undefined
-    
+
   active: ->
     super
     @render()
-    
+
   render: ->
     @html require('views/quiz')(@)
 
@@ -66,38 +66,38 @@ class Quiz extends Spine.Controller
     )
 
     # step 4 elements
-#    imgIntPriorTop = @spanStep4.position().top + 147
-#    @imgIntPrior.css(
-#      'top'  : "#{imgIntPriorTop}px"
-#    )
-#    divIntRuleTableTop = @spanStep4.position().top + 370
-#    @divIntRuleTable.css(
-#      'top'  : "#{divIntRuleTableTop}px"
-#    )
-    
+    imgIntPriorTop = @spanStep4.position().top + 147
+    @imgIntPrior.css(
+      'top'  : "#{imgIntPriorTop}px"
+    )
+    divIntRuleTableTop = @spanStep4.position().top + 370
+    @divIntRuleTable.css(
+      'top'  : "#{divIntRuleTableTop}px"
+    )
+
     # fail message position
     failMsgTop = @buttonSubmit.position().top - 200
     @quizErrorMsg.css(
       'top'  : "#{failMsgTop}px"
     )
-    
+
   showQuizFailedMsg: ->
     @quizErrorMsg.show()
-  
+
   returnToQuizClicked: (ev) =>
     ev.preventDefault()
     @quizErrorMsg.hide()
     @render()
-  
+
   randomizeRuleTable: (divId) ->
     if Network.payRandList is undefined
       Network.randomizePayList()
-    
+
     trList = []
     tbody= $('div#' + divId).find('tbody')
     if tbody.length is 0
       return
-    
+
     rows = tbody.children()
     firstRow = rows[0]
     secondRow = rows[1]
@@ -106,37 +106,37 @@ class Quiz extends Spine.Controller
     len = rows.length
     for num in [2..len]
       trList.push rows[num]
-    
+
     # randomize row order
     newTrList = []
     for index in Network.payRandList[1]
       newTrList.push(trList[index])
-    
+
     # randomize column order
     newTrList3 = [secondRow].concat newTrList
-    
+
     for row in newTrList3
       tdList = $(row).children()
-      
+
       newTdList = []
       for index in Network.payRandList[0]
         newTdList.push(tdList[index])
-        
+
       tdLen = tdList.length
       for num in [(Network.payRandList[0].length)..tdLen]
         newTdList.push(tdList[num])
-        
+
       $(row).contents().remove()
       for td in newTdList
         $(row).append(td)
-        
+
     # put back randomized rows
     tbody.contents().remove()
     tbody.append(firstRow)
     for tr in newTrList3
       tbody.append(tr)
 
-  
+
   toggleScreenshotClicked: (ev) =>
     ev.preventDefault()
     @imgScreenshot.slideToggle("slow")
@@ -148,12 +148,12 @@ class Quiz extends Spine.Controller
         'top' : "#{failMsgTop}px"
       )
     )
-      
+
   goBackToTutorialClicked: (ev) =>
     ev.preventDefault()
     @navigate "/tutorial"
-  
-  submitClicked: (ev) => 
+
+  submitClicked: (ev) =>
     ev.preventDefault()
 
     # for rendering
@@ -163,15 +163,15 @@ class Quiz extends Spine.Controller
     @checkedValues = checkedValues
 
     # get total num of questions
-    total= $('input:checkbox').length    
+    total= $('input:checkbox').length
     # get num correct answers
     correct = @getNumCorrectAnswers()
     # console.log "score: #{correct}/#{total}"
-    
+
     # get object to store quiz answers
     quizAnsObj = @getQuizAnsObj()
     # console.log "quiz answer object #{JSON.stringify(quizAnsObj)}"
-    
+
     # get list of wrong answers
     @wrongAnswers = @listWrongQuestions()
 
@@ -182,37 +182,37 @@ class Quiz extends Spine.Controller
       # For testing convenience.  TAKE OUT
       # correct = 14
       # total = 14
-      
+
       # console.log "sending quiz results to server"
       Network.sendQuizInfo(correct, total, quizAnsObj)
-    
+
   getQuizAnsObj: ->
     ansObj = {}
-    
-    $('input:checkbox').each -> 
+
+    $('input:checkbox').each ->
       n = $(this).attr('name')
       i = $(this).attr('id')
       if not ansObj[n]?
         ansObj[n] = {}
       if not ansObj[n][i]?
         ansObj[n][i] = {}
-        
+
     for name in Object.keys(ansObj)
       for id in Object.keys(ansObj[name])
         ansObj[name][id]["value"] = $('input:checkbox#'+id).val()
-        ansObj[name][id].checked = $('input:checkbox#'+id).is(':checked')       
+        ansObj[name][id].checked = $('input:checkbox#'+id).is(':checked')
     ansObj
-  
+
   getNumCorrectAnswers: ->
     # ids of checked choices
     checkedIds = []
     $('input:checkbox:checked').each ->
       checkedIds.push $(this).attr('id')
     checkedIds.sort()
-    
-    key = ['q14', 'q23']
+
+    key = ['q14', 'q23', 'q34']
     key.sort()
-    
+
     correct = 0
     for checkedId in checkedIds
       if key.indexOf(checkedId) is -1
@@ -222,9 +222,9 @@ class Quiz extends Spine.Controller
       if checkedIds.indexOf(eachKey) is -1
         # wrong choice is not checked
         correct++
-        
+
     return correct
-    
+
   # for rendering quiz after fail
   # get list of questions answered incorrectly
   listWrongQuestions: ->
@@ -233,37 +233,42 @@ class Quiz extends Spine.Controller
       if @isQuestionWrong(i) is true
         list.push i
     return list
-    
-  # for rendering quiz after fail    
+
+  # for rendering quiz after fail
   # check if a question is answered incorrectly
   isQuestionWrong: (qNum) ->
-    key = []
     if qNum is 1
       qName = 'step1'
       key = ['q14']
     else if qNum is 2
       qName = 'step2'
       key = ['q23']
+    else if qNum is 3
+      qName = 'step3'
+      key = ['q34']
+    else if qNum is 4
+      qName = 'interface1'
+      key = []
 
-    key.sort()      
+    key.sort()
     checkedIds = []
     $('input:checkbox[name=' + qName + ']:checked').each ->
       checkedIds.push $(this).attr('id')
     checkedIds.sort()
-      
+
     correct = 0
     for checkedId in checkedIds
       if key.indexOf(checkedId) is -1
         # checked choice is correct
         correct++
-        
+
     for eachKey in key
       if checkedIds.indexOf(eachKey) is -1
         # wrong choice is not checked
         correct++
 
     total = $('input:checkbox[name=' + qName + ']').length
-    if (correct < total)      
+    if (correct < total)
       return true
     else
       return false
@@ -276,31 +281,31 @@ class Quiz extends Spine.Controller
     for num in [1..len]
       inputList.push($('input:checkbox#q'+qNum+num))
       labelList.push($('label#l'+qNum+num))
-    
+
     newInputList = []
     newLabelList = []
     randList = @randomizeList(len)
     for index in randList
       newInputList.push(inputList[index])
       newLabelList.push(labelList[index])
-    
+
     choices.contents().remove()
     for input, i in newInputList
       choices.append(input)
       choices.append(newLabelList[i])
-    
+
   randomizeList: (len) ->
     oldList = (num for num in [0..(len-1)])
     num = len
     newList = []
-    
+
     while num > 0
       rand = Math.floor(Math.random() * num)
       newList.push(oldList[rand])
       oldList.splice(rand, 1)
       num = num - 1
-    
+
     newList
-      
-    
+
+
 module.exports = Quiz
