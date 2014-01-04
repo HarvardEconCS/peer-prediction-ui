@@ -32,14 +32,14 @@ div.tutorial .step
   border 6px outset #B8E9B8
   padding 10px 4px 2px 4px
   background-color #E4F7E4
-  
+
 div#ruleTableTutorial
   position absolute
   width 250px
-  z-index 5 
-    
-///////////////////////////////////////    
-// Interface of game    
+  z-index 5
+
+///////////////////////////////////////
+// Interface of game
 
 div#int-finishmsg
   position absolute
@@ -50,25 +50,25 @@ div#int-finishmsg
 down  = 0px
 right = 0px
 
-intTaskTitleTop = 10px + down 
+intTaskTitleTop = 10px + down
 intTaskTitleLeft = 0px + right
-div#int-task-title 
+div#int-task-title
   position   absolute
-  top        intTaskTitleTop  
+  top        intTaskTitleTop
   left       intTaskTitleLeft
   width      1024px
   height     25px
-  font-size  17px    
-   
+  font-size  17px
+
 intTaskStatusTop = 53px + down
 div.statusmessage
   position   absolute
-  top        intTaskStatusTop   
+  top        intTaskStatusTop
   left       200px + right
   width      1024px
   height     25px
-  font-size  19px     
-        
+  font-size  19px
+
 intRoundIndexTop    = 77px + down
 intRoundStepsLeft   = 0px + right
 intRoundStepsWidth  = 450px
@@ -79,10 +79,10 @@ div.roundnumber
   left      intRoundStepsLeft
   width     intRoundStepsWidth
   height    intRoundIndexHeight
-  font-size 18px   
-    
+  font-size 18px
+
 intStep1Height  = 120px
-intStep1Top     = intRoundIndexTop + intRoundIndexHeight 
+intStep1Top     = intRoundIndexTop + intRoundIndexHeight
 div#int-task-step1
   position    absolute
   top         intStep1Top
@@ -92,44 +92,44 @@ div#int-task-step1
   border-top  2px solid #6678b1
   font-size   18px
 div#int-task-step1pic
-  z-index   0 
+  z-index   0
   position  absolute
   top       intStep1Top + 25px
   left      25px
-  width     250px    
+  width     250px
 
 intStep2Height = 100px
 intStep2Top = intStep1Top + intStep1Height
 div.step2
   position   absolute
-  top        intStep2Top 
-  left       intRoundStepsLeft   
-  width      intRoundStepsWidth  
-  height     intStep2Height 
+  top        intStep2Top
+  left       intRoundStepsLeft
+  width      intRoundStepsWidth
+  height     intStep2Height
   border-top 2px solid #6678b1
   font-size  18px
 
-intStep3Height = 110px  
-intStep3Top = intStep2Top + intStep2Height 
+intStep3Height = 110px
+intStep3Top = intStep2Top + intStep2Height
 div.step3
   position   absolute
   top        intStep3Top
   left       intRoundStepsLeft
   width      intRoundStepsWidth
-  height     intStep3Height  
+  height     intStep3Height
   border-top 2px solid #6678b1
   font-size  18px
-    
+
 intRuleTableTop = 300px + down
 intRuleTableLeft = 230px + right
 div#int-task-ruleTable
   z-index   0
   position  absolute
   top       intStep3Top + 20px
-  left      intRuleTableLeft 
+  left      intRuleTableLeft
   width     250px
 
-    
+
 intResultTop  = 80px + down
 intResultLeft = 500px + right
 div#int-result-header
@@ -152,8 +152,8 @@ div#int-result-header th
 div#int-result-header th.leftb
   border-left 2px solid #6678b1
 div#int-result-header th.otherClaims
-  width 200px    
-    
+  width 200px
+
 intResultHeaderHeight = 90px
 intResultBodyTop      = intResultTop + intResultHeaderHeight
 intResultBodyHeight   = 300px
@@ -164,7 +164,7 @@ div#int-result-body-v2
   top         intResultBodyTop
   left        intResultLeft
   height      intResultBodyHeight
-  overflow-y  scroll    
+  overflow-y  scroll
 div.resultbody
   table-layout fixed
 div.resultbody td
@@ -177,12 +177,12 @@ div.resultbody td
 div.resultbody td.leftb
   border-left   2px solid #6678b1
 div.resultbody tr.borderAroundDashed td
-  border-top    2px black dashed 
-  border-bottom 2px black dashed 
+  border-top    2px black dashed
+  border-bottom 2px black dashed
 div.resultbody td.borderLeftDashed
-  border-left   2px black dashed 
+  border-left   2px black dashed
 div.resultbody td.borderRightDashed
-  border-right  2px black dashed 
+  border-right  2px black dashed
 div.resultbody td.otherClaims
   font-size 20px
   width     200px
@@ -190,18 +190,18 @@ div.resultbody td.otherClaims
 div#int-avgreward
   position    absolute
   top         intResultBodyTop + intResultBodyHeight
-  left        intResultLeft + 55px
+  left        intResultLeft + 260px
   height      50px
   font-size   20px
   font-weight bold
 
-    
+
 img#eg-MM-MM
 img#eg-MM-GB
 img#eg-GB-MM
   z-index 5
   position absolute
-    
+
 a.help:link,a.help:visited,a.help:hover
   text-decoration none
   color #000000
@@ -209,9 +209,9 @@ a.help:link,a.help:visited,a.help:hover
 a.help
   cursor help
 
-span.textUnderline  
-  text-decoration underline 
+span.textUnderline
+  text-decoration underline
 
 li
   text-align left
-  
+

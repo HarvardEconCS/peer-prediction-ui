@@ -1,7 +1,7 @@
 Game    = require 'models/game'
 
 class MockServer
-  
+
   # @signalH    = "MM"
   # @signalL    = "GB"
   @signalList = ["MM", "GB"]
@@ -18,9 +18,9 @@ class MockServer
 
   @chooseRandomly: (list) ->
     i = Math.floor(Math.random() * list.length)
-    list[i]  
-  
-  @getGeneralInfo: -> 
+    list[i]
+
+  @getGeneralInfo: ->
 
     # choose house
     @chosenHouse = 0
@@ -28,28 +28,29 @@ class MockServer
     if numHouse > 0.49
       @chosenHouse = 1
 
+
     for i in [0..(@nPlayers - 1)]
       @playerNames.push "Player #{i}"
-    
+
     rndIndex = Math.floor(Math.random() * @playerNames.length)
     @currName = @playerNames[rndIndex]
 
     # Message received from server
     # format: --------------------
     #       status:     startRound
-    #       numPlayers: 
-    #       playerNames: 
-    #       yourName: 
-    #       numRounds: 
+    #       numPlayers:
+    #       playerNames:
+    #       yourName:
+    #       numRounds:
     #       payments:
-    #       signalList: 
+    #       signalList:
     # -------------------------
-    msg = 
+    msg =
       "status"      : "startRound"
       "numPlayers"  : @nPlayers
       "numRounds"   : @nRounds
       "playerNames" : @playerNames
-      "yourName"    : @currName 
+      "yourName"    : @currName
       "payments"    : @payAmounts
       "signalList"  : @signalList
 
@@ -66,7 +67,7 @@ class MockServer
       @currSignal= "GB"
 
     # create result object
-    game = 
+    game =
       'signal': @currSignal
       'reportConfirmed': {}
       'result': {}
@@ -74,71 +75,77 @@ class MockServer
       game.reportConfirmed[name] = false
     @results.push game
     # console.log "results are #{JSON.stringify(@results)}}"
-    
+
     # Message received from server
     # format: -----------------
     #     status: signal
-    #     signal: 
-    # -------------------------    
-    msg = 
+    #     signal:
+    # -------------------------
+    msg =
       "status:" : "signal"
       "signal"  : @currSignal
-    
+
   @getResult: ->
     # Message received from server
     # format: --------------
     #     status: results
-    #     result: 
+    #     result:
     # ----------------------
-    msg = 
+    msg =
       "status": "results"
       "result": {}
-      
+
     # We should have the reports already
     for name in @playerNames
       msg.result[name] = {}
       if name is @currName
         msg.result[@currName].report = @currReport
-      else 
+      else
         @otherReport= "MM"
         numCandy = Math.random()
         if numCandy > @houses[@chosenHouse]
           @otherReport= "GB"
         msg.result[name].report = @otherReport
 
+    # this is getting the reference players
+    # for name, i in @playerNames
+    #   refIndex = Math.floor(Math.random() * (@nPlayers - 1))
+    #   if i <= refIndex
+    #     refIndex = refIndex  + 1
+    #   msg.result[name].refPlayer = @playerNames[refIndex]
+
     # determine the rewards
     for name in @playerNames
-      msg.result[name].reward = 0.90
+      theReport     = msg.result[name].report
+      # theRefPlayer  = msg.result[name].refPlayer
+      # theRefReport  = msg.result[theRefPlayer].report
 
-#      theReport     = msg.result[name].report
+      numOtherMMReports = 0
+      for playerName in @playerNames
+        if playerName isnt name and msg.result[playerName].report is "MM"
+          numOtherMMReports++
 
-#      numOtherMMReports = 0
-#      for playerName in @playerNames
-#        if playerName isnt name and msg.result[playerName].report is "MM"
-#          numOtherMMReports++
-      
-#      msg.result[name].reward = @getPayment(theReport, numOtherMMReports)
+      msg.result[name].reward = @getPayment(theReport, numOtherMMReports)
 
     # console.log msg
     msg
-  
+
   # send report by current player to server
-  @sendReportToServer: (report, randomRadio) ->
+  @sendReportToServer: (report) ->
     @currReport = report
-#    console.log "server: random radio is #{randomRadio}"
-    
+
     # update result object
     @results[@results.length - 1].result[@currName] = {}
     @results[@results.length - 1].result[@currName].report = report
-    # console.log "results are #{JSON.stringify(@results)}}"
-  
+  # console.log "results are #{JSON.stringify(@results)}}"
+
   @getConfirmReport: ->
-    
+
     @game = Game.last()
     playerNotConfirmed = []
     for name in Object.keys(@game.reportConfirmed)
       if name is @currName and @currReport is null
-      else 
+      else
         if @game.reportConfirmed[name] is false
           playerNotConfirmed.push name
 
@@ -149,7 +156,7 @@ class MockServer
     # Message received from the server
     # format: -------------------
     #    status: confirmReport
-    #    playerName: 
+    #    playerName:
     # ---------------------------
     rnd = Math.floor(Math.random() * playerNotConfirmed.length)
     reporter = playerNotConfirmed[rnd]
@@ -158,13 +165,13 @@ class MockServer
     @results[@results.length - 1].reportConfirmed[reporter] = true
     # console.log "results are #{JSON.stringify(@results)}}"
 
-    msg = 
+    msg =
       "status"      : "confirmReport"
-      "playerName"  : reporter 
+      "playerName"  : reporter
 
 
   @getPayment: (report, numOtherMMReports) ->
     reportIndex  = @signalList.indexOf(report)
-    return @payAmounts[reportIndex][numOtherMMReports]    
-  
+    return @payAmounts[reportIndex][numOtherMMReports]
+
 module.exports = MockServer

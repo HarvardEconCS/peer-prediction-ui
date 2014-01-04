@@ -5,12 +5,12 @@ Codec       = require 'turkserver-js-client/src/codec'
 
 class Network
   @cookieName = "peer.prediction.exp"
-  
+
   @unconfirmMsg:  "questionmarkred"
-  
+
   @fakeServer      = undefined
   @intervalId      = null
-  
+
   @taskCont        = undefined
   @mainCont        = undefined
 
@@ -21,13 +21,13 @@ class Network
   @numPlayers      = undefined
   @numRounds       = undefined
   @playerNames     = undefined
-  
+
   @showTutorial = false
   @showRecap = false
   @showLobby  = false
 
   @experimentStarted = false
-  
+
   @payRandList = undefined
 
   @init: ->
@@ -35,53 +35,53 @@ class Network
     TSClient.QuizFailed   @quizFail
     TSClient.EnterLobby   @enterLobby
     TSClient.ErrorMessage @rcvErrorMsg
-    
+
     TSClient.LobbyMessage @getLobbyUpdates
-    
+
     TSClient.StartExperiment  @startExperiment
     TSClient.StartRound (round) -> console.log("@StartRound" + round)
     TSClient.FinishExperiment @finishExperiment
-    TSClient.ServiceMessage   @getMessage 
-    
+    TSClient.ServiceMessage   @getMessage
+
     TSClient.init(@cookieName, "")
-    
+
   @randomizePayList: ->
     # @payRandList = @randomizeList(4)
     @payRandList = [@randomizeCol(), @randomizeRow()]
-    
+
   @randomizeCol: ->
     rand = Math.floor(Math.random() * 2)
     if rand is 0
       return [0,1]
-    else 
+    else
       return [1,0]
-      
+
   @randomizeRow: ->
     rand = Math.floor(Math.random() * 2)
     if rand is 0
       return [0,1,2,3]
-    else 
+    else
       return [3,2,1,0]
-    
+
   @randomizeList: (len) ->
     oldList = (num for num in [0..(len-1)])
     num = len
     newList = []
-    
+
     while num > 0
       rand = Math.floor(Math.random() * num)
       newList.push(oldList[rand])
       oldList.splice(rand, 1)
       num = num - 1
-    
+
     newList
-    
+
   @setTaskController: (cont) ->
     @taskCont = cont
 
   @setMainController: (cont) ->
     @mainCont = cont
-    
+
   @getClientId: ->
     TSClient.clientId
 
@@ -101,29 +101,29 @@ class Network
   @quizFail: =>
     console.log "@QuizFailed"
     @mainCont.quiz.showQuizFailedMsg()
-      
+
   @enterLobby: =>
     console.log "@EnterLobby"
     @showLobby = true
     @mainCont.navigate '/lobby'
-  
+
   @updateLobbyStatus: (status) ->
     TSClient.updateLobbyStatus status
 
   @startExperiment: =>
     console.log "@StartExperiment"
-    Game.init()    
-    
+    Game.init()
+
     if not @fakeServer
       @mainCont.navigate '/task'
     else
-      setTimeout (=> 
-        @getGeneralInfo MockServer.getGeneralInfo() 
+      setTimeout (=>
+        @getGeneralInfo MockServer.getGeneralInfo()
       ), 2000
 
   @finishExperiment: =>
     console.log "@FinishExperiment"
-    
+
     @taskCont.finish()
 
   @rcvErrorMsg: (status) =>
@@ -131,28 +131,28 @@ class Network
     msg = ""
     switch status
       when Codec.status_failsauce
-        msg = "Sorry!  You have failed the quiz 3 times.  
-               You cannot work on our HITs anymore. Please return this HIT."
+        msg = "Sorry!  You have failed the quiz 3 times.
+                       You cannot work on our HITs anymore. Please return this HIT."
       when "status.killed"
-        msg = "Sorry!  You disconnected from this HIT for too long.  
-               You cannot work on this HIT anymore.  Please return this HIT."
+        msg = "Sorry!  You disconnected from this HIT for too long.
+                       You cannot work on this HIT anymore.  Please return this HIT."
       when Codec.status_simultaneoussessions
-        msg = "It appears that you have already accepted another HIT for this game. 
-               Please return this HIT and submit your other HIT. 
-               Look for your other HIT in your dashboard."
+        msg = "It appears that you have already accepted another HIT for this game.
+                       Please return this HIT and submit your other HIT.
+                       Look for your other HIT in your dashboard."
       when Codec.status_sessionoverlap
-        msg = "This HIT was returned by another worker who has already started playing the game, 
-               so it cannot be reused. Please return the HIT and accept another HIT from the group. "        
+        msg = "This HIT was returned by another worker who has already started playing the game,
+                       so it cannot be reused. Please return the HIT and accept another HIT from the group. "
       when Codec.status_toomanysessions
-        msg = "You can do at most 1 of our HITs.  It appears that you have reached this limit.  
-               Please return this HIT."
+        msg = "You can do at most 1 of our HITs.  It appears that you have reached this limit.
+                       Please return this HIT."
       when Codec.status_expfinished
         @mainCont.navigate '/exitsurvey'
         return
       when Codec.status_batchfinished
-        msg = "All games for this batch have been completed.  
-               We will notify you if we post more HITs in the future.
-               Please return this HIT."
+        msg = "All games for this batch have been completed.
+                       We will notify you if we post more HITs in the future.
+                       Please return this HIT."
     @mainCont.errormessage.setMessage msg
     @mainCont.navigate '/errormessage'
     @mainCont.errormessage.render()
@@ -174,33 +174,33 @@ class Network
         @mainCont.navigate '/exitsurvey'
       when "killed"
         @rcvErrorMsg "status.killed"
-  
+
   @getResendState: (receivedMsg) ->
     console.log "@ReconnectWithState:#{JSON.stringify(receivedMsg)}"
     return if @numPlayers?
-    
+
     @signalList      = receivedMsg.signalList
     @payAmounts      = receivedMsg.payments
     @numPlayers      = receivedMsg.numPlayers
-    @numRounds       = receivedMsg.numRounds 
+    @numRounds       = receivedMsg.numRounds
     @playerNames     = receivedMsg.playerNames
     @currPlayerName  = receivedMsg.yourName
-    
+
     for res in receivedMsg.existingResults
       resultObj = {}
       for name in @playerNames
         resultObj[name] = {'report' : res[name].report}
         if name is @currPlayerName
           resultObj[name].reward = parseFloat(res[name].reward)
-      signalZeroCount = 0 
+      signalZeroCount = 0
       for name in @playerNames
         if name isnt @currPlayerName and res[name].report is @signalList[0]
           signalZeroCount = signalZeroCount + 1
-      gameState = 
+      gameState =
         'result'          : resultObj
         'currPlayerSignal': res[@currPlayerName].signal
-        'numSignalZero'   : signalZeroCount 
-      Game.saveGame(gameState)  
+        'numSignalZero'   : signalZeroCount
+      Game.saveGame(gameState)
 
     # save information of last game
     currReportConfirmed = receivedMsg.workersConfirmed.indexOf(@currPlayerName) >= 0
@@ -208,7 +208,7 @@ class Network
     numOtherReportsConfirmed = receivedMsg.workersConfirmed.length
     if currReportConfirmed is true
       numOtherReportsConfirmed = numOtherReportsConfirmed - 1
-      
+
     reportsConfirmed = {}
     for name in @playerNames
       if receivedMsg.workersConfirmed.indexOf(name) >= 0
@@ -224,56 +224,56 @@ class Network
     resultObj = {}
     if currReportConfirmed is true
       resultObj[@currPlayerName] = {'report' : receivedMsg.currPlayerReport}
-     
-    lastGame = 
+
+    lastGame =
       'reportConfirmed'  : reportsConfirmed
-      'result'           : resultObj 
+      'result'           : resultObj
       'currPlayerSignal' : receivedMsg.currPlayerSignal
-      'numOtherReportsConfirmed' : numOtherReportsConfirmed 
+      'numOtherReportsConfirmed' : numOtherReportsConfirmed
     Game.saveGame(lastGame)
-    
+
     # update ui
     @mainCont.navigate '/task'
     @taskCont.render()
 
-  @getGeneralInfo: (receivedMsg) ->  
+  @getGeneralInfo: (receivedMsg) ->
     return unless receivedMsg
-    
+
     @signalList      = receivedMsg.signalList
     @payAmounts      = receivedMsg.payments
     @numPlayers      = receivedMsg.numPlayers
-    @numRounds       = receivedMsg.numRounds 
+    @numRounds       = receivedMsg.numRounds
     @playerNames     = receivedMsg.playerNames
     @currPlayerName  = receivedMsg.yourName
-    
+
     # update ui
     @taskCont.render()
 
     # mockserver: get signal for the first round
     if @fakeServer
-      setTimeout (=> 
+      setTimeout (=>
         @getSignal MockServer.getRoundSignal()
       ), 100
 
-  @getSignal: (receivedMsg) ->    
+  @getSignal: (receivedMsg) ->
     return unless receivedMsg
-    
+
     # save new game
     reportConfirmed = {}
     for name in @playerNames
-      reportConfirmed[name] = false 
+      reportConfirmed[name] = false
     gameState =
       "reportConfirmed":          reportConfirmed
-      "currPlayerSignal":         receivedMsg.signal 
+      "currPlayerSignal":         receivedMsg.signal
       "numOtherReportsConfirmed": 0
     @taskCont.gotGameState(gameState)
 
     # mockserver: set up call back for report confirmations
     if @fakeServer
-      @intervalId = setInterval (=> 
+      @intervalId = setInterval (=>
         @getReportConfirmation MockServer.getConfirmReport()
       ), 3000
-  
+
   @getReportConfirmation: (receivedMsg) ->
     return unless receivedMsg
 
@@ -287,7 +287,7 @@ class Network
     else
       @game.numOtherReportsConfirmed += 1
     @game.save()
- 
+
     # update ui
     @taskCont.render()
 
@@ -296,17 +296,20 @@ class Network
       @game = Game.last()
       if @game.numOtherReportsConfirmed is (@numPlayers - 1) and @game.currPlayerReport?
         clearInterval(@intervalId)
-        @getGameResult(MockServer.getResult())        
-  
+        @getGameResult(MockServer.getResult())
+
   @getGameResult: (receivedMsg) ->
     return unless receivedMsg
-    
+
     # save game result
     @game = Game.last()
     @game.result ?= {}
     for name in @playerNames
       @game.result[name] ?= {}
       @game.result[name].report     = receivedMsg.result[name].report
+      # theRefPlayer = receivedMsg.result[name].refPlayer
+      # @game.result[name].refPlayer  = theRefPlayer
+      # @game.result[name].refReport  = receivedMsg.result[theRefPlayer].report
       @game.result[name].reward     = parseFloat(receivedMsg.result[name].reward)
     signalZeroCount = 0 # count number of people who reported signalList[0]
     for name in @playerNames
@@ -325,20 +328,18 @@ class Network
         @taskCont.finish()
       else
         # get signal for next game
-        setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )    
-    
-  @sendReport: (report, randomRadio) ->
+        setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )
+
+  @sendReport: (report) ->
     @game = Game.last()
     @game.currPlayerReport = report if @game
     @game.save()
-    
+
     if not @fakeServer
       TSClient.sendExperimentService
         "report": report
-        "randomRadio": randomRadio
-    else 
-      MockServer.sendReportToServer(report, randomRadio)
-
+    else
+      MockServer.sendReportToServer(report)
 
   @sendQuizInfo: (correct, total, checkedChoices) ->
     return if @fakeServer is true

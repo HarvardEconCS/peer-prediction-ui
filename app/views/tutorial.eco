@@ -1,783 +1,785 @@
 <% Network = require('network') %>
 <% if Network.preview is true: %>
-    <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
+<p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
+
+
 
 <!-- Pictures for explaining steps of the game -->
 <img class="image" id="pic-prior"         src="images/pic-prior.png">
 <img class="image" id="step1"             src="images/step1 copy.png">
 <img class="image" id="step2"             src="images/step2 copy.png">
-<img class="image" id="step3"             src="images/step3_constant.png">
-<img class="image" id="steps-recap"       src="images/steps-recap_constant.png">
+<img class="image" id="step3"             src="images/step3.png">
+<img class="image" id="steps-recap"       src="images/steps-recap.png">
 <img class="image" id="eg-MM-MM" src="images/eg-MM-MM.png">
 <img class="image" id="eg-MM-GB" src="images/eg-MM-GB.png">
 <img class="image" id="eg-GB-MM" src="images/eg-GB-MM.png">
 
 <!-- Pictures for explaining interface of the game -->
-<img class="image" id="box-onegame"     src="images/box-onegame_constant.png">
+<img class="image" id="box-onegame"     src="images/box-onegame.png">
 <img class="image" id="box-stepsonetwo" src="images/box-stepsonetwo.png">
 <img class="image" id="box-stepthree"   src="images/box-stepthree.png">
 
 
 <div id="interfaceTutorial">
 
-    <div id="int-finishmsg">
-        <p>
-            Thank you for playing!
+<div id="int-finishmsg">
+    <p>
+        Thank you for playing!
 
-            <br/>
-            You will be paid <span class="textBold">$1.55</span> (=$1.00 + $0.55).<br/>
-        </p>
-        <a class="button textBold fake" href="#">Go to exit survey!</a>
-    </div>
+        <br/>
+        You will be paid <span class="textBold">$1.55</span> (=$1.00 + $0.55).<br/>
+    </p>
+    <a class="button textBold fake" href="#">Go to exit survey!</a>
+</div>
 
-    <div id="int-task-title">
-        You are playing <span class="textBold">30 rounds</span> of the game with
-        <span class="textBold">3 other players</span>.
-        Your bonus (=average reward) so far: <span class="textBold">$0.10</span>.
-    </div>
+<div id="int-task-title">
+    You are playing <span class="textBold">30 rounds</span> of the game with
+    <span class="textBold">3 other players</span>.
+    Your bonus (=average reward) so far: <span class="textBold">$0.10</span>.
+</div>
 
-    <div id="int-task-status-getcandy" class="statusmessage">
-        Current Status: ***
-        <span class="textBold">Please get your candy!</span>
-        ***
-    </div>
+<div id="int-task-status-getcandy" class="statusmessage">
+    Current Status: ***
+    <span class="textBold">Please get your candy!</span>
+    ***
+</div>
 
-    <div id="int-task-status-confirmclaim" class="statusmessage">
-        Current Status: ***
-        <span class="textBold">Please confirm your claim!</span>
-        ***
-    </div>
+<div id="int-task-status-confirmclaim" class="statusmessage">
+    Current Status: ***
+    <span class="textBold">Please confirm your claim!</span>
+    ***
+</div>
 
-    <div id="int-task-status-waitforclaims" class="statusmessage">
-        Current Status: ***
-        Waiting for 3 other player(s) to confirm claim(s).
-        ***
-    </div>
+<div id="int-task-status-waitforclaims" class="statusmessage">
+    Current Status: ***
+    Waiting for 3 other player(s) to confirm claim(s).
+    ***
+</div>
 
-    <div id="int-task-roundIndex" class="roundnumber">
-        Current Round is <span class="textBold">#2</span>:
-    </div>
+<div id="int-task-roundIndex" class="roundnumber">
+    Current Round is <span class="textBold">#2</span>:
+</div>
 
-    <div id="int-task-step1">
-        1. &nbsp;&nbsp;A house has been randomly chosen for this round. <br/>
-    </div>
+<div id="int-task-step1">
+    1. &nbsp;&nbsp;A house has been randomly chosen for this round. <br/>
+</div>
 
-    <div id="int-task-step1pic">
-        <img style="height: 95px;" src="images/pic-prior.png">
-    </div>
+<div id="int-task-step1pic">
+    <img style="height: 95px;" src="images/pic-prior.png">
+</div>
 
-    <div id="int-task-step2-v1" class="step2">
-        2. Get a random candy from the chosen house.<br/><br/>
+<div id="int-task-step2-v1" class="step2">
+    2. Get a random candy from the chosen house.<br/><br/>
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a class="button textBold fake" href="#">Get your candy!</a>
         </span>
-    </div>
+</div>
 
-    <div id="int-task-step2-v2" class="step2">
-        2. Get a random candy from the chosen house.<br/><br/>
+<div id="int-task-step2-v2" class="step2">
+    2. Get a random candy from the chosen house.<br/><br/>
     <span>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
       <img class="candy_image" src="images/MM.png">
     </span>
+</div>
+
+<div id="int-task-step3-v1" class="step3">
+    3. Choose your claim.<br/><br/>
+    <div id="claimchoices">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="reportChoices" value="<%= @signals[0] %>" disabled>
+        <label><img class="candy_image" id="imgFirstRadio"  src="images/<%= @signals[0] %>.png"></label>
+        <input type="radio" name="reportChoices" value="<%= @signals[1] %>" disabled>
+        <label><img class="candy_image" id="imgSecondRadio" src="images/<%= @signals[1] %>.png"></label>
     </div>
-
-    <div id="int-task-step3-v1" class="step3">
-        3. Choose your claim.<br/><br/>
-        <div id="claimchoices">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="reportChoices" value="<%= @signals[0] %>" disabled>
-            <label><img class="candy_image" id="imgFirstRadio"  src="images/<%= @signals[0] %>.png"></label>
-            <input type="radio" name="reportChoices" value="<%= @signals[1] %>" disabled>
-            <label><img class="candy_image" id="imgSecondRadio" src="images/<%= @signals[1] %>.png"></label>
-        </div>
-        <div id="claimbutton">
-            &nbsp;&nbsp;&nbsp;&nbsp;<a class="button textBold fake" href="#">Confirm your claim!</a>
-        </div>
+    <div id="claimbutton">
+        &nbsp;&nbsp;&nbsp;&nbsp;<a class="button textBold fake" href="#">Confirm your claim!</a>
     </div>
+</div>
 
-    <div id="int-task-step3-v2" class="step3">
-        3. Choose your claim.<br/><br/>
-        <div id="claimresult">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <img class="candy_image" src="images/MM.png">
-        </div>
+<div id="int-task-step3-v2" class="step3">
+    3. Choose your claim.<br/><br/>
+    <div id="claimresult">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your claim is: <img class="candy_image" src="images/MM.png">
     </div>
+</div>
 
-    <div id="int-task-ruleTable" class="ruleTable">
-        <table>
-            <caption>Reward Rule</caption>
-            <tr>
-                <th colspan="2" class="nobottomb">
-                    Your claim<br/>
-                </th>
-                <th class="leftb" rowspan="2">Other players' claims</th>
-            </tr>
-
-            <tr>
-                <td class="leftb bottomb">
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png">
-                </td>
-                <td class="leftb bottomb">
-                    <img class="candy_image" src="images/<%= @signals[1] %>.png">
-                </td>
-            </tr>
-
-            <tr>
-                <td class="leftb">$<%= @payRule[0][0].toFixed(2) %></td>
-                <td class="leftb">$<%= @payRule[1][0].toFixed(2) %></td>
-                <td class="leftb">
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png"> 0
-                    <img class="candy_image" src="images/<%= @signals[1] %>.png"> 3
-                </td>
-            </tr>
-
-            <tr>
-                <td class="leftb">$<%= @payRule[0][1].toFixed(2) %></td>
-                <td class="leftb">$<%= @payRule[1][1].toFixed(2) %></td>
-                <td class="leftb">
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png"> 1
-                    <img class="candy_image" src="images/<%= @signals[1] %>.png"> 2
-                </td>
-            </tr>
-
-            <tr>
-                <td class="leftb">$<%= @payRule[0][2].toFixed(2) %></td>
-                <td class="leftb">$<%= @payRule[1][2].toFixed(2) %></td>
-                <td class="leftb">
-                    <!-- <img class="candy_image" src="images/<%= @signals[0] %>.png"> -->
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png"> 2
-                    <img class="candy_image" src="images/<%= @signals[1] %>.png"> 1
-                </td>
-            </tr>
-
-            <tr>
-                <td class="leftb">$<%= @payRule[0][3].toFixed(2) %></td>
-                <td class="leftb">$<%= @payRule[1][3].toFixed(2) %></td>
-                <td class="leftb">
-                    <!-- <img class="candy_image" src="images/<%= @signals[0] %>.png">
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png"> -->
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png"> 3
-                    <img class="candy_image" src="images/<%= @signals[1] %>.png"> 0
-                </td>
-            </tr>
-        </table>
-
-    </div>
-
-    <div id="int-result-header">
-        <table>
-            <caption>Results</caption>
-            <thead>
-            <tr>
-                <th>Round</th>
-                <th class="leftb">Your candy</th>
-                <th class="leftb">Your claim</th>
-                <th class="otherClaims">Other players' claims</th>
-                <th class="leftb">Your reward</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
-
-    <div id="int-result-body-v1" class="resultbody">
-        <table>
-            <tbody>
-            <tr>
-                <td>1</td><!-- Round number -->
-                <td class="leftb"><!-- Your signal -->
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png">
-                </td>
-                <td class="leftb"><!-- Your claim -->
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png">
-                </td>
-                <td class="otherClaims"><!-- Other Players' Claims-->
-                    <img class="candy_image" src="images/<%= @signals[0] %>.png">
-                    &nbsp;&nbsp;1
-                    <img class="candy_image" src="images/<%= @signals[1] %>.png">
-                    &nbsp;&nbsp;2
-                </td>
-                <td class="leftb"><!-- Your reward -->
-                    <span>$0.10</span>
-                </td>
-            </tr>
-            <tr class="borderAroundDashed">
-                <td class="borderLeftDashed">2</td><!-- Round number -->
-                <td class="leftb"><!-- Your signal -->
-                    <img id="t-nocandy"   class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
-                    <img id="t-showcandy" class="candy_image" src="images/MM.png">
-                </td>
-                <td class="leftb"><!-- Your claim -->
-                    <img id="t-noclaim"   class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
-                    <img id="t-showclaim" class="candy_image" src="images/MM.png">
-                </td>
-                <td id="status-waitforclaims" class="otherClaims"><!-- Other Players' Claims-->
-                    0 of 3 other player(s) confirmed claims.
-                </td>
-                <td id="status-getcandy" class="otherClaims">
-                    <!-- Please get your candy! -->&nbsp;
-                </td>
-                <td class="leftb borderRightDashed"><!-- Your reward -->
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div id="int-result-body-v2" class="resultbody">
+<div id="int-task-ruleTable" class="ruleTable">
     <table>
-    <tbody>
-    <tr>
-        <td>1</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>2</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$1.50</span>
-        </td>
-    </tr>
-    <tr>
-        <td>3</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.90</span>
-        </td>
-    </tr>
-    <tr>
-        <td>4</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;0
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;3
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.15</span>
-        </td>
-    </tr>
-    <tr>
-        <td>5</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>6</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$1.50</span>
-        </td>
-    </tr>
-    <tr>
-        <td>7</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.90</span>
-        </td>
-    </tr>
-    <tr>
-        <td>8</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;0
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;3
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>9</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>10</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.15</span>
-        </td>
-    </tr>
-    <tr>
-        <td>11</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>12</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$1.50</span>
-        </td>
-    </tr>
-    <tr>
-        <td>13</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.90</span>
-        </td>
-    </tr>
-    <tr>
-        <td>14</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;0
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;3
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.15</span>
-        </td>
-    </tr>
-    <tr>
-        <td>15</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>16</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$1.50</span>
-        </td>
-    </tr>
-    <tr>
-        <td>17</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.90</span>
-        </td>
-    </tr>
-    <tr>
-        <td>18</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;0
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;3
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>19</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>20</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.15</span>
-        </td>
-    </tr>
-    <tr>
-        <td>21</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>22</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$1.50</span>
-        </td>
-    </tr>
-    <tr>
-        <td>23</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.90</span>
-        </td>
-    </tr>
-    <tr>
-        <td>24</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;0
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;3
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.15</span>
-        </td>
-    </tr>
-    <tr>
-        <td>25</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>26</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$1.50</span>
-        </td>
-    </tr>
-    <tr>
-        <td>27</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.90</span>
-        </td>
-    </tr>
-    <tr>
-        <td>28</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;0
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;3
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>29</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;1
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;2
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.10</span>
-        </td>
-    </tr>
-    <tr>
-        <td>30</td><!-- Round number -->
-        <td class="leftb"><!-- Your signal -->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-        </td>
-        <td class="leftb"><!-- Your claim -->
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-        </td>
-        <td class="otherClaims"><!-- Other Players' Claims-->
-            <img class="candy_image" src="images/<%= @signals[0] %>.png">
-            &nbsp;&nbsp;2
-            <img class="candy_image" src="images/<%= @signals[1] %>.png">
-            &nbsp;&nbsp;1
-        </td>
-        <td class="leftb"><!-- Your reward -->
-            <span>$0.15</span>
-        </td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
+        <caption>Reward Rule</caption>
+        <tr>
+            <th colspan="2" class="nobottomb">
+                Your claim<br/>
+            </th>
+            <th class="leftb" rowspan="2">Other players' claims</th>
+        </tr>
 
-    <div id="int-avgreward">
-        <p id="r-zero">Average reward: $0.10</p>
-        <p id="r-endgame">Average reward: $0.55</p>
-    </div>
+        <tr>
+            <td class="leftb bottomb">
+                <img class="candy_image" src="images/<%= @signals[0] %>.png">
+            </td>
+            <td class="leftb bottomb">
+                <img class="candy_image" src="images/<%= @signals[1] %>.png">
+            </td>
+        </tr>
+
+        <tr>
+            <td class="leftb">$<%= @payRule[0][0].toFixed(2) %></td>
+            <td class="leftb">$<%= @payRule[1][0].toFixed(2) %></td>
+            <td class="leftb">
+                <img class="candy_image" src="images/<%= @signals[0] %>.png"> 0
+                <img class="candy_image" src="images/<%= @signals[1] %>.png"> 3
+            </td>
+        </tr>
+
+        <tr>
+            <td class="leftb">$<%= @payRule[0][1].toFixed(2) %></td>
+            <td class="leftb">$<%= @payRule[1][1].toFixed(2) %></td>
+            <td class="leftb">
+                <img class="candy_image" src="images/<%= @signals[0] %>.png"> 1
+                <img class="candy_image" src="images/<%= @signals[1] %>.png"> 2
+            </td>
+        </tr>
+
+        <tr>
+            <td class="leftb">$<%= @payRule[0][2].toFixed(2) %></td>
+            <td class="leftb">$<%= @payRule[1][2].toFixed(2) %></td>
+            <td class="leftb">
+                <!-- <img class="candy_image" src="images/<%= @signals[0] %>.png"> -->
+                <img class="candy_image" src="images/<%= @signals[0] %>.png"> 2
+                <img class="candy_image" src="images/<%= @signals[1] %>.png"> 1
+            </td>
+        </tr>
+
+        <tr>
+            <td class="leftb">$<%= @payRule[0][3].toFixed(2) %></td>
+            <td class="leftb">$<%= @payRule[1][3].toFixed(2) %></td>
+            <td class="leftb">
+                <!-- <img class="candy_image" src="images/<%= @signals[0] %>.png">
+                <img class="candy_image" src="images/<%= @signals[0] %>.png"> -->
+                <img class="candy_image" src="images/<%= @signals[0] %>.png"> 3
+                <img class="candy_image" src="images/<%= @signals[1] %>.png"> 0
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div id="int-result-header">
+    <table>
+        <caption>Results</caption>
+        <thead>
+        <tr>
+            <th>Round</th>
+            <th class="leftb">Your candy</th>
+            <th class="leftb">Your claim</th>
+            <th class="otherClaims">Other players' claims</th>
+            <th class="leftb">Your reward</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<div id="int-result-body-v1" class="resultbody">
+    <table>
+        <tbody>
+        <tr>
+            <td>1</td><!-- Round number -->
+            <td class="leftb"><!-- Your signal -->
+                <img class="candy_image" src="images/<%= @signals[0] %>.png">
+            </td>
+            <td class="leftb"><!-- Your claim -->
+                <img class="candy_image" src="images/<%= @signals[0] %>.png">
+            </td>
+            <td class="otherClaims"><!-- Other Players' Claims-->
+                <img class="candy_image" src="images/<%= @signals[0] %>.png">
+                &nbsp;&nbsp;1
+                <img class="candy_image" src="images/<%= @signals[1] %>.png">
+                &nbsp;&nbsp;2
+            </td>
+            <td class="leftb"><!-- Your reward -->
+                <span>$0.10</span>
+            </td>
+        </tr>
+        <tr class="borderAroundDashed">
+            <td class="borderLeftDashed">2</td><!-- Round number -->
+            <td class="leftb"><!-- Your signal -->
+                <img id="t-nocandy"   class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
+                <img id="t-showcandy" class="candy_image" src="images/MM.png">
+            </td>
+            <td class="leftb"><!-- Your claim -->
+                <img id="t-noclaim"   class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
+                <img id="t-showclaim" class="candy_image" src="images/MM.png">
+            </td>
+            <td id="status-waitforclaims" class="otherClaims"><!-- Other Players' Claims-->
+                0 of 3 other player(s) confirmed claims.
+            </td>
+            <td id="status-getcandy" class="otherClaims">
+                <!-- Please get your candy! -->&nbsp;
+            </td>
+            <td class="leftb borderRightDashed"><!-- Your reward -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="int-result-body-v2" class="resultbody">
+<table>
+<tbody>
+<tr>
+    <td>1</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>2</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$1.50</span>
+    </td>
+</tr>
+<tr>
+    <td>3</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.90</span>
+    </td>
+</tr>
+<tr>
+    <td>4</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;0
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;3
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.15</span>
+    </td>
+</tr>
+<tr>
+    <td>5</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>6</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$1.50</span>
+    </td>
+</tr>
+<tr>
+    <td>7</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.90</span>
+    </td>
+</tr>
+<tr>
+    <td>8</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;0
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;3
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>9</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>10</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.15</span>
+    </td>
+</tr>
+<tr>
+    <td>11</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>12</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$1.50</span>
+    </td>
+</tr>
+<tr>
+    <td>13</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.90</span>
+    </td>
+</tr>
+<tr>
+    <td>14</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;0
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;3
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.15</span>
+    </td>
+</tr>
+<tr>
+    <td>15</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>16</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$1.50</span>
+    </td>
+</tr>
+<tr>
+    <td>17</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.90</span>
+    </td>
+</tr>
+<tr>
+    <td>18</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;0
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;3
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>19</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>20</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.15</span>
+    </td>
+</tr>
+<tr>
+    <td>21</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>22</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$1.50</span>
+    </td>
+</tr>
+<tr>
+    <td>23</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.90</span>
+    </td>
+</tr>
+<tr>
+    <td>24</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;0
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;3
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.15</span>
+    </td>
+</tr>
+<tr>
+    <td>25</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>26</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$1.50</span>
+    </td>
+</tr>
+<tr>
+    <td>27</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.90</span>
+    </td>
+</tr>
+<tr>
+    <td>28</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;0
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;3
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>29</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;1
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;2
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.10</span>
+    </td>
+</tr>
+<tr>
+    <td>30</td><!-- Round number -->
+    <td class="leftb"><!-- Your signal -->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+    </td>
+    <td class="leftb"><!-- Your claim -->
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+    </td>
+    <td class="otherClaims"><!-- Other Players' Claims-->
+        <img class="candy_image" src="images/<%= @signals[0] %>.png">
+        &nbsp;&nbsp;2
+        <img class="candy_image" src="images/<%= @signals[1] %>.png">
+        &nbsp;&nbsp;1
+    </td>
+    <td class="leftb"><!-- Your reward -->
+        <span>$0.15</span>
+    </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="int-avgreward">
+    <p id="r-zero">Average reward: $0.10</p>
+    <p id="r-endgame">Average reward: $0.55</p>
+</div>
 
 </div>
 
@@ -951,11 +953,11 @@
             The bottom row in the result table shows <span class="textBold">information of the current round</span>,
             including
         </p>
-            <ul>
-                <li><span class="textBold">your candy</span></li>
-                <li><span class="textBold">your claim</span></li>
-                <li><span class="textBold">whether other players' claims are confirmed</span></li>
-            </ul>
+        <ul>
+            <li><span class="textBold">your candy</span></li>
+            <li><span class="textBold">your claim</span></li>
+            <li><span class="textBold">whether other players' claims are confirmed</span></li>
+        </ul>
         <p>
             <span class="textBold">Other players' claims are not displayed until the round is finished</span>.
         </p>
@@ -996,6 +998,7 @@
             <a class="button" id="endTutorial" href="#">Go to the quiz</a>
         </p>
     </div>
+
 
 </div>
 
