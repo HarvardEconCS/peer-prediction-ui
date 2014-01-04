@@ -4,4 +4,4 @@ Procfile
 node_modules/
 public/application.css
 public/application.js
-.idea/
+.idea/*

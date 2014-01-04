@@ -5,13 +5,11 @@ class MockServer
   # @signalH    = "MM"
   # @signalL    = "GB"
   @signalList = ["MM", "GB"]
-  @payAmounts = [[0.90, 0.10, 1.50, 0.80],[0.80, 1.50, 0.10, 0.90]]
-  # @nPlayers   = 4
-  @nPlayers   = 1
-  @nRounds    = 20
+  @payAmounts = [[0.10, 0.10, 1.50, 0.15],[0.15, 0.90, 0.15, 0.10]]
+  @nPlayers   = 4
+  @nRounds    = 30
   @houses     = [0.2, 0.7]
-  
-  
+
   @playerNames  = []
   @results      = []
   @currName     = null
