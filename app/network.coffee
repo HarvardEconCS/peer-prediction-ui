@@ -330,7 +330,7 @@ class Network
         # get signal for next game
         setTimeout( => @getSignal MockServer.getRoundSignal(), 100 )
 
-  @sendReport: (report) ->
+  @sendReport: (report, randomRadio) ->
     @game = Game.last()
     @game.currPlayerReport = report if @game
     @game.save()
@@ -338,8 +338,9 @@ class Network
     if not @fakeServer
       TSClient.sendExperimentService
         "report": report
+        "randomRadio": randomRadio
     else
-      MockServer.sendReportToServer(report)
+      MockServer.sendReportToServer(report, randomRadio)
 
   @sendQuizInfo: (correct, total, checkedChoices) ->
     return if @fakeServer is true
