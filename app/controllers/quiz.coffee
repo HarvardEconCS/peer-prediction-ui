@@ -30,7 +30,6 @@ class Quiz extends Spine.Controller
     @signals = ['MM', 'GB']
     # needs to be changed if actual payment rule changes.
     @payRule = [[0.10, 0.10, 1.50, 0.15],[0.15, 0.90, 0.15, 0.10]]
-
     @wrongAnswers   = undefined
     @checkedValues  = undefined
 

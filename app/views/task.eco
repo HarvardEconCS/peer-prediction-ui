@@ -7,17 +7,27 @@
 <% if @finished: %>
 
   <div id="finishmsg">
-    <p>Thank you for playing!</p>
+    <p>Thank you for playing!<br/>
+      You will be paid <span class="textBold">$<%= (1.00 + @bonus).toFixed(2) %></span> (=$1.00 + $<%= @bonus.toFixed(2) %>).<br/>
+    </p>
     <a class="button exit">Go to exit survey!</a>
   </div>
-  
+
 <% else unless @game: %>
   <p>Loading information...Please wait...</p>
-  
+
 <% else: %>
+  <!-- Information about the game has been loaded.  Display it. -->
+
   <div id="task-title">
-    You are playing <span class="textBold"><%= Network.numRounds %> rounds</span> of the game.
-    Your bonus (= average reward) so far: <span class="textBold">$<% if @bonus: %><%= @bonus.toFixed(2) %><% else: %>0.00<% end %></span>.
+    You are playing <span class="textBold"><%= Network.numRounds %> rounds</span> of the game with
+      <span class="textBold">
+          <%= Network.numPlayers - 1 %> other player(s).
+      </span>
+    Your bonus (= average reward) so far:
+      <span class="textBold">
+          $<% if @bonus: %><%= @bonus.toFixed(2) %><% else: %>0.00<% end %>.
+      </span>
   </div>
 
   <div id="task-status">
@@ -29,21 +39,21 @@
     <% end %>
     ***
   </div>
-  
+
   <div id="task-roundIndex">
     Current Round is <span class="textBold">#<%= @games.length %></span>:
   </div>
 
-  <div id="task-step1"> 
+  <div id="task-step1">
     1. &nbsp;&nbsp;A house has been randomly chosen for this round. <br/>
   </div>
   <div id="task-step1pic">
     <img style="height: 95px;" src="images/pic-prior.png">
   </div>
-  
+
   <div id="task-step2">
-    2. Get a random candy from the chosen house.<br/><br/> 
-    
+    2. Get a random candy from the chosen house.<br/><br/>
+
     <% if @revealSignal is true: %>
       <span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your candy is:
@@ -66,7 +76,7 @@
   </div>
 
   <% if @revealSignal is true: %>
-  <div id="task-step3"> 
+  <div id="task-step3">
     3. Choose your claim.<br/><br/>
     <% if @reportChosen is true: %>
       <div id="claimresult">
@@ -78,9 +88,9 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" name="reportChoices" id="firstRadio" value="<%= Network.signalList[0] %>" <% if @selected is $('#firstRadio').val(): %>checked<% end %>>
         <label for="firstRadio"><img class="candy_image" id="imgFirstRadio"  src="images/<%= Network.signalList[0] %>.png"></label>
-        
+
         <input type="radio" name="reportChoices" id="secondRadio" value="<%= Network.signalList[1] %>" <% if @selected is $('#secondRadio').val(): %>checked<% end %>>
-        <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= Network.signalList[1] %>.png"></label> 
+        <label for="secondRadio"><img class="candy_image" id="imgSecondRadio" src="images/<%= Network.signalList[1] %>.png"></label>
       </div>
       <div id="claimbutton">
         &nbsp;&nbsp;&nbsp;&nbsp;<a class="button confirm textBold" href="#">Confirm your claim!</a>
@@ -88,6 +98,71 @@
     <% end %>
   </div>
   <% end %>
+
+<% if @revealSignal is true and Network.payAmounts and Network.signalList: %>
+
+  <div id="task-ruleTable" class="ruleTable">
+    <table>
+      <caption>Reward Rule</caption>
+      <tr>
+        <th colspan="2" class="nobottomb">Your claim<br/>
+        </th>
+        <th class="leftb" rowspan="2">Other players' claims</th>
+      </tr>
+
+      <tr>
+        <td class="leftb bottomb">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+        </td>
+        <td class="leftb bottomb">
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+        </td>
+      </tr>
+
+      <tr>
+        <td class="leftb">$<%= Network.payAmounts[0][0].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][0].toFixed(2) %></td>
+        <td class="leftb">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 0
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 3
+        </td>
+
+      </tr>
+
+      <tr>
+        <td class="leftb">$<%= Network.payAmounts[0][1].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][1].toFixed(2) %></td>
+        <td class="leftb">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 1
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 2
+        </td>
+      </tr>
+
+      <tr>
+        <td class="leftb">$<%= Network.payAmounts[0][2].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][2].toFixed(2) %></td>
+        <td class="leftb">
+          <!-- <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> -->
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 2
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 1
+        </td>
+      </tr>
+
+      <tr>
+        <td class="leftb">$<%= Network.payAmounts[0][3].toFixed(2) %></td>
+        <td class="leftb">$<%= Network.payAmounts[1][3].toFixed(2) %></td>
+        <td class="leftb">
+          <!-- <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> -->
+          <img class="candy_image" src="images/<%= Network.signalList[0] %>.png"> 3
+          <img class="candy_image" src="images/<%= Network.signalList[1] %>.png"> 0
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+<% end %>
 
 <% end %>
 
@@ -111,10 +186,10 @@
   <div id="result-body">
     <table>
       <tbody>
-      <% if @games: %> 
-   
+      <% if @games: %>
+
         <% for game, i in @games: %>
-      
+
           <% if i is (@games.length - 1): %><!-- display last record-->
             <tr class="borderAroundDashed">
               <td><%= (i + 1) %></td><!-- Round number -->
@@ -132,20 +207,34 @@
                   <img class="candy_image" src="images/<%= Network.unconfirmMsg %>.png">
                 <% end %>
               </td>
-              <td class="leftb">
-                <% if game.result?[Network.currPlayerName]?.report?: %>
-                    $0.90
+              <td class="otherClaims"><!-- Other Players' Claims-->
+                <% if game.numOtherReportsConfirmed is (Network.numPlayers - 1): %>
+                  <% if game.result? and Object.keys(game.result).length > 1 and (i+1) is Network.numRounds: %>
+                    <img class="candy_image" src="images/<%= Network.signalList[0] %>.png">
+                    &nbsp;&nbsp;<%= game.numSignalZero %>
+                    <img class="candy_image" src="images/<%= Network.signalList[1] %>.png">
+                    &nbsp;&nbsp;<%= Network.numPlayers - 1 - game.numSignalZero %>
+                  <% end %>
+                <% else: %>
+                  <% if game.numOtherReportsConfirmed < (Network.numPlayers - 1): %>
+                    <%= game.numOtherReportsConfirmed %> of <%= (Network.numPlayers - 1) %> other player(s) confirmed claims.
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="leftb"><!-- Your reward -->
+                <% if game.result?[Network.currPlayerName]?.reward?: %>
+                  <span>$<%= game.result[Network.currPlayerName].reward.toFixed(2) %></span>
                 <% end %>
               </td>
             </tr>
 
           <% else: %><!-- display previous records -->
-        
+
             <tr>
               <td><%= (i + 1) %></td>
               <td class="leftb"><!-- Your candy -->
                 <img class="candy_image" src="images/<%= game.currPlayerSignal %>.png">
-              </td>    
+              </td>
               <td class="leftb"><!-- Your report -->
                 <img class="candy_image" src="images/<%= game.result[Network.currPlayerName].report %>.png">
               </td>
@@ -153,7 +242,7 @@
                 $0.90
               </td>
             </tr>
-      
+
           <% end %>
         <% end %>
       <% end %>
@@ -161,16 +250,16 @@
     </table>
   </div>
 
-  <div id="avgreward">
-    <p>
-      Average reward:
-      <% if @bonus: %>
-        $<%= @bonus.toFixed(2) %>
-      <% else: %>
-        $0.00
-      <% end %>
-    </p>
-  </div>
+<div id="avgreward">
+  <p>
+    Average reward:
+    <% if @bonus: %>
+      $<%= @bonus.toFixed(2) %>
+    <% else: %>
+      $0.00
+    <% end %>
+  </p>
+</div>
 
 <% end %>
 
