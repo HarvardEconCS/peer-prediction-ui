@@ -3,14 +3,11 @@
     <p style="font-weight: bold;">This is only a preview.  Please ACCEPT the HIT to start working on this task.</p>
 <% end %>
 
+<!-- Pictures for explaining steps of the game -->
 <img class="image" id="pic-prior"         src="images/pic-prior.png">
 <img class="image" id="step1"             src="images/step1 copy.png">
 <img class="image" id="step2"             src="images/step2 copy.png">
-<!-- Commented out for constant payment -->
-<!-- <img class="image" id="step3"             src="images/step3.png"> -->
 <img class="image" id="step3"             src="images/step3_constant.png">
-<!-- Commented out for constant payment -->
-<!-- <img class="image" id="steps-recap"       src="images/steps-recap.png"> -->
 <img class="image" id="steps-recap"       src="images/steps-recap_constant.png">
 <img class="image" id="eg-MM-MM" src="images/eg-MM-MM.png">
 <img class="image" id="eg-MM-GB" src="images/eg-MM-GB.png">
