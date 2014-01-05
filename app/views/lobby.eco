@@ -5,25 +5,17 @@
 <h2>Lobby</h2>
 
 <p>
-    Congratulations on passing the quiz!
-    Each game requires <%= @data.numneeded %> players.
-    Workers who passed the quiz wait in this lobby for enough players to start a game.
+    Congratulations on passing the quiz!  Please wait for <%= @data.numneeded %> players to start a game.
 </p>
-
 <p>
-    When at least <%= @data.numneeded %> players are in the lobby, a green button with "I am ready to play" appears,
-    and <span class="textBold">a sound</span> "you ready? here we go" <span class="textBold">is played</span>.
-    <span style="font-weight: bold;">Click the button to change your status to "READY".</span>
+    When <%= @data.numneeded %> players are in the lobby, <span class="textBold">A LOUD SOUND</span> is played
+    and a green button appears.  <span class="textBold">Click the green button</span> to indicate you are ready to play.
+    Once <%= @data.numneeded %> players are ready, you can start a new game.
+    <br/><br/>
 </p>
-
-<p>
-    Once <%= @data.numneeded %> players are all "READY", they immediately start playing the game.
-</p>
-
-<br/><br/>
 
 <h3>
-    The table shows the status of each worker (including you) currently in the lobby.
+    The table below shows workers' status (including you) in the lobby.
 </h3>
 
 <table>
