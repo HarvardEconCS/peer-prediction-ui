@@ -21,6 +21,8 @@
 <!-- Information about the game has been loaded.  Display it. -->
 
 <div id="task-title">
+    <span class="textBold">IMPORTANT: If the game SEEMS TO HANG, please REFRESH the page to make sure you are not disconnected!</span>
+    <br/>
     You are playing <span class="textBold"><%= Network.numRounds %> rounds</span> of the game with
       <span class="textBold">
           <%= Network.numPlayers - 1 %> other player(s).
